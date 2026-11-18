@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 4,
+  "id": "modifier_loot",
+  "visibility": "internal",
+  "name": "Modificateurs de butin",
+  "description": "Propriétés spéciales indépendantes pour le butin",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "runed",
+      "name": "Runique",
+      "weight": 6,
+      "fields": {
+        "description": "Une rune tirée de la LOI {{ rules.name }} marque l’objet ; le MJ en détermine la fonction et la puissance exactes."
+      }
+    },
+    {
+      "id": "damaged",
+      "name": "Endommagé",
+      "weight": 3,
+      "fields": {
+        "description": "L’objet est visiblement endommagé ; le MJ décide si cela entraîne des conséquences concrètes."
+      }
+    },
+    {
+      "id": "ancient",
+      "name": "Ancien",
+      "weight": 3,
+      "fields": {
+        "description": "L’objet provient d’un âge lointain ; le MJ décide de l’importance de son histoire en jeu."
+      }
+    },
+    {
+      "id": "cursed_affliction",
+      "name": "Maudit",
+      "fields": {
+        "description": "L’objet est associé à {{ affliction }} ; le MJ décide comment la malédiction se manifeste."
+      }
+    },
+    {
+      "id": "cursed_status_effect",
+      "name": "Maudit",
+      "fields": {
+        "description": "L’objet est associé à l’état {{ status_effect }} ; le MJ décide comment la malédiction se manifeste."
+      }
+    },
+    {
+      "id": "possessed",
+      "name": "Possédé",
+      "weight": 3,
+      "fields": {
+        "description": "La présence de {{ creature.generator.name }} habite ou influence l’objet."
+      }
+    },
+    {
+      "id": "faction_made",
+      "name": "Marqué par une faction",
+      "weight": 2,
+      "fields": {
+        "description": "L’objet a été fabriqué, fourni, modifié ou marqué par {{ faction.name }}."
+      }
+    },
+    {
+      "id": "government_made",
+      "name": "Marqué par un gouvernement",
+      "weight": 2,
+      "fields": {
+        "description": "L’objet a été fabriqué, fourni, modifié ou marqué par {{ government.name }}."
+      }
+    },
+    {
+      "id": "sentient",
+      "name": "Conscient",
+      "fields": {
+        "description": "L’objet perçoit ce qui l’entoure et possède sa propre personnalité : {{ personality.description }}"
+      }
+    },
+    {
+      "id": "noisy",
+      "name": "Bruyant",
+      "weight": 2,
+      "fields": {
+        "description": "L’objet chuchote, chante, cliquette, se plaint ou produit un autre bruit indésirable aux moments les moins opportuns."
+      }
+    },
+    {
+      "id": "self_moving",
+      "name": "Autonome",
+      "fields": {
+        "description": "Lorsqu’il reste sans surveillance, l’objet peut ramper, rouler, bondir ou se déplacer d’une autre manière sans prévenir."
+      }
+    },
+    {
+      "id": "oathbound",
+      "name": "Lié aux serments",
+      "fields": {
+        "description": "L’objet réagit aux promesses, aux serments et aux accords prononcés lorsqu’il est porté ou utilisé ; le MJ décide ce qu’il reconnaît et de quelle manière il répond."
+      }
+    },
+    {
+      "id": "living",
+      "name": "Vivant",
+      "fields": {
+        "description": "L’objet se comporte en partie comme un organisme vivant : il peut grandir, guérir, manger, dormir ou réagir lorsqu’on l’endommage."
+      }
+    },
+    {
+      "id": "conspicuous",
+      "name": "Voyant",
+      "weight": 2,
+      "fields": {
+        "description": "L’objet est surnaturellement difficile à dissimuler complètement ; une lueur, un bruit, une odeur, un mouvement ou un autre signe révélateur trahit sa présence."
+      }
+    },
+    {
+      "id": "jealous",
+      "name": "Jaloux",
+      "fields": {
+        "description": "L'objet supporte mal que des équipements semblables reçoivent de l'attention et peut se plaindre, intervenir ou devenir peu fiable lorsque son propriétaire emploie un objet rival."
+      }
+    },
+    {
+      "id": "bloodthirsty",
+      "name": "Assoiffé de sang",
+      "fields": {
+        "description": "L'objet devient enthousiaste et particulièrement coopératif dès que de graves violences commencent, puis résiste à être rangé ou abandonné avant que le conflit ne le satisfasse."
+      }
+    },
+    {
+      "id": "truthbound",
+      "name": "Lié à la vérité",
+      "fields": {
+        "description": "L'objet réagit favorablement à une honnêteté sincère et devient froid, gênant ou peu fiable lorsque son propriétaire ment sciemment."
+      }
+    },
+    {
+      "id": "homesick",
+      "name": "Nostalgique",
+      "fields": {
+        "description": "L'objet coopère davantage près du lieu, de la culture, du créateur, de l'environnement magique ou de la matière dont il provient, et devient moins fiable au loin."
+      }
+    },
+    {
+      "id": "protective",
+      "name": "Protecteur",
+      "fields": {
+        "description": "L'objet cherche sincèrement à protéger son propriétaire, mais peut refuser un voyage dangereux, contrarier une action risquée ou attirer l'attention sur une menace contre sa volonté."
+      }
+    },
+    {
+      "id": "curious",
+      "name": "Curieux",
+      "fields": {
+        "description": "Les lieux, les créatures, les magies et les objets inconnus le fascinent ; il peut tirer, bouger, s'activer ou faire du bruit pour pousser son propriétaire à enquêter."
+      }
+    },
+    {
+      "id": "possessive",
+      "name": "Possessif",
+      "fields": {
+        "description": "L'objet considère que son propriétaire actuel lui appartient et résiste lorsqu'on tente de le vendre, de le prêter, de l'abandonner, de le voler ou de l'offrir."
+      }
+    },
+    {
+      "id": "cowardly",
+      "name": "Couard",
+      "fields": {
+        "description": "L'objet tente d'éviter les dangers évidents en se cachant, en refusant de s'activer, en devenant difficile à dégainer, en cherchant à fuir ou en multipliant les avertissements."
+      }
+    }
+  ]
+}

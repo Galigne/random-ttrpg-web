@@ -1,0 +1,448 @@
+{
+  "schemaVersion": 4,
+  "id": "rumor",
+  "visibility": "public",
+  "name": "Rumeur",
+  "description": "Affirmations invérifiées dont le MJ décide si elles sont fondées",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "rumor_1",
+      "name": "Créature aperçue",
+      "fields": {
+        "description": "Une créature du type {{ monster.name }} aurait été aperçue près de la localité appelée {{ settlement.name }}."
+      }
+    },
+    {
+      "id": "rumor_2",
+      "name": "Achats inhabituels de matériaux",
+      "fields": {
+        "description": "{{ faction.name }} achèterait des quantités inhabituelles du matériau appelé {{ material.name }}."
+      }
+    },
+    {
+      "id": "rumor_3",
+      "name": "Trésor caché",
+      "fields": {
+        "description": "Une cache de grande valeur serait dissimulée sous le bâtiment appelé {{ building.name }}."
+      }
+    },
+    {
+      "id": "rumor_4",
+      "name": "Action gouvernementale secrète",
+      "fields": {
+        "description": "Un gouvernement de type {{ government.name }} préparerait une action secrète contre un rival voisin."
+      }
+    },
+    {
+      "id": "rumor_5",
+      "name": "Présage dissimulé",
+      "fields": {
+        "description": "Les fidèles de la religion appelée {{ religion.name }} annonceraient — ou dissimuleraient — une révélation de mauvais augure."
+      }
+    },
+    {
+      "id": "rumor_6",
+      "name": "Route devenue dangereuse",
+      "fields": {
+        "description": "Les voies traversant la région appelée {{ region.name }} seraient devenues dangereuses, sans que les voyageurs s’accordent sur la raison."
+      }
+    },
+    {
+      "id": "rumor_7",
+      "name": "Personne disparue aperçue",
+      "fields": {
+        "description": "Une personne disparue au profil {{ background.generator.name }} aurait été aperçue dans le bâtiment appelé {{ building.name }}."
+      }
+    },
+    {
+      "id": "rumor_8",
+      "name": "Lieu abandonné occupé",
+      "fields": {
+        "description": "Un site décrit comme {{ site.generator.name }}, longtemps tenu pour abandonné, serait occupé."
+      }
+    },
+    {
+      "id": "rumor_9",
+      "name": "Objet passé de main en main",
+      "fields": {
+        "description": "L’objet insolite appelé {{ curio.name }} aurait changé plusieurs fois de mains en l’espace de quelques jours."
+      }
+    },
+    {
+      "id": "rumor_10",
+      "name": "Service payé discrètement",
+      "fields": {
+        "description": "Un gouvernement de type {{ government.name }} rémunérerait discrètement la prestation suivante sans en expliquer la raison : {{ service.name }}."
+      }
+    },
+    {
+      "id": "faction_finances_crime",
+      "name": "Soutien au crime organisé",
+      "fields": {
+        "description": "Selon certaines rumeurs, {{ faction.name }} favoriserait en secret l’activité criminelle suivante par l’intermédiaire de tiers : {{ crime.name }}."
+      }
+    },
+    {
+      "id": "disputed_succession",
+      "name": "Succession contestée",
+      "fields": {
+        "description": "Une personne au profil {{ background:noble.generator.name }} serait secrètement préparée à remplacer les dirigeants d’un gouvernement de type {{ government.name }}."
+      }
+    },
+    {
+      "id": "manufactured_shortage",
+      "name": "Pénurie organisée",
+      "fields": {
+        "description": "Des marchands affirment que {{ faction.name }} retiendrait des stocks du matériau appelé {{ material.name }} afin de faire monter les prix."
+      }
+    },
+    {
+      "id": "forbidden_rite",
+      "name": "Rite interdit",
+      "fields": {
+        "description": "Les fidèles de la religion appelée {{ religion.name }} pratiqueraient un rite interdit sous le bâtiment appelé {{ building.name }}."
+      }
+    },
+    {
+      "id": "pattern_of_disappearances",
+      "name": "Série de disparitions",
+      "fields": {
+        "description": "Des voyageurs au profil {{ background.generator.name }} auraient disparu sur les voies traversant la région appelée {{ region.name }}."
+      }
+    },
+    {
+      "id": "repeating_strange_event",
+      "name": "Événement étrange récurrent",
+      "fields": {
+        "description": "Des témoins jurent que le phénomène étrange suivant s’est produit plus d’une fois : {{ event.description }}"
+      }
+    },
+    {
+      "id": "dangerous_site_after_dark",
+      "name": "Lieu captif de la nuit",
+      "fields": {
+        "description": "Il deviendrait impossible de quitter un site décrit comme {{ site.generator.name }} après la tombée de la nuit."
+      }
+    },
+    {
+      "id": "fabricated_reputation",
+      "name": "Réputation fabriquée",
+      "fields": {
+        "description": "Une personne respectée au profil {{ background.generator.name }} aurait bâti sa réputation sur de faux documents et les exploits d’autrui."
+      }
+    },
+    {
+      "id": "creature_protection_bargain",
+      "name": "Protection achetée à une créature",
+      "fields": {
+        "description": "Les habitants de la localité appelée {{ settlement.name }} offriraient des présents à une créature du type {{ monster.name }} en échange de sa protection."
+      }
+    },
+    {
+      "id": "counterfeit_currency",
+      "name": "Fausse monnaie",
+      "fields": {
+        "description": "La monnaie émise par un gouvernement de type {{ government.name }} serait contrefaite dans le bâtiment appelé {{ building.name }}."
+      }
+    },
+    {
+      "id": "stolen_relic",
+      "name": "Relique volée",
+      "fields": {
+        "description": "Une relique sacrée de la religion appelée {{ religion.name }} serait cachée sous la garde de {{ faction.name }}."
+      }
+    },
+    {
+      "id": "secret_passage",
+      "name": "Passage secret",
+      "fields": {
+        "description": "Un passage dissimulé relierait le bâtiment appelé {{ building.name }} à un site décrit comme {{ site.generator.name }}."
+      }
+    },
+    {
+      "id": "tainted_material_shipments",
+      "name": "Cargaisons contaminées",
+      "fields": {
+        "description": "Des cargaisons du matériau appelé {{ material.name }} venues de la région nommée {{ region.name }} seraient à l’origine de cas de l’affliction {{ affliction.name }}."
+      }
+    },
+    {
+      "id": "criminal_informants",
+      "name": "Informateurs criminels",
+      "fields": {
+        "description": "Un gouvernement de type {{ government.name }} rémunérerait une personne au profil {{ background:criminal.generator.name }} pour obtenir des renseignements sur des personnalités en vue."
+      }
+    },
+    {
+      "id": "pirates_returning",
+      "name": "Retour des pirates",
+      "fields": {
+        "description": "Des voyageurs affirment que l’activité de {{ crime:piracy.name }} aurait repris sur les voies qui bordent la région appelée {{ region.name }} après des années d’accalmie."
+      }
+    },
+    {
+      "id": "shared_prophetic_dream",
+      "name": "Rêve prophétique partagé",
+      "fields": {
+        "description": "Des personnes qui ne se connaissent pas feraient le même rêve au sujet d’un changement prochain sur un site décrit comme {{ site.generator.name }}."
+      }
+    },
+    {
+      "id": "political_scandal",
+      "name": "Scandale politique",
+      "fields": {
+        "description": "{{ faction.name }} détiendrait la preuve d’un scandale capable de déstabiliser un gouvernement de type {{ government.name }}."
+      }
+    },
+    {
+      "id": "hidden_creature_breeding",
+      "name": "Élevage clandestin de créatures",
+      "fields": {
+        "description": "{{ faction.name }} élèverait des créatures du type {{ monster.name }} sous le bâtiment appelé {{ building.name }}."
+      }
+    },
+    {
+      "id": "notable_accused_of_crime",
+      "name": "Personnalité mise en cause",
+      "fields": {
+        "description": "Une personne respectée au profil {{ background.generator.name }} aurait pris part à l’activité criminelle suivante : {{ crime.name }}."
+      }
+    },
+    {
+      "id": "faction_hiring_for_service",
+      "name": "Recrutement discret d’une faction",
+      "fields": {
+        "description": "{{ faction.name }} recruterait discrètement des personnes extérieures pour assurer la prestation suivante : {{ service.name }}."
+      }
+    },
+    {
+      "id": "rule_bearing_animal",
+      "name": "Animal doué d’une LOI",
+      "fields": {
+        "description": "On raconte qu’un animal apparemment ordinaire du type {{ animal.name }} se comporte comme s’il possédait {{ rules.name }}, mais les témoins hésitent entre magie, dressage et coïncidence."
+      }
+    },
+    {
+      "id": "monster_on_payroll",
+      "name": "Monstre à la solde",
+      "fields": {
+        "description": "Une créature redoutée du type {{ monster.name }} travaillerait pour {{ faction.name }} sous la protection d’un gouvernement de type {{ government.name }}."
+      }
+    },
+    {
+      "id": "counterfeit_true_relic",
+      "name": "Fausse relique aux vrais miracles",
+      "fields": {
+        "description": "Une relique sacrée de la religion appelée {{ religion.name }} serait une contrefaçon récente, mais les miracles qui lui sont attribués resteraient pourtant authentiques."
+      }
+    },
+    {
+      "id": "replaced_notable",
+      "name": "Personnalité remplacée",
+      "fields": {
+        "description": "Une personne respectée au profil {{ background.generator.name }} aurait été remplacée par un double ; ses proches invoquent de légers changements d’habitudes comme preuves."
+      }
+    },
+    {
+      "id": "faction_feeds_monster",
+      "name": "Monstre entretenu",
+      "fields": {
+        "description": "Des convois de ravitaillement liés à {{ faction.name }} nourriraient, abriteraient ou entretiendraient d’une autre manière une dangereuse créature du type {{ monster.name }}."
+      }
+    },
+    {
+      "id": "guardian_contains_worse",
+      "name": "Gardien nécessaire",
+      "fields": {
+        "description": "Des voyageurs affirment que la créature du type {{ monster.name }} qui garde le lieu décrit comme {{ site:dungeon.generator.name }} empêcherait en réalité quelque chose de pire de s’échapper."
+      }
+    },
+    {
+      "id": "item_dislikes_owner",
+      "name": "Malédiction sélective",
+      "fields": {
+        "description": "L’objet appelé {{ loot.generator.name }} ne serait pas maudit ; selon les témoins, il aurait simplement et activement pris son propriétaire actuel en grippe."
+      }
+    },
+    {
+      "id": "celibate_cleric_lovers",
+      "name": "Amants d’un religieux célibataire",
+      "weight": 0.75,
+      "fields": {
+        "description": "Un prêtre ou chef religieux adulte censément voué au célibat entretiendrait plusieurs amants adultes dans différents quartiers de la localité."
+      }
+    },
+    {
+      "id": "noble_private_orgies",
+      "name": "Orgies privées d’un noble",
+      "weight": 0.5,
+      "fields": {
+        "description": "Un noble local organiserait des orgies privées décadentes entre adultes consentants et y inviterait des fonctionnaires dont les faveurs pourraient ensuite servir."
+      }
+    },
+    {
+      "id": "adventurer_seduces_quest_givers",
+      "name": "Aventurier séduisant les commanditaires",
+      "weight": 0.75,
+      "fields": {
+        "description": "Le véritable talent d’un célèbre aventurier adulte serait de séduire des commanditaires adultes, des rivaux, des témoins et toute personne susceptible de pardonner un travail inachevé."
+      }
+    },
+    {
+      "id": "guard_captain_arrestees",
+      "name": "Arrestations compromises du capitaine",
+      "weight": 0.5,
+      "fields": {
+        "description": "Le capitaine de la garde est accusé d’avoir couché avec des adultes qu’il devait arrêter, ce qui soulève de graves questions de contrainte, de favoritisme et d’abus d’autorité."
+      }
+    },
+    {
+      "id": "haunted_manor_gatherings",
+      "name": "Réunions secrètes du manoir hanté",
+      "weight": 0.75,
+      "fields": {
+        "description": "Un manoir censément hanté servirait à des rencontres sexuelles secrètes entre adultes consentants ; les histoires de fantômes ne feraient que décourager les visiteurs."
+      }
+    },
+    {
+      "id": "promotion_through_affair",
+      "name": "Poste obtenu par une liaison",
+      "weight": 0.75,
+      "fields": {
+        "description": "Une personne influente aurait obtenu sa fonction, son commandement, son titre ou son poste lucratif grâce à une liaison avec un supérieur adulte."
+      }
+    },
+    {
+      "id": "illiterate_mayor",
+      "name": "Responsable illettré",
+      "weight": 0.75,
+      "fields": {
+        "description": "Le maire ou un autre responsable important serait fonctionnellement illettré et ferait semblant de lire des documents depuis des années."
+      }
+    },
+    {
+      "id": "bards_invent_heroics",
+      "name": "Exploits inventés à prix d’or",
+      "weight": 0.75,
+      "fields": {
+        "description": "Un héros célèbre paierait des bardes pour inventer la plupart de ses aventures et verserait encore davantage aux témoins pour qu’ils se taisent."
+      }
+    },
+    {
+      "id": "unconsummated_royal_marriage",
+      "name": "Mariage royal non consommé",
+      "weight": 0.5,
+      "fields": {
+        "description": "Le mariage royal entre deux adultes n’aurait jamais été consommé, et les courtisans parieraient discrètement sur la raison."
+      }
+    },
+    {
+      "id": "embarrassing_curse",
+      "name": "Malédiction embarrassante dissimulée",
+      "weight": 0.75,
+      "fields": {
+        "description": "Une personnalité importante dissimulerait une malédiction aux effets humiliants, indécents, gênants ou désastreux pour sa dignité soigneusement entretenue."
+      }
+    },
+    {
+      "id": "unwanted_advances",
+      "name": "Avances sexuelles insistantes et non désirées",
+      "weight": 0.25,
+      "fields": {
+        "description": "Un adulte puissant est accusé de faire régulièrement des avances sexuelles non désirées à d’autres adultes et de punir ceux qui refusent ou se plaignent."
+      }
+    },
+    {
+      "id": "scandal_suppression",
+      "name": "Scandale sexuel étouffé",
+      "weight": 0.25,
+      "fields": {
+        "description": "Une personnalité aurait utilisé argent, influence, menaces ou chantage pour étouffer un grave scandale sexuel impliquant des adultes."
+      }
+    },
+    {
+      "id": "adventurers_manufacture_monsters",
+      "name": "Problèmes de monstres fabriqués par des aventuriers",
+      "weight": 0.5,
+      "fields": {
+        "description": "Une compagnie d’aventuriers renommée attirerait ou relâcherait des monstres près de communautés vulnérables avant d’exiger un paiement pour éliminer la menace qu’elle a créée."
+      }
+    },
+    {
+      "id": "necromantic_labor",
+      "name": "Main-d’œuvre nécromantique non rémunérée",
+      "weight": 0.75,
+      "fields": {
+        "description": "Les nécromanciens locaux emploieraient les morts comme main-d’œuvre gratuite tandis que marchands et fonctionnaires profiteraient discrètement de cet arrangement."
+      }
+    },
+    {
+      "id": "party_ruler",
+      "name": "Dirigeant meilleur fêtard que gouvernant",
+      "weight": 0.75,
+      "fields": {
+        "description": "Le dirigeant serait incapable de gouverner, mais exceptionnel pour organiser des fêtes, gagner des concours de boisson et distraire la cour."
+      }
+    },
+    {
+      "id": "body_part_relic",
+      "name": "Relique peut-être faite d’un morceau de corps",
+      "weight": 0.5,
+      "fields": {
+        "description": "Une prétendue sainte relique serait un morceau de corps non identifié sans aucun lien établi avec le saint, la divinité ou le miracle qu’on lui attribue."
+      }
+    },
+    {
+      "id": "unfindable_remembered_town",
+      "name": "La ville dont on se souvient sur une route",
+      "fields": {
+        "description": "Des voyageurs qui reviennent par la même route se souviennent indépendamment d'avoir visité une ville absente de toutes les cartes et que personne ne parvient à retrouver."
+      }
+    },
+    {
+      "id": "bereavement_visible_monster",
+      "name": "Monstre visible uniquement aux endeuillés",
+      "fields": {
+        "description": "La créature du type {{ monster.name }} ne serait perceptible que par les personnes qui ont perdu quelqu'un d'important à cause d'elle."
+      }
+    },
+    {
+      "id": "growing_abandoned_structure",
+      "name": "Nouvelle salle mensuelle",
+      "fields": {
+        "description": "Un lieu abandonné du type suivant gagne chaque mois une nouvelle salle intérieure sans changer à l'extérieur : {{ building.name }}."
+      }
+    },
+    {
+      "id": "warning_artifact",
+      "name": "Artefact maudit qui tente d'avertir",
+      "fields": {
+        "description": "Le comportement apparemment malveillant de {{ artifact.name }} serait en réalité une tentative d'avertir ses propriétaires d'un danger qu'ils ont mal compris."
+      }
+    },
+    {
+      "id": "shared_unknown_companion",
+      "name": "Même compagnon inconnu",
+      "fields": {
+        "description": "Des voyageurs sans lien entre eux décrivent le même mystérieux compagnon, mais aucun ne sait expliquer quand cette personne les a rejoints ni d'où elle vient."
+      }
+    },
+    {
+      "id": "domestic_dungeon_entrances",
+      "name": "Portes de donjon dans des maisons",
+      "fields": {
+        "description": "Des portes, des placards, des caves et des sous-sols ordinaires de maisons privées commencent à s'ouvrir sur le même lieu décrit comme {{ dungeon.name }}."
+      }
+    },
+    {
+      "id": "underground_false_bells",
+      "name": "Quelque chose imite les cloches sous terre",
+      "fields": {
+        "description": "Un son de cloche monte d'un sous-sol où il n'en existe aucune, et son rythme ressemble de plus en plus à une imitation ou à un signal volontaire."
+      }
+    }
+  ]
+}

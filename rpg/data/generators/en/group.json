@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 4,
+  "id": "group",
+  "visibility": "public",
+  "name": "Group",
+  "description": "Random governments, factions, and religions",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "government",
+      "name": "government",
+      "generator": "government"
+    },
+    {
+      "id": "faction",
+      "name": "faction",
+      "generator": "faction"
+    },
+    {
+      "id": "religion",
+      "name": "religion",
+      "generator": "religion"
+    }
+  ]
+}

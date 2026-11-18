@@ -1,0 +1,449 @@
+{
+  "schemaVersion": 4,
+  "id": "talents",
+  "visibility": "public",
+  "name": "Talents",
+  "description": "Talents et spécialités des personnages",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "athlete",
+      "name": "Athlète",
+      "weight": 3,
+      "fields": {
+        "description": "+1 aux actions physiques impliquant l’une des activités suivantes : effort prolongé, {{ ability:climbing.name }} ou saut."
+      }
+    },
+    {
+      "id": "keen_eye",
+      "name": "Œil aiguisé",
+      "weight": 3,
+      "fields": {
+        "description": "+1 pour rechercher de petits détails, des traces, des pièges ou des objets cachés."
+      }
+    },
+    {
+      "id": "silver_tongue",
+      "name": "Beau parleur",
+      "weight": 3,
+      "fields": {
+        "description": "+1 en {{ ability:persuasion.name }} lorsque le personnage a le temps d’exposer son point de vue."
+      }
+    },
+    {
+      "id": "survivor",
+      "name": "Survivant",
+      "weight": 3,
+      "fields": {
+        "description": "+1 pour trouver un abri, rationner les provisions ou choisir un itinéraire sûr en milieu sauvage hostile."
+      }
+    },
+    {
+      "id": "weather_hardened",
+      "name": "Endurci par les éléments",
+      "weight": 2,
+      "fields": {
+        "description": "+2 pour résister à l’exposition à la chaleur, au froid, au vent ou aux fortes pluies d’origine naturelle pendant un voyage."
+      }
+    },
+    {
+      "id": "assassin",
+      "name": "Assassin",
+      "weight": 2,
+      "fields": {
+        "description": "Les attaques sont plus efficaces lorsque la cible n'a pas repéré le personnage."
+      }
+    },
+    {
+      "id": "bodybuilder",
+      "name": "Force herculéenne",
+      "weight": 2,
+      "fields": {
+        "description": "+1 aux actions reposant sur la {{ ability:strength.name }} brute."
+      }
+    },
+    {
+      "id": "politician",
+      "name": "Politicien",
+      "weight": 2,
+      "fields": {
+        "description": "+2 en {{ ability:charisma.name }} lors de négociations officielles et de discussions politiques."
+      }
+    },
+    {
+      "id": "field_medic",
+      "name": "Médecin de terrain",
+      "weight": 2,
+      "fields": {
+        "description": "+1 pour stabiliser des blessures ou utiliser du matériel médical ordinaire."
+      }
+    },
+    {
+      "id": "quick_draw",
+      "name": "Dégainage rapide",
+      "weight": 2,
+      "fields": {
+        "description": "Dégainer ou changer une arme préparée ne ralentit pas la première action du personnage."
+      }
+    },
+    {
+      "id": "shield_expert",
+      "name": "Expert du bouclier",
+      "weight": 2,
+      "fields": {
+        "description": "+1 pour bloquer avec un bouclier ou protéger un allié adjacent."
+      }
+    },
+    {
+      "id": "tracker",
+      "name": "Pisteur",
+      "weight": 2,
+      "fields": {
+        "description": "+2 pour suivre la piste laissée par une créature connue."
+      }
+    },
+    {
+      "id": "arcane_student",
+      "name": "Érudit des arcanes",
+      "weight": 2,
+      "fields": {
+        "description": "+1 pour identifier une LOI, une rune ou un phénomène magique."
+      }
+    },
+    {
+      "id": "craftsperson",
+      "name": "Artisan",
+      "weight": 2,
+      "fields": {
+        "description": "+1 pour réparer, évaluer ou fabriquer de l'équipement ordinaire."
+      }
+    },
+    {
+      "id": "duelist",
+      "name": "Duelliste",
+      "weight": 2,
+      "fields": {
+        "description": "+1 pour combattre un seul adversaire visible sans intervention à proximité."
+      }
+    },
+    {
+      "id": "beast_friend",
+      "name": "Ami des bêtes",
+      "weight": 2,
+      "fields": {
+        "description": "+2 pour calmer ou comprendre les animaux ordinaires."
+      }
+    },
+    {
+      "id": "sailor",
+      "name": "Marin",
+      "weight": 2,
+      "fields": {
+        "description": "+2 en {{ ability:navigation.name }}, pour manœuvrer le gréement et pour garder l’équilibre à bord d’un navire."
+      }
+    },
+    {
+      "id": "streetwise",
+      "name": "Enfant des rues",
+      "weight": 2,
+      "fields": {
+        "description": "+1 pour trouver des marchandises illicites, des rumeurs ou des itinéraires sûrs en ville."
+      }
+    },
+    {
+      "id": "unshakable",
+      "name": "Inébranlable",
+      "weight": 2,
+      "fields": {
+        "description": "+1 pour résister à la peur, à l’{{ ability:intimidation.name }} et à l’effroi surnaturel."
+      }
+    },
+    {
+      "id": "cold_immunity",
+      "name": "Immunité au froid",
+      "fields": {
+        "description": "Le personnage ne peut pas être gelé par un froid ordinaire."
+      }
+    },
+    {
+      "id": "poison_tolerance",
+      "name": "Résistance au poison",
+      "fields": {
+        "description": "+2 pour résister au poison et reconnaître les toxines courantes au goût ou à l'odeur."
+      }
+    },
+    {
+      "id": "ambidextrous",
+      "name": "Ambidextre",
+      "fields": {
+        "description": "Le personnage manie ses deux mains avec la même précision."
+      }
+    },
+    {
+      "id": "battle_rhythm",
+      "name": "Rythme de bataille",
+      "fields": {
+        "description": "Après une attaque coordonnée réussie, la prochaine action alliée du même tour bénéficie de +1."
+      }
+    },
+    {
+      "id": "rune_listener",
+      "name": "À l'écoute des runes",
+      "fields": {
+        "description": "Le personnage peut sentir si une rune touchée est dormante ou active."
+      }
+    },
+    {
+      "id": "perfect_memory",
+      "name": "Mémoire parfaite",
+      "fields": {
+        "description": "+2 pour se rappeler une scène, un itinéraire, un visage ou les mots exacts qui ont été prononcés."
+      }
+    },
+    {
+      "id": "improviser",
+      "name": "Improvisateur",
+      "fields": {
+        "description": "+1 pour détourner un objet ordinaire de son usage de manière plausible."
+      }
+    },
+    {
+      "id": "last_stand",
+      "name": "Dernier rempart",
+      "fields": {
+        "description": "+1 aux actions lorsque les PV actuels sont inférieurs ou égaux à 20 % des PV maximaux."
+      }
+    },
+    {
+      "id": "danger_sense",
+      "name": "Sens du danger",
+      "fields": {
+        "description": "+1 en Vitesse aux jets de Réflexes pour réagir à une menace invisible ou inattendue."
+      }
+    },
+    {
+      "id": "heavy_hitter",
+      "name": "Frappeur puissant",
+      "fields": {
+        "description": "Une attaque lourde au corps à corps réussie produit un effet de placement plus important."
+      }
+    },
+    {
+      "id": "lucky_break",
+      "name": "Coup de chance",
+      "fields": {
+        "description": "Une fois par session, permet de relancer un jet utilitaire non critique raté."
+      }
+    },
+    {
+      "id": "inspiring_presence",
+      "name": "Présence inspirante",
+      "fields": {
+        "description": "Une fois par scène, un allié qui entend le personnage bénéficie de +1 contre la peur."
+      }
+    },
+    {
+      "id": "locksmith",
+      "name": "Serrurier",
+      "weight": 2,
+      "fields": {
+        "description": "+2 aux actions visant à ouvrir ou examiner les serrures mécaniques ordinaires."
+      }
+    },
+    {
+      "id": "burglar",
+      "name": "Cambrioleur",
+      "fields": {
+        "description": "+2 aux actions de {{ ability:dexterity.name }} pour s’introduire discrètement dans un bâtiment protégé, s’y déplacer ou en ressortir."
+      }
+    },
+    {
+      "id": "marksman",
+      "name": "Tireur d’élite",
+      "fields": {
+        "description": "+1 aux attaques avec une arme à distance contre une cible visible située à au moins 10 mètres."
+      }
+    },
+    {
+      "id": "brawler",
+      "name": "Bagarreur",
+      "weight": 2,
+      "fields": {
+        "description": "+1 aux actions de combat à mains nues ou de lutte."
+      }
+    },
+    {
+      "id": "herbalist",
+      "name": "Herboriste",
+      "weight": 2,
+      "fields": {
+        "description": "+2 pour identifier ou utiliser des plantes médicinales ou toxiques."
+      }
+    },
+    {
+      "id": "alchemist",
+      "name": "Alchimiste",
+      "fields": {
+        "description": "+2 aux actions d’{{ ability:intelligence.name }} pour identifier, préparer ou manipuler sans danger des substances alchimiques."
+      }
+    },
+    {
+      "id": "blacksmith",
+      "name": "Forgeron",
+      "weight": 2,
+      "fields": {
+        "description": "+2 aux actions de forge, d’évaluation ou de réparation d’armes, d’armures et d’outils en métal."
+      }
+    },
+    {
+      "id": "acrobat",
+      "name": "Acrobate",
+      "weight": 2,
+      "fields": {
+        "description": "+2 aux actions de {{ ability:dexterity.name }} impliquant l’équilibre, les roulades ou des déplacements acrobatiques."
+      }
+    },
+    {
+      "id": "investigator",
+      "name": "Enquêteur",
+      "fields": {
+        "description": "+2 aux actions de {{ ability:perception.name }} pour examiner une scène à la recherche de preuves matérielles."
+      }
+    },
+    {
+      "id": "commander",
+      "name": "Commandant",
+      "fields": {
+        "description": "+1 aux actions de {{ ability:charisma.name }} pour coordonner dans l’urgence un groupe disposé à suivre ses ordres."
+      }
+    },
+    {
+      "id": "impersonator",
+      "name": "Comédien et imitateur",
+      "fields": {
+        "description": "+2 aux actions de {{ ability:charisma.name }} pour jouer un rôle ou imiter une personne observée au préalable."
+      }
+    },
+    {
+      "id": "historian",
+      "name": "Historien",
+      "fields": {
+        "description": "+2 aux actions d’{{ ability:intelligence.name }} portant sur l’histoire."
+      }
+    },
+    {
+      "id": "runesmith",
+      "name": "Graveur de runes",
+      "fields": {
+        "description": "+2 aux actions visant à identifier, comprendre ou créer des runes."
+      }
+    },
+    {
+      "id": "weapon_specialist",
+      "name": "Spécialiste d’une arme",
+      "fields": {
+        "description": "Arme de prédilection : {{ weapons.name }}. Le personnage bénéficie de +2 aux attaques ou autres actions pertinentes effectuées avec cette arme."
+      }
+    },
+    {
+      "id": "monster_hunter",
+      "name": "Chasseur de monstres",
+      "fields": {
+        "description": "Se spécialise dans une forme de {{ ability:hunting.name }} visant la créature suivante : {{ creature:monster.generator.name }}. Bénéficie de +2 pour la suivre grâce au {{ ability:tracking.name }}, l’identifier, se rappeler ses faiblesses ou préparer un affrontement contre elle."
+      }
+    },
+    {
+      "id": "cultural_expert",
+      "name": "Expert culturel",
+      "fields": {
+        "description": "Culture étudiée : {{ race.name }}. Le personnage bénéficie de +2 aux actions pertinentes de connaissance ou d’interaction sociale impliquant ce peuple."
+      }
+    },
+    {
+      "id": "rider",
+      "name": "Cavalier",
+      "fields": {
+        "description": "+2 aux actions pertinentes de {{ ability:animal_handling.name }}, de contrôle et d’équilibre lorsque le personnage est en selle."
+      }
+    },
+    {
+      "id": "ghost_step",
+      "name": "Pas fantôme",
+      "fields": {
+        "description": "+2 en {{ ability:stealth.name }} lorsque le personnage se déplace prudemment au lieu de se précipiter."
+      }
+    },
+    {
+      "id": "fast_learner",
+      "name": "Apprentissage rapide",
+      "fields": {
+        "description": "Après avoir vu un autre personnage réussir une action, bénéficie de +1 lors de sa première tentative pour reproduire cette action au cours de la même scène."
+      }
+    },
+    {
+      "id": "scavenger",
+      "name": "Récupérateur",
+      "fields": {
+        "description": "+2 pour fouiller des lieux déjà explorés à la recherche de provisions, de composants, de munitions ou de matériaux récupérables utiles."
+      }
+    },
+    {
+      "id": "counterattacker",
+      "name": "Contre-attaquant",
+      "fields": {
+        "description": "+1 à la prochaine attaque rapprochée portée contre un adversaire avant la fin du tour suivant lorsque celui-ci rate une attaque rapprochée contre le personnage."
+      }
+    },
+    {
+      "id": "ritual_specialist",
+      "name": "Spécialiste des rituels",
+      "fields": {
+        "description": "+2 aux actions visant à préparer ou accomplir un rituel magique méthodique lorsque dix minutes ininterrompues au moins sont disponibles."
+      }
+    },
+    {
+      "id": "battlefield_controller",
+      "name": "Contrôleur du champ de bataille",
+      "fields": {
+        "description": "+1 aux actions visant à déplacer un adversaire, condamner un passage, exploiter le terrain ou tenir un point d'étranglement."
+      }
+    },
+    {
+      "id": "defensive_guardian",
+      "name": "Gardien protecteur",
+      "fields": {
+        "description": "+1 aux actions visant à s'interposer entre un danger et un allié proche, à protéger cet allié ou à empêcher un ennemi de passer."
+      }
+    },
+    {
+      "id": "opportunist",
+      "name": "Opportuniste",
+      "fields": {
+        "description": "+1 à la première action qui exploite immédiatement la distraction, l'erreur ou la position nouvellement exposée d'un adversaire."
+      }
+    },
+    {
+      "id": "magical_improviser",
+      "name": "Improvisateur magique",
+      "fields": {
+        "description": "+2 lorsqu'un effet magique connu est adapté à un usage plausible qui sort de sa fonction la plus évidente."
+      }
+    },
+    {
+      "id": "animal_handler",
+      "name": "Dresseur d'animaux",
+      "fields": {
+        "description": "+2 pour calmer, dresser, diriger ou soigner des animaux ordinaires ou insolites, ainsi que pour travailler à leurs côtés."
+      }
+    },
+    {
+      "id": "escape_artist",
+      "name": "Roi de l'évasion",
+      "fields": {
+        "description": "+2 aux actions visant à s'échapper d'entraves, d'une lutte, d'une cage, de liens ou de toute autre captivité physique."
+      }
+    }
+  ]
+}

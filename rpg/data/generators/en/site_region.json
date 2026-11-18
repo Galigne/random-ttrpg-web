@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 4,
+  "id": "region",
+  "visibility": "internal",
+  "name": "Region",
+  "description": "Broad natural and cultivated geographic regions",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "temperate_forest",
+      "name": "Temperate Forest",
+      "weight": 4,
+      "fields": {
+        "description": "mixed woodland crossed by game trails, logging roads, and clear streams."
+      }
+    },
+    {
+      "id": "dry_scrubland",
+      "name": "Dry Scrubland",
+      "weight": 3,
+      "fields": {
+        "description": "thorny brush, red earth, seasonal rivers, and widely separated wells."
+      }
+    },
+    {
+      "id": "frozen_tundra",
+      "name": "Frozen Tundra",
+      "weight": 2,
+      "fields": {
+        "description": "permafrost, low vegetation, migrating animals, and brief violent summers."
+      }
+    },
+    {
+      "id": "salt_desert",
+      "name": "Salt Desert",
+      "weight": 2,
+      "fields": {
+        "description": "blinding flats, buried ruins, mineral caravans, and almost no fresh water."
+      }
+    },
+    {
+      "id": "badlands",
+      "name": "Badlands",
+      "weight": 2,
+      "fields": {
+        "description": "eroded canyons, exposed fossils, little water, and excellent hiding places."
+      }
+    },
+    {
+      "id": "wine_hills",
+      "name": "Wine Hills",
+      "weight": 2,
+      "fields": {
+        "description": "cultivated slopes, wealthy estates, old cellars, and intense local rivalries."
+      }
+    },
+    {
+      "id": "flooded_forest",
+      "name": "Flooded Forest",
+      "weight": 2,
+      "fields": {
+        "description": "half-submerged trees navigated by canoe during a long wet season."
+      }
+    },
+    {
+      "id": "crystal_expanse",
+      "name": "Crystal Expanse",
+      "weight": 1,
+      "fields": {
+        "description": "natural glass formations distort light, sound, direction, and magic."
+      }
+    },
+    {
+      "id": "dead_magic_basin",
+      "name": "Dead Magic Basin",
+      "weight": 1,
+      "fields": {
+        "description": "a fertile-looking depression where supernatural effects abruptly fail."
+      }
+    },
+    {
+      "id": "storm_belt",
+      "name": "Storm Belt",
+      "weight": 1,
+      "fields": {
+        "description": "a coastal region battered by near-constant wind, rain, and electrical activity."
+      }
+    },
+    {
+      "id": "mushroom_wilds",
+      "name": "Mushroom Wilds",
+      "weight": 1,
+      "fields": {
+        "description": "damp country dominated by giant fungi, spores, and underground settlements."
+      }
+    },
+    {
+      "id": "ancient_woodland",
+      "name": "Deep Forest",
+      "fields": {
+        "description": "An ancient forest of fading paths, isolated clearings, and territories claimed by wildlife."
+      }
+    },
+    {
+      "id": "deep_jungle",
+      "name": "Stifling Jungle",
+      "fields": {
+        "description": "Dense vegetation, violent rain, and ruins slowly swallowed by roots."
+      }
+    },
+    {
+      "id": "arid_desert",
+      "name": "Arid Desert",
+      "fields": {
+        "description": "Dunes and rocky plateaus where water sources determine routes and conflicts."
+      }
+    },
+    {
+      "id": "grassland_steppe",
+      "name": "Open Grassland",
+      "fields": {
+        "description": "Wide windswept grasslands suited to herds, travelers, and ambushes visible from afar."
+      }
+    },
+    {
+      "id": "lake_country",
+      "name": "Lake District",
+      "fields": {
+        "description": "Lakes, islets, and fishing villages linked by boats and flood-prone paths."
+      }
+    },
+    {
+      "id": "rocky_coast",
+      "name": "Cliff Coast",
+      "fields": {
+        "description": "A steep coast cut by coves, sea caves, and hazardous passages."
+      }
+    },
+    {
+      "id": "river_valley",
+      "name": "River Valley",
+      "fields": {
+        "description": "A fertile region organized around a river, fortified bridges, and rival ports."
+      }
+    },
+    {
+      "id": "high_mountains",
+      "name": "Mountain Range",
+      "fields": {
+        "description": "Hard-to-reach peaks sheltering mines, monasteries, and strategic passes."
+      }
+    },
+    {
+      "id": "pack_ice",
+      "name": "Pack Ice",
+      "fields": {
+        "description": "An unstable frozen sea where routes change with fractures and animal migrations."
+      }
+    },
+    {
+      "id": "monumental_glacier",
+      "name": "Monumental Glacier",
+      "fields": {
+        "description": "A mass of ice crossed by crevasses, blue caves, and trapped remains."
+      }
+    },
+    {
+      "id": "island_chain",
+      "name": "Archipelago",
+      "fields": {
+        "description": "Islands separated by reefs, unpredictable currents, and disputed sea lanes."
+      }
+    },
+    {
+      "id": "levitating_archipelago",
+      "name": "Floating Archipelago",
+      "fields": {
+        "description": "Suspended lands linked by bridges and airships, with waterfalls falling into the void."
+      }
+    },
+    {
+      "id": "volcanic_highlands",
+      "name": "Volcanic Highlands",
+      "fields": {
+        "description": "Ash slopes, hot springs, and valuable seams beneath an active volcano."
+      }
+    },
+    {
+      "id": "marshland",
+      "name": "Misty Marsh",
+      "fields": {
+        "description": "Shallow waters, peat bogs, and islands whose paths change with the seasons."
+      }
+    },
+    {
+      "id": "rolling_farmland",
+      "name": "Agricultural Hills",
+      "fields": {
+        "description": "Terraced crops, scattered farms, and guarded market roads."
+      }
+    },
+    {
+      "id": "shattered_battlefield",
+      "name": "Abandoned Battlefield",
+      "fields": {
+        "description": "A territory marked by trenches, wreckage, and supernatural traces of an old war."
+      }
+    },
+    {
+      "id": "celestial_region",
+      "name": "Celestial Region",
+      "fields": {
+        "description": "Air currents, solid clouds, and weather phenomena form a traversable but unstable territory."
+      }
+    },
+    {
+      "id": "emotional_wilderness",
+      "name": "Empathic Wilds",
+      "fields": {
+        "description": "An enchanted wilderness reshapes paths, plants, weather, and visibility in response to the dominant emotions of travelers within it."
+      }
+    },
+    {
+      "id": "elemental_anomaly",
+      "name": "Elemental Anomaly",
+      "fields": {
+        "description": "One elemental phenomenon behaves impossibly across the region, such as stationary lightning, rising rivers, solid mist, floating stone, or fire that never spreads."
+      }
+    }
+  ],
+  "modifiers": {
+    "modifier_site_all": 5
+  }
+}

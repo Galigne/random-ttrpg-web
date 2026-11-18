@@ -1,0 +1,369 @@
+{
+  "schemaVersion": 4,
+  "id": "traits",
+  "visibility": "public",
+  "name": "Dons intrinsèques",
+  "description": "Capacités et bonus intrinsèques concrets pour les créatures",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "amphibious",
+      "name": "Amphibie",
+      "fields": {
+        "description": "Peut respirer et agir normalement sous l’eau comme sur terre."
+      }
+    },
+    {
+      "id": "keen_smell",
+      "name": "Odorat aiguisé",
+      "fields": {
+        "description": "+2 aux actions de {{ ability:perception.name }} pour détecter ou pister grâce à l’odorat."
+      }
+    },
+    {
+      "id": "keen_hearing",
+      "name": "Ouïe fine",
+      "fields": {
+        "description": "+2 aux actions de {{ ability:perception.name }} reposant sur l’ouïe."
+      }
+    },
+    {
+      "id": "darkvision",
+      "name": "Vision nocturne",
+      "fields": {
+        "description": "Ne peut pas être aveuglée par les ténèbres ordinaires."
+      }
+    },
+    {
+      "id": "echolocation",
+      "name": "Écholocalisation",
+      "fields": {
+        "description": "Peut percevoir les créatures et obstacles proches sans la vue tant qu’elle peut émettre et entendre des sons."
+      }
+    },
+    {
+      "id": "sure_footed",
+      "name": "Pied sûr",
+      "fields": {
+        "description": "+2 aux actions de {{ ability:dexterity.name }} pour grimper ou garder l’équilibre sur un terrain difficile."
+      }
+    },
+    {
+      "id": "powerful_build",
+      "name": "Carrure puissante",
+      "fields": {
+        "description": "+1 aux actions de {{ ability:strength.name }} pour pousser, soulever ou briser des objets."
+      }
+    },
+    {
+      "id": "swift_reflexes",
+      "name": "Réflexes fulgurants",
+      "fields": {
+        "description": "+1 en Vitesse aux jets de Réflexes contre les menaces que la créature peut percevoir."
+      }
+    },
+    {
+      "id": "flight",
+      "name": "Vol",
+      "fields": {
+        "description": "Peut voler à sa vitesse de déplacement normale tant que ses ailes sont libres."
+      }
+    },
+    {
+      "id": "gliding",
+      "name": "Vol plané",
+      "fields": {
+        "description": "Ignore les dégâts des 10 premiers mètres d’une chute et peut parcourir 2 mètres horizontalement par mètre de descente."
+      }
+    },
+    {
+      "id": "burrower",
+      "name": "Fouisseur",
+      "fields": {
+        "description": "Peut traverser la terre meuble à la moitié de sa vitesse de déplacement normale en laissant un tunnel praticable."
+      }
+    },
+    {
+      "id": "aquatic_speed",
+      "name": "Nageur-né",
+      "fields": {
+        "description": "Se déplace dans l’eau à sa vitesse normale et gagne +1 aux actions de {{ ability:dexterity.name }} pour nager."
+      }
+    },
+    {
+      "id": "regeneration",
+      "name": "Régénération",
+      "fields": {
+        "description": "Au début de son tour, récupère 5 % de ses PV maximums s’il lui reste au moins 1 PV ; la faiblesse suivante empêche cette récupération pour ce tour : {{ weakness.name }}."
+      }
+    },
+    {
+      "id": "fire_immunity",
+      "name": "Immunité au feu",
+      "fields": {
+        "description": "Ne subit ni dégâts ni effets néfastes dus au feu ou à la chaleur ordinaires."
+      }
+    },
+    {
+      "id": "cold_immunity",
+      "name": "Immunité au froid",
+      "fields": {
+        "description": "Ne subit ni dégâts ni effets néfastes dus au froid ou à la glace ordinaires."
+      }
+    },
+    {
+      "id": "poison_immunity",
+      "name": "Immunité au poison",
+      "fields": {
+        "description": "Ne peut pas être empoisonnée et ne subit aucun dégât des toxines ordinaires."
+      }
+    },
+    {
+      "id": "disease_immunity",
+      "name": "Immunité aux maladies",
+      "fields": {
+        "description": "Ne peut ni contracter ni transmettre de maladie ordinaire."
+      }
+    },
+    {
+      "id": "incorporeal",
+      "name": "Incorporel",
+      "fields": {
+        "description": "Peut traverser les créatures et objets solides non magiques à la moitié de sa vitesse, mais doit terminer son déplacement dans un espace libre."
+      }
+    },
+    {
+      "id": "camouflage",
+      "name": "Camouflage naturel",
+      "fields": {
+        "description": "+2 aux actions de {{ ability:dexterity.name }} pour se cacher dans l’environnement naturel de la créature."
+      }
+    },
+    {
+      "id": "pack_tactics",
+      "name": "Tactique de meute",
+      "fields": {
+        "description": "+1 aux actions d’attaque contre une cible adjacente à l’un des alliés de la créature."
+      }
+    },
+    {
+      "id": "natural_weapons",
+      "name": "Armes naturelles",
+      "fields": {
+        "description": "+1 dégât aux attaques à mains nues portées avec des griffes, crocs, cornes ou une autre arme naturelle."
+      }
+    },
+    {
+      "id": "venomous",
+      "name": "Venimeux",
+      "fields": {
+        "description": "Lorsqu’une attaque naturelle inflige des dégâts, la cible reçoit l’état {{ status_effect:poisoned.name }} et perd 1 PA sauf si elle résiste au poison."
+      }
+    },
+    {
+      "id": "web_spinner",
+      "name": "Tisseur de toile",
+      "fields": {
+        "description": "Peut produire de solides toiles qui infligent l’état {{ status_effect:restrained.name }} à une cible et gagne +2 aux actions de {{ ability:dexterity.name }} pour s’y déplacer."
+      }
+    },
+    {
+      "id": "stone_body",
+      "name": "Corps minéral",
+      "fields": {
+        "description": "N’a pas besoin de respirer et gagne +2 aux actions de {{ ability:constitution.name }} pour résister aux impacts."
+      }
+    },
+    {
+      "id": "magic_sense",
+      "name": "Sens de la magie",
+      "fields": {
+        "description": "+2 aux actions de {{ ability:perception.name }} pour détecter les sorts actifs ou objets enchantés proches."
+      }
+    },
+    {
+      "id": "pounce",
+      "name": "Bond offensif",
+      "fields": {
+        "description": "+1 à la prochaine action visant à agripper une cible ou à lui infliger l’état {{ status_effect:prone.name }} après avoir avancé d’au moins 3 mètres vers elle durant le même tour."
+      }
+    },
+    {
+      "id": "charge",
+      "name": "Charge",
+      "fields": {
+        "description": "+1 à la prochaine attaque au corps à corps après avoir avancé en ligne droite d’au moins 5 mètres vers la cible durant le même tour."
+      }
+    },
+    {
+      "id": "constrict",
+      "name": "Constriction",
+      "fields": {
+        "description": "+2 aux actions de {{ ability:strength.name }} pour maintenir ou resserrer une prise déjà établie."
+      }
+    },
+    {
+      "id": "wall_climber",
+      "name": "Grimpeur de parois",
+      "fields": {
+        "description": "Peut se déplacer sur des surfaces rugueuses très inclinées ou verticales à la moitié de sa vitesse normale sans devoir effectuer un jet ordinaire d’{{ ability:climbing.name }}."
+      }
+    },
+    {
+      "id": "tremorsense",
+      "name": "Perception des vibrations",
+      "fields": {
+        "description": "Détecte sans la vue les mouvements dans un rayon de 10 mètres, à condition que la créature et ce qui bouge touchent le même sol."
+      }
+    },
+    {
+      "id": "heat_sense",
+      "name": "Perception thermique",
+      "fields": {
+        "description": "Détecte sans la vue les sources de chaleur dans un rayon de 10 mètres, mais cette perception ne traverse pas les obstacles solides."
+      }
+    },
+    {
+      "id": "prehensile_tail",
+      "name": "Queue préhensile",
+      "fields": {
+        "description": "Peut tenir ou manipuler un objet léger avec sa queue, sans obtenir d’action supplémentaire."
+      }
+    },
+    {
+      "id": "powerful_leap",
+      "name": "Bond puissant",
+      "fields": {
+        "description": "+2 aux actions de {{ ability:strength.name }} ou de {{ ability:dexterity.name }} pour sauter."
+      }
+    },
+    {
+      "id": "swarm_body",
+      "name": "Corps en essaim",
+      "fields": {
+        "description": "Peut traverser toute ouverture assez large pour laisser passer un élément de l’essaim et occuper l’espace d’une autre créature, mais reste une seule créature pour les actions et les effets."
+      }
+    },
+    {
+      "id": "magic_resistance",
+      "name": "Résistance à la magie",
+      "fields": {
+        "description": "+1 aux actions visant à résister aux effets magiques hostiles."
+      }
+    },
+    {
+      "id": "extended_reach",
+      "name": "Allonge supérieure",
+      "fields": {
+        "description": "Peut porter ses attaques ordinaires au corps à corps 2 mètres plus loin qu’une créature de taille comparable."
+      }
+    },
+    {
+      "id": "telepathy",
+      "name": "Télépathie",
+      "fields": {
+        "description": "Peut communiquer mentalement avec les créatures proches sans devoir partager avec elles une langue parlée."
+      }
+    },
+    {
+      "id": "ambusher",
+      "name": "Prédateur en embuscade",
+      "fields": {
+        "description": "+2 à sa première action offensive contre une cible qui ne l’a pas repérée."
+      }
+    },
+    {
+      "id": "life_drain",
+      "name": "Drain de vie",
+      "fields": {
+        "description": "La première fois à chacun de ses tours qu’une attaque naturelle inflige des dégâts, récupère 5 % de ses PV maximums, en arrondissant à l’inférieur avec un minimum de 1 PV ; les attaques suivantes de ce tour ne lui rendent aucun PV."
+      }
+    },
+    {
+      "id": "blood_frenzy",
+      "name": "Frénésie sanglante",
+      "fields": {
+        "description": "+1 aux attaques et aux actions de poursuite fondées sur la {{ ability:speed.name }} contre les créatures dont les PV actuels ne dépassent pas la moitié des PV maximums ou qui saignent visiblement."
+      }
+    },
+    {
+      "id": "reactive_spines",
+      "name": "Épines réactives",
+      "fields": {
+        "description": "Toute créature qui lui inflige des dégâts par une attaque directe au corps à corps doit résister ou subir 1 dégât à cause de ses épines ou d’une défense naturelle similaire."
+      }
+    },
+    {
+      "id": "death_burst",
+      "name": "Explosion funeste",
+      "fields": {
+        "description": "À sa mort, toute autre créature dans un rayon de 2 mètres doit résister ou subir des dégâts égaux à 5 % des PV maximums de la créature, en arrondissant à l’inférieur avec un minimum de 1 dégât."
+      }
+    },
+    {
+      "id": "multiattack",
+      "name": "Attaques multiples",
+      "fields": {
+        "description": "Une fois par tour après avoir effectué une attaque naturelle, peut porter une attaque naturelle supplémentaire avec un malus de -2 à l’attaque ; celle-ci n’inflige que la moitié de ses dégâts normaux, en arrondissant à l’inférieur avec un minimum de 1 dégât."
+      }
+    },
+    {
+      "id": "fearless",
+      "name": "Sans peur",
+      "fields": {
+        "description": "Ne peut pas recevoir l’état {{ status_effect:frightened.name }}."
+      }
+    },
+    {
+      "id": "gaze_effect",
+      "name": "Effet de regard",
+      "fields": {
+        "description": "Son regard direct produit l'effet surnaturel décrit par la créature ; les obstacles, l'observation indirecte ou le fait d'éviter son regard peuvent empêcher l'exposition."
+      }
+    },
+    {
+      "id": "swallowing",
+      "name": "Déglutition",
+      "fields": {
+        "description": "Peut engloutir ou avaler une créature plus petite qu'elle maintient fermement en lutte ; la captive reste vivante à l'intérieur et peut tenter de s'échapper ou d'être libérée."
+      }
+    },
+    {
+      "id": "splitting_body",
+      "name": "Corps divisible",
+      "fields": {
+        "description": "Un déclencheur approprié peut diviser son corps en plusieurs portions plus petites capables de se déplacer indépendamment, puis éventuellement de se réunir."
+      }
+    },
+    {
+      "id": "spell_reflection",
+      "name": "Réflexion des sorts",
+      "fields": {
+        "description": "Lorsqu'elle résiste à un effet surnaturel qui la vise directement, elle peut rediriger cet effet vers une autre cible plausible à proximité."
+      }
+    },
+    {
+      "id": "memory_theft",
+      "name": "Vol de souvenirs",
+      "fields": {
+        "description": "Peut voler, dévorer, copier ou effacer les souvenirs d'une victime par le mode de contact ou d'alimentation décrit par la créature."
+      }
+    },
+    {
+      "id": "reactive_adaptation",
+      "name": "Adaptation réactive",
+      "fields": {
+        "description": "Après avoir survécu à une source de dégâts, développe une réponse ou une résistance visible spécifiquement adaptée à celle-ci."
+      }
+    },
+    {
+      "id": "temporary_duplication",
+      "name": "Duplication temporaire",
+      "fields": {
+        "description": "Peut créer des copies, des échos ou des reflets éphémères qui imitent ses mouvements de manière convaincante avant de disparaître."
+      }
+    }
+  ]
+}

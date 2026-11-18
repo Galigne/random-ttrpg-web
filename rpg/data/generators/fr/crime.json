@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 4,
+  "id": "crime",
+  "visibility": "internal",
+  "name": "Crimes",
+  "description": "Crimes et activités criminelles réutilisables dans des aventures",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    { "id": "theft", "name": "vol" },
+    { "id": "burglary", "name": "cambriolage" },
+    { "id": "robbery", "name": "vol à main armée" },
+    { "id": "smuggling", "name": "contrebande" },
+    { "id": "extortion", "name": "extorsion" },
+    { "id": "kidnapping", "name": "enlèvement" },
+    { "id": "assassination", "name": "assassinat" },
+    { "id": "forgery", "name": "falsification" },
+    { "id": "counterfeiting", "name": "contrefaçon" },
+    { "id": "sabotage", "name": "sabotage" },
+    { "id": "arson", "name": "incendie criminel" },
+    { "id": "blackmail", "name": "chantage" },
+    { "id": "bribery", "name": "corruption" },
+    { "id": "fraud", "name": "escroquerie" },
+    { "id": "grave_robbing", "name": "pillage de sépultures" },
+    { "id": "artifact_trafficking", "name": "trafic d’artefacts" },
+    { "id": "poaching", "name": "braconnage" },
+    { "id": "piracy", "name": "piraterie" },
+    { "id": "espionage", "name": "espionnage" },
+    { "id": "protection_racket", "name": "racket de protection" },
+    { "id": "banditry", "name": "banditisme" },
+    { "id": "embezzlement", "name": "détournement de fonds" },
+    { "id": "tax_evasion", "name": "fraude fiscale" },
+    { "id": "illegal_gambling", "name": "jeux d’argent clandestins" },
+    { "id": "contraband_magic", "name": "trafic de magie interdite" },
+    { "id": "tomb_raiding", "name": "pillage de tombeaux" },
+    { "id": "prison_break", "name": "organisation d’une évasion" },
+    { "id": "impersonation", "name": "usurpation d’identité" },
+    { "id": "treason", "name": "trahison" },
+    { "id": "stolen_goods_trafficking", "name": "trafic de biens volés" },
+    {
+      "id": "unlicensed_necromancy",
+      "name": "nécromancie sans licence",
+      "weight": 0.5
+    },
+    {
+      "id": "fraudulent_miracles",
+      "name": "miracles frauduleux",
+      "weight": 0.5
+    },
+    {
+      "id": "magical_identity_theft",
+      "name": "usurpation magique d’identité",
+      "weight": 0.5
+    },
+    {
+      "id": "monster_smuggling",
+      "name": "contrebande de monstres",
+      "weight": 0.75
+    },
+    {
+      "id": "counterfeit_relics",
+      "name": "contrefaçon de reliques sacrées",
+      "weight": 0.75
+    },
+    {
+      "id": "unauthorized_resurrection",
+      "name": "résurrection non autorisée",
+      "weight": 0.5
+    },
+    { "id": "illegal_dueling", "name": "duels illégaux" },
+    { "id": "livestock_rustling", "name": "vol de bétail" },
+    {
+      "id": "corpse_desecration",
+      "name": "profanation de cadavres",
+      "weight": 0.75
+    },
+    {
+      "id": "public_indecency",
+      "name": "atteinte à la pudeur publique",
+      "weight": 0.75
+    },
+    {
+      "id": "drunken_disorder",
+      "name": "ivresse et tapage sur la voie publique"
+    },
+    { "id": "gambling_fraud", "name": "fraude aux jeux d’argent" },
+    { "id": "desertion", "name": "désertion militaire" },
+    { "id": "fake_medicine_sales", "name": "vente de faux remèdes" },
+    {
+      "id": "illegal_corpse_trafficking",
+      "name": "trafic illégal de cadavres",
+      "weight": 0.5
+    },
+    { "id": "cannibalism", "name": "cannibalisme", "weight": 0.25 },
+    {
+      "id": "illegal_blasphemy",
+      "name": "blasphème là où la loi locale l’interdit",
+      "weight": 0.5
+    },
+    {
+      "id": "religious_site_desecration",
+      "name": "profanation d’un site religieux",
+      "weight": 0.75
+    },
+    {
+      "id": "illegal_pit_fighting",
+      "name": "organisation de combats clandestins"
+    },
+    {
+      "id": "obscene_material_smuggling",
+      "name": "contrebande de matériel obscène ou interdit",
+      "weight": 0.75
+    },
+    {
+      "id": "illegal_brothel",
+      "name": "exploitation d’une maison close illégale",
+      "weight": 0.75
+    },
+    { "id": "voyeurism", "name": "voyeurisme", "weight": 0.5 },
+    {
+      "id": "magical_privacy_invasion",
+      "name": "espionnage magique de personnes dans leur intimité",
+      "weight": 0.5
+    }
+  ]
+}

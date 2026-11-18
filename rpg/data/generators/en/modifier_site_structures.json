@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 4,
+  "id": "modifier_site_structures",
+  "visibility": "internal",
+  "name": "Historical site modifiers",
+  "description": "Descriptive historical variations compatible with specific location generators",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "ruined",
+      "name": "Ruined",
+      "fields": {
+        "description": "The structure is unstable, some accessways are blocked, and movement may reveal or destroy a passage."
+      }
+    },
+    {
+      "id": "recently_destroyed",
+      "name": "Recently Destroyed",
+      "fields": {
+        "description": "Fresh traces still reveal the event and allow pursuit of those responsible or surviving."
+      }
+    },
+    {
+      "id": "overly_secure",
+      "name": "Overly Secure",
+      "fields": {
+        "description": "An unreasonable number of locks, checkpoints, gates, passwords, inspections, and redundant barriers protects even trivial areas."
+      }
+    }
+  ]
+}

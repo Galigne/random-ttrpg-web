@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 4,
+  "id": "modifier_creature",
+  "visibility": "internal",
+  "name": "Creature modifiers",
+  "description": "Persistent creature variants with concrete implications for play",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "alpha",
+      "name": "Alpha",
+      "weight": 3,
+      "fields": {
+        "description": "This dominant individual coordinates nearby peers, challenges obvious rivals, and protects group cohesion; separating it from allies or provoking its pride can disrupt that control."
+      }
+    },
+    {
+      "id": "hybrid",
+      "name": "Hybrid",
+      "weight": 3,
+      "fields": {
+        "description": "This creature is the product of hybridization with {{ creature.generator.name }}. Its physical appearance and abilities are affected as a result."
+      }
+    },
+    {
+      "id": "undead",
+      "name": "Undead",
+      "fields": {
+        "description": "Reanimation frees it from breathing, sleep, and ordinary nourishment, and many biological hazards lose their relevance; a binding rite, consecrated force, or destruction of its anchor can exploit its unnatural state."
+      }
+    },
+    {
+      "id": "reinforced",
+      "name": "Reinforced",
+      "weight": 3,
+      "fields": {
+        "description": "Dense plating, grafts, or magical reinforcement make ordinary glancing attacks less effective, but exposed joints, sensory organs, or an unprotected underside remain exploitable."
+      }
+    },
+    {
+      "id": "gigantic",
+      "name": "Gigantic",
+      "fields": {
+        "description": "Extraordinary size grants imposing reach, force, and control of open ground, but makes concealment difficult and movement through narrow or fragile spaces hazardous."
+      }
+    },
+    {
+      "id": "enraged",
+      "name": "Enraged",
+      "weight": 2,
+      "fields": {
+        "description": "Permanent fury drives it to close distance and keep attacking despite danger; it is unusually aggressive but easier to lure, distract, or outmaneuver with an obvious target."
+      }
+    },
+    {
+      "id": "juvenile",
+      "name": "Juvenile",
+      "weight": 3,
+      "fields": {
+        "description": "This immature specimen is smaller, less resilient, and inexperienced, yet quicker to flee, squeeze through gaps, or react unpredictably when cornered."
+      }
+    },
+    {
+      "id": "diminutive",
+      "name": "Diminutive",
+      "weight": 2,
+      "fields": {
+        "description": "Its unusually small body can hide easily and pass through tiny openings, but offers little reach, leverage, or ability to resist being moved."
+      }
+    },
+    {
+      "id": "ectoplasmic",
+      "name": "Ectoplasmic",
+      "fields": {
+        "description": "Its unstable body can seep through solid matter, but it must become tangible to strike, carry objects, or hold ground, creating moments when ordinary attacks can affect it."
+      }
+    },
+    {
+      "id": "invisible",
+      "name": "Invisible",
+      "fields": {
+        "description": "It cannot normally be seen, making visual tracking and aimed attacks unreliable; scent, sound, displaced debris, and contact with the surroundings can still reveal its position."
+      }
+    },
+    {
+      "id": "rule_bearer",
+      "name": "RULE Bearer",
+      "weight": 10,
+      "fields": {
+        "description": "The subject manifest a RULE {{ rules.name }} which changes its appearance and abilities."
+      }
+    },
+    {
+      "id": "armed",
+      "name": "Armed",
+      "weight": 2,
+      "fields": {
+        "description": "Whatever its species would normally suggest, this individual has the anatomy, coordination, and training to wield and effectively use the following weapon: {{ weapons.name }} The GM determines its concrete consequences in play."
+      }
+    },
+    {
+      "id": "armored",
+      "name": "Armored",
+      "weight": 2,
+      "fields": {
+        "description": "The following armor has been fitted, reshaped, or built around this creature so it can wear and meaningfully benefit from its protection: {{ armors.name }} The GM determines its concrete consequences in play."
+      }
+    },
+    {
+      "id": "afflicted",
+      "name": "Afflicted",
+      "weight": 10,
+      "fields": {
+        "description": "The creature suffers from the following persistent affliction: {{ affliction }} The GM determines when and how the condition has concrete consequences in play."
+      }
+    },
+    {
+      "id": "gifted",
+      "name": "Gifted",
+      "fields": {
+        "description": "This individual possesses the following unusual capability in addition to what is normally expected from its species: {{ traits }} The GM determines how this extra capability matters in play."
+      }
+    },
+    {
+      "id": "regenerating",
+      "name": "Regenerating",
+      "fields": {
+        "description": "Damaged flesh persistently knits itself back together, but the following weakness interrupts or prevents its regeneration: {{ weakness.name }}."
+      }
+    },
+    {
+      "id": "smoldering",
+      "name": "Smoldering",
+      "weight": 2,
+      "fields": {
+        "description": "Persistent inner heat sheds smoke and embers, threatens flammable surroundings, and makes close contact dangerous; water, deep cold, or suffocation can suppress this advantage."
+      }
+    },
+    {
+      "id": "frost_rimed",
+      "name": "Frost-Rimed",
+      "weight": 2,
+      "fields": {
+        "description": "Supernatural cold coats its body and chills nearby surfaces, hindering close pursuit and bare-handed contact; sustained heat melts the frost and exposes the creature beneath."
+      }
+    },
+    {
+      "id": "shadowed",
+      "name": "Shadowed",
+      "weight": 2,
+      "fields": {
+        "description": "Its outline merges with dim surroundings, improving concealment and ambushes in darkness, while strong direct light reveals a sharply defined and vulnerable silhouette."
+      }
+    },
+    {
+      "id": "elder",
+      "name": "Elder",
+      "fields": {
+        "description": "Great age brings patience, experience, and unusual resistance to familiar hazards, but declining speed and ingrained habits make its responses deliberate and predictable."
+      }
+    },
+    {
+      "id": "frail",
+      "name": "Frail",
+      "weight": 2,
+      "fields": {
+        "description": "A brittle frame cannot withstand sustained force or heavy impacts, so the creature relies on distance, cover, caution, or more robust allies to remain effective."
+      }
+    },
+    {
+      "id": "crippled",
+      "name": "Crippled",
+      "weight": 2,
+      "fields": {
+        "description": "A permanently damaged limb, wing, or locomotor structure severely limits one form of movement and forces the creature to defend or hunt in a compensating way."
+      }
+    },
+    {
+      "id": "scarred_weak_point",
+      "name": "Scarred Weak Point",
+      "weight": 2,
+      "fields": {
+        "description": "An old wound never healed correctly; noticing and reaching the scar can bypass the creature’s usual protection or provoke pain that changes its behavior."
+      }
+    },
+    {
+      "id": "possessed",
+      "name": "Possessed",
+      "fields": {
+        "description": "A presence from {{ creature.generator.name }} inhabits or influences this creature, lending it unfamiliar urges, knowledge, or abilities while introducing a second will that may resist its own."
+      }
+    },
+    {
+      "id": "awakened",
+      "name": "Awakened",
+      "fields": {
+        "description": "Unexpectedly humanlike intelligence lets this creature reason, speak, and pursue a personality of its own: {{ personality.description }}"
+      }
+    },
+    {
+      "id": "clockwork",
+      "name": "Clockwork",
+      "fields": {
+        "description": "This artificial version is built from fitted mechanisms and animated components; it can be repaired like a machine but may jam, wind down, or betray its maker’s design."
+      }
+    },
+    {
+      "id": "volatile",
+      "name": "Volatile",
+      "fields": {
+        "description": "Its body contains unstable {{ element.name }} energy that injury or death can release in a sudden hazardous burst, making restraint and careful attacks safer than brute force."
+      }
+    },
+    {
+      "id": "two_headed",
+      "name": "Two-Headed",
+      "fields": {
+        "description": "Two independently alert heads broaden its awareness and make it harder to surprise, but conflicting instincts, attention, or timing can disrupt coordinated action."
+      }
+    },
+    {
+      "id": "parasitized",
+      "name": "Parasitized",
+      "fields": {
+        "description": "Another organism visibly inhabits the creature and alters its body, behavior, priorities, or capabilities without fully replacing the host."
+      }
+    },
+    {
+      "id": "mirrored",
+      "name": "Mirrored",
+      "fields": {
+        "description": "The creature can briefly manifest a duplicate, reflection, or echo and may exchange positions with it before it vanishes."
+      }
+    },
+    {
+      "id": "hollow",
+      "name": "Hollow",
+      "fields": {
+        "description": "The creature's body is an empty or impossibly spacious shell that may conceal a smaller occupant, mechanism, or hidden interior."
+      }
+    },
+    {
+      "id": "material_fused",
+      "name": "Material-Fused",
+      "fields": {
+        "description": "Stone, metal, crystal, fungus, wood, glass, ice, machinery, or another material has been unnaturally fused into the creature's living body."
+      }
+    }
+  ]
+}

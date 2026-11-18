@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 4,
+  "id": "urchin",
+  "visibility": "internal",
+  "name": "Urchin archetypes",
+  "description": "Street and survival roles",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "orphan",
+      "name": "Orphan"
+    },
+    {
+      "id": "beggar",
+      "name": "Beggar",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "street_child",
+      "name": "Street child",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "scavenger",
+      "name": "Scavenger",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "runaway",
+      "name": "Runaway",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "street_messenger",
+      "name": "Street messenger",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "pickpocket",
+      "name": "Pickpocket",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "street_performer",
+      "name": "Street performer",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "urchin",
+      "name": "Urchin"
+    },
+    {
+      "id": "errand_runner",
+      "name": "Errand runner",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    }
+  ]
+}

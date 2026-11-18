@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 4,
+  "id": "noble",
+  "visibility": "internal",
+  "name": "Archétypes nobles",
+  "description": "Rôles aristocratiques et de cour",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "king",
+      "name": "Roi",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "queen",
+      "name": "Reine",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "prince",
+      "name": "Prince",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "heir",
+      "name": "Héritier"
+    },
+    {
+      "id": "lord",
+      "name": "Seigneur",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "lady",
+      "name": "Dame",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "courtier",
+      "name": "Courtisan",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "aristocrat",
+      "name": "Aristocrate",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "regent",
+      "name": "Régent",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "royal_advisor",
+      "name": "Conseiller royal",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    }
+  ]
+}

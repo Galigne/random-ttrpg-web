@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 4,
+  "id": "consumable",
+  "visibility": "internal",
+  "name": "Consumables",
+  "description": "Items normally consumed or exhausted through use",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "modifiers": {
+    "modifier_loot": 10
+  },
+  "entries": [
+    {
+      "id": "bandages",
+      "name": "Bandages",
+      "weight": 6,
+      "fields": {
+        "description": "Clean cloth and basic supplies for treating wounds."
+      }
+    },
+    {
+      "id": "antidote",
+      "name": "Antidote",
+      "weight": 4,
+      "fields": {
+        "description": "A general treatment granting another chance to resist ordinary poison."
+      }
+    },
+    {
+      "id": "smoke_bomb",
+      "name": "Smoke bomb",
+      "weight": 4,
+      "fields": {
+        "description": "Creates a dense cloud of smoke when ignited."
+      }
+    },
+    {
+      "id": "vial_of_basic_poison",
+      "name": "Vial of basic poison",
+      "weight": 3,
+      "fields": {
+        "description": "A limited dose of toxin suitable for one weapon or drink."
+      }
+    },
+    {
+      "id": "potion_of_night_vision",
+      "name": "Potion of night vision",
+      "weight": 2,
+      "fields": {
+        "description": "Grants clear sight in darkness for one hour."
+      }
+    },
+    {
+      "id": "potion_of_water_breathing",
+      "name": "Potion of water breathing",
+      "weight": 2,
+      "fields": {
+        "description": "Allows underwater breathing for thirty minutes."
+      }
+    },
+    {
+      "id": "acid_flask",
+      "name": "Acid flask",
+      "weight": 2,
+      "fields": {
+        "description": "A carefully sealed vial able to damage common materials."
+      }
+    },
+    {
+      "id": "healing_potion",
+      "name": "Healing Potion",
+      "weight": 4,
+      "fields": {
+        "description": "A stabilized vial that aids recovery from an injury when used correctly."
+      }
+    },
+    {
+      "id": "strong_healing_potion",
+      "name": "Strong healing potion",
+      "weight": 2,
+      "fields": {
+        "description": "A concentrated restorative that can aid recovery from a serious injury; the exact recovery remains with the GM."
+      }
+    },
+    {
+      "id": "holy_water",
+      "name": "Holy water",
+      "weight": 3,
+      "fields": {
+        "description": "Consecrated water prepared for cleansing rites or confronting unholy influences; its exact effect remains with the GM."
+      }
+    },
+    {
+      "id": "incendiary_flask",
+      "name": "Incendiary flask",
+      "weight": 3,
+      "fields": {
+        "description": "A breakable flask whose sticky contents ignite when exposed to flame."
+      }
+    },
+    {
+      "id": "potion_of_fire_resistance",
+      "name": "Potion of fire resistance",
+      "weight": 2,
+      "fields": {
+        "description": "Temporarily helps the drinker withstand fire and extreme heat; the exact protection and duration remain with the GM."
+      }
+    },
+    {
+      "id": "potion_of_cold_resistance",
+      "name": "Potion of cold resistance",
+      "weight": 2,
+      "fields": {
+        "description": "Temporarily helps the drinker withstand cold and freezing conditions; the exact protection and duration remain with the GM."
+      }
+    },
+    {
+      "id": "potion_of_invisibility",
+      "name": "Potion of invisibility",
+      "weight": 1,
+      "fields": {
+        "description": "Temporarily makes the drinker difficult or impossible to see; the exact limits and duration remain with the GM."
+      }
+    },
+    {
+      "id": "potion_of_ability",
+      "name": "Potion of {{ ability.name }}",
+      "weight": 3,
+      "fields": {
+        "description": "Temporarily enhances the referenced ability; the exact magnitude and duration remain with the GM."
+      }
+    },
+    {
+      "id": "affliction_remedy",
+      "name": "Remedy for {{ affliction.name }}",
+      "weight": 2,
+      "fields": {
+        "description": "A specialized medicine, antidote, ritual preparation, or other treatment intended for the referenced affliction; its exact use remains with the GM."
+      }
+    },
+    {
+      "id": "vigor_potion",
+      "name": "Vigor Potion",
+      "fields": {
+        "description": "A drink briefly improving physical ability before causing severe fatigue."
+      }
+    },
+    {
+      "id": "rule_scroll",
+      "name": "RULE Scroll",
+      "fields": {
+        "description": "A single-use medium containing {{ rules.name }}; its exact effect and interpretation remain with the GM."
+      }
+    },
+    {
+      "id": "specialized_ammunition",
+      "name": "Specialized Ammunition",
+      "fields": {
+        "description": "A small batch of projectiles made for a particular weapon or unusual target."
+      }
+    },
+    {
+      "id": "rare_medicine",
+      "name": "Rare Medicine",
+      "fields": {
+        "description": "A fragile, hard-to-replace treatment for one specific illness."
+      }
+    },
+    {
+      "id": "flash_powder",
+      "name": "Flash powder",
+      "weight": 3,
+      "fields": {
+        "description": "A measured packet that produces a sudden burst of light when ignited."
+      }
+    },
+    {
+      "id": "sleeping_draught",
+      "name": "Sleeping draught",
+      "weight": 3,
+      "fields": {
+        "description": "A bitter dose intended to induce a deep but ordinary sleep."
+      }
+    },
+    {
+      "id": "cleansing_salts",
+      "name": "Cleansing salts",
+      "weight": 4,
+      "fields": {
+        "description": "Mineral salts used to clean wounds, tools, water, or ritual spaces."
+      }
+    },
+    {
+      "id": "lamp_oil",
+      "name": "Lamp oil",
+      "weight": 6,
+      "fields": {
+        "description": "A sealed refill sufficient for several hours of steady light."
+      }
+    },
+    {
+      "id": "alchemical_oil",
+      "name": "Alchemical oil",
+      "weight": 3,
+      "fields": {
+        "description": "A prepared oil consumed when coating one object for a GM-defined purpose."
+      }
+    },
+    {
+      "id": "medicinal_poultice",
+      "name": "Medicinal poultice",
+      "weight": 5,
+      "fields": {
+        "description": "A wrapped herbal preparation applied once to soothe pain and swelling."
+      }
+    }
+  ]
+}

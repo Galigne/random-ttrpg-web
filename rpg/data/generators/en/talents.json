@@ -1,0 +1,449 @@
+{
+  "schemaVersion": 4,
+  "id": "talents",
+  "visibility": "public",
+  "name": "Talents",
+  "description": "Character talents and specialties",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "athlete",
+      "name": "Athlete",
+      "weight": 3,
+      "fields": {
+        "description": "+1 to physical actions involving sustained movement, {{ ability:climbing.name }}, or jumping."
+      }
+    },
+    {
+      "id": "keen_eye",
+      "name": "Keen Eye",
+      "weight": 3,
+      "fields": {
+        "description": "+1 when searching for small details, tracks, traps, or hidden objects."
+      }
+    },
+    {
+      "id": "silver_tongue",
+      "name": "Silver Tongue",
+      "weight": 3,
+      "fields": {
+        "description": "+1 to {{ ability:persuasion.name }} when the character has time to explain their position."
+      }
+    },
+    {
+      "id": "survivor",
+      "name": "Survivor",
+      "weight": 3,
+      "fields": {
+        "description": "+1 to find shelter, ration supplies, or choose a safe route through hostile wilderness."
+      }
+    },
+    {
+      "id": "weather_hardened",
+      "name": "Weather-Hardened",
+      "weight": 2,
+      "fields": {
+        "description": "+2 to resist exposure to natural heat, cold, wind, or heavy rain during travel."
+      }
+    },
+    {
+      "id": "assassin",
+      "name": "Assassin",
+      "weight": 2,
+      "fields": {
+        "description": "Attacks are more effective when the target has not detected the character."
+      }
+    },
+    {
+      "id": "bodybuilder",
+      "name": "Bodybuilder",
+      "weight": 2,
+      "fields": {
+        "description": "+1 to actions based on raw {{ ability:strength.name }}."
+      }
+    },
+    {
+      "id": "politician",
+      "name": "Politician",
+      "weight": 2,
+      "fields": {
+        "description": "+2 to {{ ability:charisma.name }} during formal negotiations and political discussions."
+      }
+    },
+    {
+      "id": "field_medic",
+      "name": "Field Medic",
+      "weight": 2,
+      "fields": {
+        "description": "+1 when stabilizing injuries or using mundane medical supplies."
+      }
+    },
+    {
+      "id": "quick_draw",
+      "name": "Quick Draw",
+      "weight": 2,
+      "fields": {
+        "description": "Drawing or changing a readied weapon does not slow the character's first action."
+      }
+    },
+    {
+      "id": "shield_expert",
+      "name": "Shield Expert",
+      "weight": 2,
+      "fields": {
+        "description": "+1 when blocking with a shield or protecting an adjacent ally."
+      }
+    },
+    {
+      "id": "tracker",
+      "name": "Tracker",
+      "weight": 2,
+      "fields": {
+        "description": "+2 when following a trail left by a known creature."
+      }
+    },
+    {
+      "id": "arcane_student",
+      "name": "Arcane Student",
+      "weight": 2,
+      "fields": {
+        "description": "+1 when identifying a RULE, rune, or magical phenomenon."
+      }
+    },
+    {
+      "id": "craftsperson",
+      "name": "Craftsperson",
+      "weight": 2,
+      "fields": {
+        "description": "+1 when repairing, evaluating, or creating mundane equipment."
+      }
+    },
+    {
+      "id": "duelist",
+      "name": "Duelist",
+      "weight": 2,
+      "fields": {
+        "description": "+1 when fighting a single visible opponent without nearby interference."
+      }
+    },
+    {
+      "id": "beast_friend",
+      "name": "Beast Friend",
+      "weight": 2,
+      "fields": {
+        "description": "+2 when calming or understanding ordinary animals."
+      }
+    },
+    {
+      "id": "sailor",
+      "name": "Sailor",
+      "weight": 2,
+      "fields": {
+        "description": "+2 to {{ ability:navigation.name }}, rigging, and balance aboard a vessel."
+      }
+    },
+    {
+      "id": "streetwise",
+      "name": "Streetwise",
+      "weight": 2,
+      "fields": {
+        "description": "+1 when finding illicit goods, rumors, or safe routes through a city."
+      }
+    },
+    {
+      "id": "unshakable",
+      "name": "Unshakable",
+      "weight": 2,
+      "fields": {
+        "description": "+1 to resist fear, {{ ability:intimidation.name }}, and supernatural dread."
+      }
+    },
+    {
+      "id": "cold_immunity",
+      "name": "Cold Immunity",
+      "fields": {
+        "description": "The character cannot be frozen by ordinary cold."
+      }
+    },
+    {
+      "id": "poison_tolerance",
+      "name": "Poison Tolerance",
+      "fields": {
+        "description": "+2 to resist poison and identify common toxins by taste or smell."
+      }
+    },
+    {
+      "id": "ambidextrous",
+      "name": "Ambidextrous",
+      "fields": {
+        "description": "The character can use either hand with equal precision."
+      }
+    },
+    {
+      "id": "battle_rhythm",
+      "name": "Battle Rhythm",
+      "fields": {
+        "description": "After a successful coordinated attack, the next allied action in the same turn gains +1."
+      }
+    },
+    {
+      "id": "rune_listener",
+      "name": "Rune Listener",
+      "fields": {
+        "description": "The character can sense whether a touched rune is dormant or active."
+      }
+    },
+    {
+      "id": "perfect_memory",
+      "name": "Perfect Memory",
+      "fields": {
+        "description": "+2 when recalling a scene, route, face, or exact spoken detail."
+      }
+    },
+    {
+      "id": "improviser",
+      "name": "Improviser",
+      "fields": {
+        "description": "+1 when using an ordinary object for an unintended but plausible purpose."
+      }
+    },
+    {
+      "id": "last_stand",
+      "name": "Last Stand",
+      "fields": {
+        "description": "+1 to actions while at or below 20% of maximum HP."
+      }
+    },
+    {
+      "id": "danger_sense",
+      "name": "Danger Sense",
+      "fields": {
+        "description": "+1 to Speed on Reflexes checks when reacting to an unseen or unexpected threat."
+      }
+    },
+    {
+      "id": "heavy_hitter",
+      "name": "Heavy Hitter",
+      "fields": {
+        "description": "A successful heavy melee attack produces a stronger positional effect."
+      }
+    },
+    {
+      "id": "lucky_break",
+      "name": "Lucky Break",
+      "fields": {
+        "description": "Once per session, reroll a failed non-critical utility roll."
+      }
+    },
+    {
+      "id": "inspiring_presence",
+      "name": "Inspiring Presence",
+      "fields": {
+        "description": "Once per scene, an ally who hears the character gains +1 against fear."
+      }
+    },
+    {
+      "id": "locksmith",
+      "name": "Locksmith",
+      "weight": 2,
+      "fields": {
+        "description": "+2 to actions made to open or inspect ordinary mechanical locks."
+      }
+    },
+    {
+      "id": "burglar",
+      "name": "Burglar",
+      "fields": {
+        "description": "+2 to {{ ability:dexterity.name }} actions for quietly entering, crossing, or leaving a secured building."
+      }
+    },
+    {
+      "id": "marksman",
+      "name": "Marksman",
+      "fields": {
+        "description": "+1 to ranged weapon attacks against a visible target at least 10 meters away."
+      }
+    },
+    {
+      "id": "brawler",
+      "name": "Brawler",
+      "weight": 2,
+      "fields": {
+        "description": "+1 to actions involving unarmed fighting or grappling."
+      }
+    },
+    {
+      "id": "herbalist",
+      "name": "Herbalist",
+      "weight": 2,
+      "fields": {
+        "description": "+2 when identifying or working with medicinal or poisonous plants."
+      }
+    },
+    {
+      "id": "alchemist",
+      "name": "Alchemist",
+      "fields": {
+        "description": "+2 to {{ ability:intelligence.name }} actions for identifying, preparing, or safely handling alchemical substances."
+      }
+    },
+    {
+      "id": "blacksmith",
+      "name": "Blacksmith",
+      "weight": 2,
+      "fields": {
+        "description": "+2 to actions involving forging, evaluating, or repairing metal weapons, armor, and tools."
+      }
+    },
+    {
+      "id": "acrobat",
+      "name": "Acrobat",
+      "weight": 2,
+      "fields": {
+        "description": "+2 to {{ ability:dexterity.name }} actions involving balance, tumbling, or acrobatic movement."
+      }
+    },
+    {
+      "id": "investigator",
+      "name": "Investigator",
+      "fields": {
+        "description": "+2 to {{ ability:perception.name }} actions when examining a scene for physical evidence."
+      }
+    },
+    {
+      "id": "commander",
+      "name": "Commander",
+      "fields": {
+        "description": "+1 to {{ ability:charisma.name }} actions made to coordinate a willing group under immediate pressure."
+      }
+    },
+    {
+      "id": "impersonator",
+      "name": "Actor and Impersonator",
+      "fields": {
+        "description": "+2 to {{ ability:charisma.name }} actions when performing or imitating a person studied in advance."
+      }
+    },
+    {
+      "id": "historian",
+      "name": "Historian",
+      "fields": {
+        "description": "+2 to {{ ability:intelligence.name }} actions involving historical knowledge."
+      }
+    },
+    {
+      "id": "runesmith",
+      "name": "Runesmith",
+      "fields": {
+        "description": "+2 to actions involving identifying, understanding, or creating runes."
+      }
+    },
+    {
+      "id": "weapon_specialist",
+      "name": "Weapon Specialist",
+      "fields": {
+        "description": "Specialized weapon: {{ weapons.name }}. The character gains +2 to attacks or other relevant actions using that weapon."
+      }
+    },
+    {
+      "id": "monster_hunter",
+      "name": "Monster Hunter",
+      "fields": {
+        "description": "Specializes in {{ ability:hunting.name }} focused on the following creature: {{ creature:monster.generator.name }}. Gains +2 when following it using {{ ability:tracking.name }}, identifying it, recalling its weaknesses, or preparing to face it."
+      }
+    },
+    {
+      "id": "cultural_expert",
+      "name": "Cultural Expert",
+      "fields": {
+        "description": "Studied culture: {{ race.name }}. The character gains +2 to relevant knowledge or social actions involving that race."
+      }
+    },
+    {
+      "id": "rider",
+      "name": "Rider",
+      "fields": {
+        "description": "+2 to relevant {{ ability:animal_handling.name }}, control, and balance actions while mounted."
+      }
+    },
+    {
+      "id": "ghost_step",
+      "name": "Ghost Step",
+      "fields": {
+        "description": "+2 to {{ ability:stealth.name }} while moving cautiously rather than rushing."
+      }
+    },
+    {
+      "id": "fast_learner",
+      "name": "Fast Learner",
+      "fields": {
+        "description": "After observing another character successfully perform an action, gains +1 on the first attempt to reproduce that action during the same scene."
+      }
+    },
+    {
+      "id": "scavenger",
+      "name": "Scavenger",
+      "fields": {
+        "description": "+2 when searching explored locations for useful supplies, components, ammunition, or salvage."
+      }
+    },
+    {
+      "id": "counterattacker",
+      "name": "Counterattacker",
+      "fields": {
+        "description": "+1 to the next close attack made against an opponent before the end of the next turn after that opponent fails a close attack against the character."
+      }
+    },
+    {
+      "id": "ritual_specialist",
+      "name": "Ritual Specialist",
+      "fields": {
+        "description": "+2 to actions made to prepare or perform a deliberate magical ritual when at least ten uninterrupted minutes are available."
+      }
+    },
+    {
+      "id": "battlefield_controller",
+      "name": "Battlefield Controller",
+      "fields": {
+        "description": "+1 to actions that reposition an opponent, deny a route, exploit terrain, or hold a chokepoint."
+      }
+    },
+    {
+      "id": "defensive_guardian",
+      "name": "Defensive Guardian",
+      "fields": {
+        "description": "+1 to actions made to interpose between danger and a nearby ally, protect that ally, or prevent an enemy from passing."
+      }
+    },
+    {
+      "id": "opportunist",
+      "name": "Opportunist",
+      "fields": {
+        "description": "+1 to the first action that immediately exploits an opponent's distraction, mistake, or newly exposed position."
+      }
+    },
+    {
+      "id": "magical_improviser",
+      "name": "Magical Improviser",
+      "fields": {
+        "description": "+2 when adapting a known magical effect to a plausible purpose outside its most obvious use."
+      }
+    },
+    {
+      "id": "animal_handler",
+      "name": "Animal Handler",
+      "fields": {
+        "description": "+2 when calming, training, directing, caring for, or working alongside ordinary or unusual animals."
+      }
+    },
+    {
+      "id": "escape_artist",
+      "name": "Escape Artist",
+      "fields": {
+        "description": "+2 to actions made to escape restraints, grapples, cages, bindings, or other physical confinement."
+      }
+    }
+  ]
+}

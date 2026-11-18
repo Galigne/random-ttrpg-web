@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 4,
+  "id": "modifier_site_all",
+  "visibility": "internal",
+  "name": "General site modifiers",
+  "description": "Persistent conditions and transient weather compatible with multiple site generators",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "abandoned",
+      "name": "Abandoned",
+      "fields": {
+        "description": "The place still partly functions, but its occupants left essential belongings behind."
+      }
+    },
+    {
+      "id": "immense",
+      "name": "Immense",
+      "fields": {
+        "description": "Internal distances exceed expectations and demand supplies, navigation, or several stages of exploration."
+      }
+    },
+    {
+      "id": "heavy_rain",
+      "name": "Heavy Rain",
+      "weight": 2,
+      "fields": {
+        "description": "{{ weather:heavy_rain.description }}"
+      }
+    },
+    {
+      "id": "thunderstorm",
+      "name": "Thunderstorm",
+      "fields": {
+        "description": "{{ weather:thunderstorm.description }}"
+      }
+    },
+    {
+      "id": "dense_fog",
+      "name": "Dense Fog",
+      "weight": 2,
+      "fields": {
+        "description": "{{ weather:dense_fog.description }}"
+      }
+    },
+    {
+      "id": "strong_winds",
+      "name": "Strong Winds",
+      "weight": 2,
+      "fields": {
+        "description": "{{ weather:strong_winds.description }}"
+      }
+    },
+    {
+      "id": "heavy_snow",
+      "name": "Heavy Snow",
+      "fields": {
+        "description": "{{ weather:heavy_snow.description }}"
+      }
+    },
+    {
+      "id": "cold_snap",
+      "name": "Cold Snap",
+      "fields": {
+        "description": "{{ weather:cold_snap.description }}"
+      }
+    },
+    {
+      "id": "heat_wave",
+      "name": "Heat Wave",
+      "fields": {
+        "description": "{{ weather:heat_wave.description }}"
+      }
+    },
+    {
+      "id": "hailstorm",
+      "name": "Hailstorm",
+      "fields": {
+        "description": "{{ weather:hailstorm.description }}"
+      }
+    },
+    {
+      "id": "dust_storm",
+      "name": "Dust Storm",
+      "fields": {
+        "description": "{{ weather:dust_storm.description }}"
+      }
+    },
+    {
+      "id": "ashfall",
+      "name": "Ashfall",
+      "fields": {
+        "description": "{{ weather:ashfall.description }}"
+      }
+    },
+    {
+      "id": "sentient",
+      "name": "Sentient",
+      "fields": {
+        "description": "The place is aware of what happens within its bounds, has the following personality, and can subtly influence routes, conditions, or coincidences inside it: {{ personality.description }}"
+      }
+    },
+    {
+      "id": "echoing",
+      "name": "Echoing",
+      "weight": 2,
+      "fields": {
+        "description": "Words and sounds spoken in one part of the place can reappear elsewhere later, stripped of their original context."
+      }
+    },
+    {
+      "id": "sideways",
+      "name": "Sideways",
+      "fields": {
+        "description": "Local gravity pulls at a noticeable angle, making unsecured objects drift, familiar routes awkward, and ordinary architecture unexpectedly hazardous."
+      }
+    },
+    {
+      "id": "intermittent_magic_void",
+      "name": "Intermittent Magic Void",
+      "fields": {
+        "description": "A moving or temporary boundary suppresses magic and RULE effects within it; dormant effects resume when the boundary passes or collapses."
+      }
+    },
+    {
+      "id": "dream_shaped",
+      "name": "Dream-Shaped",
+      "fields": {
+        "description": "Creatures, objects, events, or structures repeatedly dreamed about nearby begin appearing or changing in physical reality."
+      }
+    }
+  ]
+}

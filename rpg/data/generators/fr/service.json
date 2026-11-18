@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 4,
+  "id": "service",
+  "visibility": "internal",
+  "name": "Services",
+  "description": "Services réutilisables que des personnes ou des organisations peuvent demander ou rémunérer",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    { "id": "escort", "name": "escorte" },
+    { "id": "guard_duty", "name": "garde" },
+    { "id": "healing", "name": "soins" },
+    { "id": "translation", "name": "traduction" },
+    { "id": "investigation", "name": "enquête" },
+    { "id": "tracking", "name": "pistage" },
+    { "id": "surveying", "name": "arpentage" },
+    { "id": "transportation", "name": "transport" },
+    { "id": "smuggling", "name": "contrebande" },
+    { "id": "forgery", "name": "falsification" },
+    { "id": "mediation", "name": "médiation" },
+    { "id": "exorcism", "name": "exorcisme" },
+    { "id": "retrieval", "name": "récupération" },
+    { "id": "construction", "name": "construction" },
+    { "id": "repair", "name": "réparation" },
+    { "id": "bodyguard_work", "name": "protection rapprochée" },
+    { "id": "information_gathering", "name": "collecte d’informations" },
+    { "id": "magical_consultation", "name": "expertise magique" },
+    { "id": "legal_representation", "name": "représentation juridique" },
+    { "id": "discreet_delivery", "name": "livraison discrète" },
+    { "id": "guiding", "name": "guidage" },
+    { "id": "training", "name": "formation" },
+    { "id": "appraisal", "name": "estimation" },
+    { "id": "warding", "name": "protection magique" },
+    { "id": "funerary_rites", "name": "rites funéraires" },
+    { "id": "rescue", "name": "sauvetage" },
+    { "id": "messenger_work", "name": "service de messagerie" },
+    { "id": "supply_procurement", "name": "approvisionnement" },
+    {
+      "id": "haunting_verification",
+      "name": "expertise visant à déterminer si un lieu ou un objet est réellement hanté",
+      "weight": 0.75
+    },
+    {
+      "id": "escaped_livestock_recovery",
+      "name": "récupération d’un animal échappé : {{ animal.name }}"
+    },
+    {
+      "id": "no_ground_contact_transport",
+      "name": "transport de quelque chose qui ne doit pas toucher le sol",
+      "weight": 0.5
+    },
+    {
+      "id": "cursed_object_disposal",
+      "name": "retrait ou élimination en toute sécurité d’un objet maudit : {{ loot.generator.name }}",
+      "weight": 0.75
+    },
+    {
+      "id": "suspicious_food_tasting",
+      "name": "dégustation de nourriture ou de boisson suspecte, voire magique : {{ food_and_drink.name }}",
+      "weight": 0.5
+    },
+    {
+      "id": "unusual_creature_training",
+      "name": "dressage d’une créature inhabituelle : {{ creature.generator.name }}",
+      "weight": 0.75
+    },
+    {
+      "id": "ceremonial_impersonation",
+      "name": "usurpation d’identité lors d’une cérémonie ou d’une occasion officielle : {{ background.generator.name }}",
+      "weight": 0.5
+    },
+    {
+      "id": "discreet_adult_encounter",
+      "name": "organisation d’une rencontre romantique ou sexuelle discrète entre adultes consentants",
+      "weight": 0.5
+    },
+    {
+      "id": "intimate_letter_delivery",
+      "name": "livraison d’une lettre intime sans se faire découvrir",
+      "weight": 0.75
+    },
+    {
+      "id": "secret_lover_search",
+      "name": "recherche du partenaire adulte clandestin de quelqu’un",
+      "weight": 0.75
+    },
+    {
+      "id": "infidelity_investigation",
+      "name": "enquête sur une infidélité présumée",
+      "weight": 0.75
+    },
+    {
+      "id": "adult_party_entertainment",
+      "name": "organisation des divertissements d’une soirée privée pour adultes",
+      "weight": 0.5
+    },
+    {
+      "id": "compromising_evidence_removal",
+      "name": "suppression de preuves compromettantes avant leur découverte",
+      "weight": 0.5
+    }
+  ]
+}

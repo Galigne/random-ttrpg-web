@@ -1,0 +1,453 @@
+{
+  "schemaVersion": 4,
+  "id": "rules",
+  "visibility": "public",
+  "name": "Rules",
+  "description": "Concise RULE concepts for GM and player inspiration",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "thread_rule",
+      "name": "Thread RULE",
+      "weight": 2,
+      "fields": {
+        "description": "Create and control thread."
+      }
+    },
+    {
+      "id": "echo_rule",
+      "name": "Echo RULE",
+      "weight": 2,
+      "fields": {
+        "description": "Capture, replay, and redirect sounds."
+      }
+    },
+    {
+      "id": "rust_rule",
+      "name": "Rust RULE",
+      "fields": {
+        "description": "Accelerate corrosion in metal."
+      }
+    },
+    {
+      "id": "door_rule",
+      "name": "Door RULE",
+      "fields": {
+        "description": "Sense and manipulate doors."
+      }
+    },
+    {
+      "id": "ink_rule",
+      "name": "Ink RULE",
+      "fields": {
+        "description": "Animate written ink into symbols and shapes."
+      }
+    },
+    {
+      "id": "mist_rule",
+      "name": "Mist RULE",
+      "weight": 2,
+      "fields": {
+        "description": "Produce and shape mist."
+      }
+    },
+    {
+      "id": "borrowed_face_rule",
+      "name": "Borrowed Face RULE",
+      "fields": {
+        "description": "Copy another person's face."
+      }
+    },
+    {
+      "id": "glass_rule",
+      "name": "Glass RULE",
+      "fields": {
+        "description": "Bend and reshape glass."
+      }
+    },
+    {
+      "id": "promise_rule",
+      "name": "Promise RULE",
+      "fields": {
+        "description": "Sense when promises are broken."
+      }
+    },
+    {
+      "id": "friction_rule",
+      "name": "Friction RULE",
+      "fields": {
+        "description": "Increase or decrease friction."
+      }
+    },
+    {
+      "id": "scent_rule",
+      "name": "Scent RULE",
+      "weight": 2,
+      "fields": {
+        "description": "Create, remove, and follow scents."
+      }
+    },
+    {
+      "id": "paper_rule",
+      "name": "Paper RULE",
+      "fields": {
+        "description": "Fold paper into animated tools or creatures."
+      }
+    },
+    {
+      "id": "salt_rule",
+      "name": "Salt RULE",
+      "fields": {
+        "description": "Create and shape salt."
+      }
+    },
+    {
+      "id": "heartbeat_rule",
+      "name": "Heartbeat RULE",
+      "fields": {
+        "description": "Sense and synchronize with heartbeats."
+      }
+    },
+    {
+      "id": "color_rule",
+      "name": "Color RULE",
+      "weight": 2,
+      "fields": {
+        "description": "Move and alter colors."
+      }
+    },
+    {
+      "id": "balance_rule",
+      "name": "Balance RULE",
+      "weight": 2,
+      "fields": {
+        "description": "Stabilize objects and people."
+      }
+    },
+    {
+      "id": "threshold_rule",
+      "name": "Threshold RULE",
+      "fields": {
+        "description": "Sense when boundaries are crossed."
+      }
+    },
+    {
+      "id": "swarm_rule",
+      "name": "Swarm RULE",
+      "fields": {
+        "description": "Communicate with swarms of insects."
+      }
+    },
+    {
+      "id": "chance_rule",
+      "name": "Chance RULE",
+      "fields": {
+        "description": "Manipulate chance."
+      }
+    },
+    {
+      "id": "momentum_rule",
+      "name": "Impact RULE",
+      "fields": {
+        "description": "Amplify charges, strikes, and projectiles."
+      }
+    },
+    {
+      "id": "ricochet_rule",
+      "name": "Ricochet RULE",
+      "fields": {
+        "description": "Deflect projectiles to bounce off surfaces."
+      }
+    },
+    {
+      "id": "celerity_rule",
+      "name": "Celerity RULE",
+      "fields": {
+        "description": "Accelerate movement."
+      }
+    },
+    {
+      "id": "invisibility_rule",
+      "name": "Invisibility RULE",
+      "fields": {
+        "description": "Conceal a target from sight."
+      }
+    },
+    {
+      "id": "rain_rule",
+      "name": "Rain RULE",
+      "fields": {
+        "description": "Condense humidity into rain."
+      }
+    },
+    {
+      "id": "mending_rule",
+      "name": "Healing RULE",
+      "fields": {
+        "description": "Accelerate the healing of wounds."
+      }
+    },
+    {
+      "id": "teleportation_rule",
+      "name": "Teleportation RULE",
+      "fields": {
+        "description": "Teleport yourself or other targets."
+      }
+    },
+    {
+      "id": "storm_rule",
+      "name": "Storm RULE",
+      "fields": {
+        "description": "Strengthen and shape weather."
+      }
+    },
+    {
+      "id": "blessing_rule",
+      "name": "Blessing RULE",
+      "fields": {
+        "description": "Grant an advantage."
+      }
+    },
+    {
+      "id": "summoning_rule",
+      "name": "Summoning RULE",
+      "fields": {
+        "description": "Summon entities."
+      }
+    },
+    {
+      "id": "resurrection_rule",
+      "name": "Resurrection RULE",
+      "fields": {
+        "description": "Restore life to the dead."
+      }
+    },
+    {
+      "id": "curse_rule",
+      "name": "Curse RULE",
+      "fields": {
+        "description": "Inflict a curse."
+      }
+    },
+    {
+      "id": "vampirism_rule",
+      "name": "Vampirism RULE",
+      "fields": {
+        "description": "Drain or transfer vitality."
+      }
+    },
+    {
+      "id": "telekinesis_rule",
+      "name": "Telekinesis RULE",
+      "fields": {
+        "description": "Move objects with the mind."
+      }
+    },
+    {
+      "id": "influence_rule",
+      "name": "Influence RULE",
+      "fields": {
+        "description": "Strengthen emotions or suggestions."
+      }
+    },
+    {
+      "id": "dead_rule",
+      "name": "Dead RULE",
+      "fields": {
+        "description": "Command animated corpses."
+      }
+    },
+    {
+      "id": "illusion_rule",
+      "name": "Illusion RULE",
+      "fields": {
+        "description": "Create and manipulate illusions."
+      }
+    },
+    {
+      "id": "sleep_rule",
+      "name": "Sleep RULE",
+      "fields": {
+        "description": "Induce or deepen sleep."
+      }
+    },
+    {
+      "id": "soul_bond_rule",
+      "name": "Soul Bond RULE",
+      "fields": {
+        "description": "Share sensations or emotions."
+      }
+    },
+    {
+      "id": "ghost_rule",
+      "name": "Ghost RULE",
+      "fields": {
+        "description": "Become intangible."
+      }
+    },
+    {
+      "id": "spirits_rule",
+      "name": "Spirits RULE",
+      "fields": {
+        "description": "Manifest spirits."
+      }
+    },
+    {
+      "id": "familiar_rule",
+      "name": "Familiar RULE",
+      "fields": {
+        "description": "Form a sensory bond with an animal."
+      }
+    },
+    {
+      "id": "beasts_rule",
+      "name": "Beasts RULE",
+      "fields": {
+        "description": "Communicate with animals."
+      }
+    },
+    {
+      "id": "spores_rule",
+      "name": "Spores RULE",
+      "fields": {
+        "description": "Produce spores with varied effects."
+      }
+    },
+    {
+      "id": "petrification_rule",
+      "name": "Petrification RULE",
+      "fields": {
+        "description": "Turn living matter to stone."
+      }
+    },
+    {
+      "id": "decay_rule",
+      "name": "Decay RULE",
+      "fields": {
+        "description": "Accelerate the decay of dead matter."
+      }
+    },
+    {
+      "id": "weight_rule",
+      "name": "Gravity RULE",
+      "fields": {
+        "description": "Manipulate gravity."
+      }
+    },
+    {
+      "id": "magnetism_rule",
+      "name": "Magnetism RULE",
+      "fields": {
+        "description": "Attract or repel metal."
+      }
+    },
+    {
+      "id": "double_rule",
+      "name": "Double RULE",
+      "fields": {
+        "description": "Create a copy of yourself."
+      }
+    },
+    {
+      "id": "time_rule",
+      "name": "Time RULE",
+      "fields": {
+        "description": "Manipulate time."
+      }
+    },
+    {
+      "id": "space_rule",
+      "name": "Space RULE",
+      "fields": {
+        "description": "Open passages through space."
+      }
+    },
+    {
+      "id": "vision_rule",
+      "name": "Vision RULE",
+      "fields": {
+        "description": "See possible future consequences."
+      }
+    },
+    {
+      "id": "size_rule",
+      "name": "Size RULE",
+      "fields": {
+        "description": "Enlarge or shrink creatures and objects."
+      }
+    },
+    {
+      "id": "reflection_rule",
+      "name": "Mirror RULE",
+      "fields": {
+        "description": "Copy the appearance of another RULE."
+      }
+    },
+    {
+      "id": "memory_rule",
+      "name": "Memory RULE",
+      "fields": {
+        "description": "Clarify or blur memories."
+      }
+    },
+    {
+      "id": "truth_rule",
+      "name": "Truth RULE",
+      "fields": {
+        "description": "Compel, reveal, or extract truthful statements."
+      }
+    },
+    {
+      "id": "silence_rule",
+      "name": "Silence RULE",
+      "fields": {
+        "description": "Suppress and manipulate sound."
+      }
+    },
+    {
+      "id": "adhesion_rule",
+      "name": "Adhesion RULE",
+      "fields": {
+        "description": "Make materials stick together or come apart."
+      }
+    },
+    {
+      "id": "voice_rule",
+      "name": "Voice RULE",
+      "fields": {
+        "description": "Copy, steal, exchange, and alter voices."
+      }
+    },
+    {
+      "id": "elasticity_rule",
+      "name": "Elasticity RULE",
+      "fields": {
+        "description": "Stretch matter or make it unusually elastic and bouncy."
+      }
+    },
+    {
+      "id": "ownership_rule",
+      "name": "Ownership RULE",
+      "fields": {
+        "description": "Sense and influence ownership and possession."
+      }
+    },
+    {
+      "id": "knot_rule",
+      "name": "Knot RULE",
+      "fields": {
+        "description": "Create, tighten, loosen, and undo knots."
+      }
+    },
+    {
+      "id": "elemental_rule",
+      "name": "{{ element.name }} RULE",
+      "weight": 19,
+      "fields": {
+        "description": "Manipulate this element."
+      }
+    }
+  ]
+}

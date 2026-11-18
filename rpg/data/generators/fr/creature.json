@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 4,
+  "id": "creature",
+  "visibility": "public",
+  "name": "Créature",
+  "description": "Catégories de créatures pouvant être générées",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "animal",
+      "name": "Animaux",
+      "generator": "animal"
+    },
+    {
+      "id": "companion",
+      "name": "Compagnons",
+      "generator": "companion"
+    },
+    {
+      "id": "monster",
+      "name": "Monstres",
+      "generator": "monster"
+    }
+  ]
+}

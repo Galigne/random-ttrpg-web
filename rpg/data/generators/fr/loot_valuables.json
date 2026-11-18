@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 4,
+  "id": "valuables",
+  "visibility": "internal",
+  "name": "Objets de valeur",
+  "description": "Richesses transportables, marchandises, objets de prestige et pièces de collection",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "modifiers": {
+    "modifier_loot": 10
+  },
+  "entries": [
+    {
+      "id": "coin_purse",
+      "name": "Bourse de pièces",
+      "fields": {
+        "description": "Une bourse de monnaie locale mêlant petites pièces courantes et devises plus difficiles à écouler."
+      }
+    },
+    {
+      "id": "precious_jewel",
+      "name": "Bijou précieux",
+      "fields": {
+        "description": "Une pièce de joaillerie identifiable, facile à transporter mais risquée à revendre."
+      }
+    },
+    {
+      "id": "work_of_art",
+      "name": "Œuvre d’art",
+      "fields": {
+        "description": "Un tableau, une sculpture ou une pièce décorative dont la valeur culturelle est reconnue."
+      }
+    },
+    {
+      "id": "ceremonial_clothing",
+      "name": "Vêtement de cérémonie",
+      "fields": {
+        "description": "Une robe, cape, paire de bottes ou paire de gants associée à un rang ou une institution."
+      }
+    },
+    {
+      "id": "unfinished_crown",
+      "name": "Couronne inachevée",
+      "fields": {
+        "description": "Un symbole d’autorité auquel manque une gemme, une inscription ou une partie essentielle."
+      }
+    },
+    {
+      "id": "ornate_comb",
+      "name": "Peigne ouvragé",
+      "fields": {
+        "description": "Un objet personnel décoré d’un blason discret ou d’une inscription intime."
+      }
+    },
+    {
+      "id": "collectible_figurine",
+      "name": "Figurine de collection",
+      "fields": {
+        "description": "Une pièce d’une série recherchée, insignifiante seule mais précieuse pour la bonne personne."
+      }
+    },
+    {
+      "id": "gemstone",
+      "name": "Pierre précieuse",
+      "weight": 4,
+      "fields": {
+        "description": "Une pierre brute ou taillée dont la valeur dépend de sa qualité et de la demande locale."
+      }
+    },
+    {
+      "id": "antique_coins",
+      "name": "Monnaies anciennes",
+      "weight": 3,
+      "fields": {
+        "description": "Des pièces anciennes qui valent davantage pour les collectionneurs que pour leur valeur faciale."
+      }
+    },
+    {
+      "id": "decorated_silverware",
+      "name": "Argenterie décorée",
+      "weight": 3,
+      "fields": {
+        "description": "Un petit service assorti portant un motif ou un blason identifiable."
+      }
+    },
+    {
+      "id": "luxury_fabric",
+      "name": "Étoffe de luxe",
+      "weight": 3,
+      "fields": {
+        "description": "Un rouleau compact de tissu fin destiné au commerce ou à des vêtements cérémoniels."
+      }
+    },
+    {
+      "id": "small_sculpture",
+      "name": "Petite sculpture",
+      "weight": 2,
+      "fields": {
+        "description": "Une œuvre transportable dont l’artiste, le sujet ou la matière détermine la valeur."
+      }
+    },
+    {
+      "id": "rare_book",
+      "name": "Livre rare",
+      "weight": 2,
+      "fields": {
+        "description": "Un volume complet et recherché par les spécialistes et les collectionneurs."
+      }
+    },
+    {
+      "id": "ceremonial_jewelry",
+      "name": "Bijoux cérémoniels",
+      "weight": 2,
+      "fields": {
+        "description": "Des ornements associés à un rang, une charge ou une tradition officielle."
+      }
+    },
+    {
+      "id": "valuable_trade_goods",
+      "name": "Marchandises de valeur",
+      "weight": 4,
+      "fields": {
+        "description": "Des biens compacts dont le prix de revente varie selon les marchés locaux."
+      }
+    },
+    {
+      "id": "gold_ingot",
+      "name": "Lingot d’or",
+      "weight": 2,
+      "fields": {
+        "description": "Une barre d’or raffiné portant un poinçon, dont la valeur dépend du poids, de la pureté et de la confiance accordée à cette marque."
+      }
+    },
+    {
+      "id": "silver_ingot",
+      "name": "Lingot d’argent",
+      "weight": 3,
+      "fields": {
+        "description": "Une barre d’argent raffiné et transportable, adaptée au commerce, à l’artisanat ou à la constitution de réserves."
+      }
+    },
+    {
+      "id": "signet_ring",
+      "name": "Chevalière",
+      "weight": 3,
+      "fields": {
+        "description": "Une bague gravée pour imprimer un sceau distinctif dans la cire ou l’argile."
+      }
+    },
+    {
+      "id": "fine_ring",
+      "name": "Bague raffinée",
+      "weight": 4,
+      "fields": {
+        "description": "Une bague soigneusement ouvragée, appréciée pour la qualité de sa fabrication et de sa finition."
+      }
+    },
+    {
+      "id": "necklace",
+      "name": "Collier",
+      "weight": 4,
+      "fields": {
+        "description": "Un collier décoratif dont la valeur provient de ses matières et du travail accompli."
+      }
+    },
+    {
+      "id": "bracelet",
+      "name": "Bracelet",
+      "weight": 4,
+      "fields": {
+        "description": "Un ornement de poignet bien ouvragé, destiné au commerce, à la parure ou aux cérémonies."
+      }
+    },
+    {
+      "id": "amulet",
+      "name": "Amulette",
+      "weight": 3,
+      "fields": {
+        "description": "Un pendentif façonné comme emblème protecteur, religieux ou personnel."
+      }
+    },
+    {
+      "id": "pearl_necklace",
+      "name": "Collier de perles",
+      "weight": 2,
+      "fields": {
+        "description": "Un rang de perles assorties, choisies pour l’uniformité de leur couleur et de leur éclat."
+      }
+    },
+    {
+      "id": "rare_spices",
+      "name": "Épices rares",
+      "weight": 3,
+      "fields": {
+        "description": "De petits sachets scellés d’épices parfumées qui valent bien davantage loin de leur région d’origine."
+      }
+    },
+    {
+      "id": "perfume",
+      "name": "Parfum",
+      "weight": 3,
+      "fields": {
+        "description": "Un flacon bouché contenant une fragrance concentrée composée par un parfumeur expérimenté."
+      }
+    }
+  ]
+}

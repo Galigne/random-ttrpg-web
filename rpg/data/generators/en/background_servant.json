@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 4,
+  "id": "servant",
+  "visibility": "internal",
+  "name": "Servant archetypes",
+  "description": "Household and service roles",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "household_servant",
+      "name": "Household servant"
+    },
+    {
+      "id": "attendant",
+      "name": "Attendant",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "day_laborer",
+      "name": "Day laborer",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "cook",
+      "name": "Cook"
+    },
+    {
+      "id": "stable_hand",
+      "name": "Stable hand",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "courier",
+      "name": "Courier",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "driver",
+      "name": "Driver",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "steward",
+      "name": "Steward",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "groundskeeper",
+      "name": "Groundskeeper"
+    },
+    {
+      "id": "messenger",
+      "name": "Messenger",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 4,
+  "id": "modifier_site_all",
+  "visibility": "internal",
+  "name": "Modificateurs généraux de site",
+  "description": "Variations durables et conditions météorologiques passagères adaptées à de nombreux lieux",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "abandoned",
+      "name": "Abandonné",
+      "fields": {
+        "description": "Le lieu fonctionne encore partiellement, mais ses occupants sont partis sans emporter leurs affaires essentielles."
+      }
+    },
+    {
+      "id": "immense",
+      "name": "Immense",
+      "fields": {
+        "description": "Les distances intérieures dépassent les attentes et imposent ravitaillement, navigation ou plusieurs étapes d’exploration."
+      }
+    },
+    {
+      "id": "heavy_rain",
+      "name": "Pluie battante",
+      "weight": 2,
+      "fields": {
+        "description": "{{ weather:heavy_rain.description }}"
+      }
+    },
+    {
+      "id": "thunderstorm",
+      "name": "Orage violent",
+      "fields": {
+        "description": "{{ weather:thunderstorm.description }}"
+      }
+    },
+    {
+      "id": "dense_fog",
+      "name": "Brouillard dense",
+      "weight": 2,
+      "fields": {
+        "description": "{{ weather:dense_fog.description }}"
+      }
+    },
+    {
+      "id": "strong_winds",
+      "name": "Vents violents",
+      "weight": 2,
+      "fields": {
+        "description": "{{ weather:strong_winds.description }}"
+      }
+    },
+    {
+      "id": "heavy_snow",
+      "name": "Fortes chutes de neige",
+      "fields": {
+        "description": "{{ weather:heavy_snow.description }}"
+      }
+    },
+    {
+      "id": "cold_snap",
+      "name": "Vague de froid",
+      "fields": {
+        "description": "{{ weather:cold_snap.description }}"
+      }
+    },
+    {
+      "id": "heat_wave",
+      "name": "Canicule",
+      "fields": {
+        "description": "{{ weather:heat_wave.description }}"
+      }
+    },
+    {
+      "id": "hailstorm",
+      "name": "Averse de grêle",
+      "fields": {
+        "description": "{{ weather:hailstorm.description }}"
+      }
+    },
+    {
+      "id": "dust_storm",
+      "name": "Tempête de poussière",
+      "fields": {
+        "description": "{{ weather:dust_storm.description }}"
+      }
+    },
+    {
+      "id": "ashfall",
+      "name": "Pluie de cendres",
+      "fields": {
+        "description": "{{ weather:ashfall.description }}"
+      }
+    },
+    {
+      "id": "sentient",
+      "name": "Conscient",
+      "fields": {
+        "description": "Le lieu perçoit ce qui se passe dans son enceinte, possède la personnalité suivante et peut influencer subtilement les itinéraires, les conditions ou les coïncidences qui s’y produisent : {{ personality.description }}"
+      }
+    },
+    {
+      "id": "echoing",
+      "name": "Résonnant",
+      "weight": 2,
+      "fields": {
+        "description": "Les paroles et les sons émis dans une partie du lieu peuvent réapparaître ailleurs plus tard, privés de leur contexte d’origine."
+      }
+    },
+    {
+      "id": "sideways",
+      "name": "Incliné",
+      "fields": {
+        "description": "La gravité locale tire selon un angle manifeste, faisant dériver les objets non arrimés, compliquant les trajets familiers et rendant dangereuse une architecture ordinaire."
+      }
+    },
+    {
+      "id": "intermittent_magic_void",
+      "name": "Vide magique intermittent",
+      "fields": {
+        "description": "Une frontière mobile ou temporaire neutralise la magie et les effets de LOI en son sein ; les effets suspendus reprennent lorsqu'elle se déplace ou disparaît."
+      }
+    },
+    {
+      "id": "dream_shaped",
+      "name": "Façonné par les rêves",
+      "fields": {
+        "description": "Les créatures, les objets, les événements ou les structures dont on rêve régulièrement dans les environs commencent à apparaître ou à changer dans la réalité physique."
+      }
+    }
+  ]
+}

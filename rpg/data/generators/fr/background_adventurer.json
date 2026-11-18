@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 4,
+  "id": "adventurer",
+  "visibility": "internal",
+  "name": "Archétypes d’aventurier",
+  "description": "Rôles liés à l’exploration et aux expéditions",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "explorer",
+      "name": "Explorateur"
+    },
+    {
+      "id": "mercenary",
+      "name": "Mercenaire",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "monster_hunter",
+      "name": "Chasseur de monstres",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "bounty_hunter",
+      "name": "Chasseur de primes",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "scout",
+      "name": "Éclaireur",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "treasure_hunter",
+      "name": "Chercheur de trésors",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "pilgrim",
+      "name": "Pèlerin",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "frontier_guide",
+      "name": "Guide des frontières",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "ruins_delver",
+      "name": "Fouilleur de ruines",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "demon_hunter",
+      "name": "Chasseur de démons",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "protector",
+      "name": "Protecteur",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "relic_hunter",
+      "name": "Chasseur de reliques"
+    },
+    {
+      "id": "dungeon_cartographer",
+      "name": "Cartographe de donjons"
+    }
+  ]
+}

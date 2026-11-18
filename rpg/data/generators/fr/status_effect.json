@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 4,
+  "id": "status_effect",
+  "visibility": "public",
+  "name": "Effets d’état",
+  "description": "États descriptifs pouvant affecter un personnage ou une créature",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "bruised",
+      "name": "Contusionné",
+      "weight": 3,
+      "fields": {
+        "description": "la douleur légère impose un malus de -1 à la prochaine action physique exigeante."
+      }
+    },
+    {
+      "id": "fatigued",
+      "name": "Fatigué",
+      "weight": 3,
+      "fields": {
+        "description": "les efforts prolongés et les voyages restent plus difficiles jusqu’au prochain repos."
+      }
+    },
+    {
+      "id": "shaken",
+      "name": "Ébranlé",
+      "weight": 3,
+      "fields": {
+        "description": "subit un malus de -1 contre le prochain effet de peur ou d’{{ ability:intimidation.name }}."
+      }
+    },
+    {
+      "id": "bleeding",
+      "name": "Saignement",
+      "weight": 2,
+      "fields": {
+        "description": "perd une petite quantité de PV après chaque effort intense jusqu’à recevoir des soins."
+      }
+    },
+    {
+      "id": "burning",
+      "name": "En feu",
+      "weight": 2,
+      "fields": {
+        "description": "subit régulièrement des dégâts de feu jusqu’à l’extinction des flammes."
+      }
+    },
+    {
+      "id": "chilled",
+      "name": "Transi",
+      "weight": 2,
+      "fields": {
+        "description": "les déplacements et les actions fondées sur la {{ ability:speed.name }} sont réduits jusqu’au réchauffement."
+      }
+    },
+    {
+      "id": "blinded",
+      "name": "Aveuglé",
+      "weight": 2,
+      "fields": {
+        "description": "les actions qui dépendent de la vue échouent ou subissent un lourd malus."
+      }
+    },
+    {
+      "id": "deafened",
+      "name": "Assourdi",
+      "weight": 2,
+      "fields": {
+        "description": "n’entend plus clairement les paroles, les avertissements ni les effets sonores."
+      }
+    },
+    {
+      "id": "poisoned",
+      "name": "Empoisonné",
+      "weight": 2,
+      "fields": {
+        "description": "doit réussir des résistances fondées sur la {{ ability:constitution.name }} à mesure que le poison progresse."
+      }
+    },
+    {
+      "id": "slowed",
+      "name": "Ralenti",
+      "weight": 2,
+      "fields": {
+        "description": "la DD est réduite jusqu’à la fin de l’effet."
+      }
+    },
+    {
+      "id": "weakened",
+      "name": "Affaibli",
+      "weight": 2,
+      "fields": {
+        "description": "les actions fondées sur la {{ ability:strength.name }} subissent un malus."
+      }
+    },
+    {
+      "id": "confused",
+      "name": "Confus",
+      "weight": 2,
+      "fields": {
+        "description": "distingue difficilement alliés, ennemis et directions."
+      }
+    },
+    {
+      "id": "frightened",
+      "name": "Effrayé",
+      "weight": 2,
+      "fields": {
+        "description": "ne peut pas s’approcher volontairement de la source de sa peur sans réussir un jet."
+      }
+    },
+    {
+      "id": "stunned",
+      "name": "Sonné",
+      "fields": {
+        "description": "perd temporairement la possibilité d’effectuer des actions normales."
+      }
+    },
+    {
+      "id": "paralyzed",
+      "name": "Paralysé",
+      "fields": {
+        "description": "ne peut effectuer aucun mouvement volontaire jusqu’à ce que l’état soit dissipé."
+      }
+    },
+    {
+      "id": "silenced",
+      "name": "Réduit au silence",
+      "fields": {
+        "description": "ne peut ni parler ni utiliser de capacités qui dépendent de la voix."
+      }
+    },
+    {
+      "id": "petrifying",
+      "name": "Pétrification",
+      "fields": {
+        "description": "le corps se transforme lentement en pierre et nécessite une intervention urgente."
+      }
+    },
+    {
+      "id": "possessed",
+      "name": "Possédé",
+      "fields": {
+        "description": "une volonté étrangère tente par moments de prendre le contrôle."
+      }
+    },
+    {
+      "id": "marked",
+      "name": "Marqué",
+      "fields": {
+        "description": "un signe magique permet à une créature ou à un effet hostile de suivre l’être marqué."
+      }
+    },
+    {
+      "id": "invisible",
+      "name": "Invisible",
+      "fields": {
+        "description": "ne peut pas être vu normalement, mais produit toujours des sons et laisse des traces."
+      }
+    },
+    {
+      "id": "regenerating",
+      "name": "Régénération",
+      "fields": {
+        "description": "récupère une petite quantité de PV à la fin de chaque tour."
+      }
+    },
+    {
+      "id": "inspired",
+      "name": "Inspiré",
+      "fields": {
+        "description": "peut relancer un dé de son choix, après quoi cet état prend fin."
+      }
+    },
+    {
+      "id": "distracted",
+      "name": "Distrait",
+      "fields": {
+        "description": "L’attention portée à l’environnement se relâche, ce qui impose un désavantage à la prochaine action exigeant une attention soutenue."
+      }
+    },
+    {
+      "id": "drunk",
+      "name": "Ivre",
+      "fields": {
+        "description": "L’alcool altère la coordination et le jugement jusqu’au repos ou à un traitement adapté."
+      }
+    },
+    {
+      "id": "intoxicated",
+      "name": "Intoxiqué",
+      "fields": {
+        "description": "Des drogues, substances alchimiques, émanations, produits chimiques ou autres substances non alcoolisées de même nature altèrent les perceptions ou les réactions ; l’effet exact dépend de la substance."
+      }
+    },
+    {
+      "id": "feverish",
+      "name": "Fiévreux",
+      "fields": {
+        "description": "La maladie épuise l’organisme et rend les efforts prolongés plus difficiles."
+      }
+    },
+    {
+      "id": "meditative",
+      "name": "Méditatif",
+      "fields": {
+        "description": "Une profonde concentration mobilise toute l’attention ; toute interruption met fin au bénéfice recherché et provoque une brève désorientation."
+      }
+    },
+    {
+      "id": "prone",
+      "name": "À terre",
+      "weight": 2,
+      "fields": {
+        "description": "La position au sol limite les déplacements et la défense jusqu’à ce que l’on se relève."
+      }
+    },
+    {
+      "id": "restrained",
+      "name": "Entravé",
+      "weight": 2,
+      "fields": {
+        "description": "Des liens, le terrain ou une autre force limitent fortement les mouvements."
+      }
+    },
+    {
+      "id": "grappled",
+      "name": "Agrippé",
+      "weight": 2,
+      "fields": {
+        "description": "{{ creature.generator.name }} maintient le sujet en place jusqu’à ce qu’il se dégage ou rompe la prise."
+      }
+    },
+    {
+      "id": "unconscious",
+      "name": "Inconscient",
+      "fields": {
+        "description": "L’inconscience empêche de percevoir l’environnement et d’agir volontairement jusqu’au réveil."
+      }
+    },
+    {
+      "id": "suffocating",
+      "name": "Privé d’air",
+      "fields": {
+        "description": "Une respiration insuffisante met la vie en danger si l’accès à l’air n’est pas rapidement rétabli."
+      }
+    },
+    {
+      "id": "starving",
+      "name": "Affamé",
+      "fields": {
+        "description": "Un manque prolongé de nourriture affaiblit l’organisme et rend tout effort supplémentaire difficile."
+      }
+    },
+    {
+      "id": "dehydrated",
+      "name": "Déshydraté",
+      "fields": {
+        "description": "Un manque prolongé d’eau provoque faiblesse et vertiges, et rend l’effort de plus en plus difficile."
+      }
+    },
+    {
+      "id": "hunted",
+      "name": "Traqué",
+      "fields": {
+        "description": "{{ creature:monster.generator.name }} chasse ou piste activement le sujet. Cet état prend fin lorsque le sujet sème son poursuivant, détourne la chasse, vainc le monstre ou met fin à la menace d’une autre manière."
+      }
+    },
+    {
+      "id": "bestial_mutation",
+      "name": "Mutation bestiale",
+      "fields": {
+        "description": "Le sujet développe temporairement des caractéristiques physiques ou instinctives de {{ creature:animal.generator.name }}. Il bénéficie d’un avantage approprié associé à cet animal, mais subit aussi une limitation, un instinct ou une perte de contrôle bestiale choisie par le MJ. Des transformations graves, répétées ou non traitées peuvent devenir permanentes et être alors représentées par le modificateur de personnage {{ modifier_character:creature_hybrid.name }} ; il s’agit uniquement d’une indication descriptive et cette évolution n’est jamais automatique."
+      }
+    },
+    {
+      "id": "charmed",
+      "name": "Charmé",
+      "fields": {
+        "description": "Le sujet considère la source de l’effet comme digne de confiance ou amicale et ne peut pas lui nuire volontairement sans résister à l’effet ou le rompre."
+      }
+    },
+    {
+      "id": "hasted",
+      "name": "Accéléré",
+      "fields": {
+        "description": "Les déplacements et les actions fondées sur la {{ ability:speed.name }} sont temporairement améliorés jusqu’à la fin de l’effet."
+      }
+    },
+    {
+      "id": "exposed",
+      "name": "Exposé",
+      "fields": {
+        "description": "La prochaine attaque contre le sujet bénéficie d’un avantage important, après quoi cet état prend fin."
+      }
+    },
+    {
+      "id": "guarded",
+      "name": "En garde",
+      "fields": {
+        "description": "Le sujet bénéficie d’un avantage défensif temporaire jusqu’à ce qu’il quitte sa posture défensive, agisse d’une manière qui la rompt ou que l’effet prenne fin autrement."
+      }
+    },
+    {
+      "id": "surprised",
+      "name": "Surpris",
+      "fields": {
+        "description": "Les réactions et la première réponse immédiate du sujet face à une menace inattendue sont temporairement entravées."
+      }
+    },
+    {
+      "id": "disarmed",
+      "name": "Désarmé",
+      "fields": {
+        "description": "Le sujet a perdu le contrôle d’une arme tenue en main ou d’un objet similaire et ne peut plus l’utiliser avant de l’avoir récupéré."
+      }
+    },
+    {
+      "id": "enraged",
+      "name": "Enragé",
+      "fields": {
+        "description": "Le sujet bénéficie temporairement de +1 aux actions offensives, mais subit un malus de -1 aux actions visant à se défendre, à agir prudemment ou à faire preuve de discernement."
+      }
+    },
+    {
+      "id": "taunted",
+      "name": "Provoqué",
+      "fields": {
+        "description": "Le sujet doit résister à l’effet pour ignorer délibérément sa source au profit d’une autre cible."
+      }
+    }
+  ]
+}

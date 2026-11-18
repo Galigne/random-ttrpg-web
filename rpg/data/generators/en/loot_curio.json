@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 4,
+  "id": "curio",
+  "visibility": "internal",
+  "name": "Curios",
+  "description": "Unusual objects with narrative, mysterious, personal, or situational interest",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "modifiers": {
+    "modifier_loot": 10
+  },
+  "entries": [
+    {
+      "id": "whispering_compass",
+      "name": "Whispering compass",
+      "fields": {
+        "description": "A strange compass that quietly complains whenever it points north."
+      }
+    },
+    {
+      "id": "everlasting_candle",
+      "name": "Everlasting candle",
+      "fields": {
+        "description": "A candle whose small flame never consumes its wax."
+      }
+    },
+    {
+      "id": "mysterious_sealed_letter",
+      "name": "Mysterious sealed letter",
+      "fields": {
+        "description": "A sealed letter addressed to {{ name.name }}, a person the character has never met."
+      }
+    },
+    {
+      "id": "rule_book",
+      "name": "RULE Book",
+      "fields": {
+        "description": "A rare treatise discussing {{ rules.name }}, its possible uses, and the risks of misinterpretation."
+      }
+    },
+    {
+      "id": "unknown_key",
+      "name": "Unknown Key",
+      "fields": {
+        "description": "A key with no known lock, bearing an emblem associated with {{ faction.name }}."
+      }
+    },
+    {
+      "id": "coded_notes",
+      "name": "Coded Notes",
+      "fields": {
+        "description": "Pages whose meaning depends on a code, missing context, or absent person."
+      }
+    },
+    {
+      "id": "treasure_map",
+      "name": "Treasure Map",
+      "fields": {
+        "description": "An incomplete route to {{ dungeon.name }}, marked with old landmarks, warnings, and doubtful promises of treasure."
+      }
+    },
+    {
+      "id": "ceremonial_doll",
+      "name": "Ceremonial Doll",
+      "fields": {
+        "description": "A cloth figure bearing an erased name and traces of an old ritual."
+      }
+    },
+    {
+      "id": "locked_grimoire",
+      "name": "Locked Grimoire",
+      "fields": {
+        "description": "A book protected by a lock or riddle whose contents cannot be read directly."
+      }
+    },
+    {
+      "id": "old_toy",
+      "name": "Old Toy",
+      "fields": {
+        "description": "A toy or stuffed bear recognizable to a family, collector, or spirit."
+      }
+    },
+    {
+      "id": "incomplete_manuscript",
+      "name": "Incomplete Manuscript",
+      "fields": {
+        "description": "A historical or scientific text with pages deliberately removed."
+      }
+    },
+    {
+      "id": "sealed_vase",
+      "name": "Sealed Vase",
+      "fields": {
+        "description": "A fragile container whose contents produce an unusual sound or warmth."
+      }
+    },
+    {
+      "id": "enchanted_toothbrush",
+      "name": "Enchanted Toothbrush",
+      "fields": {
+        "description": "An absurdly specific tool that cleans teeth perfectly and bites other dirt."
+      }
+    },
+    {
+      "id": "unidentified_egg",
+      "name": "Unidentified Egg",
+      "fields": {
+        "description": "A living egg whose species, needs, and danger remain unknown."
+      }
+    },
+    {
+      "id": "attuned_stone",
+      "name": "Attuned Stone",
+      "fields": {
+        "description": "A mineral or magical stone that reacts in an unexplained way to {{ rules.name }}."
+      }
+    },
+    {
+      "id": "travel_chicken",
+      "name": "Travel Chicken",
+      "fields": {
+        "description": "An unusually calm chicken trained to follow its carrier and signal certain creatures."
+      }
+    },
+    {
+      "id": "strange_coin",
+      "name": "Strange coin",
+      "fields": {
+        "description": "A coin bearing an unfamiliar ruler, impossible date, or denomination nobody recognizes."
+      }
+    },
+    {
+      "id": "mechanical_music_box",
+      "name": "Mechanical music box",
+      "fields": {
+        "description": "A pocket-sized mechanism that plays a delicate tune with one note conspicuously missing."
+      }
+    },
+    {
+      "id": "miniature_portrait",
+      "name": "Miniature portrait",
+      "fields": {
+        "description": "A tiny painted likeness of {{ name.name }}, a person who seems almost familiar."
+      }
+    },
+    {
+      "id": "unusual_deck_of_cards",
+      "name": "Unusual deck of cards",
+      "fields": {
+        "description": "A complete deck with unfamiliar suits, peculiar court figures, and one card that resists shuffling."
+      }
+    },
+    {
+      "id": "petrified_eye",
+      "name": "Petrified eye",
+      "fields": {
+        "description": "A stone eye from an unknown creature, polished smooth without losing its unsettling detail."
+      }
+    },
+    {
+      "id": "impossible_weather_bottle",
+      "name": "Bottle of impossible miniature weather",
+      "fields": {
+        "description": "A sealed bottle containing a tiny storm, snowfall, rainbow, or other weather that ignores the world outside."
+      }
+    },
+    {
+      "id": "nonexistent_settlement_map",
+      "name": "Map of a nonexistent settlement",
+      "fields": {
+        "description": "A detailed street map of a settlement that no traveler, archive, or current chart acknowledges."
+      }
+    },
+    {
+      "id": "broken_magical_focus",
+      "name": "Broken magical focus",
+      "fields": {
+        "description": "A cracked wand, orb, rod, or other focus that still reacts faintly to nearby magic."
+      }
+    },
+    {
+      "id": "erotic_novel",
+      "name": "Erotic novel",
+      "weight": 0.75,
+      "fields": {
+        "description": "A well-thumbed novel about the elaborate romantic and sexual entanglements of an entirely adult cast."
+      }
+    },
+    {
+      "id": "explicit_illustrated_manuscript",
+      "name": "Explicit illustrated manuscript",
+      "weight": 0.5,
+      "fields": {
+        "description": "A lavishly illuminated manuscript whose unmistakably sexual illustrations concern adults and leave little to scholarly interpretation."
+      }
+    },
+    {
+      "id": "suggestive_statuette",
+      "name": "Suggestive statuette",
+      "weight": 0.75,
+      "fields": {
+        "description": "A small statuette posed with enough erotic confidence to embarrass a conservative collector."
+      }
+    },
+    {
+      "id": "decorative_restraints",
+      "name": "Decorative handcuffs and restraints",
+      "weight": 0.5,
+      "fields": {
+        "description": "Polished handcuffs, silk-lined restraints, and ornate fastenings designed more for consenting adult play than imprisonment."
+      }
+    },
+    {
+      "id": "leather_riding_crop",
+      "name": "Leather riding crop",
+      "weight": 0.75,
+      "fields": {
+        "description": "A finely made leather riding crop whose wear suggests it was not purchased solely for horses."
+      }
+    },
+    {
+      "id": "elaborate_blindfold",
+      "name": "Elaborate blindfold",
+      "weight": 0.75,
+      "fields": {
+        "description": "A padded, perfumed blindfold decorated with embroidery and adjustable straps."
+      }
+    },
+    {
+      "id": "perfumed_undergarment",
+      "name": "Perfumed undergarment",
+      "weight": 0.5,
+      "fields": {
+        "description": "An expensive undergarment made for an adult, carrying a distinctive perfume, an embroidered initial, and no obvious explanation for being here."
+      }
+    },
+    {
+      "id": "risque_portrait",
+      "name": "Risqué portrait",
+      "weight": 0.75,
+      "fields": {
+        "description": "A skillful portrait of an adult subject wearing very little and displaying a face recognizable in respectable circles."
+      }
+    },
+    {
+      "id": "brothel_token",
+      "name": "Brothel token",
+      "weight": 0.75,
+      "fields": {
+        "description": "A discreet token redeemable at a particular brothel, stamped with an emblem known to regular adult patrons."
+      }
+    },
+    {
+      "id": "questionable_bedroom_accessories",
+      "name": "Box of questionable bedroom accessories",
+      "weight": 0.5,
+      "fields": {
+        "description": "A locked box containing an assortment of unmistakably adult bedroom accessories, scented oils, straps, and discreet instructions."
+      }
+    },
+    {
+      "id": "fertility_idol",
+      "name": "Fertility idol",
+      "weight": 0.75,
+      "fields": {
+        "description": "A boldly carved fertility idol associated with adult rites, vigorous blessings, and a cult whose modern respectability is disputed."
+      }
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "references": {
+    "media/references/adventurer & monster.jpg": "d6d7aada47f1a938f284d52f776caacd675006f34198185161c17bcd06683791",
+    "media/references/castle entry.jpg": "8c38c4486e689873160ff899355c77088a4e166838001de751709cc42b290ad9",
+    "media/references/mage.jpg": "323c136427494899efbcfd00ccca912e1238d43bc495139453ceadbfa4d8e4f9"
+  },
+  "illustrations": [
+    {
+      "output": "public/media/journey.webp",
+      "sha256": "4046791edc59b04369189cc3c02ab72d15ec78f2b78ef2e63f3d320e3bf5d1c3",
+      "inputs": [
+        "media/references/adventurer & monster.jpg",
+        "media/references/castle entry.jpg"
+      ],
+      "prompt": "Use case: illustration-story. Asset type: wide website welcome illustration and campaign fallback for a traditional fantasy roleplaying game. Input images: both supplied images are visual style and subject references; use their expressive pencil and ink draftsmanship and fantasy architecture. Create an original scene of a small band of adventurers approaching a distant ruined stone gateway on a wild path, with generous white paper around the composition and no lettering, symbols, logos, or watermark. Traditional hand-drawn fantasy illustration, reminiscent of an illustrator's pencil studies for a classic tabletop RPG rulebook. Graphite pencil and fine ink on warm, pure-white paper. Monochromatic with natural graphite grays. Loose, confident, expressive linework, visible construction lines, overlapping strokes, varied line weight, irregular contours, and organic imperfections. Detailed cross-hatching and directional pencil shading. Some areas carefully rendered while others remain deliberately unfinished. Authentic traditional sketchbook aesthetic, visibly handmade. No watercolor, painted color fills, digital gradients, airbrushing, photorealism, polished digital concept art, or 3D rendering.",
+      "generatedPngSha256": "eb72fd97d2692e61f87243deb85c6a7ca1b1b65b8d44238cd3acc5cd55231607"
+    },
+    {
+      "output": "public/media/die-d6.webp",
+      "sha256": "b3095b61eb31580b871dc7e050c084481a98d617008189e61539d6a69ce4f97f",
+      "inputs": [
+        "media/references/mage.jpg",
+        "media/references/adventurer & monster.jpg"
+      ],
+      "prompt": "Use case: illustration-story. Asset type: a small static icon for displaying a six-sided tabletop die result. The two input images are style references only. Draw exactly one six-sided cubic die, front face almost straight-on and left blank so the interface can overlay a number. Isolated centered object with generous clear warm-white paper around it. Traditional hand-drawn fantasy illustration, reminiscent of an illustrator's pencil studies for a classic tabletop RPG rulebook. Graphite pencil and fine ink on warm, pure-white paper. Monochromatic with natural graphite grays. Loose, confident, expressive linework, visible construction lines, overlapping strokes, varied line weight, irregular contours, and organic imperfections. Detailed cross-hatching and directional pencil shading. Some areas carefully rendered while others remain deliberately unfinished. Authentic traditional sketchbook aesthetic, visibly handmade. No watercolor, painted color fills, digital gradients, airbrushing, photorealism, polished digital concept art, or 3D rendering. No numbers, letters, logos, or watermark.",
+      "generatedPngSha256": "d19e3ea46079dfbb6460216193f1c80e923cd4bccd80c01bf777b98cbb404215"
+    },
+    {
+      "outputs": {
+        "public/media/die-d12.webp": {
+          "shape": "twelve-sided dodecahedron",
+          "sha256": "a5e92e9f91b1f1a8129463bbecb287d008a45219ed66ed6f5fe2edc97d156a1a",
+          "generatedPngSha256": "ed7eafffb963a950e6554d432163a61deb26196e2de45879de72c8e93621afbe"
+        },
+        "public/media/die-d20.webp": {
+          "shape": "twenty-sided icosahedron",
+          "sha256": "f8f82e675176dbade4101650428e7478b1171175d93424c8d7ec59cdf1f1bdf0",
+          "generatedPngSha256": "1b98ffa9defdf8bebf417a7da12e07eceaba98b317f38eaefe7328019321881d"
+        },
+        "public/media/die-d4.webp": {
+          "shape": "four-sided tetrahedron",
+          "sha256": "cc339be9aa88fd01bfdcdfc8be447342d0cd4af7acbb044e1aa7c38b9cdf5866",
+          "generatedPngSha256": "41859057c6f5a102f5b79574551312de996cdf11b3df19137bb5c55f02900856"
+        },
+        "public/media/die-d10.webp": {
+          "shape": "ten-sided pentagonal trapezohedron",
+          "sha256": "ced15519b4ce69794413a2c993d3538e8ab52ec095f84393c57e2dcc9f27ce42",
+          "generatedPngSha256": "4eba34c071b5be312dd097c8cb14c8d2da979abd69df0dc6c7fe8dbb2fc69989"
+        },
+        "public/media/die-d8.webp": {
+          "shape": "eight-sided octahedron",
+          "sha256": "67fc94173a269db480954cb87052812226d1247f061ff230920283d54c200bf3",
+          "generatedPngSha256": "b25c5d43ddaf0ce8d663916d43e17ab1b7c39a4653e0485779187c16cb35aa7a"
+        }
+      },
+      "inputs": [
+        "media/references/mage.jpg",
+        "media/references/adventurer & monster.jpg"
+      ],
+      "promptTemplate": "Use case: illustration-story. Asset type: a static {code} tabletop die icon. The two supplied images are style references only. Draw exactly one isolated {shape} gaming die, centered with generous warm-white paper around it. Leave a large front face clear so the interface can overlay a number. Traditional hand-drawn fantasy illustration, reminiscent of an illustrator's pencil studies for a classic tabletop RPG rulebook. Graphite pencil and fine ink on warm, pure-white paper. Monochromatic with natural graphite grays. Loose, confident, expressive linework, visible construction lines, overlapping strokes, varied line weight, irregular contours, and organic imperfections. Detailed cross-hatching and directional pencil shading. Some areas carefully rendered while others remain deliberately unfinished. Authentic traditional sketchbook aesthetic, visibly handmade. No watercolor, painted color fills, digital gradients, airbrushing, photorealism, polished digital concept art, or 3D rendering. No numbers, text, logos, or watermark."
+    }
+  ],
+  "encoding": "Lossless WebP; decoded RGBA pixels verified identical to the generated PNG."
+}

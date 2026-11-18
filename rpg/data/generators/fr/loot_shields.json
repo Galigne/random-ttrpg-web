@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 4,
+  "id": "shields",
+  "visibility": "internal",
+  "name": "Boucliers",
+  "description": "Formes de bouclier concrètes dont la rareté et le matériau sont indépendants",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "modifiers": {
+    "modifier_rarity": 100,
+    "modifier_material": 15,
+    "modifier_loot": 10
+  },
+  "entries": [
+    {
+      "id": "buckler",
+      "name": "Rondache",
+      "fields": {
+        "description": "Un petit bouclier tenu au poing, adapté aux déviations et aux échanges rapprochés."
+      }
+    },
+    {
+      "id": "round_shield",
+      "name": "Bouclier rond",
+      "fields": {
+        "description": "Un bouclier circulaire équilibré qui convient à de nombreux styles de combat."
+      }
+    },
+    {
+      "id": "kite_shield",
+      "name": "Bouclier en amande",
+      "fields": {
+        "description": "Un long bouclier effilé qui protège le torse et la jambe avancée de son porteur."
+      }
+    },
+    {
+      "id": "heater_shield",
+      "name": "Écu",
+      "fields": {
+        "description": "Un bouclier triangulaire compact, adapté au combat monté comme au combat à pied."
+      }
+    },
+    {
+      "id": "targe",
+      "name": "Targe",
+      "fields": {
+        "description": "Un solide bouclier rond maintenu près de l’avant-bras pour une défense active."
+      }
+    },
+    {
+      "id": "tower_shield",
+      "name": "Bouclier-tour",
+      "fields": {
+        "description": "Un haut bouclier qui privilégie une large protection individuelle."
+      }
+    },
+    {
+      "id": "pavise",
+      "name": "Pavois",
+      "fields": {
+        "description": "Un grand bouclier conçu pour fournir un couvert stable, notamment aux combattants à distance."
+      }
+    },
+    {
+      "id": "dueling_shield",
+      "name": "Bouclier de duel",
+      "fields": {
+        "description": "Un bouclier maniable, équilibré pour la défense rapide en combat rapproché."
+      }
+    },
+    {
+      "id": "folding_shield",
+      "name": "Bouclier repliable",
+      "fields": {
+        "description": "Un bouclier ingénieux dont la forme s’adapte au transport ou au combat."
+      }
+    },
+    {
+      "id": "mirrored_shield",
+      "name": "Bouclier-miroir",
+      "fields": {
+        "description": "Un bouclier poli à la surface réfléchissante, dont la signification est laissée au MJ."
+      }
+    },
+    {
+      "id": "guardian_shield",
+      "name": "Bouclier du gardien",
+      "fields": {
+        "description": "Un bouclier singulier associé à une protection inébranlable."
+      }
+    },
+    {
+      "id": "stormward_shield",
+      "name": "Bouclier des tempêtes",
+      "fields": {
+        "description": "Un bouclier remarquable orné de motifs orageux sans enchantement prédéterminé."
+      }
+    },
+    {
+      "id": "eclipse_shield",
+      "name": "Bouclier de l’éclipse",
+      "fields": {
+        "description": "Un bouclier singulier portant l’image d’une éclipse et dont l’héritage reste volontairement indéfini."
+      }
+    },
+    {
+      "id": "oathkeeper_shield",
+      "name": "Bouclier du serment",
+      "fields": {
+        "description": "Un bouclier renommé lié à un serment dont le porteur et les termes restent à déterminer."
+      }
+    }
+  ]
+}

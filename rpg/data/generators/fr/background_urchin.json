@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 4,
+  "id": "urchin",
+  "visibility": "internal",
+  "name": "Archétypes d’enfant des rues",
+  "description": "Rôles liés à la rue et à la débrouille",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "orphan",
+      "name": "Orphelin"
+    },
+    {
+      "id": "beggar",
+      "name": "Mendiant",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "street_child",
+      "name": "Enfant des rues",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "scavenger",
+      "name": "Chiffonnier",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "runaway",
+      "name": "Fugueur",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "street_messenger",
+      "name": "Messager des rues",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "pickpocket",
+      "name": "Coupe-bourse",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "street_performer",
+      "name": "Artiste de rue",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "urchin",
+      "name": "Gamin des rues"
+    },
+    {
+      "id": "errand_runner",
+      "name": "Commissionnaire",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    }
+  ]
+}

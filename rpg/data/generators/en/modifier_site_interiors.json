@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 4,
+  "id": "modifier_site_interiors",
+  "visibility": "internal",
+  "name": "Historical site modifiers",
+  "description": "Descriptive historical variations compatible with specific location generators",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "hidden",
+      "name": "Hidden",
+      "fields": {
+        "description": "Access is concealed by terrain, a newer structure, or a maintained illusion."
+      }
+    },
+    {
+      "id": "cramped",
+      "name": "Cramped",
+      "fields": {
+        "description": "Passages and usable spaces restrict movement, visibility, and bulky equipment."
+      }
+    },
+    {
+      "id": "non_euclidean",
+      "name": "Non-Euclidean",
+      "fields": {
+        "description": "The interior’s angles, distances, and connections cannot fit within its exterior, making maps locally accurate but globally contradictory."
+      }
+    },
+    {
+      "id": "rearranging",
+      "name": "Rearranging",
+      "fields": {
+        "description": "Rooms, corridors, doors, or other internal spaces change position whenever nobody is directly observing them."
+      }
+    },
+    {
+      "id": "mislabelled",
+      "name": "Mislabelled",
+      "fields": {
+        "description": "Signs, labels, directions, and room names are consistently and confidently wrong, even when replaced or corrected."
+      }
+    },
+    {
+      "id": "overlapping_eras",
+      "name": "Overlapping Eras",
+      "fields": {
+        "description": "The same rooms exist in two periods of their own history at once, and objects or actions in either era can alter what the other reveals."
+      }
+    },
+    {
+      "id": "independent_reflections",
+      "name": "Independent Reflections",
+      "fields": {
+        "description": "Reflections move, react, reveal hidden details, and make choices independently of the people and objects they resemble."
+      }
+    }
+  ]
+}

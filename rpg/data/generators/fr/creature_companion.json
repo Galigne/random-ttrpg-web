@@ -1,0 +1,504 @@
+{
+  "schemaVersion": 4,
+  "id": "companion",
+  "visibility": "internal",
+  "name": "Compagnons",
+  "description": "Animaux de compagnie, familiers et petites créatures de voyage",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "loyal_hound",
+      "name": "Chien fidèle",
+      "weight": 4,
+      "fields": {
+        "description": "suit les odeurs familières, veille sur les dormeurs et se méfie d’un PNJ en apparence inoffensif."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": ["{{ traits:keen_smell }}"]
+      }
+    },
+    {
+      "id": "barn_cat",
+      "name": "Chat de grange",
+      "weight": 4,
+      "fields": {
+        "description": "excelle à débusquer la vermine, les coins chauds et la nourriture laissée sans surveillance."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": ["{{ traits:keen_hearing }}", "{{ traits:darkvision }}"]
+      }
+    },
+    {
+      "id": "messenger_pigeon",
+      "name": "Pigeon voyageur",
+      "weight": 4,
+      "fields": {
+        "description": "retourne fidèlement au foyer choisi en transportant un message très court."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": [
+          "{{ traits:flight }}",
+          "Instinct de retour — Connaît toujours la direction d’un foyer qu’elle a occupé pendant au moins une semaine."
+        ],
+        "inventory": ["curio:mysterious_sealed_letter"]
+      }
+    },
+    {
+      "id": "pack_goat",
+      "name": "Chèvre de bât",
+      "weight": 2,
+      "fields": {
+        "description": "porte une quantité raisonnable de matériel, mange presque tout et refuse obstinément les chemins manifestement maudits."
+      },
+      "generation": {
+        "statProfile": "creature-companion-magic",
+        "traits": ["{{ traits:sure_footed }}", "{{ traits:powerful_build }}"],
+        "inventory": ["food_and_drink:three_travel_rations"]
+      }
+    },
+    {
+      "id": "clever_rat",
+      "name": "Rat savant",
+      "weight": 3,
+      "fields": {
+        "description": "se faufile dans les espaces minuscules et apprend des consignes simples associées à des objets."
+      },
+      "generation": {
+        "statProfile": "creature-companion"
+      }
+    },
+    {
+      "id": "watch_goose",
+      "name": "Oie de garde",
+      "weight": 2,
+      "fields": {
+        "description": "interpelle bruyamment les inconnus, les créatures invisibles et toute personne munie de pain."
+      },
+      "generation": {
+        "statProfile": "creature-companion-magic",
+        "traits": [
+          "Cri d’alarme — Les alliés capables de l’entendre gagnent +1 en Vitesse pour déterminer l’Initiative contre une menace détectée par la créature."
+        ]
+      }
+    },
+    {
+      "id": "pocket_ferret",
+      "name": "Furet de poche",
+      "weight": 3,
+      "fields": {
+        "description": "rapporte de petits objets et les cache dans les endroits les moins pratiques."
+      },
+      "generation": {
+        "statProfile": "creature-companion"
+      }
+    },
+    {
+      "id": "mule",
+      "name": "Mule",
+      "weight": 3,
+      "fields": {
+        "description": "monture fiable au pied très sûr, qui oppose un veto absolu aux ponts dangereux."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": ["{{ traits:sure_footed }}", "{{ traits:powerful_build }}"],
+        "inventory": [
+          {
+            "generator": {
+              "oneOf": [
+                {
+                  "id": "supplies",
+                  "weight": 3
+                },
+                {
+                  "id": "weapons",
+                  "weight": 1
+                }
+              ]
+            },
+            "select": "fields"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lantern_finch",
+      "name": "Pinson-lanterne",
+      "weight": 2,
+      "fields": {
+        "description": "diffuse une douce lumière et se tait lorsque des prédateurs approchent."
+      },
+      "generation": {
+        "statProfile": "creature-companion-magic",
+        "traits": [
+          "{{ traits:flight }}",
+          "Plumage lumineux — Émet une douce lumière dans un rayon de 5 mètres et peut l’éteindre ou la raviver à volonté."
+        ]
+      }
+    },
+    {
+      "id": "ember_newt",
+      "name": "Triton de braise",
+      "weight": 2,
+      "fields": {
+        "description": "réchauffe son entourage, allume l’amadou sec et dort dans les ustensiles de cuisine."
+      },
+      "generation": {
+        "statProfile": "creature-companion-magic",
+        "traits": ["{{ traits:amphibious }}", "{{ traits:fire_immunity }}"]
+      }
+    },
+    {
+      "id": "moss_tortoise",
+      "name": "Tortue moussue",
+      "weight": 2,
+      "fields": {
+        "description": "fait lentement pousser des herbes médicinales communes sur sa carapace."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": [
+          "Jardin médicinal — Une fois par jour, produit assez d’herbes communes pour accorder +1 à une action de soins."
+        ]
+      }
+    },
+    {
+      "id": "whisper_crow",
+      "name": "Corbeau murmurant",
+      "weight": 2,
+      "fields": {
+        "description": "mémorise les voix et répète plusieurs phrases courtes avec une précision inquiétante."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": [
+          "{{ traits:flight }}",
+          "Imitation parfaite — Peut reproduire toute phrase courte ou voix familière qu’elle a clairement entendue."
+        ]
+      }
+    },
+    {
+      "id": "miniature_slime",
+      "name": "Gelée miniature",
+      "weight": 2,
+      "fields": {
+        "description": "dissout sans danger la saleté, les aliments avariés et, parfois, un document important."
+      },
+      "generation": {
+        "statProfile": "creature-companion-magic",
+        "traits": [
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}",
+          "Gelée nettoyeuse — Peut dissoudre la saleté et la matière organique avariée sans blesser les tissus vivants sains."
+        ]
+      }
+    },
+    {
+      "id": "clockwork_beetle",
+      "name": "Scarabée mécanique",
+      "weight": 2,
+      "fields": {
+        "description": "enregistre une heure de son et la restitue lorsqu’on remonte son mécanisme."
+      },
+      "generation": {
+        "statProfile": "creature-companion-magic",
+        "traits": [
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}",
+          "Restitution sonore — Peut enregistrer jusqu’à une heure de sons proches et les reproduire exactement une fois avant un nouvel enregistrement."
+        ],
+        "naturalArmorPercentage": 20
+      }
+    },
+    {
+      "id": "breeze_lizard",
+      "name": "Lézard des brises",
+      "weight": 2,
+      "fields": {
+        "description": "change de couleur avec le temps et plane sur de courtes distances d’une personne à l’autre."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": ["{{ traits:gliding }}"]
+      }
+    },
+    {
+      "id": "cave_bat",
+      "name": "Chauve-souris des cavernes",
+      "weight": 3,
+      "fields": {
+        "description": "se repère dans l’obscurité totale et revient lorsqu’elle entend un sifflement précis."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": ["{{ traits:flight }}", "{{ traits:echolocation }}"]
+      }
+    },
+    {
+      "id": "river_otter",
+      "name": "Loutre de rivière",
+      "weight": 3,
+      "fields": {
+        "description": "nage, rapporte les objets flottants et tient absolument à ouvrir des coquillages pendant les scènes sérieuses."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": ["{{ traits:amphibious }}", "{{ traits:aquatic_speed }}"]
+      }
+    },
+    {
+      "id": "tiny_griffin",
+      "name": "Griffon miniature",
+      "weight": 1,
+      "fields": {
+        "description": "défend férocement un sac à dos précis et chasse les insectes au moyen de piqués spectaculaires."
+      },
+      "generation": {
+        "statProfile": "creature-companion-magic",
+        "traits": ["{{ traits:flight }}", "{{ traits:natural_weapons }}"]
+      }
+    },
+    {
+      "id": "blink_rabbit",
+      "name": "Lapin fugace",
+      "weight": 1,
+      "fields": {
+        "description": "se téléporte de quelques mètres lorsqu’il prend peur, rarement dans la direction la plus sûre."
+      },
+      "generation": {
+        "statProfile": "creature-companion-magic",
+        "traits": [
+          "{{ traits:swift_reflexes }}",
+          "Bond éclair — Une fois par tour lorsqu’il est surpris ou attaqué, peut se téléporter jusqu’à 3 mètres dans un espace libre visible."
+        ]
+      }
+    },
+    {
+      "id": "paper_dragon",
+      "name": "Dragon de papier",
+      "weight": 1,
+      "fields": {
+        "description": "se replie à plat, transporte des messages écrits et crache juste assez de feu pour cacheter de la cire."
+      },
+      "generation": {
+        "statProfile": "creature-companion-magic",
+        "traits": [
+          "{{ traits:flight }}",
+          "Corps pliable — Peut s’aplatir assez pour franchir une fente aussi étroite qu’une feuille de papier.",
+          "Flamme à cacheter — Peut souffler une flammèche suffisante pour allumer de l’amadou ou sceller de la cire, mais pas pour infliger des dégâts."
+        ],
+        "fixedRules": [
+          {
+            "entry": "paper_rule",
+            "level": 1
+          }
+        ],
+        "inventory": ["supplies:writing_kit"]
+      }
+    },
+    {
+      "id": "ghost_mouse",
+      "name": "Souris fantôme",
+      "weight": 1,
+      "fields": {
+        "description": "traverse les cloisons minces et devient visible après avoir mangé du fromage."
+      },
+      "generation": {
+        "statProfile": "creature-companion-magic",
+        "traits": ["{{ traits:incorporeal }}"]
+      }
+    },
+    {
+      "id": "cloud_pup",
+      "name": "Chiot-nuage",
+      "weight": 1,
+      "fields": {
+        "description": "petit chien flottant fait de brume, capable de dissimuler brièvement le visage d’une personne."
+      },
+      "generation": {
+        "statProfile": "creature-companion-magic",
+        "traits": [
+          "Voile de brume — Une fois par scène, crée un nuage de 2 mètres qui dissimule une créature jusqu’au début de son prochain tour."
+        ]
+      }
+    },
+    {
+      "id": "pebble_elemental",
+      "name": "Élémentaire-galet",
+      "weight": 1,
+      "fields": {
+        "description": "créature de pierre grosse comme un poing qui détecte les tunnels proches et la maçonnerie ouvragée."
+      },
+      "generation": {
+        "statProfile": "creature-elemental",
+        "traits": [
+          "{{ traits:stone_body }}",
+          "Sens de la maçonnerie — +2 aux actions de {{ ability:perception.name }} pour repérer tunnels, cavités ou fragilités dans la pierre taillée."
+        ],
+        "naturalArmorPercentage": 20
+      }
+    },
+    {
+      "id": "moon_moth",
+      "name": "Phalène lunaire",
+      "weight": 1,
+      "fields": {
+        "description": "absorbe les faibles résidus magiques et luit en présence d’enchantements actifs."
+      },
+      "generation": {
+        "statProfile": "creature-companion-magic",
+        "traits": ["{{ traits:flight }}", "{{ traits:magic_sense }}"]
+      }
+    },
+    {
+      "id": "messenger_raptor",
+      "name": "Rapace messager",
+      "weight": 2,
+      "fields": {
+        "description": "Un oiseau territorial pouvant être dressé à reconnaître des personnes, des emblèmes et des itinéraires."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": [
+          "{{ traits:flight }}",
+          "Vue perçante — +2 aux actions de {{ ability:perception.name }} reposant sur la vue à longue distance."
+        ]
+      }
+    },
+    {
+      "id": "sir_candlewick",
+      "name": "Sir Candlewick",
+      "weight": 1,
+      "fields": {
+        "description": "une minuscule armure animée qui cherche une personne assez grande pour devenir son écuyer."
+      },
+      "generation": {
+        "statProfile": "creature-companion-magic",
+        "traits": [
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}",
+          "Armure animée — N’a besoin ni de manger, ni de boire, ni de respirer, ni de dormir."
+        ],
+        "naturalArmorPercentage": 35
+      }
+    },
+    {
+      "id": "riding_horse",
+      "name": "Cheval de selle",
+      "weight": 4,
+      "fields": {
+        "description": "Une monture dressée, habituée à porter un cavalier sur les routes et en terrain découvert."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": ["{{ traits:charge }}"],
+        "naturalArmorPercentage": 5
+      }
+    },
+    {
+      "id": "pony",
+      "name": "Poney",
+      "weight": 4,
+      "fields": {
+        "description": "Une petite monture stable, adaptée aux cavaliers légers, au bât et aux sentiers étroits."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": ["{{ traits:sure_footed }}"],
+        "naturalArmorPercentage": 5
+      }
+    },
+    {
+      "id": "donkey",
+      "name": "Âne",
+      "weight": 4,
+      "fields": {
+        "description": "Un animal de bât patient, apprécié pour son endurance, sa prudence et son pied sûr."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": ["{{ traits:sure_footed }}", "{{ traits:powerful_build }}"],
+        "naturalArmorPercentage": 5
+      }
+    },
+    {
+      "id": "camel",
+      "name": "Chameau",
+      "weight": 3,
+      "fields": {
+        "description": "Une monture et bête de somme du désert capable de parcourir de longues distances avec peu d’eau."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": [
+          "{{ traits:powerful_build }}",
+          "Endurance du désert — +2 aux actions de {{ ability:constitution.name }} pour résister à la chaleur ordinaire, à la soif ou aux longues traversées désertiques."
+        ],
+        "naturalArmorPercentage": 5
+      }
+    },
+    {
+      "id": "owl",
+      "name": "Chouette",
+      "weight": 3,
+      "fields": {
+        "description": "Un oiseau nocturne discret, dressé pour reconnaître les environs, chasser les nuisibles ou transporter de très petits objets."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": [
+          "{{ traits:flight }}",
+          "{{ traits:keen_hearing }}",
+          "{{ traits:darkvision }}"
+        ]
+      }
+    },
+    {
+      "id": "raven",
+      "name": "Corbeau",
+      "weight": 3,
+      "fields": {
+        "description": "Un corvidé observateur capable d’apprendre des habitudes, de reconnaître les visages et d’imiter des sons simples."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": [
+          "{{ traits:flight }}",
+          "Glaneur ingénieux — +2 aux actions de {{ ability:perception.name }} pour repérer de la nourriture cachée ou de petits objets laissés sans surveillance."
+        ]
+      }
+    },
+    {
+      "id": "parrot",
+      "name": "Perroquet",
+      "weight": 3,
+      "fields": {
+        "description": "Un oiseau sociable et coloré qui apprend des voix familières et de courtes phrases."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": [
+          "{{ traits:flight }}",
+          "Imitation parfaite — Peut reproduire toute courte phrase ou voix familière qu’il a clairement entendue."
+        ]
+      }
+    },
+    {
+      "id": "toad_frog",
+      "name": "Crapaud / Grenouille",
+      "weight": 3,
+      "fields": {
+        "description": "Un petit compagnon amphibie à l’aise sur les sols humides, dans les mares comme au fond d’un sac."
+      },
+      "generation": {
+        "statProfile": "creature-companion",
+        "traits": ["{{ traits:amphibious }}"]
+      }
+    }
+  ]
+}

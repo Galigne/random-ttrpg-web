@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 4,
+  "id": "religious",
+  "visibility": "internal",
+  "name": "Religious archetypes",
+  "description": "Faith, temple, and pilgrimage roles",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "priest",
+      "name": "Priest",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "monk",
+      "name": "Monk",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "temple_servant",
+      "name": "Temple servant",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "pilgrim",
+      "name": "Pilgrim",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "theologian",
+      "name": "Theologian",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "prophet",
+      "name": "Prophet",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "healer",
+      "name": "Healer",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "paladin",
+      "name": "Paladin",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "shrine_keeper",
+      "name": "Shrine keeper",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "religious_scholar",
+      "name": "Religious scholar",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "fake_prophet",
+      "name": "Fake prophet",
+      "weight": 0.5,
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "former_cult_member",
+      "name": "Former cult member"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 4,
+  "id": "criminal",
+  "visibility": "internal",
+  "name": "Criminal archetypes",
+  "description": "Underworld occupations and roles",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "pickpocket",
+      "name": "Pickpocket",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "smuggler",
+      "name": "Smuggler",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "bandit",
+      "name": "Bandit",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "fence",
+      "name": "Fence",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "forger",
+      "name": "Forger",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "poisoner",
+      "name": "Poisoner",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "assassin",
+      "name": "Assassin",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "pirate",
+      "name": "Pirate",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "corrupt_official",
+      "name": "Corrupt official",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "blackmailer",
+      "name": "Blackmailer",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "grave_robber",
+      "name": "Grave robber",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "brothel_keeper",
+      "name": "Brothel keeper",
+      "weight": 0.5,
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "procurer",
+      "name": "Procurer",
+      "weight": 0.5,
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "gambler",
+      "name": "Gambler",
+      "weight": 0.75,
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "bootlegger",
+      "name": "Bootlegger",
+      "weight": 0.75,
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    }
+  ]
+}

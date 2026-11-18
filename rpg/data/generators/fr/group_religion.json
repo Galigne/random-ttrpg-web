@@ -1,0 +1,391 @@
+{
+  "schemaVersion": 4,
+  "id": "religion",
+  "visibility": "internal",
+  "name": "Religions",
+  "description": "Divinités, croyances, rites, préceptes, symboles, ordres, lieux saints et rapport à la magie",
+  "entrySchema": {
+    "required": [
+      "deity_or_belief",
+      "rites",
+      "commandment",
+      "taboo",
+      "sacred_symbol",
+      "religious_order",
+      "holy_place",
+      "relationship_with_magic"
+    ]
+  },
+  "entries": [
+    {
+      "id": "the_hearthmother",
+      "name": "La Mère du Foyer",
+      "weight": 3,
+      "fields": {
+        "deity_or_belief": "Une divinité maternelle du feu qui protège le foyer, la famille, l'hospitalité et le travail honnête.",
+        "rites": "Partager avec un étranger la première portion de chaque repas pris en commun.",
+        "commandment": "Aucun invité ne doit être blessé sous un toit qui l'a accueilli.",
+        "taboo": "Éteindre le feu d'une autre famille sans son accord.",
+        "sacred_symbol": "Trois flammes au centre d'un cercle ouvert.",
+        "religious_order": "Les Gardiens de la Flamme Commune.",
+        "holy_place": "Le Premier Foyer, dont la flamme brûlerait depuis la naissance de la civilisation.",
+        "relationship_with_magic": "Bénit les protections, la chaleur guérisseuse, la nourriture et la défense contre le froid."
+      }
+    },
+    {
+      "id": "the_open_road",
+      "name": "La Route Ouverte",
+      "weight": 3,
+      "fields": {
+        "deity_or_belief": "Un dieu des chemins qui enseigne que le mouvement, les échanges et la curiosité font obstacle à la tyrannie.",
+        "rites": "Laisser une pierre marquée aux carrefours et transmettre les nouvelles d'une communauté à l'autre.",
+        "commandment": "Indiquer leur chemin aux voyageurs pacifiques et leur offrir de l'eau.",
+        "taboo": "Bloquer une voie publique pour son profit personnel.",
+        "sacred_symbol": "Une route qui se divise sous un soleil levant.",
+        "religious_order": "Les Messagers aux Sandales.",
+        "holy_place": "Le Pont des Mille Lieues.",
+        "relationship_with_magic": "Favorise la vitesse, la navigation, les passages sûrs et les voyages entre les dimensions."
+      }
+    },
+    {
+      "id": "the_quiet_judge",
+      "name": "Le Juge Silencieux",
+      "weight": 3,
+      "fields": {
+        "deity_or_belief": "Une divinité impartiale de la mort qui pèse les souvenirs, les responsabilités et les promesses inachevées.",
+        "rites": "Relater avec sincérité les actes de la personne défunte avant son inhumation.",
+        "commandment": "Ne jamais dissimuler un décès ni priver les morts de leur nom.",
+        "taboo": "Lier une âme à son cadavre.",
+        "sacred_symbol": "Un œil fermé au-dessus d'une balance en équilibre.",
+        "religious_order": "Les Archivistes Gris.",
+        "holy_place": "La Salle des Derniers Noms.",
+        "relationship_with_magic": "Autorise les protections funéraires et la communication avec les esprits consentants, mais interdit la nécromancie coercitive."
+      }
+    },
+    {
+      "id": "lady_of_tides",
+      "name": "La Dame des Marées",
+      "weight": 3,
+      "fields": {
+        "deity_or_belief": "Une déesse marine du changement, du commerce, des tempêtes, du deuil et du retour au port.",
+        "rites": "Jeter du sel et un objet personnel dans l'eau avant chaque voyage.",
+        "commandment": "Secourir les naufragés sans considération pour leur camp.",
+        "taboo": "Revendiquer la propriété de la mer ou refuser une sépulture aux marins.",
+        "sacred_symbol": "Une vague d'argent traversant une lune noire.",
+        "religious_order": "Les Pilotes Liés aux Marées.",
+        "holy_place": "Le Phare des Étoiles Retrouvées.",
+        "relationship_with_magic": "Favorise les magies de l'eau, du climat, de la divination et de la transformation."
+      }
+    },
+    {
+      "id": "the_seven_smiths",
+      "name": "Les Sept Forgerons",
+      "weight": 2,
+      "fields": {
+        "deity_or_belief": "Sept êtres divins d'une même fratrie incarnant l'invention, la patience, la réparation, l'artisanat, le feu, la mesure et la transmission.",
+        "rites": "À l'âge adulte, présenter un objet utile fabriqué de ses propres mains.",
+        "commandment": "Réparer avant de remplacer et enseigner à tout apprenti de bonne volonté.",
+        "taboo": "Concevoir sciemment un outil destiné à trahir son utilisateur.",
+        "sacred_symbol": "Sept marteaux disposés autour d'une enclume.",
+        "religious_order": "Les Mains Trempées.",
+        "holy_place": "La Forge Résonnante sous le mont Orun.",
+        "relationship_with_magic": "Considère l'enchantement comme un artisanat qui exige la marque de son créateur, des essais et une responsabilité assumée."
+      }
+    },
+    {
+      "id": "the_green_pact",
+      "name": "Le Pacte Vert",
+      "weight": 2,
+      "fields": {
+        "deity_or_belief": "La vie repose sur un équilibre négocié entre les peuples, les bêtes, les plantes, la décomposition et les saisons.",
+        "rites": "Rendre à la terre sauvage une part de chaque récolte ou partie de chasse.",
+        "commandment": "Ne jamais réduire une population au-dessous de sa capacité à se renouveler.",
+        "taboo": "Créer une forme de vie incapable de se reproduire ou de mourir naturellement.",
+        "sacred_symbol": "Une feuille, un croc et un champignon reliés en triangle.",
+        "religious_order": "Les Gardiens des Racines et des Os.",
+        "holy_place": "La Vallée sans Haches.",
+        "relationship_with_magic": "Accueille favorablement les magies de soins et de la nature, mais se méfie de la vie artificielle permanente."
+      }
+    },
+    {
+      "id": "the_unconquered_sun",
+      "name": "Le Soleil Invaincu",
+      "weight": 2,
+      "fields": {
+        "deity_or_belief": "Une divinité guerrière solaire qui incarne le courage, la vérité, la discipline et une justice rendue au grand jour.",
+        "rites": "Avouer une peur à l'aube et l'affronter avant le coucher du soleil.",
+        "commandment": "Défendre ceux qui ne peuvent pas se protéger sans danger.",
+        "taboo": "Punir en secret, sans accusation ni témoin.",
+        "sacred_symbol": "Un œil d'or entouré de huit rayons.",
+        "religious_order": "Les Boucliers de l'Aube.",
+        "holy_place": "Le Tribunal à Ciel Ouvert.",
+        "relationship_with_magic": "Accorde la lumière, la vérité, le courage et du pouvoir contre les morts-vivants ou la tromperie."
+      }
+    },
+    {
+      "id": "the_moon_weaver",
+      "name": "La Tisseuse de Lune",
+      "weight": 2,
+      "fields": {
+        "deity_or_belief": "Une divinité lunaire changeante qui règne sur les rêves, les secrets, l'art, l'illusion et l'identité.",
+        "rites": "Créer anonymement une œuvre de beauté à chaque nouvelle lune.",
+        "commandment": "Protéger les secrets inoffensifs confiés de plein gré.",
+        "taboo": "Voler le véritable nom d'une autre personne.",
+        "sacred_symbol": "Un croissant traversé par une aiguille d'argent.",
+        "religious_order": "Les Artisans Voilés.",
+        "holy_place": "La Galerie qui n'Apparaît qu'en Rêve.",
+        "relationship_with_magic": "Célèbre les magies de l'illusion et des rêves, mais condamne le vol permanent d'une identité."
+      }
+    },
+    {
+      "id": "the_thunder_king",
+      "name": "Le Roi du Tonnerre",
+      "weight": 2,
+      "fields": {
+        "deity_or_belief": "Un dieu des tempêtes tonitruant et généreux, associé aux serments, à la compétition, au pouvoir et à la pluie.",
+        "rites": "Prononcer les serments importants dehors pendant un orage ou devant une pièce de métal que l'on frappe.",
+        "commandment": "Respecter ses serments publics, même lorsque leur prix devient lourd.",
+        "taboo": "Murmurer un serment pour empêcher les témoins de l'entendre.",
+        "sacred_symbol": "Une couronne fendue frappée par la foudre.",
+        "religious_order": "Les Hérauts de la Tempête.",
+        "holy_place": "Le Sommet Couronné.",
+        "relationship_with_magic": "Renforce la foudre, le climat, les voix et les effets liés par un serment."
+      }
+    },
+    {
+      "id": "the_thousand_ancestors",
+      "name": "Les Mille Ancêtres",
+      "weight": 2,
+      "fields": {
+        "deity_or_belief": "La famille demeure une communauté par-delà la mort, et les vivants héritent à la fois des dettes et de la sagesse des défunts.",
+        "rites": "Entretenir les tablettes familiales portant les noms des ancêtres et les consulter avant toute décision majeure.",
+        "commandment": "Laisser à ses descendants un nom plus honorable que celui reçu.",
+        "taboo": "Effacer une personne des registres familiaux.",
+        "sacred_symbol": "Un arbre ramifié chargé de petits visages.",
+        "religious_order": "Les Généalogistes-Médiateurs.",
+        "holy_place": "Les Archives de la Lignée Ininterrompue.",
+        "relationship_with_magic": "Autorise les conseils volontaires des ancêtres, les esprits protecteurs et la mémoire héréditaire."
+      }
+    },
+    {
+      "id": "the_liberating_flame",
+      "name": "La Flamme Libératrice",
+      "weight": 2,
+      "fields": {
+        "deity_or_belief": "Un feu sacré révolutionnaire qui consume la servitude, la peur et les hiérarchies injustes.",
+        "rites": "Brûler un symbole de soumission pendant les fêtes annuelles du renouveau.",
+        "commandment": "Aider les captifs qui réclament leur liberté.",
+        "taboo": "Posséder un autre être doué de raison.",
+        "sacred_symbol": "Une chaîne brisée rougeoyante.",
+        "religious_order": "Les Cellules de la Braise.",
+        "holy_place": "Le Champ des Colliers Brisés.",
+        "relationship_with_magic": "Rompt les liens, les compulsions et les prisons, parfois même les entraves utiles."
+      }
+    },
+    {
+      "id": "the_perfect_measure",
+      "name": "La Mesure Parfaite",
+      "weight": 2,
+      "fields": {
+        "deity_or_belief": "L'ordre cosmique se révèle à travers les mathématiques, les proportions, les contrats et les lois prévisibles.",
+        "rites": "Vérifier ses dettes personnelles et corriger les mesures faussées une fois par mois.",
+        "commandment": "S'appliquer les mêmes règles qu'aux autres.",
+        "taboo": "Modifier un registre après la conclusion d'un accord.",
+        "sacred_symbol": "Un compas inscrit dans un carré.",
+        "religious_order": "Les Scribes de la Mesure.",
+        "holy_place": "La Chambre des Échos Exacts.",
+        "relationship_with_magic": "Privilégie les runes, la géométrie, les protections, les contrats et les pratiques magiques reproductibles."
+      }
+    },
+    {
+      "id": "the_nameless_mercy",
+      "name": "La Miséricorde sans Nom",
+      "weight": 1,
+      "fields": {
+        "deity_or_belief": "Un dieu caché enseigne à faire le bien sans récompense, sans reconnaissance et sans institution durable.",
+        "rites": "Apporter anonymement son aide et ne jamais en révéler l'origine.",
+        "commandment": "Aider là où la gratitude ne peut apporter aucun avantage.",
+        "taboo": "Ériger des monuments à sa propre générosité.",
+        "sacred_symbol": "Une étoffe blanche et vierge.",
+        "religious_order": "Aucun ordre reconnu ; les fidèles s'identifient grâce à des signes discrets.",
+        "holy_place": "Toute tombe anonyme restaurée par un inconnu.",
+        "relationship_with_magic": "Les miracles s'affaiblissent lorsque leur auteur les revendique publiquement ou s'en attribue le mérite."
+      }
+    },
+    {
+      "id": "the_devouring_cycle",
+      "name": "Le Cycle Dévorant",
+      "weight": 1,
+      "fields": {
+        "deity_or_belief": "La création, la consommation, la mort et la renaissance forment un seul processus sacré, dépourvu de préférence morale.",
+        "rites": "Consommer une part symbolique de ce que l'on détruit et planter quelque chose après chaque funéraille.",
+        "commandment": "Ne rien gaspiller de ce qui a été pris à la vie.",
+        "taboo": "Conserver indéfiniment les morts.",
+        "sacred_symbol": "Un serpent dévorant une graine en pleine germination.",
+        "religious_order": "Les Dévoreurs du Cycle.",
+        "holy_place": "Le Jardin des Os Retournés à la Terre.",
+        "relationship_with_magic": "Soutient la transformation et le renouveau, mais s'oppose à l'immortalité et à la non-vie."
+      }
+    },
+    {
+      "id": "the_sleeping_mountain",
+      "name": "La Montagne Endormie",
+      "weight": 1,
+      "fields": {
+        "deity_or_belief": "Un ancien être de pierre rêve sous le monde et récompense la patience, l'endurance et le silence.",
+        "rites": "Observer une journée de silence complet pendant l'hiver.",
+        "commandment": "Ne jamais répondre à une colère passagère par un acte irréversible.",
+        "taboo": "Creuser sous les sommets consacrés.",
+        "sacred_symbol": "Un œil fermé sculpté dans la pierre.",
+        "religious_order": "Ceux qui Écoutent les Profondeurs.",
+        "holy_place": "La Caverne du Premier Rêve.",
+        "relationship_with_magic": "Accorde la pierre, le sommeil, l'endurance et des rêves prophétiques qui se réalisent au fil des années."
+      }
+    },
+    {
+      "id": "the_laughing_mask",
+      "name": "Le Masque Rieur",
+      "weight": 1,
+      "fields": {
+        "deity_or_belief": "Une divinité facétieuse qui dénonce par l'humour et le renversement l'orgueil, l'autorité rigide et les mensonges.",
+        "rites": "Pendant la Fête des Erreurs, les responsables échangent leur rôle avec celui de leurs serviteurs.",
+        "commandment": "Tourner le pouvoir en dérision avant de se moquer de la faiblesse.",
+        "taboo": "Punir une plaisanterie qui révèle un véritable abus.",
+        "sacred_symbol": "Un masque souriant partagé en deux couleurs.",
+        "religious_order": "Les Fous Assermentés.",
+        "holy_place": "Le Théâtre des Rois Déchus.",
+        "relationship_with_magic": "Favorise les déguisements, la chance, l'illusion, la fuite et les malédictions déclenchées par l'arrogance."
+      }
+    },
+    {
+      "id": "the_star_pilgrims",
+      "name": "Les Pèlerins des Étoiles",
+      "weight": 1,
+      "fields": {
+        "deity_or_belief": "Les âmes mortelles viennent des étoiles et doivent apprendre assez de choses pour retrouver le chemin de leur foyer.",
+        "rites": "Consigner une nouvelle observation du ciel à chaque nuit dégagée.",
+        "commandment": "Partager les découvertes qui changent la place de l'humanité dans la création.",
+        "taboo": "Détruire un savoir astronomique.",
+        "sacred_symbol": "Une étoile à sept branches au-dessus d'un œil ouvert.",
+        "religious_order": "Les Navigateurs Célestes.",
+        "holy_place": "L'Observatoire de l'Escalier.",
+        "relationship_with_magic": "Encourage la divination, la gravité, la lumière et les voyages au-delà du monde."
+      }
+    },
+    {
+      "id": "the_red_communion",
+      "name": "La Communion Rouge",
+      "weight": 1,
+      "fields": {
+        "deity_or_belief": "Le sang partagé prouve que tous les peuples doués de raison appartiennent à une même famille vulnérable.",
+        "rites": "Les guérisseurs et les dirigeants donnent leur sang lors de cérémonies publiques d'alliance.",
+        "commandment": "Soigner la blessure d'autrui avant de chercher vengeance.",
+        "taboo": "Utiliser en magie du sang prélevé sans consentement.",
+        "sacred_symbol": "Deux mains reliées par un trait rouge.",
+        "religious_order": "Les Hospitaliers Cramoisis.",
+        "holy_place": "La Salle des Cicatrices Partagées.",
+        "relationship_with_magic": "Autorise les soins par le sang consentis et condamne les sacrifices imposés."
+      }
+    },
+    {
+      "id": "the_door_beyond",
+      "name": "La Porte vers l'Au-delà",
+      "weight": 1,
+      "fields": {
+        "deity_or_belief": "La réalité contient d'innombrables mondes, et l'hospitalité doit s'étendre à leurs visiteurs responsables.",
+        "rites": "Réserver une place vide à chaque grand banquet pour un invité inconnu.",
+        "commandment": "Juger les étrangers sur leurs actes plutôt que sur leur origine.",
+        "taboo": "Ouvrir un passage sans préparer un moyen sûr de revenir.",
+        "sacred_symbol": "Une porte ouverte sur un ciel étoilé.",
+        "religious_order": "Les Gardiens des Seuils.",
+        "holy_place": "La Salle aux Cent Portes.",
+        "relationship_with_magic": "Réglemente les invocations, les portails, le bannissement et la diplomatie entre les plans."
+      }
+    },
+    {
+      "id": "the_crowned_serpent",
+      "name": "Le Serpent Couronné",
+      "weight": 1,
+      "fields": {
+        "deity_or_belief": "Un dieu de l'ambition enseigne que le pouvoir n'est sacré que s'il prouve constamment son utilité.",
+        "rites": "Chaque saison, les dirigeants défendent publiquement l'une de leurs décisions face à leurs détracteurs.",
+        "commandment": "Employer son autorité à bâtir des réalisations qui survivront à leur auteur.",
+        "taboo": "Revendiquer un rang sans en accepter les risques.",
+        "sacred_symbol": "Un serpent enroulé dans une couronne.",
+        "religious_order": "Les Magistrats Ascendants.",
+        "holy_place": "L'Escalier des Trônes Vides.",
+        "relationship_with_magic": "Récompense la domination, le commandement, la transformation et les dangereuses épreuves de mérite."
+      }
+    },
+    {
+      "id": "the_last_radiance",
+      "name": "L'Ultime Lueur",
+      "fields": {
+        "deity_or_belief": "Une divinité dont la mort est historiquement prouvée, mais dont les prières et les miracles reçoivent encore des réponses d'une source inconnue.",
+        "rites": "Les fidèles récitent les dernières paroles du dieu, veillent ses restes préservés ou ses cendres commémoratives et comparent les nouveaux miracles aux archives antérieures à sa mort.",
+        "commandment": "Poursuis l'œuvre miséricordieuse du dieu mort sans prétendre comprendre qui ou quoi répond désormais.",
+        "taboo": "Affirmer que la divinité vit secrètement ou fabriquer une fausse explication aux miracles qui subsistent.",
+        "sacred_symbol": "Un soleil obscurci cerclé d'un mince trait de lumière.",
+        "religious_order": "Le Chœur posthume, des prêtres qui authentifient les miracles et enquêtent sur leur origine.",
+        "holy_place": "Le Sépulcre des témoins, où la mort de la divinité a été observée et consignée.",
+        "relationship_with_magic": "La magie divine fonctionne toujours, mais chaque réponse inexpliquée est enregistrée comme un indice plutôt que comme une preuve de résurrection."
+      }
+    },
+    {
+      "id": "the_kindly_chain",
+      "name": "La Chaîne bienveillante",
+      "fields": {
+        "deity_or_belief": "Un dieu aimé dont la manifestation physique libre écraserait la volonté des mortels et qui doit rester scellé, endormi, enchaîné ou fragmenté.",
+        "rites": "Les congrégations renouvellent les sceaux, chantent des berceuses, remplacent les chaînes sacrées et confessent toute tentation de libérer le dieu.",
+        "commandment": "Aime assez la divinité emprisonnée pour préserver sa prison.",
+        "taboo": "Affaiblir un sceau en quête de révélation, de pouvoir ou de contact direct.",
+        "sacred_symbol": "Une main douce refermant une entrave d'argent.",
+        "religious_order": "Les Tendres Gardiens, geôliers, théologiens et intendants de la prison divine.",
+        "holy_place": "La Serrure du cœur, le plus accessible des sanctuaires qui maintiennent le confinement.",
+        "relationship_with_magic": "Les miracles filtrent à travers les sceaux par fragments maîtrisés ; les manifestations plus puissantes sont traitées comme de dangereuses défaillances de la prison."
+      }
+    },
+    {
+      "id": "the_celestial_tide",
+      "name": "La Marée céleste",
+      "fields": {
+        "deity_or_belief": "Un immense courant observable de lumière et de magie qui traverse les cieux selon un cycle régulier, vénéré sans être considéré comme une personne.",
+        "rites": "Les fidèles cartographient son passage, exposent des offrandes à sa lumière et accordent voyages, serments et funérailles à ses phases.",
+        "commandment": "Observe le grand cycle avant d'agir et laisse des archives sincères à ceux qui verront son prochain retour.",
+        "taboo": "Prétendre que le phénomène parle d'une voix humaine ou accorde à une personne une autorité exclusive.",
+        "sacred_symbol": "Trois bandes courbes traversant un champ d'étoiles.",
+        "religious_order": "Les Guetteurs de la marée, des prêtres-astronomes qui mettent en commun les observations de régions lointaines.",
+        "holy_place": "Les Degrés du méridien, un observatoire ouvert aligné sur le courant lors de son passage le plus lumineux.",
+        "relationship_with_magic": "La magie évolue de manière prévisible à mesure que le courant approche puis s'éloigne, faisant de sa mesure une discipline sacrée."
+      }
+    },
+    {
+      "id": "the_returning_lamps",
+      "name": "Les Lampes renaissantes",
+      "fields": {
+        "deity_or_belief": "Des saints reconnus renaissent successivement dans de nouveaux corps tout en demeurant des personnes distinctes façonnées par chaque vie.",
+        "rites": "Les communautés conservent des épreuves de mémoire, retrouvent des souvenirs matériels et organisent une reconnaissance publique lorsqu'une incarnation possible est découverte.",
+        "commandment": "Honore à la fois la fonction qui revient et la nouvelle vie qui la porte.",
+        "taboo": "Forcer un enfant à imiter une incarnation précédente ou cacher les preuves qu'un prétendant reconnu est un imposteur.",
+        "sacred_symbol": "Une même flamme transmise entre des lampes de formes différentes.",
+        "religious_order": "Les Chercheurs de braises, enquêteurs et gardiens chargés de trouver puis d'éduquer les nouvelles incarnations.",
+        "holy_place": "La Salle des nombreuses vies, des archives qui rassemblent souvenirs vérifiés et objets des incarnations précédentes.",
+        "relationship_with_magic": "Les miracles de reconnaissance révèlent des continuités de mémoire sans pouvoir effacer les doutes, la politique ni la personnalité de la nouvelle incarnation."
+      }
+    },
+    {
+      "id": "the_distant_mercy",
+      "name": "La Miséricorde lointaine",
+      "fields": {
+        "deity_or_belief": "Une entité véritablement bienveillante dont l'arrivée physique déchaînerait une lumière, une gravité, une croissance, des tempêtes ou une distorsion de la réalité insoutenables.",
+        "rites": "Les fidèles communiquent par des miroirs superposés, des chœurs distants, des rêves scellés et des offrandes envoyées loin des terres habitées.",
+        "commandment": "Reçois la compassion à une distance supportable et protège le monde de la présence bien-aimée.",
+        "taboo": "Inviter sa manifestation complète près d'une communauté vivante.",
+        "sacred_symbol": "Un œil ouvert derrière sept portes fermées.",
+        "religious_order": "Les Intercesseurs lointains, des médiateurs formés à répondre à l'entité sans l'attirer davantage.",
+        "holy_place": "Le Dernier Horizon, un sanctuaire isolé conçu pour détourner les signes d'une manifestation imminente.",
+        "relationship_with_magic": "Même les miracles indirects produisent de dangereux effets secondaires ; la retenue et la dispersion sont donc des techniques sacrées essentielles."
+      }
+    }
+  ]
+}

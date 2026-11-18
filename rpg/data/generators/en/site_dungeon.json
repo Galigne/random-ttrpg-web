@@ -1,0 +1,288 @@
+{
+  "schemaVersion": 4,
+  "id": "dungeon",
+  "visibility": "internal",
+  "name": "Dungeon",
+  "description": "Adventure sites, ruins, lairs, and hostile complexes",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "buried_temple",
+      "name": "Buried Temple",
+      "weight": 3,
+      "fields": {
+        "description": "collapsed sacred chambers of {{ religion.name }} surrounding a sealed altar that still receives offerings."
+      }
+    },
+    {
+      "id": "bandit_cavern",
+      "name": "Bandit Cavern",
+      "weight": 3,
+      "fields": {
+        "description": "natural tunnels expanded with barricades, storerooms, cells, and hidden exits."
+      }
+    },
+    {
+      "id": "ruined_fortress",
+      "name": "Ruined Fortress",
+      "weight": 3,
+      "fields": {
+        "description": "broken walls above intact arsenals, command tunnels, and forgotten defenders."
+      }
+    },
+    {
+      "id": "ancient_crypt",
+      "name": "Ancient Crypt",
+      "weight": 3,
+      "fields": {
+        "description": "family tombs and ancestral records guarded by the following funerary trap: {{ trap.name }}; several sealed chambers have been disturbed."
+      }
+    },
+    {
+      "id": "wizards_tower",
+      "name": "Wizard's Tower",
+      "weight": 2,
+      "fields": {
+        "description": "stacked laboratories where failed experiments have altered gravity and space."
+      }
+    },
+    {
+      "id": "sunken_palace",
+      "name": "Sunken Palace",
+      "weight": 2,
+      "fields": {
+        "description": "flooded halls accessible during low tide, through diving, or by ancient pumps."
+      }
+    },
+    {
+      "id": "monster_warren",
+      "name": "Monster Warren",
+      "weight": 2,
+      "fields": {
+        "description": "interconnected nests shaped by generations of increasingly large inhabitants."
+      }
+    },
+    {
+      "id": "collapsed_city_district",
+      "name": "Collapsed City District",
+      "weight": 2,
+      "fields": {
+        "description": "buried streets and homes connected through basements and sinkholes."
+      }
+    },
+    {
+      "id": "cursed_manor",
+      "name": "Cursed Manor",
+      "weight": 2,
+      "fields": {
+        "description": "a noble residence repeating the final night before its household's destruction."
+      }
+    },
+    {
+      "id": "volcanic_shrine",
+      "name": "Volcanic Shrine",
+      "weight": 2,
+      "fields": {
+        "description": "a volcanic shrine associated with {{ religion.name }}, containing heat-blasted tunnels, sacrificial bridges, lava channels, and fireproof guardians."
+      }
+    },
+    {
+      "id": "frozen_tomb",
+      "name": "Frozen Tomb",
+      "weight": 2,
+      "fields": {
+        "description": "ice-preserved halls where opening doors releases ancient air, disease, and occupants."
+      }
+    },
+    {
+      "id": "cult_sanctuary",
+      "name": "Cult Sanctuary",
+      "weight": 2,
+      "fields": {
+        "description": "a splinter cult devoted to {{ religion.name }} uses disguised meeting rooms descending into ritual chambers and an unfinished summoning site."
+      }
+    },
+    {
+      "id": "living_dungeon",
+      "name": "Living Dungeon",
+      "weight": 1,
+      "fields": {
+        "description": "an enormous organism whose chambers digest intruders and rearrange like organs."
+      }
+    },
+    {
+      "id": "dream_prison",
+      "name": "Dream Prison",
+      "weight": 1,
+      "fields": {
+        "description": "a mental complex entered through sleep, with exits hidden in prisoners' memories."
+      }
+    },
+    {
+      "id": "inverted_tower",
+      "name": "Inverted Tower",
+      "weight": 1,
+      "fields": {
+        "description": "a structure descending into the earth while gravity points toward its distant roof."
+      }
+    },
+    {
+      "id": "planar_embassy",
+      "name": "Planar Embassy",
+      "weight": 1,
+      "fields": {
+        "description": "an abandoned diplomatic complex built for visitors with incompatible bodies and physics."
+      }
+    },
+    {
+      "id": "clockwork_vault",
+      "name": "Clockwork Vault",
+      "weight": 1,
+      "fields": {
+        "description": "precise mechanical rooms that reset traps and rotate corridors on a fixed schedule."
+      }
+    },
+    {
+      "id": "worldroot_hollow",
+      "name": "Worldroot Hollow",
+      "weight": 1,
+      "fields": {
+        "description": "primeval tunnels inside a colossal root system infected by a spreading corruption."
+      }
+    },
+    {
+      "id": "astral_observatory",
+      "name": "Astral Observatory",
+      "weight": 1,
+      "fields": {
+        "description": "a remote ruin whose lenses open physical paths toward dangerous celestial objects."
+      }
+    },
+    {
+      "id": "forgotten_ruins",
+      "name": "Forgotten Ruins",
+      "fields": {
+        "description": "Unstable remains of an abandoned domain, still protected by the following trap: {{ trap.name }}, as well as guardians or oaths."
+      }
+    },
+    {
+      "id": "abandoned_mine",
+      "name": "Condemned Mine",
+      "fields": {
+        "description": "Galleries abandoned after an accident whose official cause contradicts the traces below."
+      }
+    },
+    {
+      "id": "inhabited_cave",
+      "name": "Inhabited Cave",
+      "fields": {
+        "description": "A natural network adapted by a creature, a community, or fugitives."
+      }
+    },
+    {
+      "id": "prison_complex",
+      "name": "Decommissioned Prison",
+      "fields": {
+        "description": "Cells, archives, and service passages preserve evidence of a detention erased from history."
+      }
+    },
+    {
+      "id": "sewer_labyrinth",
+      "name": "Ancient Sewers",
+      "fields": {
+        "description": "A network larger than the present city, linking cisterns, crypts, and forbidden foundations."
+      }
+    },
+    {
+      "id": "desecrated_cemetery",
+      "name": "Desecrated Cemetery",
+      "fields": {
+        "description": "Open graves and displaced monuments surround a vault someone is trying to reach."
+      }
+    },
+    {
+      "id": "anomalous_crater",
+      "name": "Anomalous Crater",
+      "fields": {
+        "description": "A recent depression where stone, magic, or time behaves differently."
+      }
+    },
+    {
+      "id": "ruined_sanctuary",
+      "name": "Ruined Sanctuary",
+      "fields": {
+        "description": "An abandoned chapel or temple of {{ religion.name }} whose rites still produce effects without an officiant."
+      }
+    },
+    {
+      "id": "containment_complex",
+      "name": "Containment Complex",
+      "fields": {
+        "description": "a fortress built to keep its contents from escaping, with inward-facing checkpoints, wards, traps, and emergency seals."
+      }
+    },
+    {
+      "id": "corpse_labyrinth",
+      "name": "Corpse Labyrinth",
+      "fields": {
+        "description": "passages carved through the bones, organs, wounds, parasites, and later constructions inside an impossibly large preserved corpse."
+      }
+    },
+    {
+      "id": "migrating_dungeon",
+      "name": "Migrating Dungeon",
+      "fields": {
+        "description": "an interior that periodically vanishes and reappears elsewhere while retaining the same rooms, inhabitants, and internal map."
+      }
+    },
+    {
+      "id": "future_ruin",
+      "name": "Future Ruin",
+      "fields": {
+        "description": "ruins containing bodies, records, damage, and artifacts left by events that have not yet happened."
+      }
+    },
+    {
+      "id": "parasite_temple",
+      "name": "Parasite Temple",
+      "fields": {
+        "description": "a seemingly constructed sanctuary that is actually a parasitic growth attached to a far larger living or sleeping entity."
+      }
+    },
+    {
+      "id": "broken_reality_vault",
+      "name": "Broken-Reality Vault",
+      "fields": {
+        "description": "a containment vault whose captive anomaly makes neighboring rooms obey incompatible rules of gravity, distance, scale, direction, or causality."
+      }
+    },
+    {
+      "id": "forgotten_palace",
+      "name": "Forgotten Palace",
+      "fields": {
+        "description": "a palace everyone nearby remembers as ancient even though maps, foundations, and old records prove it appeared only recently."
+      }
+    },
+    {
+      "id": "endless_procession",
+      "name": "Endless Procession",
+      "fields": {
+        "description": "an entire complex built around a funerary, royal, religious, or magical procession whose assigned participants have repeated their roles for centuries."
+      }
+    },
+    {
+      "id": "sleeping_machine",
+      "name": "Sleeping Machine",
+      "fields": {
+        "description": "a vast dormant mechanism whose passages, systems, lights, movement, and defenses awaken one by one as explorers travel through it."
+      }
+    }
+  ],
+  "modifiers": {
+    "modifier_site_all": 5,
+    "modifier_site_structures": 5,
+    "modifier_site_interiors": 5
+  }
+}

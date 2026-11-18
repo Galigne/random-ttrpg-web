@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 4,
+  "id": "official",
+  "visibility": "internal",
+  "name": "Archétypes de fonctionnaire",
+  "description": "Rôles administratifs et civiques",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "administrator",
+      "name": "Administrateur",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "diplomat",
+      "name": "Diplomate",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "tax_collector",
+      "name": "Collecteur d’impôts",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "judge",
+      "name": "Juge",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "inspector",
+      "name": "Inspecteur",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "clerk",
+      "name": "Greffier"
+    },
+    {
+      "id": "magistrate",
+      "name": "Magistrat",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "bailiff",
+      "name": "Bailli",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "notary",
+      "name": "Notaire",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "envoy",
+      "name": "Émissaire",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "executioner",
+      "name": "Bourreau",
+      "weight": 0.75,
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "torturer",
+      "name": "Tortionnaire",
+      "weight": 0.5,
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    }
+  ]
+}

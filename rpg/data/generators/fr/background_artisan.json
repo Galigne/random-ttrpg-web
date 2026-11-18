@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 4,
+  "id": "artisan",
+  "visibility": "internal",
+  "name": "Archétypes d’artisan",
+  "description": "Métiers de l’artisanat et de l’atelier",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "blacksmith",
+      "name": "Forgeron",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "carpenter",
+      "name": "Charpentier"
+    },
+    {
+      "id": "tailor",
+      "name": "Tailleur"
+    },
+    {
+      "id": "alchemist",
+      "name": "Alchimiste",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "clockmaker",
+      "name": "Horloger",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "baker",
+      "name": "Boulanger"
+    },
+    {
+      "id": "butcher",
+      "name": "Boucher",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "cook",
+      "name": "Cuisinier"
+    },
+    {
+      "id": "mechanic",
+      "name": "Mécanicien",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "engineer",
+      "name": "Ingénieur",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "runesmith",
+      "name": "Graveur de runes",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "potter",
+      "name": "Potier"
+    }
+  ]
+}

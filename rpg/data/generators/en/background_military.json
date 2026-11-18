@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 4,
+  "id": "military",
+  "visibility": "internal",
+  "name": "Military archetypes",
+  "description": "Military and defensive roles",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "soldier",
+      "name": "Soldier",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "guard",
+      "name": "Guard",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "officer",
+      "name": "Officer",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "veteran",
+      "name": "Veteran",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "mercenary",
+      "name": "Mercenary",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "military_engineer",
+      "name": "Military engineer",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "sentry",
+      "name": "Sentry",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "captain",
+      "name": "Captain",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "quartermaster",
+      "name": "Quartermaster",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "military_scout",
+      "name": "Military scout",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    }
+  ]
+}

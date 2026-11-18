@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 4,
+  "id": "shields",
+  "visibility": "internal",
+  "name": "Shields",
+  "description": "Concrete shield forms with independent rarity and materials",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "modifiers": {
+    "modifier_rarity": 100,
+    "modifier_material": 15,
+    "modifier_loot": 10
+  },
+  "entries": [
+    {
+      "id": "buckler",
+      "name": "Buckler",
+      "fields": {
+        "description": "A compact hand shield suited to deflection and close exchanges."
+      }
+    },
+    {
+      "id": "round_shield",
+      "name": "Round shield",
+      "fields": {
+        "description": "A balanced circular shield useful across many fighting styles."
+      }
+    },
+    {
+      "id": "kite_shield",
+      "name": "Kite shield",
+      "fields": {
+        "description": "A long tapered shield that protects the bearer’s torso and leading leg."
+      }
+    },
+    {
+      "id": "heater_shield",
+      "name": "Heater shield",
+      "fields": {
+        "description": "A compact triangular shield shaped for mounted or foot combat."
+      }
+    },
+    {
+      "id": "targe",
+      "name": "Targe",
+      "fields": {
+        "description": "A sturdy round shield strapped close to the forearm for active defense."
+      }
+    },
+    {
+      "id": "tower_shield",
+      "name": "Tower shield",
+      "fields": {
+        "description": "A tall shield that prioritizes broad personal coverage."
+      }
+    },
+    {
+      "id": "pavise",
+      "name": "Pavise",
+      "fields": {
+        "description": "A large shield built to provide stable cover, especially for ranged fighters."
+      }
+    },
+    {
+      "id": "dueling_shield",
+      "name": "Dueling shield",
+      "fields": {
+        "description": "A responsive shield balanced for quick defense in close combat."
+      }
+    },
+    {
+      "id": "folding_shield",
+      "name": "Folding shield",
+      "fields": {
+        "description": "An ingenious shield designed to change profile for transport or battle."
+      }
+    },
+    {
+      "id": "mirrored_shield",
+      "name": "Mirrored shield",
+      "fields": {
+        "description": "A polished shield with a reflective face whose significance is left to the GM."
+      }
+    },
+    {
+      "id": "guardian_shield",
+      "name": "Guardian shield",
+      "fields": {
+        "description": "A distinctive shield associated with steadfast protection."
+      }
+    },
+    {
+      "id": "stormward_shield",
+      "name": "Stormward shield",
+      "fields": {
+        "description": "A remarkable shield carrying stormlike motifs without a predetermined enchantment."
+      }
+    },
+    {
+      "id": "eclipse_shield",
+      "name": "Eclipse shield",
+      "fields": {
+        "description": "A singular shield bearing eclipse imagery and an intentionally undefined legacy."
+      }
+    },
+    {
+      "id": "oathkeeper_shield",
+      "name": "Oathkeeper shield",
+      "fields": {
+        "description": "A renowned shield tied to an oath whose bearer and terms remain open."
+      }
+    }
+  ]
+}

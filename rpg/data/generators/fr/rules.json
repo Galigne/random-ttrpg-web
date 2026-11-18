@@ -1,0 +1,453 @@
+{
+  "schemaVersion": 4,
+  "id": "rules",
+  "visibility": "public",
+  "name": "LOI",
+  "description": "Concepts concis de LOI pour inspirer le MJ et les joueurs",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "thread_rule",
+      "name": "LOI du fil",
+      "weight": 2,
+      "fields": {
+        "description": "Crée et contrôle du fil."
+      }
+    },
+    {
+      "id": "echo_rule",
+      "name": "LOI de l'écho",
+      "weight": 2,
+      "fields": {
+        "description": "Capture, rejoue et redirige les sons."
+      }
+    },
+    {
+      "id": "rust_rule",
+      "name": "LOI de la rouille",
+      "fields": {
+        "description": "Accélère la corrosion du métal."
+      }
+    },
+    {
+      "id": "door_rule",
+      "name": "LOI des portes",
+      "fields": {
+        "description": "Détecte et manipule les portes."
+      }
+    },
+    {
+      "id": "ink_rule",
+      "name": "LOI de l'encre",
+      "fields": {
+        "description": "Anime l'encre écrite en symboles et en formes."
+      }
+    },
+    {
+      "id": "mist_rule",
+      "name": "LOI de la brume",
+      "weight": 2,
+      "fields": {
+        "description": "Produit et façonne la brume."
+      }
+    },
+    {
+      "id": "borrowed_face_rule",
+      "name": "LOI du visage emprunté",
+      "fields": {
+        "description": "Copie le visage d'une autre personne."
+      }
+    },
+    {
+      "id": "glass_rule",
+      "name": "LOI du verre",
+      "fields": {
+        "description": "Courbe et remodèle le verre."
+      }
+    },
+    {
+      "id": "promise_rule",
+      "name": "LOI des promesses",
+      "fields": {
+        "description": "Détecte les promesses rompues."
+      }
+    },
+    {
+      "id": "friction_rule",
+      "name": "LOI du frottement",
+      "fields": {
+        "description": "Augmente ou réduit le frottement."
+      }
+    },
+    {
+      "id": "scent_rule",
+      "name": "LOI des odeurs",
+      "weight": 2,
+      "fields": {
+        "description": "Crée, supprime et suit les odeurs."
+      }
+    },
+    {
+      "id": "paper_rule",
+      "name": "LOI du papier",
+      "fields": {
+        "description": "Plie le papier en outils ou créatures animés."
+      }
+    },
+    {
+      "id": "salt_rule",
+      "name": "LOI du sel",
+      "fields": {
+        "description": "Crée et façonne le sel."
+      }
+    },
+    {
+      "id": "heartbeat_rule",
+      "name": "LOI des battements de cœur",
+      "fields": {
+        "description": "Détecte les battements de cœur et se synchronise avec eux."
+      }
+    },
+    {
+      "id": "color_rule",
+      "name": "LOI des couleurs",
+      "weight": 2,
+      "fields": {
+        "description": "Déplace et modifie les couleurs."
+      }
+    },
+    {
+      "id": "balance_rule",
+      "name": "LOI de l'équilibre",
+      "weight": 2,
+      "fields": {
+        "description": "Stabilise les objets et les personnes."
+      }
+    },
+    {
+      "id": "threshold_rule",
+      "name": "LOI du seuil",
+      "fields": {
+        "description": "Détecte quand les limites sont franchies."
+      }
+    },
+    {
+      "id": "swarm_rule",
+      "name": "LOI de l'essaim",
+      "fields": {
+        "description": "Communique avec les essaims d'insectes."
+      }
+    },
+    {
+      "id": "chance_rule",
+      "name": "LOI du hasard",
+      "fields": {
+        "description": "Manipule le hasard."
+      }
+    },
+    {
+      "id": "momentum_rule",
+      "name": "LOI de l’Impact",
+      "fields": {
+        "description": "Amplifie les charges, les coups et les projectiles."
+      }
+    },
+    {
+      "id": "ricochet_rule",
+      "name": "LOI du Ricochet",
+      "fields": {
+        "description": "Dévie les projectiles pour les faire rebondir sur des surfaces."
+      }
+    },
+    {
+      "id": "celerity_rule",
+      "name": "LOI de la Célérité",
+      "fields": {
+        "description": "Accélère les mouvements."
+      }
+    },
+    {
+      "id": "invisibility_rule",
+      "name": "LOI de l’Invisibilité",
+      "fields": {
+        "description": "Dissimule une cible à la vue."
+      }
+    },
+    {
+      "id": "rain_rule",
+      "name": "LOI de la Pluie",
+      "fields": {
+        "description": "Condense l'humidité en pluie."
+      }
+    },
+    {
+      "id": "mending_rule",
+      "name": "LOI du Soin",
+      "fields": {
+        "description": "Accélère la guérison des blessures."
+      }
+    },
+    {
+      "id": "teleportation_rule",
+      "name": "LOI de la Téléportation",
+      "fields": {
+        "description": "Téléporte le personnage ou d'autres cibles."
+      }
+    },
+    {
+      "id": "storm_rule",
+      "name": "LOI de l’Orage",
+      "fields": {
+        "description": "Renforce et façonne les phénomènes météorologiques."
+      }
+    },
+    {
+      "id": "blessing_rule",
+      "name": "LOI de la Bénédiction",
+      "fields": {
+        "description": "Accorde un avantage."
+      }
+    },
+    {
+      "id": "summoning_rule",
+      "name": "LOI de l’Invocation",
+      "fields": {
+        "description": "Invoque des entités."
+      }
+    },
+    {
+      "id": "resurrection_rule",
+      "name": "LOI de la Résurrection",
+      "fields": {
+        "description": "Ramène les morts à la vie."
+      }
+    },
+    {
+      "id": "curse_rule",
+      "name": "LOI de la Malédiction",
+      "fields": {
+        "description": "Inflige une malédiction."
+      }
+    },
+    {
+      "id": "vampirism_rule",
+      "name": "LOI du Vampirisme",
+      "fields": {
+        "description": "Draine ou transfère la vitalité."
+      }
+    },
+    {
+      "id": "telekinesis_rule",
+      "name": "LOI de la Télékinésie",
+      "fields": {
+        "description": "Déplace les objets par la pensée."
+      }
+    },
+    {
+      "id": "influence_rule",
+      "name": "LOI de l’Influence",
+      "fields": {
+        "description": "Renforce les émotions ou les suggestions."
+      }
+    },
+    {
+      "id": "dead_rule",
+      "name": "LOI des Morts",
+      "fields": {
+        "description": "Commande les cadavres animés."
+      }
+    },
+    {
+      "id": "illusion_rule",
+      "name": "LOI de l’Illusion",
+      "fields": {
+        "description": "Crée et manipule des illusions."
+      }
+    },
+    {
+      "id": "sleep_rule",
+      "name": "LOI du Sommeil",
+      "fields": {
+        "description": "Provoque ou approfondit le sommeil."
+      }
+    },
+    {
+      "id": "soul_bond_rule",
+      "name": "LOI du Lien d’âme",
+      "fields": {
+        "description": "Partage des sensations ou émotions."
+      }
+    },
+    {
+      "id": "ghost_rule",
+      "name": "LOI du Fantôme",
+      "fields": {
+        "description": "Devient intangible."
+      }
+    },
+    {
+      "id": "spirits_rule",
+      "name": "LOI des Esprits",
+      "fields": {
+        "description": "Manifeste des esprits."
+      }
+    },
+    {
+      "id": "familiar_rule",
+      "name": "LOI du Familier",
+      "fields": {
+        "description": "Forme un lien sensoriel avec un animal."
+      }
+    },
+    {
+      "id": "beasts_rule",
+      "name": "LOI des Bêtes",
+      "fields": {
+        "description": "Communique avec les animaux."
+      }
+    },
+    {
+      "id": "spores_rule",
+      "name": "LOI des Spores",
+      "fields": {
+        "description": "Produit des spores aux effets variés."
+      }
+    },
+    {
+      "id": "petrification_rule",
+      "name": "LOI de la Pétrification",
+      "fields": {
+        "description": "Transforme la matière vivante en pierre."
+      }
+    },
+    {
+      "id": "decay_rule",
+      "name": "LOI de la Décomposition",
+      "fields": {
+        "description": "Accélère la décomposition de la matière morte."
+      }
+    },
+    {
+      "id": "weight_rule",
+      "name": "LOI de la Gravité",
+      "fields": {
+        "description": "Manipule la gravité."
+      }
+    },
+    {
+      "id": "magnetism_rule",
+      "name": "LOI du Magnétisme",
+      "fields": {
+        "description": "Attire ou repousse le métal."
+      }
+    },
+    {
+      "id": "double_rule",
+      "name": "LOI du Double",
+      "fields": {
+        "description": "Crée une copie du personnage."
+      }
+    },
+    {
+      "id": "time_rule",
+      "name": "LOI du Temps",
+      "fields": {
+        "description": "Manipule le temps."
+      }
+    },
+    {
+      "id": "space_rule",
+      "name": "LOI de l’Espace",
+      "fields": {
+        "description": "Ouvre des passages à travers l'espace."
+      }
+    },
+    {
+      "id": "vision_rule",
+      "name": "LOI de la Vision",
+      "fields": {
+        "description": "Perçoit les conséquences futures possibles."
+      }
+    },
+    {
+      "id": "size_rule",
+      "name": "LOI de la Taille",
+      "fields": {
+        "description": "Agrandit ou rapetisse les créatures et les objets."
+      }
+    },
+    {
+      "id": "reflection_rule",
+      "name": "LOI du Miroir",
+      "fields": {
+        "description": "Copie l'apparence d'une autre LOI."
+      }
+    },
+    {
+      "id": "memory_rule",
+      "name": "LOI de la Mémoire",
+      "fields": {
+        "description": "Clarifie ou brouille les souvenirs."
+      }
+    },
+    {
+      "id": "truth_rule",
+      "name": "LOI de la vérité",
+      "fields": {
+        "description": "Contraint, révèle ou extrait des paroles véridiques."
+      }
+    },
+    {
+      "id": "silence_rule",
+      "name": "LOI du silence",
+      "fields": {
+        "description": "Supprime et manipule les sons."
+      }
+    },
+    {
+      "id": "adhesion_rule",
+      "name": "LOI de l’adhérence",
+      "fields": {
+        "description": "Colle ou sépare des matières."
+      }
+    },
+    {
+      "id": "voice_rule",
+      "name": "LOI de la voix",
+      "fields": {
+        "description": "Copie, vole, échange et modifie les voix."
+      }
+    },
+    {
+      "id": "elasticity_rule",
+      "name": "LOI de l’élasticité",
+      "fields": {
+        "description": "Étire la matière ou la rend anormalement élastique et rebondissante."
+      }
+    },
+    {
+      "id": "ownership_rule",
+      "name": "LOI de la propriété",
+      "fields": {
+        "description": "Détecte et influence la propriété et la possession."
+      }
+    },
+    {
+      "id": "knot_rule",
+      "name": "LOI des nœuds",
+      "fields": {
+        "description": "Crée, resserre, desserre et défait les nœuds."
+      }
+    },
+    {
+      "id": "elemental_rule",
+      "name": "LOI élémentaire : {{ element.name }}",
+      "weight": 19,
+      "fields": {
+        "description": "Permet de manipuler cet élément."
+      }
+    }
+  ]
+}

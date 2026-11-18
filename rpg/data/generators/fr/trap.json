@@ -1,0 +1,357 @@
+{
+  "schemaVersion": 4,
+  "id": "trap",
+  "visibility": "public",
+  "name": "Pièges",
+  "description": "Dangers mécaniques, magiques et sociaux",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "a_pressure_tile_seals_both_doors_and_slowly",
+      "name": "Fosse cachée par la brume",
+      "weight": 3,
+      "fields": {
+        "description": "Une dalle à pression condamne les deux portes, puis emplit lentement la salle d'une brume inoffensive qui dissimule la véritable fosse."
+      }
+    },
+    {
+      "id": "a_rune_swaps_the_voices_of_the_first",
+      "name": "Échange de voix",
+      "fields": {
+        "description": "Une rune échange la voix des deux premières créatures qui la franchissent, jusqu'à ce qu'elles tombent sincèrement d'accord sur un sujet."
+      }
+    },
+    {
+      "id": "a_treasure_chest_loudly_accuses_whoever_opens_it",
+      "name": "Coffre accusateur",
+      "weight": 2,
+      "fields": {
+        "description": "Un coffre au trésor accuse bruyamment de vol la personne qui l'ouvre et alerte nommément les gardiens à proximité."
+      }
+    },
+    {
+      "id": "a_hallway_repeats_itself_until_travelers_walk_backward",
+      "name": "Couloir sans fin",
+      "weight": 2,
+      "fields": {
+        "description": "Un couloir se répète indéfiniment jusqu'à ce que les voyageurs avancent à reculons ou éteignent toutes les lumières."
+      }
+    },
+    {
+      "id": "a_tripwire_releases_dozens_of_glass_marbles_while",
+      "name": "Billes et sol basculant",
+      "weight": 3,
+      "fields": {
+        "description": "Un fil tendu libère des dizaines de billes de verre tandis que des panneaux dissimulés inclinent fortement le sol."
+      }
+    },
+    {
+      "id": "a_door_handle_steals_the_openers_shadow_the",
+      "name": "Ombre dérobée",
+      "fields": {
+        "description": "Une poignée de porte vole l'ombre de la personne qui l'actionne. L'ombre part prévenir les ennemis en exagérant la puissance du groupe."
+      }
+    },
+    {
+      "id": "a_false_healing_fountain_restores_armor_while_quietly",
+      "name": "Soins transférés",
+      "weight": 2,
+      "fields": {
+        "description": "Une fausse fontaine de soins restaure la protection, mais inflige discrètement autant de dégâts à la prochaine personne qui boit."
+      }
+    },
+    {
+      "id": "a_ceiling_rune_reverses_gravity_for_loose_objects",
+      "name": "Gravité inversée",
+      "fields": {
+        "description": "Une rune au plafond inverse d'abord la gravité des objets qui ne sont pas fixés, laissant un bref avertissement avant d'affecter les créatures."
+      }
+    },
+    {
+      "id": "a_jeweled_idol_teleports_into_the_pack_of",
+      "name": "Réplique d’idole hurlante",
+      "fields": {
+        "description": "Une idole sertie de joyaux se téléporte dans le sac de la personne qui la touche et laisse à sa place une réplique qui hurle."
+      }
+    },
+    {
+      "id": "a_stairway_counts_spoken_numbers_saying_thirteen_animates",
+      "name": "Serpent du treizième degré",
+      "weight": 2,
+      "fields": {
+        "description": "Un escalier compte les nombres prononcés à voix haute. Dire treize transforme ses marches en un serpent de pierre."
+      }
+    },
+    {
+      "id": "a_locked_gate_opens_easily_when_pushed_but",
+      "name": "Fléchettes de la fausse serrure",
+      "weight": 3,
+      "fields": {
+        "description": "Une grille verrouillée s'ouvre facilement en poussant, mais déclenche des fléchettes si des crochets pénètrent dans sa serrure décorative."
+      }
+    },
+    {
+      "id": "a_mirror_creates_one_hostile_reflection_per_visible",
+      "name": "Reflets armés",
+      "weight": 2,
+      "fields": {
+        "description": "Un miroir crée un reflet hostile pour chaque arme visible. Couvrir ou lâcher les armes empêche l'apparition de nouvelles copies."
+      }
+    },
+    {
+      "id": "a_floor_of_enchanted_coins_grips_metal_boots",
+      "name": "Sol de pièces agrippant",
+      "weight": 2,
+      "fields": {
+        "description": "Un sol couvert de pièces enchantées retient les bottes et armures métalliques tandis qu'un rocher approche en roulant très lentement."
+      }
+    },
+    {
+      "id": "a_painted_eye_marks_the_first_person_who",
+      "name": "Marque du menteur",
+      "fields": {
+        "description": "Un œil peint marque la première personne qui ment à proximité. Toutes les statues rencontrées ensuite la suivent du regard et la prennent pour cible."
+      }
+    },
+    {
+      "id": "a_bridge_becomes_intangible_when_anyone_runs_forcing",
+      "name": "Pont intangible",
+      "weight": 2,
+      "fields": {
+        "description": "Un pont devient intangible dès que quelqu'un court, obligeant le groupe à traverser calmement malgré la menace qui approche."
+      }
+    },
+    {
+      "id": "a_music_box_puts_listeners_to_sleep_only",
+      "name": "Boîte à musique soporifique",
+      "weight": 2,
+      "fields": {
+        "description": "Une boîte à musique n'endort ceux qui l'entendent que lorsque sa mélodie s'arrête, ce qui rend sa destruction immédiate dangereuse."
+      }
+    },
+    {
+      "id": "a_pantry_mimic_is_harmless_but_attacking_it",
+      "name": "Cuisine mimique affamée",
+      "weight": 2,
+      "fields": {
+        "description": "Un garde-manger mimique est inoffensif, mais l'attaquer réveille toute la cuisine affamée."
+      }
+    },
+    {
+      "id": "a_rune_of_silence_suppresses_all_sound_while",
+      "name": "Clochettes d’alarme silencieuses",
+      "fields": {
+        "description": "Une rune de silence étouffe tous les sons, mais des clochettes dissimulées sur les intrus continuent d'alerter les gardes ailleurs."
+      }
+    },
+    {
+      "id": "an_ornate_rug_rolls_around_trespassers_then_politely",
+      "name": "Tapis au mot de passe",
+      "weight": 2,
+      "fields": {
+        "description": "Un tapis ouvragé s'enroule autour des intrus, puis leur demande poliment un mot de passe tout en les traînant vers une trappe."
+      }
+    },
+    {
+      "id": "a_trapped_book_erases_one_common_word_from",
+      "name": "Mot dérobé",
+      "fields": {
+        "description": "Un livre piégé efface un mot courant du vocabulaire de son lecteur et fait de ce mot volé sa formule de commande."
+      }
+    },
+    {
+      "id": "a_corridor_fills_with_illusory_fire_that_causes",
+      "name": "Flammes illusoires",
+      "fields": {
+        "description": "Un couloir s'emplit de flammes illusoires inoffensives, sauf si quelqu'un tente de les éteindre."
+      }
+    },
+    {
+      "id": "a_statue_offers_safe_passage_for_one_honest",
+      "name": "Compliment sincère",
+      "weight": 2,
+      "fields": {
+        "description": "Une statue accorde le passage en échange d'un compliment sincère. La flatterie ou le sarcasme libèrent des guêpes de pierre."
+      }
+    },
+    {
+      "id": "a_chest_contains_genuine_treasure_balanced_over_a",
+      "name": "Trésor à contrepoids",
+      "weight": 3,
+      "fields": {
+        "description": "Un coffre contient un véritable trésor posé en équilibre sur un mécanisme qui ne se déclenche que si l'on retire trop de poids."
+      }
+    },
+    {
+      "id": "a_door_teleports_anyone_opening_it_to_the",
+      "name": "Porte séparant de l’équipement",
+      "fields": {
+        "description": "Une porte téléporte de l'autre côté toute personne qui l'ouvre, mais abandonne sur place l'équipement qu'elle transportait."
+      }
+    },
+    {
+      "id": "a_frost_rune_freezes_the_brightest_object_in",
+      "name": "Rune gelant la lumière",
+      "fields": {
+        "description": "Une rune de givre congèle l'objet le plus lumineux de la pièce, invitant à manipuler habilement la lumière."
+      }
+    },
+    {
+      "id": "a_harmless_dart_marks_its_target_with_a",
+      "name": "Odeur du prédateur",
+      "weight": 3,
+      "fields": {
+        "description": "Une fléchette inoffensive imprègne sa cible d'une odeur qui attire le véritable prédateur du donjon."
+      }
+    },
+    {
+      "id": "a_circular_chamber_rotates_its_exits_whenever_someone",
+      "name": "Sorties pivotantes",
+      "weight": 2,
+      "fields": {
+        "description": "Une salle circulaire fait pivoter ses sorties chaque fois que quelqu'un mentionne une destination."
+      }
+    },
+    {
+      "id": "a_golden_rope_can_be_crossed_safely_but",
+      "name": "Corde dorée",
+      "weight": 2,
+      "fields": {
+        "description": "Une corde dorée peut être franchie sans danger, mais se resserre autour de quiconque tente de la couper ou de l'enjamber."
+      }
+    },
+    {
+      "id": "a_guardian_portrait_asks_a_personal_question_refusing",
+      "name": "Question du gardien",
+      "fields": {
+        "description": "Le portrait d'un gardien pose une question personnelle. Refuser de répondre verrouille la porte ; mentir libère le sujet du mensonge."
+      }
+    },
+    {
+      "id": "a_pedestal_grants_the_requested_object_then_announces",
+      "name": "Piédestal au juste prix",
+      "weight": 2,
+      "fields": {
+        "description": "Un piédestal accorde l'objet demandé, puis annonce un prix contraignant mais équitable, à régler avant de pouvoir partir."
+      }
+    },
+    {
+      "id": "truth_inducing_mist",
+      "name": "Brume de vérité",
+      "weight": 2,
+      "fields": {
+        "description": "Des conduits cachés libèrent une brume pâle qui force quiconque la respire à répondre sincèrement à la prochaine question directe ; se taire ou protéger son souffle devient essentiel."
+      }
+    },
+    {
+      "id": "adhesive_surface",
+      "name": "Sol adhésif",
+      "weight": 2,
+      "fields": {
+        "description": "Sous la pression, le sol devient extrêmement collant et retient les bottes, l’équipement tombé ainsi que toute personne qui se débat sans d’abord le couvrir ou affaiblir son adhérence."
+      }
+    },
+    {
+      "id": "stolen_voice_toll",
+      "name": "Péage de la voix",
+      "fields": {
+        "description": "Une arche sculptée vole la voix du premier intrus et s’en sert pour donner de faux ordres ailleurs, tandis que la victime ne peut plus parler au-dessus d’un murmure."
+      }
+    },
+    {
+      "id": "inventory_exchange",
+      "name": "Inventaires échangés",
+      "fields": {
+        "description": "Deux runes liées échangent tous les objets portés par les deux premières créatures touchées, redistribuant clés, armes, protections et objets dangereux au pire moment."
+      }
+    },
+    {
+      "id": "banished_equipment",
+      "name": "Équipement banni",
+      "fields": {
+        "description": "Une protection magique laisse ses victimes sur place, mais téléporte leur équipement dans plusieurs cages verrouillées et bien visibles au-delà de l’obstacle environnant."
+      }
+    },
+    {
+      "id": "identity_alarm",
+      "name": "Alarme d’identité",
+      "weight": 2,
+      "fields": {
+        "description": "Un enchantement annonce l’identité de chaque intrus et un détail personnel révélateur assez fort pour que des défenseurs éloignés l’entendent."
+      }
+    },
+    {
+      "id": "indelible_color",
+      "name": "Couleur indélébile",
+      "weight": 2,
+      "fields": {
+        "description": "Une gerbe de couleur magique éclatante marque la cible, ses traces et tout ce qu’elle touche ; ni un lavage ordinaire ni un déguisement ne peuvent la dissimuler complètement."
+      }
+    },
+    {
+      "id": "temporary_double",
+      "name": "Double temporaire",
+      "fields": {
+        "description": "Un miroir crée un double temporaire de la victime, doté de ses souvenirs récents, qui tente d’égarer ses alliés ou d’ouvrir la voie aux gardiens proches."
+      }
+    },
+    {
+      "id": "hungry_threshold",
+      "name": "Seuil affamé",
+      "fields": {
+        "description": "Le passage ne s'ouvre que lorsqu'une personne abandonne sciemment quelque chose qui possède une véritable valeur personnelle ; l'argent ou un objet indésirable ne le satisfait pas."
+      }
+    },
+    {
+      "id": "moving_safe_zone",
+      "name": "Zone sûre mouvante",
+      "fields": {
+        "description": "Une seule partie de la salle dangereuse est sûre à la fois. Des indices dans l'environnement révèlent le rythme selon lequel ce refuge se déplace."
+      }
+    },
+    {
+      "id": "sacrificial_lever",
+      "name": "Levier sacrificiel",
+      "fields": {
+        "description": "Le mécanisme semble exiger qu'une personne reste en arrière pour le tenir, l'actionner ou faire contrepoids, mais une substitution ingénieuse peut maintenir son effet."
+      }
+    },
+    {
+      "id": "statue_of_equal_force",
+      "name": "Statue de force égale",
+      "fields": {
+        "description": "Chaque poussée, frappe, traction ou autre force physique appliquée à la statue est reproduite avec une intensité comparable ailleurs dans la salle."
+      }
+    },
+    {
+      "id": "delayed_consequence",
+      "name": "Conséquence différée",
+      "fields": {
+        "description": "Les conséquences néfastes des actes accomplis dans la zone sont retardées jusqu'à ce que leur responsable franchisse la sortie ; des traces visibles permettent de comprendre le lien."
+      }
+    },
+    {
+      "id": "listening_door",
+      "name": "Porte à l'écoute",
+      "fields": {
+        "description": "La porte ignore les clés et la force, écoute les voyageurs expliquer pourquoi ils méritent de passer et ne s'ouvre que si leur raisonnement satisfait ses valeurs."
+      }
+    },
+    {
+      "id": "forgotten_exit",
+      "name": "Sortie oubliée",
+      "fields": {
+        "description": "Quiconque regarde directement la sortie devient incapable de la percevoir consciemment, mais le toucher, les miroirs, ses effets et les indications d'autrui la révèlent encore."
+      }
+    },
+    {
+      "id": "living_mechanism",
+      "name": "Mécanisme vivant",
+      "fields": {
+        "description": "Le prétendu piège est une créature encastrée qui répète un comportement biologique ; comprendre ses besoins offre d'autres solutions que sa neutralisation par la force."
+      }
+    }
+  ]
+}

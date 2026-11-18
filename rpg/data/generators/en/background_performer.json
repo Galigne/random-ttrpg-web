@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 4,
+  "id": "performer",
+  "visibility": "internal",
+  "name": "Performer archetypes",
+  "description": "Entertainment and public-speaking roles",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "musician",
+      "name": "Musician",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "actor",
+      "name": "Actor",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "storyteller",
+      "name": "Storyteller",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "acrobat",
+      "name": "Acrobat",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "singer",
+      "name": "Singer",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "troubadour",
+      "name": "Troubadour",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "jester",
+      "name": "Jester",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "fortune_teller",
+      "name": "Fortune teller",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "dancer",
+      "name": "Dancer",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "street_entertainer",
+      "name": "Street entertainer",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "prostitute",
+      "name": "Prostitute",
+      "weight": 0.5,
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "professional_dominatrix",
+      "name": "Professional dominatrix",
+      "weight": 0.5,
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "erotic_writer",
+      "name": "Erotic writer",
+      "weight": 0.75,
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "pit_fighter",
+      "name": "Pit fighter",
+      "weight": 0.75,
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    }
+  ]
+}

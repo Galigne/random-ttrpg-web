@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 4,
+  "id": "official",
+  "visibility": "internal",
+  "name": "Official archetypes",
+  "description": "Administrative and civic roles",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "administrator",
+      "name": "Administrator",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "diplomat",
+      "name": "Diplomat",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "tax_collector",
+      "name": "Tax collector",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "judge",
+      "name": "Judge",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "inspector",
+      "name": "Inspector",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "clerk",
+      "name": "Clerk"
+    },
+    {
+      "id": "magistrate",
+      "name": "Magistrate",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "bailiff",
+      "name": "Bailiff",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "notary",
+      "name": "Notary",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "envoy",
+      "name": "Envoy",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "executioner",
+      "name": "Executioner",
+      "weight": 0.75,
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "torturer",
+      "name": "Torturer",
+      "weight": 0.5,
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    }
+  ]
+}

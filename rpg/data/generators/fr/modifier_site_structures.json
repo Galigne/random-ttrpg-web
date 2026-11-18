@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 4,
+  "id": "modifier_site_structures",
+  "visibility": "internal",
+  "name": "Modificateurs de site historiques",
+  "description": "Variations historiques descriptives compatibles avec des générateurs de lieux précis",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "ruined",
+      "name": "En ruine",
+      "fields": {
+        "description": "La structure est instable, certains accès sont condamnés et chaque déplacement peut révéler ou détruire un passage."
+      }
+    },
+    {
+      "id": "recently_destroyed",
+      "name": "Récemment détruit",
+      "fields": {
+        "description": "Des traces fraîches permettent encore de reconstituer l’événement et de poursuivre ses responsables ou survivants."
+      }
+    },
+    {
+      "id": "overly_secure",
+      "name": "Démesurément sécurisé",
+      "fields": {
+        "description": "Un nombre déraisonnable de serrures, de contrôles, de grilles, de mots de passe, d’inspections et de barrières redondantes protège jusqu’aux espaces les plus insignifiants."
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+const { DEFAULT_DICE_LIMITS, parseDiceExpression } = require('./diceParser');
+const { rollDice } = require('./diceRoller');
+
+const DEFAULT_DICE_EXPRESSION = '1d20';
+
+function rollDiceExpression(expression, {
+	limits = DEFAULT_DICE_LIMITS,
+	random = Math.random,
+} = {}) {
+	const requestedExpression = expression ?? DEFAULT_DICE_EXPRESSION;
+	const result = rollDice(parseDiceExpression(requestedExpression, limits), random);
+	const animationFileName = getAnimationFileName(result);
+
+	return {
+		animationFileName,
+		result,
+		type: animationFileName ? 'animation' : 'text',
+	};
+}
+
+function getAnimationFileName(result) {
+	if (result.normalized === '1d2') {
+		return result.rolls[0] === 1 ? 'HEADS.gif' : 'TAILS.gif';
+	}
+	if (result.normalized === '1d20') {
+		return `D20-${result.rolls[0]}.gif`;
+	}
+	return null;
+}
+
+module.exports = { DEFAULT_DICE_EXPRESSION, rollDiceExpression };

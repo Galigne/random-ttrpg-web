@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 4,
+  "id": "supplies",
+  "visibility": "internal",
+  "name": "Matériel",
+  "description": "Objets pratiques et réutilisables pour le voyage, l’exploration, les métiers et l’aventure quotidienne",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "modifiers": {
+    "modifier_loot": 10
+  },
+  "entries": [
+    {
+      "id": "coil_of_rope",
+      "name": "Rouleau de corde",
+      "weight": 8,
+      "fields": {
+        "description": "Dix mètres de corde solide pour grimper, attacher ou arrimer une charge."
+      }
+    },
+    {
+      "id": "lantern_and_oil",
+      "name": "Lanterne et huile",
+      "weight": 8,
+      "fields": {
+        "description": "Une lanterne à capuchon contenant assez d'huile pour plusieurs heures."
+      }
+    },
+    {
+      "id": "waterskin",
+      "name": "Gourde",
+      "weight": 7,
+      "fields": {
+        "description": "Une gourde en cuir remplie d'eau."
+      }
+    },
+    {
+      "id": "bedroll",
+      "name": "Nécessaire de couchage",
+      "weight": 7,
+      "fields": {
+        "description": "Une couverture résistante aux intempéries et un couchage roulé."
+      }
+    },
+    {
+      "id": "tinderbox",
+      "name": "Boîte à amadou",
+      "weight": 7,
+      "fields": {
+        "description": "Un silex, un briquet en acier et de l'amadou sec pour allumer un feu."
+      }
+    },
+    {
+      "id": "lockpicking_kit",
+      "name": "Nécessaire de crochetage",
+      "weight": 6,
+      "fields": {
+        "description": "De petits outils permettant de manipuler les serrures mécaniques ordinaires."
+      }
+    },
+    {
+      "id": "climbing_kit",
+      "name": "Matériel d'escalade",
+      "weight": 6,
+      "fields": {
+        "description": "Des pitons, un marteau, des sangles et quelques accessoires d'escalade simples."
+      }
+    },
+    {
+      "id": "chalk_and_charcoal",
+      "name": "Craie et fusain",
+      "weight": 6,
+      "fields": {
+        "description": "De quoi baliser un chemin, esquisser une carte ou prendre des notes."
+      }
+    },
+    {
+      "id": "small_mirror",
+      "name": "Petit miroir",
+      "weight": 6,
+      "fields": {
+        "description": "Un miroir à main poli, utile pour envoyer des signaux et observer discrètement ce qui se trouve hors de vue."
+      }
+    },
+    {
+      "id": "crowbar",
+      "name": "Pied-de-biche",
+      "weight": 5,
+      "fields": {
+        "description": "Un solide levier en fer pour forcer des portes, des caisses ou d'autres obstacles."
+      }
+    },
+    {
+      "id": "grappling_hook",
+      "name": "Grappin",
+      "weight": 5,
+      "fields": {
+        "description": "Un crochet à quatre pointes conçu pour être utilisé avec une corde."
+      }
+    },
+    {
+      "id": "fishing_kit",
+      "name": "Matériel de pêche",
+      "weight": 5,
+      "fields": {
+        "description": "Du fil, des hameçons, des flotteurs et un filet compact."
+      }
+    },
+    {
+      "id": "writing_kit",
+      "name": "Nécessaire d'écriture",
+      "weight": 5,
+      "fields": {
+        "description": "De l'encre, des plumes, du parchemin, de la cire à cacheter et un étui de protection."
+      }
+    },
+    {
+      "id": "herbalism_pouch",
+      "name": "Trousse d'herboriste",
+      "weight": 5,
+      "fields": {
+        "description": "De petits outils et récipients pour récolter des plantes utiles."
+      }
+    },
+    {
+      "id": "shovel",
+      "name": "Pelle",
+      "weight": 5,
+      "fields": {
+        "description": "Un outil compact mais solide pour creuser."
+      }
+    },
+    {
+      "id": "bear_trap",
+      "name": "Piège à ours",
+      "weight": 4,
+      "fields": {
+        "description": "Un lourd piège mécanique capable d'immobiliser une créature."
+      }
+    },
+    {
+      "id": "disguise_kit",
+      "name": "Nécessaire de déguisement",
+      "weight": 4,
+      "fields": {
+        "description": "Des produits cosmétiques, des teintures, de faux cheveux et quelques éléments de costume simples."
+      }
+    },
+    {
+      "id": "merchants_scale",
+      "name": "Balance de marchand",
+      "weight": 4,
+      "fields": {
+        "description": "Une balance pliante et des poids de référence pour vérifier les marchandises."
+      }
+    },
+    {
+      "id": "bag_of_caltrops",
+      "name": "Sac de chausse-trappes",
+      "weight": 3,
+      "fields": {
+        "description": "Des pointes métalliques acérées permettant de ralentir des poursuivants ou de protéger un passage."
+      }
+    },
+    {
+      "id": "spyglass",
+      "name": "Longue-vue",
+      "weight": 3,
+      "fields": {
+        "description": "Un tube optique compact permettant d'observer des détails éloignés."
+      }
+    },
+    {
+      "id": "tent",
+      "name": "Tente",
+      "weight": 3,
+      "fields": {
+        "description": "Un petit abri adapté à un ou deux voyageurs."
+      }
+    },
+    {
+      "id": "manacles",
+      "name": "Menottes",
+      "weight": 3,
+      "fields": {
+        "description": "Une paire d'entraves en fer accompagnée d'une clé simple."
+      }
+    },
+    {
+      "id": "holy_symbol",
+      "name": "Symbole sacré",
+      "weight": 3,
+      "fields": {
+        "description": "Un emblème transportable dont la forme reprend ce symbole sacré : {{ religion.sacred_symbol }}"
+      }
+    },
+    {
+      "id": "local_map",
+      "name": "Carte locale",
+      "weight": 3,
+      "fields": {
+        "description": "Une carte pratique mais imparfaite représentant la région suivante : {{ region.name }}"
+      }
+    },
+    {
+      "id": "chain",
+      "name": "Chaîne",
+      "weight": 2,
+      "fields": {
+        "description": "Une courte chaîne robuste pour tirer, arrimer ou constituer des entraves inhabituelles."
+      }
+    },
+    {
+      "id": "runic_chalk",
+      "name": "Craie runique",
+      "weight": 2,
+      "fields": {
+        "description": "Une craie rare qui rend les inscriptions magiques plus faciles à voir et à étudier."
+      }
+    },
+    {
+      "id": "excavation_tools",
+      "name": "Outils d’excavation",
+      "fields": {
+        "description": "Un crochet, une petite pioche et une pelle repliable pour fouiller ou franchir un terrain difficile."
+      }
+    },
+    {
+      "id": "musical_instrument",
+      "name": "Instrument de musique",
+      "fields": {
+        "description": "Un luth, tambour, violon ou autre instrument transportable, usé mais fonctionnel."
+      }
+    },
+    {
+      "id": "quality_paper",
+      "name": "Papier de qualité",
+      "fields": {
+        "description": "Des feuilles et un parchemin vierges adaptés aux contrats, cartes, sorts ou faux documents."
+      }
+    },
+    {
+      "id": "backpack",
+      "name": "Sac à dos",
+      "weight": 8,
+      "fields": {
+        "description": "Un sac de voyage robuste muni de sangles et de plusieurs compartiments pratiques."
+      }
+    },
+    {
+      "id": "torches",
+      "name": "Torches",
+      "weight": 8,
+      "fields": {
+        "description": "Un faisceau de torches enduites de résine, prêtes à éclairer ou à allumer un feu plus important."
+      }
+    },
+    {
+      "id": "compass",
+      "name": "Boussole",
+      "weight": 4,
+      "fields": {
+        "description": "Une simple boussole magnétique rangée dans un boîtier protecteur."
+      }
+    },
+    {
+      "id": "cloak",
+      "name": "Cape",
+      "weight": 6,
+      "fields": {
+        "description": "Une cape de voyage résistante qui protège normalement du vent et de la pluie."
+      }
+    },
+    {
+      "id": "boots",
+      "name": "Bottes",
+      "weight": 6,
+      "fields": {
+        "description": "Une paire de bottes robustes et pratiques, adaptée aux longues journées de marche."
+      }
+    },
+    {
+      "id": "cooking_kit",
+      "name": "Nécessaire de cuisine",
+      "weight": 5,
+      "fields": {
+        "description": "Une petite marmite, une poêle, des ustensiles et le nécessaire pour préparer les repas en voyage."
+      }
+    },
+    {
+      "id": "sewing_repair_kit",
+      "name": "Nécessaire de couture et de réparation",
+      "weight": 5,
+      "fields": {
+        "description": "Des aiguilles, du fil, des pièces de tissu, une alêne et de petits outils pour raccommoder vêtements et matériel."
+      }
+    },
+    {
+      "id": "whetstone",
+      "name": "Pierre à aiguiser",
+      "weight": 5,
+      "fields": {
+        "description": "Une pierre abrasive fine pour entretenir les lames et les outils métalliques ordinaires."
+      }
+    },
+    {
+      "id": "empty_bottles_and_vials",
+      "name": "Bouteilles et fioles vides",
+      "weight": 5,
+      "fields": {
+        "description": "Plusieurs récipients propres munis d’un bouchon pour conserver échantillons, ingrédients ou préparations liquides."
+      }
+    }
+  ]
+}

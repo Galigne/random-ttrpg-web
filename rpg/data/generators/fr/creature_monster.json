@@ -1,0 +1,1792 @@
+{
+  "schemaVersion": 4,
+  "id": "monster",
+  "visibility": "internal",
+  "name": "Monstres",
+  "description": "Créatures hostiles et prédateurs surnaturels",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "grave_hound",
+      "name": "Molosse des tombes",
+      "weight": 2,
+      "fields": {
+        "description": "chasseur en meute au teint cadavérique qui flaire la peur et entraîne sous terre les proies isolées."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:keen_smell }}",
+          "{{ traits:pack_tactics }}",
+          "{{ traits:burrower }}"
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "mire_troll",
+      "name": "Troll des fondrières",
+      "weight": 2,
+      "fields": {
+        "description": "brute des marais capable de se régénérer, couverte de roseaux, de sangsues et d’hameçons volés."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": ["{{ traits:regeneration }}"],
+        "fixedRules": [
+          {
+            "entry": "elemental_rule",
+            "element": "plants",
+            "level": 1
+          }
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "cinder_drake",
+      "name": "Drac de cendre",
+      "weight": 2,
+      "fields": {
+        "description": "dragon sans ailes grand comme un chien, qui crache de la résine enflammée et niche dans les cheminées."
+      },
+      "generation": {
+        "statProfile": "creature-elemental",
+        "traits": [
+          "{{ traits:fire_immunity }}",
+          "{{ traits:natural_weapons }}",
+          "Résine ardente — Une attaque naturelle peut enflammer une matière sèche ; une créature touchée subit 1 dégât de feu supplémentaire au début de son prochain tour."
+        ],
+        "fixedRules": [
+          {
+            "entry": "elemental_rule",
+            "element": "fire",
+            "level": 1
+          }
+        ],
+        "modifiers": ["modifier_creature:smoldering"],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "glass_spider",
+      "name": "Araignée de verre",
+      "weight": 2,
+      "fields": {
+        "description": "prédatrice presque invisible qui chasse à l’affût et dont la toile cassante tranche comme du fil de fer."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": ["{{ traits:camouflage }}", "{{ traits:web_spinner }}"],
+        "fixedRules": [
+          {
+            "entry": "glass_rule",
+            "level": 1
+          }
+        ],
+        "naturalArmorPercentage": 20
+      }
+    },
+    {
+      "id": "bell_wraith",
+      "name": "Spectre de la cloche",
+      "weight": 2,
+      "fields": {
+        "description": "fantôme en armure qui prend corps chaque fois qu’une cloche sonne à proximité."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "Forme liée aux cloches — Reste incorporel tant qu’aucune cloche n’est audible et devient solide jusqu’à la fin de son prochain tour lorsqu’une cloche sonne."
+        ],
+        "fixedRules": [
+          {
+            "entry": "echo_rule",
+            "level": 1
+          }
+        ],
+        "modifiers": ["modifier_creature:shadowed"],
+        "equipment": ["weapons:mace"],
+        "armor": "armors:chain_mail"
+      }
+    },
+    {
+      "id": "lantern_maw",
+      "name": "Gueule-lanterne",
+      "weight": 2,
+      "fields": {
+        "description": "lueur chaude flottante qui sert d’appât à une immense bouche souterraine."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:camouflage }}",
+          "Faux fanal — +2 aux actions de {{ ability:charisma.name }} pour attirer une créature qui prend sa lueur pour une lumière sûre."
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "bone_orchard",
+      "name": "Verger d’ossements",
+      "weight": 2,
+      "fields": {
+        "description": "colonie enracinée de bras squelettiques qui saisit les créatures et plante leurs os."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}",
+          "Étreinte d’ossements — Une cible saisie ne peut pas s’éloigner avant de réussir une action de {{ ability:strength.name }} pour s’échapper."
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "frost_widow",
+      "name": "Veuve de givre",
+      "weight": 2,
+      "fields": {
+        "description": "bête cavernicole blanche qui gèle l’humidité pour former des silhouettes leurres."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": ["{{ traits:cold_immunity }}", "{{ traits:camouflage }}"],
+        "fixedRules": [
+          {
+            "entry": "elemental_rule",
+            "element": "frost",
+            "level": 1
+          }
+        ],
+        "modifiers": ["modifier_creature:frost_rimed"],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "ink_leviathan",
+      "name": "Léviathan d’encre",
+      "weight": 2,
+      "fields": {
+        "description": "monstre fluvial qui aveugle les embarcations d’une brume noire avant de frapper par-dessous."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:aquatic_speed }}",
+          "Nuage d’encre — Une fois par scène sous l’eau, crée un nuage de 5 mètres qui aveugle les autres créatures jusqu’à leur sortie."
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "rust_eater",
+      "name": "Mange-rouille",
+      "weight": 2,
+      "fields": {
+        "description": "insecte cuirassé qui corrode rapidement le métal et attaque en essaim la cible la mieux équipée."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "Morsure corrosive — Les attaques naturelles contre des objets ou armures métalliques infligent +2 dégâts."
+        ],
+        "naturalArmorPercentage": 40
+      }
+    },
+    {
+      "id": "dream_leech",
+      "name": "Sangsue des rêves",
+      "weight": 2,
+      "fields": {
+        "description": "parasite translucide qui laisse ses victimes endormies conscientes, mais privées de leurs souvenirs."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "Drain de mémoire — Après une minute de contact avec une créature sans défense, efface ses souvenirs de l’heure précédente."
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "thornback_horror",
+      "name": "Horreur épineuse",
+      "weight": 2,
+      "fields": {
+        "description": "bête végétale territoriale qui projette des graines barbelées dans les plaies ouvertes."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:natural_weapons }}",
+          "Graines barbelées — Peut porter une attaque naturelle à distance ; une cible blessée subit -1 en {{ ability:speed.name }} jusqu’au retrait du barbillon."
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "mirror_stalker",
+      "name": "Traqueur des miroirs",
+      "weight": 2,
+      "fields": {
+        "description": "humanoïde décharné qui ne peut se déplacer qu’à travers les reflets et les surfaces polies."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "Passage des miroirs — Peut entrer dans un reflet et ressortir d’un autre reflet visible à moins de 10 mètres."
+        ],
+        "fixedRules": [
+          {
+            "entry": "reflection_rule",
+            "level": 1
+          }
+        ],
+        "modifiers": ["modifier_creature:shadowed"],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "ash_giant",
+      "name": "Géant de cendre",
+      "weight": 2,
+      "fields": {
+        "description": "humanoïde incandescent qui s’effondre en cendres suffocantes lorsqu’il est blessé, puis se reconstitue."
+      },
+      "generation": {
+        "statProfile": "creature-elemental",
+        "traits": ["{{ traits:fire_immunity }}", "{{ traits:regeneration }}"],
+        "equipment": ["weapons:maul"],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "moon_eyed_basilisk",
+      "name": "Basilic aux yeux de lune",
+      "weight": 2,
+      "fields": {
+        "description": "reptile à six pattes dont le regard ne pétrifie que les créatures éclairées par la lune."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:natural_weapons }}",
+          "Pétrification lunaire — Une créature qui croise son regard au clair de lune ne peut plus se déplacer jusqu’à la fin de son prochain tour."
+        ],
+        "fixedRules": [
+          {
+            "entry": "reflection_rule",
+            "level": 1
+          }
+        ],
+        "naturalArmorPercentage": 30
+      }
+    },
+    {
+      "id": "choir_worm",
+      "name": "Ver-chorale",
+      "weight": 1,
+      "fields": {
+        "description": "prédateur des tunnels qui imite simultanément plusieurs voix familières."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:burrower }}",
+          "Voix familières — +2 aux actions de {{ ability:charisma.name }} pour attirer ou désorienter quelqu’un en imitant des voix déjà entendues."
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "oath_devourer",
+      "name": "Dévoreur de serments",
+      "weight": 1,
+      "fields": {
+        "description": "démon sans visage qui se renforce chaque fois qu’une personne proche rompt une promesse."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "Festin des serments brisés — Gagne +1 à toutes ses actions jusqu’à la fin de son prochain tour lorsqu’une personne proche rompt sciemment une promesse."
+        ],
+        "fixedRules": [
+          {
+            "entry": "promise_rule",
+            "level": 2
+          }
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "storm_roc",
+      "name": "Roc des tempêtes",
+      "weight": 1,
+      "fields": {
+        "description": "oiseau colossal qui niche dans les nuages d’orage et chasse tout ce qui porte du métal."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:flight }}",
+          "{{ traits:powerful_build }}",
+          "Enfant de l’orage — Ne subit aucun dégât de la foudre ordinaire et vole normalement dans les vents violents."
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "cathedral_mimic",
+      "name": "Mimique-cathédrale",
+      "weight": 1,
+      "fields": {
+        "description": "ancienne créature coloniale déguisée en lieu de culte abandonné."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:camouflage }}",
+          "{{ traits:powerful_build }}",
+          "Édifice vivant — Tant qu’elle reste immobile, une inspection ordinaire ne peut pas la distinguer du bâtiment ou monument imité."
+        ],
+        "naturalArmorPercentage": 50
+      }
+    },
+    {
+      "id": "time_starved_hunter",
+      "name": "Chasseur affamé de temps",
+      "weight": 1,
+      "fields": {
+        "description": "prédateur vacillant qui vole des secondes à ses proies pour se déplacer à une vitesse impossible."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:swift_reflexes }}",
+          "Secondes volées — Après avoir infligé des dégâts, peut immédiatement parcourir jusqu’à la moitié de sa vitesse de déplacement normale."
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "crown_hydra",
+      "name": "Hydre couronnée",
+      "weight": 1,
+      "fields": {
+        "description": "chaque tête tranchée repousse avec le visage et les souvenirs de la personne qui l’a abattue."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:regeneration }}",
+          "{{ traits:natural_weapons }}",
+          "Têtes multiples — Ne peut pas être surprise tant qu’au moins deux de ses têtes restent conscientes."
+        ],
+        "naturalArmorPercentage": 35
+      }
+    },
+    {
+      "id": "hollow_saint",
+      "name": "Saint creux",
+      "weight": 1,
+      "fields": {
+        "description": "mort-vivant radieux dont les soins miraculeux remplacent peu à peu la volonté du bénéficiaire."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:disease_immunity }}",
+          "Faux miracle — Une fois par scène, rend 10 % de ses PV maximums à une créature touchée ; celle-ci subit -1 aux actions d’{{ ability:intelligence.name }} jusqu’à son prochain repos."
+        ],
+        "equipment": ["weapons:arcane_scepter"],
+        "armor": "armors:breastplate"
+      }
+    },
+    {
+      "id": "abyssal_grazer",
+      "name": "Brouteur abyssal",
+      "weight": 1,
+      "fields": {
+        "description": "immense silhouette d’apparence paisible dont l’ombre dévore férocement les êtres vivants."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:powerful_build }}",
+          "Ombre vivante — Son ombre peut porter des attaques naturelles contre une cible située jusqu’à 5 mètres de son corps."
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "red_comet_beast",
+      "name": "Bête de la comète rouge",
+      "weight": 1,
+      "fields": {
+        "description": "prédateur cristallin tombé du ciel, qui se multiplie au contact de la magie."
+      },
+      "generation": {
+        "statProfile": "creature-elemental",
+        "traits": [
+          "{{ traits:stone_body }}",
+          "Fission magique — La première fois par scène qu’un sort l’affecte, crée dans un espace libre adjacent une copie fragile dotée de 1 PV."
+        ],
+        "modifiers": ["modifier_creature:smoldering"],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "ash_phoenix",
+      "name": "Phénix de cendre",
+      "weight": 1,
+      "fields": {
+        "description": "Un grand oiseau incandescent renaît d’un foyer voisin en portant les souvenirs de ceux qui ont nourri la flamme."
+      },
+      "generation": {
+        "statProfile": "creature-elemental",
+        "traits": [
+          "{{ traits:flight }}",
+          "{{ traits:fire_immunity }}",
+          "{{ traits:regeneration }}"
+        ],
+        "fixedRules": [
+          {
+            "entry": "elemental_rule",
+            "element": "fire",
+            "level": 2
+          }
+        ],
+        "modifiers": ["modifier_creature:smoldering"],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "juvenile_ogre",
+      "name": "Ogre juvénile",
+      "weight": 1,
+      "fields": {
+        "description": "Un jeune géant affamé imite des adultes absents et transforme chaque jeu en véritable danger."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": ["{{ traits:powerful_build }}"],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "hungry_changeling",
+      "name": "Changelin affamé",
+      "weight": 1,
+      "fields": {
+        "description": "Une créature copie l’apparence d’une personne mais comprend mal ses habitudes et ses liens."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "Imitation imparfaite — Peut copier l’apparence d’un humanoïde, mais subit -2 aux actions de {{ ability:charisma.name }} liées aux habitudes ou relations de cette personne."
+        ],
+        "fixedRules": [
+          {
+            "entry": "borrowed_face_rule",
+            "level": 1
+          }
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "imp",
+      "name": "Diablotin",
+      "weight": 1,
+      "fields": {
+        "description": "Un petit démon propose des marchés insignifiants dont la formulation dissimule des conséquences disproportionnées."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": ["{{ traits:flight }}", "{{ traits }}"],
+        "naturalArmorPercentage": 5
+      }
+    },
+    {
+      "id": "dissolving_ooze",
+      "name": "Limon dissolvant",
+      "weight": 1,
+      "fields": {
+        "description": "Une masse lente digère la matière organique et le métal tendre, laissant intacts les objets qu’elle ne comprend pas."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}",
+          "Corps corrosif — Inflige 2 dégâts par tour à la matière organique ordinaire ou au métal tendre qu’elle recouvre entièrement."
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "uprooted_treant",
+      "name": "Tréant déraciné",
+      "weight": 1,
+      "fields": {
+        "description": "Un gardien végétal s’éloigne de sa forêt parce que les racines de son territoire ont été empoisonnées."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:powerful_build }}",
+          "Ancrage racinaire — Tant qu’elle touche un sol naturel, gagne +2 aux actions de {{ ability:strength.name }} pour résister à un déplacement forcé."
+        ],
+        "fixedRules": [
+          {
+            "entry": "elemental_rule",
+            "element": "plants",
+            "level": 2
+          }
+        ],
+        "naturalArmorPercentage": 35
+      }
+    },
+    {
+      "id": "stubborn_undead",
+      "name": "Mort-vivant obstiné",
+      "weight": 1,
+      "fields": {
+        "description": "Un cadavre animé poursuit une tâche quotidienne sans comprendre que le monde a changé."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}"
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "patrol_skeleton",
+      "name": "Squelette de patrouille",
+      "weight": 1,
+      "fields": {
+        "description": "Des ossements armés répètent un itinéraire militaire et considèrent toute entorse au protocole comme une intrusion."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}"
+        ],
+        "equipment": ["weapons:spear"],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "mutant_animal",
+      "name": "Animal mutant",
+      "weight": 1,
+      "fields": {
+        "description": "Une bête ordinaire porte une adaptation impossible provoquée par une pollution magique ou alchimique."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": ["{{ traits }}"],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "abandoned_golem",
+      "name": "Golem abandonné",
+      "weight": 1,
+      "fields": {
+        "description": "Un serviteur artificiel continue d’exécuter un ordre devenu dangereux en l’absence d’un maître capable de le modifier."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:stone_body }}",
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}"
+        ],
+        "naturalArmorPercentage": 50
+      }
+    },
+    {
+      "id": "imp_chicken",
+      "name": "Poulet diablotin",
+      "weight": 1,
+      "fields": {
+        "description": "Une volaille possédée manifeste une agressivité absurde, des bonds surnaturels et une résistance sans commune mesure avec sa taille."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:swift_reflexes }}",
+          "{{ traits:natural_weapons }}"
+        ],
+        "naturalArmorPercentage": 5
+      }
+    },
+    {
+      "id": "giant_insect",
+      "name": "Insecte géant",
+      "weight": 1,
+      "fields": {
+        "description": "Un arthropode colossal défend un nid construit autour d’une source de chaleur ou de magie."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": ["{{ traits:natural_weapons }}"],
+        "naturalArmorPercentage": 30
+      }
+    },
+    {
+      "id": "animated_statue",
+      "name": "Statue animée",
+      "weight": 1,
+      "fields": {
+        "description": "Une sculpture quitte son socle pour corriger toute personne qui contredit la version officielle de l’événement qu’elle représente."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:stone_body }}",
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}"
+        ],
+        "naturalArmorPercentage": 50
+      }
+    },
+    {
+      "id": "voracious_slug",
+      "name": "Limace vorace",
+      "weight": 1,
+      "fields": {
+        "description": "Une créature lente sécrète une substance qui dissout murs, armures ou souvenirs selon son alimentation."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "Sillage corrosif — Laisse une trace qui inflige 1 dégât par tour à un matériau déterminé par son alimentation actuelle."
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "fiery_salamander",
+      "name": "Salamandre ardente",
+      "weight": 1,
+      "fields": {
+        "description": "Un reptile surnaturel vit dans les flammes et propage involontairement le feu lorsqu’il prend peur."
+      },
+      "generation": {
+        "statProfile": "creature-elemental",
+        "traits": ["{{ traits:fire_immunity }}"],
+        "fixedRules": [
+          {
+            "entry": "elemental_rule",
+            "element": "fire",
+            "level": 1
+          }
+        ],
+        "modifiers": ["modifier_creature:smoldering"],
+        "naturalArmorPercentage": 25
+      }
+    },
+    {
+      "id": "cliff_harpy",
+      "name": "Harpie des falaises",
+      "weight": 1,
+      "fields": {
+        "description": "Une prédatrice ailée imite des appels familiers pour attirer les voyageurs sur un terrain dangereux."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:flight }}",
+          "Voix familières — +2 aux actions de {{ ability:charisma.name }} pour attirer ou désorienter quelqu’un en imitant des voix déjà entendues."
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "murky_water_siren",
+      "name": "Sirène des eaux troubles",
+      "weight": 1,
+      "fields": {
+        "description": "Une créature aquatique utilise chants et reflets pour isoler une cible du groupe."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:amphibious }}",
+          "{{ traits:aquatic_speed }}",
+          "Chant enjôleur — +2 aux actions de {{ ability:charisma.name }} pour isoler un auditeur capable d’entendre la créature."
+        ],
+        "fixedRules": [
+          {
+            "entry": "influence_rule",
+            "level": 1
+          }
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "watcher_cyclops",
+      "name": "Cyclope veilleur",
+      "weight": 1,
+      "fields": {
+        "description": "Un géant solitaire garde un passage dont la destination a été oubliée, mais dont l’interdiction demeure."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:powerful_build }}",
+          "Vue perçante — +2 aux actions de {{ ability:perception.name }} reposant sur la vue à longue distance."
+        ],
+        "naturalArmorPercentage": 20
+      }
+    },
+    {
+      "id": "hungry_vampire",
+      "name": "Vampire affamé",
+      "weight": 1,
+      "fields": {
+        "description": "Un prédateur immortel maintient une façade civilisée tandis que la pénurie rend son contrôle de plus en plus fragile."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:darkvision }}",
+          "{{ traits:regeneration }}",
+          "{{ traits:natural_weapons }}"
+        ],
+        "fixedRules": [
+          {
+            "entry": "vampirism_rule",
+            "level": 2
+          }
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "memory_parasite",
+      "name": "Parasite mémoriel",
+      "weight": 1,
+      "fields": {
+        "description": "Une petite créature se nourrit de souvenirs récents et laisse ses victimes incapables d’expliquer sa présence."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:camouflage }}",
+          "Drain de mémoire — Après une minute de contact avec une créature sans défense, efface ses souvenirs de l’heure précédente."
+        ],
+        "fixedRules": [
+          {
+            "entry": "memory_rule",
+            "level": 1
+          }
+        ],
+        "naturalArmorPercentage": 5
+      }
+    },
+    {
+      "id": "repetitive_ghost",
+      "name": "Fantôme répétitif",
+      "weight": 1,
+      "fields": {
+        "description": "Un esprit rejoue une scène incomplète et devient violent lorsque des témoins en modifient le déroulement."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:incorporeal }}",
+          "Boucle spectrale — Répète une scène ; les témoins qui l’interrompent volontairement subissent -1 aux actions d’{{ ability:intelligence.name }} jusqu’à l’apaisement de l’esprit."
+        ],
+        "modifiers": ["modifier_creature:shadowed"]
+      }
+    },
+    {
+      "id": "unstable_chimera",
+      "name": "Chimère instable",
+      "weight": 1,
+      "fields": {
+        "description": "Plusieurs anatomies incompatibles luttent pour contrôler un même corps créé artificiellement."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "Instinct composite — Son anatomie disparate lui confère aussi cette capacité : {{ traits }}",
+          "{{ traits }}"
+        ],
+        "naturalArmorPercentage": 25
+      }
+    },
+    {
+      "id": "unleashed_elemental",
+      "name": "Élémentaire déchaîné",
+      "weight": 1,
+      "fields": {
+        "description": "Une force naturelle animée cherche à rétablir l’équilibre sans comprendre les vies qui se trouvent sur son chemin."
+      },
+      "generation": {
+        "statProfile": "creature-elemental",
+        "traits": ["{{ traits }}"],
+        "naturalArmorPercentage": 25
+      }
+    },
+    {
+      "id": "territorial_gargoyle",
+      "name": "Gargouille territoriale",
+      "weight": 1,
+      "fields": {
+        "description": "Une sentinelle de pierre change de bâtiment chaque nuit et considère chacun de ses nouveaux emplacements comme sacré."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": ["{{ traits:stone_body }}", "{{ traits:flight }}"],
+        "naturalArmorPercentage": 45
+      }
+    },
+    {
+      "id": "highland_griffin",
+      "name": "Griffon des hauteurs",
+      "weight": 1,
+      "fields": {
+        "description": "Un prédateur majestueux protège son aire et les objets brillants qu’il prend pour des œufs."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": ["{{ traits:flight }}", "{{ traits:natural_weapons }}"],
+        "naturalArmorPercentage": 20
+      }
+    },
+    {
+      "id": "reclusive_gorgon",
+      "name": "Gorgone recluse",
+      "weight": 1,
+      "fields": {
+        "description": "Une créature maudite pétrifie davantage par peur que par cruauté et collectionne les statues de ses visiteurs."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "Regard pétrifiant — Une fois par scène, une cible visible qui croise son regard ne peut plus se déplacer jusqu’à la fin de son prochain tour."
+        ],
+        "fixedRules": [
+          {
+            "entry": "petrification_rule",
+            "level": 2
+          }
+        ],
+        "naturalArmorPercentage": 20
+      }
+    },
+    {
+      "id": "hunted_werewolf",
+      "name": "Loup-garou traqué",
+      "weight": 1,
+      "fields": {
+        "description": "Une personne transformée entraîne les chasseurs loin de ses proches avant de perdre le contrôle."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:keen_smell }}",
+          "{{ traits:natural_weapons }}",
+          "{{ traits:regeneration }}"
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "guardian_mummy",
+      "name": "Momie gardienne",
+      "weight": 1,
+      "fields": {
+        "description": "Un ancien dignitaire préserve un lieu, un serment ou une erreur que ses descendants préféreraient oublier."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}"
+        ],
+        "naturalArmorPercentage": 25
+      }
+    },
+    {
+      "id": "architect_minotaur",
+      "name": "Minotaure architecte",
+      "weight": 1,
+      "fields": {
+        "description": "Une créature modifie sans cesse son labyrinthe et considère chaque voyageur égaré comme un intrus volontaire."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:powerful_build }}",
+          "Sens du dédale — Connaît toujours le plus court chemin praticable vers tout lieu visité au cours de la dernière journée."
+        ],
+        "naturalArmorPercentage": 25
+      }
+    },
+    {
+      "id": "giant_burrowing_worm",
+      "name": "Ver fouisseur géant",
+      "weight": 1,
+      "fields": {
+        "description": "Un prédateur souterrain suit les vibrations et la chaleur, provoquant effondrements et déplacements du sol."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": ["{{ traits:burrower }}", "{{ traits:powerful_build }}"],
+        "naturalArmorPercentage": 30
+      }
+    },
+    {
+      "id": "carnivorous_plant",
+      "name": "Plante carnivore",
+      "weight": 1,
+      "fields": {
+        "description": "Une colonie végétale imite odeurs, voix et silhouettes pour attirer ses proies."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:camouflage }}",
+          "Mimétisme alléchant — +2 aux actions de {{ ability:charisma.name }} pour attirer une proie en imitant des odeurs, sons ou formes familiers."
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "ancient_dragon",
+      "name": "Dragon ancien",
+      "weight": 1,
+      "fields": {
+        "description": "Une créature immensément puissante protège davantage un secret capable de façonner une région qu’un trésor matériel."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:flight }}",
+          "{{ traits:powerful_build }}",
+          "{{ traits:natural_weapons }}"
+        ],
+        "naturalArmorPercentage": 50
+      }
+    },
+    {
+      "id": "shoal_kraken",
+      "name": "Kraken des hauts-fonds",
+      "weight": 1,
+      "fields": {
+        "description": "Un monstre marin bloque une route commerciale et construit un nid à partir d’épaves."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:amphibious }}",
+          "{{ traits:aquatic_speed }}",
+          "{{ traits:powerful_build }}"
+        ],
+        "naturalArmorPercentage": 25
+      }
+    },
+    {
+      "id": "migrating_behemoth",
+      "name": "Béhémoth migrateur",
+      "weight": 1,
+      "fields": {
+        "description": "Une créature gigantesque traverse périodiquement des communautés bâties sur son ancienne route migratoire."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": ["{{ traits:powerful_build }}"],
+        "naturalArmorPercentage": 50
+      }
+    },
+    {
+      "id": "vengeful_spirit",
+      "name": "Esprit vengeur",
+      "weight": 1,
+      "fields": {
+        "description": "Une entité liée à une injustice précise frappe les symboles du coupable plutôt que ses véritables héritiers."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:incorporeal }}",
+          "Lié aux symboles — Peut sentir tout symbole visible de l’injustice qui l’enchaîne et se diriger directement vers lui."
+        ],
+        "fixedRules": [
+          {
+            "entry": "spirits_rule",
+            "level": 2
+          }
+        ],
+        "modifiers": ["modifier_creature:shadowed"]
+      }
+    },
+    {
+      "id": "insect_queen",
+      "name": "Reine insecte",
+      "weight": 1,
+      "fields": {
+        "description": "Une créature intelligente coordonne une colonie et négocie comme si chaque individu faisait partie de son propre corps."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:pack_tactics }}",
+          "Esprit de ruche — Peut percevoir par l’intermédiaire de tout insecte allié à moins de 100 mètres et ne peut pas être prise en tenaille par les créatures qu’ils détectent."
+        ],
+        "naturalArmorPercentage": 25
+      }
+    },
+    {
+      "id": "kobold",
+      "name": "Kobold",
+      "weight": 4,
+      "fields": {
+        "description": "Un petit humanoïde reptilien qui compte sur les pièges, le nombre et les galeries étroites."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": ["{{ traits:darkvision }}", "{{ traits:pack_tactics }}"],
+        "equipment": ["weapons:dagger"],
+        "naturalArmorPercentage": 5
+      }
+    },
+    {
+      "id": "gnoll",
+      "name": "Gnoll",
+      "weight": 3,
+      "fields": {
+        "description": "Un humanoïde à tête d’hyène qui chasse en meute et privilégie les proies isolées."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:keen_smell }}",
+          "{{ traits:pack_tactics }}",
+          "{{ traits:natural_weapons }}"
+        ],
+        "equipment": ["weapons:spear"],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "zombie",
+      "name": "Zombie",
+      "weight": 4,
+      "fields": {
+        "description": "Un cadavre animé qui avance sans relâche et obéit à des ordres simples."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}"
+        ],
+        "naturalArmorPercentage": 5
+      }
+    },
+    {
+      "id": "ghoul",
+      "name": "Goule",
+      "weight": 3,
+      "fields": {
+        "description": "Un mort-vivant famélique qui rôde dans les lieux abandonnés à la recherche de chair."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:darkvision }}",
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}",
+          "{{ traits:natural_weapons }}",
+          "Griffes paralysantes — Après qu’une attaque naturelle a infligé des dégâts, la cible perd 1 PA à moins qu’elle ne résiste à la paralysie."
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "giant_rat",
+      "name": "Rat géant",
+      "weight": 4,
+      "fields": {
+        "description": "Un rongeur charognard démesuré qui niche dans les ruines, les égouts et les tas d’ordures."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:keen_smell }}",
+          "{{ traits:pack_tactics }}",
+          "{{ traits:natural_weapons }}"
+        ],
+        "naturalArmorPercentage": 5
+      }
+    },
+    {
+      "id": "giant_spider",
+      "name": "Araignée géante",
+      "weight": 3,
+      "fields": {
+        "description": "Une immense araignée prédatrice qui tend des toiles entravantes dans les espaces clos."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:web_spinner }}",
+          "{{ traits:wall_climber }}",
+          "{{ traits:venomous }}"
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "giant_scorpion",
+      "name": "Scorpion géant",
+      "weight": 3,
+      "fields": {
+        "description": "Un arthropode du désert lourdement cuirassé, doté de pinces broyeuses et d’une queue venimeuse."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": ["{{ traits:natural_weapons }}", "{{ traits:venomous }}"],
+        "naturalArmorPercentage": 30
+      }
+    },
+    {
+      "id": "giant_snake",
+      "name": "Serpent géant",
+      "weight": 3,
+      "fields": {
+        "description": "Un serpent colossal qui surprend ses proies avant de les broyer dans ses puissants anneaux."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:heat_sense }}",
+          "{{ traits:constrict }}",
+          "{{ traits:natural_weapons }}"
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "dire_wolf",
+      "name": "Loup sanguinaire",
+      "weight": 3,
+      "fields": {
+        "description": "Un loup gigantesque qui abat de grandes proies grâce à sa vitesse et à des attaques coordonnées."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:keen_smell }}",
+          "{{ traits:pack_tactics }}",
+          "{{ traits:pounce }}",
+          "{{ traits:natural_weapons }}"
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "mimic",
+      "name": "Mimique",
+      "weight": 2,
+      "fields": {
+        "description": "Un prédateur métamorphe qui imite un objet ordinaire jusqu’à ce qu’une proie s’approche."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:camouflage }}",
+          "{{ traits:natural_weapons }}",
+          "Peau adhésive — +2 aux actions de {{ ability:strength.name }} pour maintenir une lutte contre une créature qui le touche."
+        ],
+        "naturalArmorPercentage": 20
+      }
+    },
+    {
+      "id": "gelatinous_cube",
+      "name": "Cube gélatineux",
+      "weight": 2,
+      "fields": {
+        "description": "Une vase presque transparente qui emplit lentement les passages et digère la matière organique."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}",
+          "{{ traits:constrict }}",
+          "Corps transparent — +2 aux actions de {{ ability:dexterity.name }} pour passer inaperçu tant qu’il reste immobile dans une faible lumière."
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "cockatrice",
+      "name": "Cocatrix",
+      "weight": 2,
+      "fields": {
+        "description": "Un petit reptile ailé dont la morsure peut brièvement changer la chair vivante en pierre."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:flight }}",
+          "{{ traits:natural_weapons }}",
+          "Morsure pétrifiante — Une fois par scène, une créature blessée par sa morsure ne peut plus se déplacer jusqu’à la fin de son prochain tour, sauf si elle résiste à la pétrification."
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "manticore",
+      "name": "Manticore",
+      "weight": 2,
+      "fields": {
+        "description": "Un monstre léonin ailé, armé de griffes, de crocs et de volées de piquants caudaux."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:flight }}",
+          "{{ traits:natural_weapons }}",
+          "Piquants caudaux — Peut effectuer des attaques naturelles ordinaires à distance avec les piquants de sa queue."
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "wyvern",
+      "name": "Wyverne",
+      "weight": 2,
+      "fields": {
+        "description": "Un reptile volant bipède qui chasse à l’aide d’une queue venimeuse et de puissantes mâchoires."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:flight }}",
+          "{{ traits:natural_weapons }}",
+          "{{ traits:venomous }}"
+        ],
+        "naturalArmorPercentage": 20
+      }
+    },
+    {
+      "id": "ettin",
+      "name": "Ettin",
+      "weight": 2,
+      "fields": {
+        "description": "Un géant à deux têtes dont l’attention partagée le rend difficile à surprendre."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:powerful_build }}",
+          "{{ traits:natural_weapons }}",
+          "Deux têtes — Ne peut pas être surpris tant que ses deux têtes sont conscientes."
+        ],
+        "equipment": ["weapons:club"],
+        "naturalArmorPercentage": 20
+      }
+    },
+    {
+      "id": "shambling_mound",
+      "name": "Tertre errant",
+      "weight": 2,
+      "fields": {
+        "description": "Une masse mouvante de racines, de lianes et de végétation détrempée qui saisit les créatures proches."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:camouflage }}",
+          "{{ traits:regeneration }}",
+          "{{ traits:constrict }}"
+        ],
+        "naturalArmorPercentage": 25
+      }
+    },
+    {
+      "id": "lich",
+      "name": "Liche",
+      "weight": 1,
+      "fields": {
+        "description": "Un lanceur de sorts mort-vivant préservé par une puissante nécromancie et de longs préparatifs."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:darkvision }}",
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}",
+          "{{ traits:magic_resistance }}"
+        ],
+        "fixedRules": [
+          {
+            "entry": "dead_rule",
+            "level": 3
+          },
+          {
+            "entry": "curse_rule",
+            "level": 2
+          }
+        ],
+        "equipment": ["weapons:combat_scepter"],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "hell_hound",
+      "name": "Chien infernal",
+      "weight": 2,
+      "fields": {
+        "description": "Un chien de chasse surnaturel qui crache du feu et poursuit ses proies en meute coordonnée."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:keen_smell }}",
+          "{{ traits:pack_tactics }}",
+          "{{ traits:fire_immunity }}",
+          "{{ traits:natural_weapons }}",
+          "Souffle ardent — Une fois par scène, peut effectuer une attaque naturelle contre chaque créature dans un cône de 3 mètres."
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "forgotten_choir",
+      "name": "Chœur oublié",
+      "weight": 1,
+      "fields": {
+        "description": "Un grand prédateur dissimulé dont le chant continu pousse ceux qui l'entendent à l'ignorer et à rationaliser la disparition des personnes qu'il dévore, malgré les chambres abandonnées et les possessions en trop."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:camouflage }}",
+          "Chant d'oubli — Les auditeurs négligent inconsciemment la créature et les personnes qu'elle a dévorées ; le silence, la surdité, l'interruption du chant, l'observation indirecte ou des preuves contradictoires accablantes peuvent la révéler."
+        ],
+        "fixedRules": [
+          {
+            "entry": "memory_rule",
+            "level": 2
+          }
+        ],
+        "naturalArmorPercentage": 20
+      }
+    },
+    {
+      "id": "many_eyed_tyrant",
+      "name": "Tyran aux mille yeux",
+      "weight": 1,
+      "fields": {
+        "description": "Une aberration territoriale flottante dont les nombreux yeux projettent différents dangers surnaturels, tandis que son regard central dominant neutralise la magie et les effets de LOI."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:flight }}",
+          "{{ traits:gaze_effect }}",
+          "Œil d'annulation — La magie et les effets de LOI deviennent inertes tant que l'œil central reste ouvert et volontairement dirigé vers eux."
+        ],
+        "fixedRules": [
+          {
+            "entry": "vision_rule",
+            "level": 2
+          }
+        ],
+        "naturalArmorPercentage": 25
+      }
+    },
+    {
+      "id": "thought_eater",
+      "name": "Dévoreur de pensées",
+      "weight": 1,
+      "fields": {
+        "description": "Un prédateur psychique qui dévore les souvenirs, les connaissances acquises, le raisonnement ou des fragments de personnalité tout en laissant sa victime physiquement en vie."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": ["{{ traits:telepathy }}", "{{ traits:memory_theft }}"],
+        "fixedRules": [
+          {
+            "entry": "memory_rule",
+            "level": 2
+          }
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "offset_panther",
+      "name": "Panthère décalée",
+      "weight": 1,
+      "fields": {
+        "description": "Un prédateur à l'affût dont l'image visible apparaît continuellement à faible distance de son véritable corps."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:camouflage }}",
+          "{{ traits:pounce }}",
+          "Image décalée — Les attaques visant uniquement sa position apparente échouent à moins que l'assaillant ne repère l'emplacement de son véritable corps."
+        ],
+        "fixedRules": [
+          {
+            "entry": "illusion_rule",
+            "level": 1
+          }
+        ],
+        "naturalArmorPercentage": 15
+      }
+    },
+    {
+      "id": "stonefin",
+      "name": "Aileron de pierre",
+      "weight": 1,
+      "fields": {
+        "description": "Un prédateur souterrain lourdement cuirassé qui détecte les mouvements en surface, fend la terre et surgit sous sa proie ou juste à côté d'elle."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:burrower }}",
+          "{{ traits:tremorsense }}",
+          "{{ traits:pounce }}",
+          "{{ traits:powerful_build }}"
+        ],
+        "naturalArmorPercentage": 50
+      }
+    },
+    {
+      "id": "whispering_flesh",
+      "name": "Chair murmurante",
+      "weight": 1,
+      "fields": {
+        "description": "Un agrégat rampant et amorphe de bouches, d'yeux et de chair à demi formée, dont les voix superposées troublent la pensée cohérente et la parole alentour."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:swarm_body }}",
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}",
+          "Chœur balbutiant — Les créatures qui l'entendent subissent -1 aux actions exigeant de la concentration ou une communication claire."
+        ],
+        "naturalArmorPercentage": 20
+      }
+    },
+    {
+      "id": "memory_colony",
+      "name": "Colonie de mémoire",
+      "weight": 1,
+      "fields": {
+        "description": "Un organisme informe qui absorbe les souvenirs et fait émerger des imitations convaincantes des personnes dont il a dévoré la vie."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:memory_theft }}",
+          "Personne empruntée — Peut former une imitation physique convaincante d'une personne dont elle a absorbé les souvenirs, y compris les habitudes et les relations connues de cette victime."
+        ],
+        "fixedRules": [
+          {
+            "entry": "memory_rule",
+            "level": 2
+          },
+          {
+            "entry": "borrowed_face_rule",
+            "level": 2
+          }
+        ],
+        "naturalArmorPercentage": 5
+      }
+    },
+    {
+      "id": "living_mantle",
+      "name": "Manteau vivant",
+      "weight": 1,
+      "fields": {
+        "description": "Un prédateur nocturne aplati qui ressemble à une cape, une tapisserie, une étoffe suspendue ou une plaque d'ombre avant de se déployer et d'envelopper sa proie."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:camouflage }}",
+          "{{ traits:flight }}",
+          "{{ traits:constrict }}"
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "secret_seer",
+      "name": "Voyant des secrets",
+      "weight": 1,
+      "fields": {
+        "description": "Un observateur difforme qui perçoit la culpabilité dissimulée, les secrets personnels et les faits compromettants, puis négocie ou menace grâce à ce qu'il apprend."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:telepathy }}",
+          "{{ traits:magic_sense }}",
+          "Vision des secrets — Après avoir observé attentivement une personne, découvre un fait important qu'elle cherche délibérément à cacher."
+        ],
+        "fixedRules": [
+          {
+            "entry": "truth_rule",
+            "level": 1
+          },
+          {
+            "entry": "vision_rule",
+            "level": 1
+          }
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "cursed_warplate",
+      "name": "Harnois maudit",
+      "weight": 1,
+      "fields": {
+        "description": "Un guerrier surnaturel dont l'armure est la véritable créature persistante ; détruire son porteur donne seulement au harnois intact le temps de fabriquer ou de posséder un nouveau corps."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}",
+          "Renaissance du harnois — Si l'armure reste intacte après la chute du porteur, elle peut finir par reconstruire, créer ou posséder un nouveau porteur."
+        ],
+        "fixedRules": [
+          {
+            "entry": "resurrection_rule",
+            "level": 2
+          }
+        ],
+        "naturalArmorPercentage": 40
+      }
+    },
+    {
+      "id": "toybone_child",
+      "name": "Enfant de bric et d'os",
+      "weight": 1,
+      "fields": {
+        "description": "Un petit mort-vivant à silhouette d'enfant assemblé avec des restes, des jouets abandonnés, du tissu, des boutons, des pièces sculptées et des débris domestiques, capable de voler et d'imiter les voix familières."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:poison_immunity }}",
+          "{{ traits:disease_immunity }}",
+          "Voix volée — Peut reproduire parfaitement une voix entendue et empêcher temporairement son propriétaire de parler plus fort qu'un murmure."
+        ],
+        "fixedRules": [
+          {
+            "entry": "voice_rule",
+            "level": 1
+          }
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "doom_serpent",
+      "name": "Serpent funeste",
+      "weight": 1,
+      "fields": {
+        "description": "Un colossal serpent antique dont la mort maudit la créature qui lui a réellement porté le coup fatal."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:natural_weapons }}",
+          "{{ traits:swallowing }}",
+          "Malédiction du meurtrier — Lorsque le serpent meurt, la créature qui lui a infligé le dernier dégât reçoit une malédiction persistante propre à ce serpent."
+        ],
+        "fixedRules": [
+          {
+            "entry": "curse_rule",
+            "level": 2
+          }
+        ],
+        "naturalArmorPercentage": 50
+      }
+    },
+    {
+      "id": "carrion_aggregate",
+      "name": "Agrégat de charogne",
+      "weight": 1,
+      "fields": {
+        "description": "Une créature assemblée à partir de chair jetée, d'expériences ratées, de cadavres et de déchets organiques, capable de se déformer pour franchir des passages étroits et de se reconstruire avec des restes frais."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:swarm_body }}",
+          "{{ traits:regeneration }}",
+          "{{ traits:disease_immunity }}",
+          "Réparation charognarde — Peut incorporer des restes organiques frais afin de remplacer une partie visiblement détruite de son corps."
+        ],
+        "naturalArmorPercentage": 20
+      }
+    },
+    {
+      "id": "adaptive_hunter",
+      "name": "Chasseur adaptatif",
+      "weight": 1,
+      "fields": {
+        "description": "Un chasseur surnaturel implacable qui revient après une destruction apparente, transformé de façon à rendre moins efficace la méthode précise déjà employée contre lui."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:regeneration }}",
+          "{{ traits:reactive_adaptation }}",
+          "Retour inévitable — Une destruction apparente met fin à la poursuite en cours sans pouvoir le tuer définitivement ; chaque retour porte les marques de la défaite précédente."
+        ],
+        "fixedRules": [
+          {
+            "entry": "resurrection_rule",
+            "level": 2
+          }
+        ],
+        "naturalArmorPercentage": 25
+      }
+    },
+    {
+      "id": "grave_box",
+      "name": "Cercueil prédateur",
+      "weight": 1,
+      "fields": {
+        "description": "Un prédateur mobile en forme de cercueil qui attire une victime à l'intérieur, se referme sur elle et tente de l'emporter ou de s'enterrer avec sa captive."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:camouflage }}",
+          "{{ traits:swallowing }}",
+          "{{ traits:powerful_build }}",
+          "Auto-inhumation — Lorsqu'il transporte une captive à l'intérieur, peut creuser dans la terre meuble à la moitié de sa vitesse normale sans laisser de tunnel praticable."
+        ],
+        "naturalArmorPercentage": 40
+      }
+    },
+    {
+      "id": "living_pool",
+      "name": "Bassin vivant",
+      "weight": 1,
+      "fields": {
+        "description": "Une mare ou une petite étendue d'eau apparemment ordinaire qui est elle-même une créature, capable de s'élever de sa propre surface, de saisir des proies et de les entraîner dans ses profondeurs."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:camouflage }}",
+          "{{ traits:aquatic_speed }}",
+          "{{ traits:constrict }}",
+          "Corps liquide — Occupe tout son bassin et ne peut s'en éloigner sans transporter ou abandonner la majeure partie de sa propre substance."
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "grudge_spirit",
+      "name": "Esprit rancunier",
+      "weight": 1,
+      "fields": {
+        "description": "Un prédateur social surnaturel qui se nourrit de ressentiment, d'humiliation et d'amertume en aggravant les désaccords et en retournant les communautés contre elles-mêmes."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:incorporeal }}",
+          "{{ traits:telepathy }}",
+          "Nourri de rancune — Gagne +1 aux actions sociales et surnaturelles tant que des personnes proches aggravent activement un conflit qu'il a encouragé."
+        ],
+        "fixedRules": [
+          {
+            "entry": "influence_rule",
+            "level": 2
+          }
+        ],
+        "naturalArmorPercentage": 10
+      }
+    },
+    {
+      "id": "impossible_anatomy",
+      "name": "Anatomie impossible",
+      "weight": 1,
+      "fields": {
+        "description": "Une créature dont les membres, les blessures, les organes et la structure interne deviennent mutuellement incompatibles lorsqu'on les observe sous différents angles."
+      },
+      "generation": {
+        "statProfile": "creature-caster",
+        "traits": [
+          "{{ traits:magic_resistance }}",
+          "Anatomie perspective — Un changement de point de vue révèle une organisation différente de son corps ; une blessure ou un obstacle visible sous un angle peut ne pas exister sous un autre."
+        ],
+        "fixedRules": [
+          {
+            "entry": "space_rule",
+            "level": 2
+          }
+        ],
+        "naturalArmorPercentage": 20
+      }
+    },
+    {
+      "id": "hunger_in_the_walls",
+      "name": "Faim dans les murs",
+      "weight": 1,
+      "fields": {
+        "description": "Un organisme installé dans un bâtiment et répandu à travers ses murs, ses plafonds et ses sols, qui manifeste temporairement des bouches, des membres, des tentacules et des yeux à travers les surfaces."
+      },
+      "generation": {
+        "statProfile": "creature-brute",
+        "traits": [
+          "{{ traits:camouflage }}",
+          "{{ traits:extended_reach }}",
+          "Corps distribué — Se déplace dans l'architecture connectée et n'expose que des fragments temporaires ; détruire une manifestation ne révèle pas la créature entière."
+        ],
+        "naturalArmorPercentage": 30
+      }
+    },
+    {
+      "id": "borrowed_skeleton",
+      "name": "Squelette d'emprunt",
+      "weight": 1,
+      "fields": {
+        "description": "Une créature naturellement molle qui habite des squelettes abandonnés, des armures, des mannequins ou d'autres structures rigides pour se tenir debout et se déplacer, puis abandonne chaque support devenu inutile."
+      },
+      "generation": {
+        "statProfile": "creature-predator",
+        "traits": [
+          "{{ traits:camouflage }}",
+          "Structure empruntée — Peut entrer dans une armature rigide inoccupée pour en imiter la forme et les mouvements, puis l'abandonner sans dommage.",
+          "Chair sans soutien — Sans armature, peut se faufiler par toute ouverture assez grande pour son corps mou, mais tient à peine debout et ne peut presque rien porter."
+        ],
+        "naturalArmorPercentage": 5
+      }
+    }
+  ]
+}

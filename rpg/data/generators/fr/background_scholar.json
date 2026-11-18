@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 4,
+  "id": "scholar",
+  "visibility": "internal",
+  "name": "Archétypes d’érudit",
+  "description": "Rôles liés au savoir, aux archives et à la recherche",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "student",
+      "name": "Étudiant"
+    },
+    {
+      "id": "researcher",
+      "name": "Chercheur",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "scribe",
+      "name": "Scribe"
+    },
+    {
+      "id": "librarian",
+      "name": "Bibliothécaire",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "historian",
+      "name": "Historien",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "cartographer",
+      "name": "Cartographe",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "physician",
+      "name": "Médecin",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "theologian",
+      "name": "Théologien",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "archivist",
+      "name": "Archiviste",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "professor",
+      "name": "Professeur",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "chronicler",
+      "name": "Chroniqueur",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "monster_anatomist",
+      "name": "Anatomiste des monstres"
+    },
+    {
+      "id": "magical_investigator",
+      "name": "Enquêteur de l'occulte"
+    },
+    {
+      "id": "containment_specialist",
+      "name": "Spécialiste du confinement surnaturel"
+    }
+  ]
+}

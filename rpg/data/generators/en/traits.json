@@ -1,0 +1,369 @@
+{
+  "schemaVersion": 4,
+  "id": "traits",
+  "visibility": "public",
+  "name": "Traits",
+  "description": "Concrete intrinsic creature capabilities and bonuses",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "amphibious",
+      "name": "Amphibious",
+      "fields": {
+        "description": "Can breathe and act normally both underwater and on land."
+      }
+    },
+    {
+      "id": "keen_smell",
+      "name": "Keen Smell",
+      "fields": {
+        "description": "+2 to {{ ability:perception.name }} actions when detecting or tracking by scent."
+      }
+    },
+    {
+      "id": "keen_hearing",
+      "name": "Keen Hearing",
+      "fields": {
+        "description": "+2 to {{ ability:perception.name }} actions that rely on hearing."
+      }
+    },
+    {
+      "id": "darkvision",
+      "name": "Darkvision",
+      "fields": {
+        "description": "Cannot be blinded by ordinary darkness."
+      }
+    },
+    {
+      "id": "echolocation",
+      "name": "Echolocation",
+      "fields": {
+        "description": "Can perceive nearby creatures and obstacles without sight while able to emit and hear sound."
+      }
+    },
+    {
+      "id": "sure_footed",
+      "name": "Sure-Footed",
+      "fields": {
+        "description": "+2 to {{ ability:dexterity.name }} actions made to climb or keep balance on difficult ground."
+      }
+    },
+    {
+      "id": "powerful_build",
+      "name": "Powerful Build",
+      "fields": {
+        "description": "+1 to {{ ability:strength.name }} actions involving pushing, lifting, or breaking objects."
+      }
+    },
+    {
+      "id": "swift_reflexes",
+      "name": "Swift Reflexes",
+      "fields": {
+        "description": "+1 to Speed on Reflexes checks against threats the creature can perceive."
+      }
+    },
+    {
+      "id": "flight",
+      "name": "Flight",
+      "fields": {
+        "description": "Can fly at its normal movement speed while its wings are free."
+      }
+    },
+    {
+      "id": "gliding",
+      "name": "Gliding",
+      "fields": {
+        "description": "Ignores damage from the first 10 meters of a fall and may move 2 meters horizontally per meter descended."
+      }
+    },
+    {
+      "id": "burrower",
+      "name": "Burrower",
+      "fields": {
+        "description": "Can move through loose earth at half its normal movement speed and leaves a traversable tunnel."
+      }
+    },
+    {
+      "id": "aquatic_speed",
+      "name": "Aquatic Speed",
+      "fields": {
+        "description": "Moves through water at its normal movement speed and gains +1 to {{ ability:dexterity.name }} actions made to swim."
+      }
+    },
+    {
+      "id": "regeneration",
+      "name": "Regeneration",
+      "fields": {
+        "description": "At the start of its turn, recovers 5% of maximum HP if it has at least 1 HP; the following weakness prevents this recovery for that turn: {{ weakness.name }}."
+      }
+    },
+    {
+      "id": "fire_immunity",
+      "name": "Fire Immunity",
+      "fields": {
+        "description": "Takes no damage and suffers no harmful effects from ordinary fire or heat."
+      }
+    },
+    {
+      "id": "cold_immunity",
+      "name": "Cold Immunity",
+      "fields": {
+        "description": "Takes no damage and suffers no harmful effects from ordinary cold or ice."
+      }
+    },
+    {
+      "id": "poison_immunity",
+      "name": "Poison Immunity",
+      "fields": {
+        "description": "Cannot be poisoned and takes no damage from mundane toxins."
+      }
+    },
+    {
+      "id": "disease_immunity",
+      "name": "Disease Immunity",
+      "fields": {
+        "description": "Cannot contract or transmit ordinary diseases."
+      }
+    },
+    {
+      "id": "incorporeal",
+      "name": "Incorporeal",
+      "fields": {
+        "description": "Can pass through nonmagical creatures and solid objects at half speed but must end movement in an open space."
+      }
+    },
+    {
+      "id": "camouflage",
+      "name": "Natural Camouflage",
+      "fields": {
+        "description": "+2 to {{ ability:dexterity.name }} actions made to hide in the creature's native environment."
+      }
+    },
+    {
+      "id": "pack_tactics",
+      "name": "Pack Tactics",
+      "fields": {
+        "description": "+1 to attack actions against a target adjacent to one of the creature's allies."
+      }
+    },
+    {
+      "id": "natural_weapons",
+      "name": "Natural Weapons",
+      "fields": {
+        "description": "+1 damage with unarmed attacks made using claws, fangs, horns, or another natural weapon."
+      }
+    },
+    {
+      "id": "venomous",
+      "name": "Venomous",
+      "fields": {
+        "description": "After a natural attack deals damage, the target gains the {{ status_effect:poisoned.name }} status effect and loses 1 AP unless it resists the poison."
+      }
+    },
+    {
+      "id": "web_spinner",
+      "name": "Web Spinner",
+      "fields": {
+        "description": "Can create strong webs that inflict the {{ status_effect:restrained.name }} status effect on a target and gains +2 to {{ ability:dexterity.name }} actions made to move across them."
+      }
+    },
+    {
+      "id": "stone_body",
+      "name": "Stone Body",
+      "fields": {
+        "description": "Does not need to breathe and gains +2 to {{ ability:constitution.name }} actions made to resist impacts."
+      }
+    },
+    {
+      "id": "magic_sense",
+      "name": "Magic Sense",
+      "fields": {
+        "description": "+2 to {{ ability:perception.name }} actions made to detect active spells or enchanted objects nearby."
+      }
+    },
+    {
+      "id": "pounce",
+      "name": "Pounce",
+      "fields": {
+        "description": "+1 to the next action made to grapple or inflict the {{ status_effect:prone.name }} status effect on a target after moving at least 3 meters toward it in the same turn."
+      }
+    },
+    {
+      "id": "charge",
+      "name": "Charge",
+      "fields": {
+        "description": "+1 to the next melee attack after moving at least 5 meters straight toward the target in the same turn."
+      }
+    },
+    {
+      "id": "constrict",
+      "name": "Constrict",
+      "fields": {
+        "description": "+2 to {{ ability:strength.name }} actions made to maintain or tighten an existing grapple."
+      }
+    },
+    {
+      "id": "wall_climber",
+      "name": "Wall Climber",
+      "fields": {
+        "description": "Can move along steep or vertical rough surfaces at half its normal movement speed without a routine {{ ability:climbing.name }} roll."
+      }
+    },
+    {
+      "id": "tremorsense",
+      "name": "Tremorsense",
+      "fields": {
+        "description": "Detects movement within 10 meters without sight while it and the source are in contact with the same ground."
+      }
+    },
+    {
+      "id": "heat_sense",
+      "name": "Heat Sense",
+      "fields": {
+        "description": "Detects nearby heat sources within 10 meters without sight, though solid barriers block this sense."
+      }
+    },
+    {
+      "id": "prehensile_tail",
+      "name": "Prehensile Tail",
+      "fields": {
+        "description": "Can hold or manipulate one light object with its tail, but gains no additional action."
+      }
+    },
+    {
+      "id": "powerful_leap",
+      "name": "Powerful Leap",
+      "fields": {
+        "description": "+2 to {{ ability:strength.name }} or {{ ability:dexterity.name }} actions made to jump."
+      }
+    },
+    {
+      "id": "swarm_body",
+      "name": "Swarm Body",
+      "fields": {
+        "description": "Can flow through openings large enough for one member and occupy another creature’s space, but remains one creature for actions and effects."
+      }
+    },
+    {
+      "id": "magic_resistance",
+      "name": "Magic Resistance",
+      "fields": {
+        "description": "+1 to actions made to resist hostile magical effects."
+      }
+    },
+    {
+      "id": "extended_reach",
+      "name": "Extended Reach",
+      "fields": {
+        "description": "Can make ordinary close attacks from up to 2 meters farther away than a similar-sized creature."
+      }
+    },
+    {
+      "id": "telepathy",
+      "name": "Telepathy",
+      "fields": {
+        "description": "Can communicate mentally with nearby creatures without requiring a shared spoken language."
+      }
+    },
+    {
+      "id": "ambusher",
+      "name": "Ambusher",
+      "fields": {
+        "description": "+2 on its first offensive action against a target that has not detected it."
+      }
+    },
+    {
+      "id": "life_drain",
+      "name": "Life Drain",
+      "fields": {
+        "description": "The first time on each of its turns that a natural attack deals damage, recovers 5% of its maximum HP, rounded down to a minimum of 1 HP; later attacks that turn restore no HP."
+      }
+    },
+    {
+      "id": "blood_frenzy",
+      "name": "Blood Frenzy",
+      "fields": {
+        "description": "+1 to attacks and {{ ability:speed.name }}-based pursuit actions against creatures at or below half their maximum HP or visibly bleeding."
+      }
+    },
+    {
+      "id": "reactive_spines",
+      "name": "Reactive Spines",
+      "fields": {
+        "description": "A creature that damages it with a direct close attack must resist or take 1 damage from spines or a similar natural defense."
+      }
+    },
+    {
+      "id": "death_burst",
+      "name": "Death Burst",
+      "fields": {
+        "description": "When it dies, each other creature within 2 meters must resist or take damage equal to 5% of this creature’s maximum HP, rounded down to a minimum of 1 damage."
+      }
+    },
+    {
+      "id": "multiattack",
+      "name": "Multiattack",
+      "fields": {
+        "description": "Once per turn after making a natural attack, can make one additional natural attack with a -2 attack penalty that deals half its normal damage, rounded down to a minimum of 1 damage."
+      }
+    },
+    {
+      "id": "fearless",
+      "name": "Fearless",
+      "fields": {
+        "description": "Cannot gain the {{ status_effect:frightened.name }} status effect."
+      }
+    },
+    {
+      "id": "gaze_effect",
+      "name": "Gaze Effect",
+      "fields": {
+        "description": "Its direct gaze produces a supernatural effect described by the creature; barriers, indirect observation, or avoiding eye contact can prevent exposure."
+      }
+    },
+    {
+      "id": "swallowing",
+      "name": "Swallowing",
+      "fields": {
+        "description": "Can engulf or swallow a smaller creature it has firmly grappled; the captive remains alive inside and can attempt to escape or be freed."
+      }
+    },
+    {
+      "id": "splitting_body",
+      "name": "Splitting Body",
+      "fields": {
+        "description": "An appropriate trigger can divide its body into multiple smaller, independently moving portions that may later reunite."
+      }
+    },
+    {
+      "id": "spell_reflection",
+      "name": "Spell Reflection",
+      "fields": {
+        "description": "When it successfully resists a directly targeted supernatural effect, it can redirect that effect toward another plausible target nearby."
+      }
+    },
+    {
+      "id": "memory_theft",
+      "name": "Memory Theft",
+      "fields": {
+        "description": "Can steal, consume, copy, or erase a victim's memories through the contact or feeding method described by the creature."
+      }
+    },
+    {
+      "id": "reactive_adaptation",
+      "name": "Reactive Adaptation",
+      "fields": {
+        "description": "After surviving a source of harm, develops a visible response or resistance specifically suited to that source."
+      }
+    },
+    {
+      "id": "temporary_duplication",
+      "name": "Temporary Duplication",
+      "fields": {
+        "description": "Can create short-lived copies, echoes, or reflections that convincingly imitate its movements before vanishing."
+      }
+    }
+  ]
+}

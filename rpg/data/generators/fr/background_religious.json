@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 4,
+  "id": "religious",
+  "visibility": "internal",
+  "name": "Archétypes religieux",
+  "description": "Rôles liés à la foi, aux temples et aux pèlerinages",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "priest",
+      "name": "Prêtre",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "monk",
+      "name": "Moine",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "temple_servant",
+      "name": "Serviteur du temple",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "pilgrim",
+      "name": "Pèlerin",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "theologian",
+      "name": "Théologien",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "prophet",
+      "name": "Prophète",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "healer",
+      "name": "Guérisseur",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "paladin",
+      "name": "Paladin",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "shrine_keeper",
+      "name": "Gardien de sanctuaire",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "religious_scholar",
+      "name": "Érudit religieux",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "fake_prophet",
+      "name": "Faux prophète",
+      "weight": 0.5,
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "former_cult_member",
+      "name": "Ancien membre d'une secte"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 4,
+  "id": "creature",
+  "visibility": "public",
+  "name": "Creature",
+  "description": "Creature categories available for generation",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "animal",
+      "name": "animal",
+      "generator": "animal"
+    },
+    {
+      "id": "companion",
+      "name": "companion",
+      "generator": "companion"
+    },
+    {
+      "id": "monster",
+      "name": "monster",
+      "generator": "monster"
+    }
+  ]
+}

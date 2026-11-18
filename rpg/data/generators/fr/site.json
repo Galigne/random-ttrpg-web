@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 4,
+  "id": "site",
+  "visibility": "public",
+  "name": "Lieu",
+  "description": "Bâtiments, donjons, communautés, régions et salles aléatoires",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "building",
+      "name": "Bâtiments",
+      "generator": "building"
+    },
+    {
+      "id": "dungeon",
+      "name": "Donjons",
+      "generator": "dungeon"
+    },
+    {
+      "id": "settlement",
+      "name": "Communautés",
+      "generator": "settlement"
+    },
+    {
+      "id": "region",
+      "name": "Régions",
+      "generator": "region"
+    },
+    {
+      "id": "room",
+      "name": "Pièces",
+      "generator": "room"
+    }
+  ]
+}

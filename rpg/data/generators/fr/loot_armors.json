@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 4,
+  "id": "armors",
+  "visibility": "internal",
+  "name": "Armures",
+  "description": "Formes d’armure concrètes dont la rareté et le matériau sont indépendants",
+  "entrySchema": {
+    "required": ["type", "description"]
+  },
+  "modifiers": {
+    "modifier_rarity": 100,
+    "modifier_material": 15,
+    "modifier_loot": 10
+  },
+  "entries": [
+    {
+      "id": "padded_armor",
+      "name": "Armure matelassée",
+      "fields": {
+        "type": "light",
+        "description": "Des couches de tissu rembourré amortissent les coups sans entraver les mouvements."
+      }
+    },
+    {
+      "id": "gambeson",
+      "name": "Gambison",
+      "fields": {
+        "type": "light",
+        "description": "Un épais vêtement matelassé et ajusté, porté seul ou sous une protection rigide."
+      }
+    },
+    {
+      "id": "leather_armor",
+      "name": "Armure de cuir",
+      "fields": {
+        "type": "light",
+        "description": "Une protection souple faite de pièces ajustées, adaptée au voyage et au combat mobile."
+      }
+    },
+    {
+      "id": "reinforced_leather_armor",
+      "name": "Armure de cuir renforcée",
+      "fields": {
+        "type": "light",
+        "description": "Une armure souple consolidée aux endroits vulnérables sans devenir encombrante."
+      }
+    },
+    {
+      "id": "duelist_coat",
+      "name": "Manteau de duelliste",
+      "fields": {
+        "type": "light",
+        "description": "Un manteau protecteur cintré, conçu pour les déplacements rapides et les gestes précis."
+      }
+    },
+    {
+      "id": "chain_shirt",
+      "name": "Chemise de mailles",
+      "fields": {
+        "type": "medium",
+        "description": "Une courte cotte de mailles protège le torse sans peser autant qu’un long haubert."
+      }
+    },
+    {
+      "id": "scale_armor",
+      "name": "Armure d’écailles",
+      "fields": {
+        "type": "medium",
+        "description": "Des écailles superposées couvrent un support souple et dévient les coups obliques."
+      }
+    },
+    {
+      "id": "brigandine",
+      "name": "Brigandine",
+      "fields": {
+        "type": "medium",
+        "description": "De petites plaques superposées sont rivetées à l’intérieur d’un vêtement robuste et ajusté."
+      }
+    },
+    {
+      "id": "lamellar_armor",
+      "name": "Armure lamellaire",
+      "fields": {
+        "type": "medium",
+        "description": "Des rangées de petites plaques rigides sont lacées ensemble pour former une protection résistante."
+      }
+    },
+    {
+      "id": "breastplate",
+      "name": "Cuirasse",
+      "fields": {
+        "type": "medium",
+        "description": "Une cuirasse rigide et profilée protège le torse tout en laissant les membres assez libres."
+      }
+    },
+    {
+      "id": "coat_of_plates",
+      "name": "Cotte de plates",
+      "fields": {
+        "type": "medium",
+        "description": "De larges plaques dissimulées doublent un lourd vêtement pour concilier protection et mobilité."
+      }
+    },
+    {
+      "id": "chain_mail",
+      "name": "Cotte de mailles",
+      "fields": {
+        "type": "heavy",
+        "description": "Une longue armure dense composée d’anneaux entrelacés offre une protection étendue."
+      }
+    },
+    {
+      "id": "splint_armor",
+      "name": "Armure à éclisses",
+      "fields": {
+        "type": "heavy",
+        "description": "De longues bandes rigides renforcent un support épais sur le corps et les membres."
+      }
+    },
+    {
+      "id": "plate_armor",
+      "name": "Armure de plates",
+      "fields": {
+        "type": "heavy",
+        "description": "Des plaques articulées protègent presque tout le corps grâce à des jointures soigneusement ajustées."
+      }
+    },
+    {
+      "id": "full_plate",
+      "name": "Harnois complet",
+      "fields": {
+        "type": "heavy",
+        "description": "Une armure articulée complète enveloppe son porteur de la tête aux pieds."
+      }
+    },
+    {
+      "id": "siege_armor",
+      "name": "Armure de siège",
+      "fields": {
+        "type": "heavy",
+        "description": "Une protection massive et renforcée est conçue pour résister aux assauts les plus violents."
+      }
+    }
+  ]
+}

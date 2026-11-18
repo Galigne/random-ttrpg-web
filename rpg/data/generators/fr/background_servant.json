@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 4,
+  "id": "servant",
+  "visibility": "internal",
+  "name": "Archétypes de serviteur",
+  "description": "Rôles domestiques et de service",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "household_servant",
+      "name": "Serviteur domestique"
+    },
+    {
+      "id": "attendant",
+      "name": "Assistant",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "day_laborer",
+      "name": "Journalier",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "cook",
+      "name": "Cuisinier"
+    },
+    {
+      "id": "stable_hand",
+      "name": "Palefrenier",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "courier",
+      "name": "Courrier",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "driver",
+      "name": "Conducteur",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "steward",
+      "name": "Intendant",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "groundskeeper",
+      "name": "Garde des domaines"
+    },
+    {
+      "id": "messenger",
+      "name": "Messager",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    }
+  ]
+}

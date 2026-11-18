@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 4,
+  "id": "background",
+  "visibility": "public",
+  "name": "Profils",
+  "description": "Catégories de profils de personnage",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "criminal",
+      "name": "Criminel",
+      "weight": 4,
+      "generator": "criminal"
+    },
+    {
+      "id": "adventurer",
+      "name": "Aventurier",
+      "weight": 5,
+      "generator": "adventurer"
+    },
+    {
+      "id": "noble",
+      "name": "Noble",
+      "weight": 2,
+      "generator": "noble"
+    },
+    {
+      "id": "peasant",
+      "name": "Paysan",
+      "weight": 5,
+      "generator": "peasant"
+    },
+    {
+      "id": "artisan",
+      "name": "Artisan",
+      "weight": 5,
+      "generator": "artisan"
+    },
+    {
+      "id": "merchant",
+      "name": "Marchand",
+      "weight": 5,
+      "generator": "merchant"
+    },
+    {
+      "id": "scholar",
+      "name": "Érudit",
+      "weight": 3,
+      "generator": "scholar"
+    },
+    {
+      "id": "religious",
+      "name": "Religieux",
+      "weight": 3,
+      "generator": "religious"
+    },
+    {
+      "id": "military",
+      "name": "Militaire",
+      "weight": 4,
+      "generator": "military"
+    },
+    {
+      "id": "outlander",
+      "name": "Habitant des terres sauvages",
+      "weight": 3,
+      "generator": "outlander"
+    },
+    {
+      "id": "sailor",
+      "name": "Marin",
+      "weight": 4,
+      "generator": "sailor"
+    },
+    {
+      "id": "performer",
+      "name": "Artiste",
+      "weight": 3,
+      "generator": "performer"
+    },
+    {
+      "id": "servant",
+      "name": "Serviteur",
+      "weight": 4,
+      "generator": "servant"
+    },
+    {
+      "id": "official",
+      "name": "Fonctionnaire",
+      "weight": 3,
+      "generator": "official"
+    },
+    {
+      "id": "mage",
+      "name": "Mage",
+      "weight": 2,
+      "generator": "mage"
+    },
+    {
+      "id": "exile",
+      "name": "Exilé",
+      "weight": 3,
+      "generator": "exile"
+    },
+    {
+      "id": "urchin",
+      "name": "Enfant des rues",
+      "weight": 3,
+      "generator": "urchin"
+    }
+  ]
+}

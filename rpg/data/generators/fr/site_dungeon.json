@@ -1,0 +1,288 @@
+{
+  "schemaVersion": 4,
+  "id": "dungeon",
+  "visibility": "internal",
+  "name": "Donjons",
+  "description": "Sites d’aventure, ruines, repaires et complexes hostiles",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "buried_temple",
+      "name": "Temple enseveli",
+      "weight": 3,
+      "fields": {
+        "description": "salles sacrées effondrées de la religion suivante : {{ religion.name }} ; elles entourent un autel scellé qui reçoit encore des offrandes."
+      }
+    },
+    {
+      "id": "bandit_cavern",
+      "name": "Caverne de bandits",
+      "weight": 3,
+      "fields": {
+        "description": "tunnels naturels agrandis et aménagés avec barricades, réserves, cellules et issues secrètes."
+      }
+    },
+    {
+      "id": "ruined_fortress",
+      "name": "Forteresse en ruine",
+      "weight": 3,
+      "fields": {
+        "description": "murailles éventrées au-dessus d’arsenaux intacts, de tunnels de commandement et de défenseurs oubliés."
+      }
+    },
+    {
+      "id": "ancient_crypt",
+      "name": "Crypte antique",
+      "weight": 3,
+      "fields": {
+        "description": "tombeaux familiaux et archives ancestrales protégés par le piège funéraire suivant : {{ trap.name }} ; plusieurs chambres scellées ont été récemment profanées."
+      }
+    },
+    {
+      "id": "wizards_tower",
+      "name": "Tour de mage",
+      "weight": 2,
+      "fields": {
+        "description": "laboratoires superposés où des expériences ratées ont déformé la gravité et l’espace."
+      }
+    },
+    {
+      "id": "sunken_palace",
+      "name": "Palais englouti",
+      "weight": 2,
+      "fields": {
+        "description": "salles inondées accessibles à marée basse, en plongée ou grâce à d’anciennes pompes."
+      }
+    },
+    {
+      "id": "monster_warren",
+      "name": "Terriers de monstres",
+      "weight": 2,
+      "fields": {
+        "description": "nids reliés entre eux et remodelés par des générations d’habitants toujours plus imposants."
+      }
+    },
+    {
+      "id": "collapsed_city_district",
+      "name": "Quartier urbain effondré",
+      "weight": 2,
+      "fields": {
+        "description": "rues et maisons ensevelies, reliées par les caves et des gouffres."
+      }
+    },
+    {
+      "id": "cursed_manor",
+      "name": "Manoir maudit",
+      "weight": 2,
+      "fields": {
+        "description": "demeure noble condamnée à revivre la dernière nuit précédant l’anéantissement de ses habitants."
+      }
+    },
+    {
+      "id": "volcanic_shrine",
+      "name": "Sanctuaire volcanique",
+      "weight": 2,
+      "fields": {
+        "description": "sanctuaire volcanique associé à la religion suivante : {{ religion.name }} ; il comprend des tunnels ravagés par la chaleur, des ponts sacrificiels, des canaux de lave et des gardiens insensibles au feu."
+      }
+    },
+    {
+      "id": "frozen_tomb",
+      "name": "Tombeau gelé",
+      "weight": 2,
+      "fields": {
+        "description": "salles préservées par la glace où chaque porte ouverte libère air antique, maladies et anciens occupants."
+      }
+    },
+    {
+      "id": "cult_sanctuary",
+      "name": "Sanctuaire d’un culte",
+      "weight": 2,
+      "fields": {
+        "description": "Un culte dissident utilise des salles de réunion camouflées descendant vers des chambres rituelles et un site d’invocation inachevé. Il s’est séparé de la religion suivante : {{ religion.name }}."
+      }
+    },
+    {
+      "id": "living_dungeon",
+      "name": "Donjon vivant",
+      "weight": 1,
+      "fields": {
+        "description": "organisme gigantesque dont les cavités digèrent les intrus et se réorganisent comme des organes."
+      }
+    },
+    {
+      "id": "dream_prison",
+      "name": "Prison onirique",
+      "weight": 1,
+      "fields": {
+        "description": "complexe mental auquel on accède en dormant, dont les sorties se cachent dans les souvenirs des prisonniers."
+      }
+    },
+    {
+      "id": "inverted_tower",
+      "name": "Tour inversée",
+      "weight": 1,
+      "fields": {
+        "description": "édifice qui s’enfonce dans la terre tandis que la gravité attire vers son toit lointain."
+      }
+    },
+    {
+      "id": "planar_embassy",
+      "name": "Ambassade planaire",
+      "weight": 1,
+      "fields": {
+        "description": "complexe diplomatique abandonné, construit pour des visiteurs aux corps et aux lois physiques incompatibles."
+      }
+    },
+    {
+      "id": "clockwork_vault",
+      "name": "Caveau mécanique",
+      "weight": 1,
+      "fields": {
+        "description": "salles aux mécanismes précis qui réarment les pièges et font pivoter les couloirs selon un horaire fixe."
+      }
+    },
+    {
+      "id": "worldroot_hollow",
+      "name": "Creux de la Racine-monde",
+      "weight": 1,
+      "fields": {
+        "description": "tunnels primordiaux au cœur d’un réseau de racines colossal gagné par une corruption grandissante."
+      }
+    },
+    {
+      "id": "astral_observatory",
+      "name": "Observatoire astral",
+      "weight": 1,
+      "fields": {
+        "description": "ruine isolée dont les lentilles ouvrent des passages physiques vers de dangereux corps célestes."
+      }
+    },
+    {
+      "id": "forgotten_ruins",
+      "name": "Ruines oubliées",
+      "fields": {
+        "description": "Les vestiges instables d’un domaine abandonné restent protégés par le piège suivant : {{ trap.name }}, ainsi que par des gardiens ou des serments."
+      }
+    },
+    {
+      "id": "abandoned_mine",
+      "name": "Mine condamnée",
+      "fields": {
+        "description": "Des galeries désertées après un accident dont la cause officielle contredit les traces découvertes plus bas."
+      }
+    },
+    {
+      "id": "inhabited_cave",
+      "name": "Grotte habitée",
+      "fields": {
+        "description": "Un réseau naturel aménagé par une créature, une communauté ou des fugitifs."
+      }
+    },
+    {
+      "id": "prison_complex",
+      "name": "Prison désaffectée",
+      "fields": {
+        "description": "Des cellules, des archives et des passages de service conservent les preuves d’une détention effacée de l’histoire."
+      }
+    },
+    {
+      "id": "sewer_labyrinth",
+      "name": "Égouts anciens",
+      "fields": {
+        "description": "Un réseau plus vaste que la ville actuelle relie citernes, cryptes et fondations interdites."
+      }
+    },
+    {
+      "id": "desecrated_cemetery",
+      "name": "Cimetière profané",
+      "fields": {
+        "description": "Des tombes ouvertes et des monuments déplacés entourent un caveau que quelqu’un tente d’atteindre."
+      }
+    },
+    {
+      "id": "anomalous_crater",
+      "name": "Cratère anormal",
+      "fields": {
+        "description": "Une dépression récente où la pierre, la magie ou le temps se comportent différemment."
+      }
+    },
+    {
+      "id": "ruined_sanctuary",
+      "name": "Sanctuaire en ruine",
+      "fields": {
+        "description": "Une chapelle ou un temple abandonné dont les rites produisent encore des effets sans officiant. Le sanctuaire appartenait à la religion suivante : {{ religion.name }}."
+      }
+    },
+    {
+      "id": "containment_complex",
+      "name": "Complexe de confinement",
+      "fields": {
+        "description": "une forteresse conçue pour empêcher son contenu de s'échapper, avec des postes de contrôle, des sceaux, des pièges et des protections tournés vers l'intérieur."
+      }
+    },
+    {
+      "id": "corpse_labyrinth",
+      "name": "Labyrinthe cadavérique",
+      "fields": {
+        "description": "des passages tracés parmi les os, les organes, les blessures, les parasites et les constructions tardives à l'intérieur d'un cadavre préservé aux dimensions impossibles."
+      }
+    },
+    {
+      "id": "migrating_dungeon",
+      "name": "Donjon migrateur",
+      "fields": {
+        "description": "un intérieur qui disparaît périodiquement pour réapparaître ailleurs tout en conservant ses salles, ses occupants et son plan interne."
+      }
+    },
+    {
+      "id": "future_ruin",
+      "name": "Ruine du futur",
+      "fields": {
+        "description": "des ruines contenant des corps, des archives, des dégâts et des artefacts laissés par des événements qui ne se sont pas encore produits."
+      }
+    },
+    {
+      "id": "parasite_temple",
+      "name": "Temple parasite",
+      "fields": {
+        "description": "un sanctuaire apparemment construit qui est en réalité une excroissance parasite fixée à une entité vivante ou endormie bien plus vaste."
+      }
+    },
+    {
+      "id": "broken_reality_vault",
+      "name": "Caveau de réalité brisée",
+      "fields": {
+        "description": "un caveau de confinement dont l'anomalie captive impose aux salles voisines des lois incompatibles de gravité, de distance, d'échelle, de direction ou de causalité."
+      }
+    },
+    {
+      "id": "forgotten_palace",
+      "name": "Palais oublié",
+      "fields": {
+        "description": "un palais que tous les habitants des environs croient ancien, alors que les cartes, les fondations et les archives prouvent qu'il n'est apparu que récemment."
+      }
+    },
+    {
+      "id": "endless_procession",
+      "name": "Procession sans fin",
+      "fields": {
+        "description": "un complexe entier organisé autour d'une procession funéraire, royale, religieuse ou magique dont les participants répètent leurs rôles depuis des siècles."
+      }
+    },
+    {
+      "id": "sleeping_machine",
+      "name": "Machine endormie",
+      "fields": {
+        "description": "un immense mécanisme assoupi dont les passages, les systèmes, les lumières, les mouvements et les défenses s'éveillent à mesure que les explorateurs le parcourent."
+      }
+    }
+  ],
+  "modifiers": {
+    "modifier_site_all": 5,
+    "modifier_site_structures": 5,
+    "modifier_site_interiors": 5
+  }
+}

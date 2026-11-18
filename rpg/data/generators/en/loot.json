@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 4,
+  "id": "loot",
+  "visibility": "public",
+  "name": "Loot",
+  "description": "Random items from every loot category",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "weapons",
+      "name": "weapons",
+      "generator": "weapons"
+    },
+    {
+      "id": "shields",
+      "name": "shields",
+      "generator": "shields"
+    },
+    {
+      "id": "armors",
+      "name": "armors",
+      "generator": "armors"
+    },
+    {
+      "id": "supplies",
+      "name": "supplies",
+      "generator": "supplies"
+    },
+    {
+      "id": "consumable",
+      "name": "consumables",
+      "generator": "consumable"
+    },
+    {
+      "id": "food_and_drink",
+      "name": "food and drink",
+      "generator": "food_and_drink"
+    },
+    {
+      "id": "valuables",
+      "name": "valuables",
+      "generator": "valuables"
+    },
+    {
+      "id": "material",
+      "name": "material",
+      "generator": "material"
+    },
+    {
+      "id": "curio",
+      "name": "curios",
+      "generator": "curio"
+    },
+    {
+      "id": "artifact",
+      "name": "artifacts",
+      "generator": "artifact"
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 4,
+  "id": "modifier_creature",
+  "visibility": "internal",
+  "name": "Modificateurs de créature",
+  "description": "Variantes persistantes de créature ayant des conséquences concrètes en jeu",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "alpha",
+      "name": "Alpha",
+      "weight": 3,
+      "fields": {
+        "description": "Cet individu dominant coordonne ses semblables, défie ses rivaux et maintient la cohésion du groupe ; l’isoler ou provoquer son orgueil peut briser son emprise."
+      }
+    },
+    {
+      "id": "hybrid",
+      "name": "Hybride",
+      "weight": 3,
+      "fields": {
+        "description": "Cette créature est issue d'une hybridation avec {{ creature.generator.name }}. Son apparence physique et ses facultés s'en retrouvent impactées."
+      }
+    },
+    {
+      "id": "undead",
+      "name": "Mort-vivante",
+      "fields": {
+        "description": "La réanimation l’affranchit du souffle, du sommeil et de la nourriture, et neutralise de nombreux risques biologiques ; un rituel de contrôle, une force consacrée ou la destruction de son ancrage exploite cet état."
+      }
+    },
+    {
+      "id": "reinforced",
+      "name": "Renforcée",
+      "weight": 3,
+      "fields": {
+        "description": "Des plaques, des greffes ou de la magie réduisent l’effet des coups mal ajustés, mais ses articulations, ses organes sensoriels ou son ventre restent vulnérables."
+      }
+    },
+    {
+      "id": "gigantic",
+      "name": "Gigantesque",
+      "fields": {
+        "description": "Sa taille extraordinaire lui donne allonge, force et maîtrise des espaces ouverts, mais gêne sa dissimulation et ses déplacements dans les lieux étroits ou fragiles."
+      }
+    },
+    {
+      "id": "enraged",
+      "name": "Enragée",
+      "weight": 2,
+      "fields": {
+        "description": "Une fureur constante la pousse au contact et à l’attaque malgré le danger ; très agressive, elle se laisse aussi plus facilement attirer, distraire ou contourner par une cible évidente."
+      }
+    },
+    {
+      "id": "juvenile",
+      "name": "Juvénile",
+      "weight": 3,
+      "fields": {
+        "description": "Ce spécimen immature est plus petit, fragile et inexpérimenté, mais fuit plus vite, se glisse dans les passages étroits et réagit imprévisiblement s’il est acculé."
+      }
+    },
+    {
+      "id": "diminutive",
+      "name": "Minuscule",
+      "weight": 2,
+      "fields": {
+        "description": "Son corps minuscule se cache facilement et franchit de petites ouvertures, mais manque d’allonge, de levier et de résistance aux déplacements forcés."
+      }
+    },
+    {
+      "id": "ectoplasmic",
+      "name": "Ectoplasmique",
+      "fields": {
+        "description": "Son corps instable traverse la matière, mais doit devenir tangible pour frapper, porter ou tenir une position, offrant alors aux attaques ordinaires une occasion de l’atteindre."
+      }
+    },
+    {
+      "id": "invisible",
+      "name": "Invisible",
+      "fields": {
+        "description": "Normalement invisible, elle reste difficile à suivre ou à viser ; son odeur, ses bruits, les débris déplacés et ses contacts avec le décor révèlent sa position."
+      }
+    },
+    {
+      "id": "rule_bearer",
+      "name": "Porteur de LOI",
+      "weight": 10,
+      "fields": {
+        "description": "Le monstre manifeste une LOI {{ rules.name }}, cela change son apparence et ses facultés."
+      }
+    },
+    {
+      "id": "armed",
+      "name": "Armée",
+      "weight": 2,
+      "fields": {
+        "description": "Même si son espèce ne le suggère pas, cet individu possède l’anatomie, la coordination et l’entraînement nécessaires pour manier efficacement cette arme : {{ weapons.name }} Le MJ décide de ses conséquences en jeu."
+      }
+    },
+    {
+      "id": "armored",
+      "name": "En armure",
+      "weight": 2,
+      "fields": {
+        "description": "Cette armure a été ajustée, remodelée ou fabriquée pour la créature, qui bénéficie réellement de sa protection : {{ armors.name }} Le MJ décide de ses conséquences en jeu."
+      }
+    },
+    {
+      "id": "afflicted",
+      "name": "Affligée",
+      "weight": 10,
+      "fields": {
+        "description": "La créature souffre de cette affliction persistante : {{ affliction }} Le MJ décide quand et comment elle affecte concrètement le jeu."
+      }
+    },
+    {
+      "id": "gifted",
+      "name": "Douée",
+      "fields": {
+        "description": "Cet individu possède, en plus des capacités normales de son espèce, la faculté inhabituelle suivante : {{ traits }} Le MJ décide de son importance en jeu."
+      }
+    },
+    {
+      "id": "regenerating",
+      "name": "Régénérante",
+      "fields": {
+        "description": "Ses chairs se reforment sans cesse, mais la faiblesse suivante interrompt ou empêche sa régénération : {{ weakness.name }}."
+      }
+    },
+    {
+      "id": "smoldering",
+      "name": "Incandescente",
+      "weight": 2,
+      "fields": {
+        "description": "Sa chaleur interne produit fumée et braises, menace les matières inflammables et rend le contact dangereux ; l’eau, le grand froid ou l’étouffement neutralisent cet avantage."
+      }
+    },
+    {
+      "id": "frost_rimed",
+      "name": "Couverte de givre",
+      "weight": 2,
+      "fields": {
+        "description": "Un froid surnaturel couvre son corps et glace les surfaces proches, gênant la poursuite et le contact ; une chaleur soutenue fait fondre le givre protecteur."
+      }
+    },
+    {
+      "id": "shadowed",
+      "name": "Voilée d’ombre",
+      "weight": 2,
+      "fields": {
+        "description": "Sa silhouette se fond dans la pénombre, facilitant dissimulation et embuscades ; une lumière directe révèle au contraire un contour net et vulnérable."
+      }
+    },
+    {
+      "id": "elder",
+      "name": "Vénérable",
+      "fields": {
+        "description": "Son grand âge apporte patience, expérience et résistance aux dangers familiers, mais sa lenteur et ses habitudes rendent ses réactions réfléchies et prévisibles."
+      }
+    },
+    {
+      "id": "frail",
+      "name": "Fragile",
+      "weight": 2,
+      "fields": {
+        "description": "Sa constitution fragile supporte mal les efforts prolongés et les chocs lourds ; elle dépend de la distance, des abris, de la prudence ou d’alliés robustes."
+      }
+    },
+    {
+      "id": "crippled",
+      "name": "Estropiée",
+      "weight": 2,
+      "fields": {
+        "description": "Un membre, une aile ou un organe moteur endommagé limite fortement un mode de déplacement et force la créature à adapter sa chasse ou sa défense."
+      }
+    },
+    {
+      "id": "scarred_weak_point",
+      "name": "Cicatrice vulnérable",
+      "weight": 2,
+      "fields": {
+        "description": "Une ancienne blessure a mal cicatrisé ; atteindre la cicatrice peut contourner sa protection habituelle ou provoquer une douleur qui modifie son comportement."
+      }
+    },
+    {
+      "id": "possessed",
+      "name": "Possédée",
+      "fields": {
+        "description": "Une présence issue de {{ creature.generator.name }} habite ou influence cette créature, lui insufflant des pulsions, des connaissances ou des facultés étrangères ainsi qu’une seconde volonté capable de résister à la sienne."
+      }
+    },
+    {
+      "id": "awakened",
+      "name": "Éveillée",
+      "fields": {
+        "description": "Une intelligence étonnamment humaine permet à cette créature de raisonner, de parler et d’affirmer sa propre personnalité : {{ personality.description }}"
+      }
+    },
+    {
+      "id": "clockwork",
+      "name": "Mécanique",
+      "fields": {
+        "description": "Cette version artificielle est faite de mécanismes ajustés et de pièces animées ; elle se répare comme une machine, mais peut se gripper, s’arrêter ou trahir les intentions de son créateur."
+      }
+    },
+    {
+      "id": "volatile",
+      "name": "Volatile",
+      "fields": {
+        "description": "Son corps renferme une énergie instable liée à {{ element.name }}, qu’une blessure ou sa mort peut libérer dans une brusque décharge dangereuse ; la maîtriser et frapper avec précaution est plus sûr que recourir à la force brute."
+      }
+    },
+    {
+      "id": "two_headed",
+      "name": "Bicéphale",
+      "fields": {
+        "description": "Deux têtes indépendantes élargissent sa vigilance et la rendent plus difficile à surprendre, mais des instincts, une attention ou un rythme contradictoires peuvent gêner ses actions coordonnées."
+      }
+    },
+    {
+      "id": "parasitized",
+      "name": "Parasité",
+      "fields": {
+        "description": "Un autre organisme habite visiblement la créature et modifie son corps, son comportement, ses priorités ou ses capacités sans remplacer entièrement l'hôte."
+      }
+    },
+    {
+      "id": "mirrored",
+      "name": "Miroité",
+      "fields": {
+        "description": "La créature peut brièvement manifester un double, un reflet ou un écho, puis échanger sa place avec lui avant sa disparition."
+      }
+    },
+    {
+      "id": "hollow",
+      "name": "Creux",
+      "fields": {
+        "description": "Le corps de la créature est une enveloppe vide ou démesurément vaste qui peut dissimuler un occupant plus petit, un mécanisme ou un espace intérieur caché."
+      }
+    },
+    {
+      "id": "material_fused",
+      "name": "Fusionné à la matière",
+      "fields": {
+        "description": "De la pierre, du métal, du cristal, des champignons, du bois, du verre, de la glace, une machine ou une autre matière a été anormalement fusionnée au corps vivant de la créature."
+      }
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 4,
+  "id": "peasant",
+  "visibility": "internal",
+  "name": "Peasant archetypes",
+  "description": "Rural occupations and community roles",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "farmer",
+      "name": "Farmer"
+    },
+    {
+      "id": "herder",
+      "name": "Herder"
+    },
+    {
+      "id": "shepherd",
+      "name": "Shepherd"
+    },
+    {
+      "id": "miller",
+      "name": "Miller"
+    },
+    {
+      "id": "farmhand",
+      "name": "Farmhand",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "lumberjack",
+      "name": "Lumberjack",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "miner",
+      "name": "Miner",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "village_elder",
+      "name": "Village elder",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "rural_laborer",
+      "name": "Rural laborer",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "village_healer",
+      "name": "Village healer",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    }
+  ]
+}

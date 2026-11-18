@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 4,
+  "id": "site",
+  "visibility": "public",
+  "name": "Site",
+  "description": "Random buildings, dungeons, settlements, regions, and rooms",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "building",
+      "name": "building",
+      "generator": "building"
+    },
+    {
+      "id": "dungeon",
+      "name": "dungeon",
+      "generator": "dungeon"
+    },
+    {
+      "id": "settlement",
+      "name": "settlement",
+      "generator": "settlement"
+    },
+    {
+      "id": "region",
+      "name": "region",
+      "generator": "region"
+    },
+    {
+      "id": "room",
+      "name": "room",
+      "generator": "room"
+    }
+  ]
+}

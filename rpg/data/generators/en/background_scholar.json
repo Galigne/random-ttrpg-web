@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 4,
+  "id": "scholar",
+  "visibility": "internal",
+  "name": "Scholar archetypes",
+  "description": "Learning, record-keeping, and research roles",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "student",
+      "name": "Student"
+    },
+    {
+      "id": "researcher",
+      "name": "Researcher",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "scribe",
+      "name": "Scribe"
+    },
+    {
+      "id": "librarian",
+      "name": "Librarian",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "historian",
+      "name": "Historian",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "cartographer",
+      "name": "Cartographer",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "physician",
+      "name": "Physician",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "theologian",
+      "name": "Theologian",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "archivist",
+      "name": "Archivist",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "professor",
+      "name": "Professor",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "chronicler",
+      "name": "Chronicler",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "monster_anatomist",
+      "name": "Monster anatomist"
+    },
+    {
+      "id": "magical_investigator",
+      "name": "Magical investigator"
+    },
+    {
+      "id": "containment_specialist",
+      "name": "Supernatural containment specialist"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 4,
+  "id": "modifier",
+  "visibility": "public",
+  "name": "Modifier",
+  "description": "Descriptive modifier families",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "character",
+      "name": "Character modifiers",
+      "generator": "modifier_character"
+    },
+    {
+      "id": "creature",
+      "name": "Creature modifiers",
+      "generator": "modifier_creature"
+    },
+    {
+      "id": "rarity",
+      "name": "Rarity modifiers",
+      "generator": "modifier_rarity"
+    },
+    {
+      "id": "material",
+      "name": "Material modifiers",
+      "generator": "modifier_material"
+    },
+    {
+      "id": "loot",
+      "name": "Loot modifiers",
+      "generator": "modifier_loot"
+    },
+    {
+      "id": "site_general",
+      "name": "General site modifiers",
+      "generator": "modifier_site_all"
+    },
+    {
+      "id": "site_building",
+      "name": "Building history modifiers",
+      "generator": "modifier_site_building"
+    },
+    {
+      "id": "site_interiors",
+      "name": "Interior site modifiers",
+      "generator": "modifier_site_interiors"
+    },
+    {
+      "id": "site_structures",
+      "name": "Structure condition modifiers",
+      "generator": "modifier_site_structures"
+    }
+  ]
+}

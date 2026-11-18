@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 4,
+  "id": "artifact",
+  "visibility": "internal",
+  "name": "Artifacts",
+  "description": "Powerful, strange, or dangerous objects that create unusual choices and situations",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "anchor_coin",
+      "name": "Anchor Coin",
+      "fields": {
+        "description": "When placed flat and deliberately released, this coin becomes impossibly heavy. It returns to normal the instant someone willingly tries to pick it up."
+      }
+    },
+    {
+      "id": "borrowed_door",
+      "name": "Borrowed Door",
+      "fields": {
+        "description": "Attaching this small door-shaped plaque to a solid surface turns it into a doorway until the plaque is removed; anyone entering emerges through another existing door nearby."
+      }
+    },
+    {
+      "id": "candle_of_the_last_room",
+      "name": "Candle of the Last Room",
+      "fields": {
+        "description": "When lit, its flame leans toward the nearest enclosed space that nobody present has entered before."
+      }
+    },
+    {
+      "id": "echo_jar",
+      "name": "Echo Jar",
+      "fields": {
+        "description": "While open, this jar can capture one sound it hears. Sealing it preserves the sound; opening it again releases that sound once at its original volume and duration."
+      }
+    },
+    {
+      "id": "empty_crown",
+      "name": "Empty Crown",
+      "fields": {
+        "description": "Anyone wearing this crown is instinctively treated as an authority until they directly contradict someone who genuinely holds authority over the situation."
+      }
+    },
+    {
+      "id": "glass_orchard_seed",
+      "name": "Glass Orchard Seed",
+      "fields": {
+        "description": "Planted in soil, this seed rapidly grows into a fragile crystal tree bearing a handful of edible fruits with unpredictable but harmless sensory properties, then shatters."
+      }
+    },
+    {
+      "id": "guest_bell",
+      "name": "Guest Bell",
+      "fields": {
+        "description": "Ringing this bell causes the nearest unoccupied chair, bed, or place at a table to become visibly prepared for an expected but unidentified guest."
+      }
+    },
+    {
+      "id": "last_match",
+      "name": "Last Match",
+      "fields": {
+        "description": "This match can ignite almost anything that could reasonably burn, even when wet or normally difficult to light, but disappears permanently after use."
+      }
+    },
+    {
+      "id": "oath_thread",
+      "name": "Oath Thread",
+      "fields": {
+        "description": "Two people can knot this thread while explicitly agreeing to terms. The knot remains intact while both honor the agreement. If either knowingly breaks it, the thread unravels and permanently develops a visible mark identifying the oathbreaker; it neither enforces the oath nor punishes them."
+      }
+    },
+    {
+      "id": "map_of_near_misses",
+      "name": "Map of Near Misses",
+      "fields": {
+        "description": "This map gradually draws places its owner almost visited, paths they nearly took, and locations they narrowly failed to discover."
+      }
+    },
+    {
+      "id": "familiar_stranger_mask",
+      "name": "Familiar Stranger Mask",
+      "fields": {
+        "description": "While worn, this mask makes everyone who encounters its wearer certain they recognize them, though each observer unconsciously assigns a different plausible identity. Witnesses remember the interaction afterward but may strongly disagree about who the wearer was."
+      }
+    },
+    {
+      "id": "pocket_sunrise",
+      "name": "Pocket Sunrise",
+      "fields": {
+        "description": "Breaking this sealed golden bead fills the surrounding area with natural-looking daylight for a short time, regardless of the location."
+      }
+    },
+    {
+      "id": "promise_nail",
+      "name": "Promise Nail",
+      "fields": {
+        "description": "Hammering this nail into an object while making a sincere promise causes it to remain firmly embedded until the promise is fulfilled or deliberately abandoned."
+      }
+    },
+    {
+      "id": "sleepless_pillow",
+      "name": "Sleepless Pillow",
+      "fields": {
+        "description": "Someone resting on this pillow remains fully awake while gaining the physical benefit of ordinary sleep. After one use, the pillow must remain unused for a full day."
+      }
+    },
+    {
+      "id": "strangers_mirror",
+      "name": "Stranger's Mirror",
+      "fields": {
+        "description": "This mirror shows its viewer as they would appear after several years of living a radically different life, without explaining how that future could occur."
+      }
+    },
+    {
+      "id": "chronicle_of_the_unnoticed",
+      "name": "Chronicle of the Unnoticed",
+      "fields": {
+        "description": "When left overnight at a place where an important event occurred, this book adds a short account of one significant detail that those present overlooked, misunderstood, or failed to notice. It never reconstructs the whole event; the GM defines the revealed detail."
+      }
+    },
+    {
+      "id": "ashen_hourglass",
+      "name": "Ashen Hourglass",
+      "fields": {
+        "description": "When turned, nearby dust, ash, and smoke briefly retrace the paths they followed during the previous minute, revealing movement and hidden air currents."
+      }
+    },
+    {
+      "id": "courtesy_blade",
+      "name": "Courtesy Blade",
+      "fields": {
+        "description": "This blunt-looking knife can cut any nonliving material in one stroke, but only after someone who reasonably owns or guards the target freely gives permission."
+      }
+    },
+    {
+      "id": "weather_knot",
+      "name": "Weather Knot",
+      "fields": {
+        "description": "Tied outdoors, this colored cord traps the local weather in its knot and leaves unnatural calm nearby. Untying it later releases that weather briefly around it and ruins the cord."
+      }
+    },
+    {
+      "id": "fate_deck",
+      "name": "Fate Deck",
+      "fields": {
+        "description": "An ancient deck whose cards impose a radical fortune, disaster, revelation, transformation, gain, loss, or obligation on anyone who deliberately accepts a draw."
+      }
+    },
+    {
+      "id": "bottomless_satchel",
+      "name": "Bottomless Satchel",
+      "fields": {
+        "description": "An ordinary-looking satchel whose dry interior is vastly larger than its exterior opening."
+      }
+    },
+    {
+      "id": "anchor_baton",
+      "name": "Anchor Baton",
+      "fields": {
+        "description": "A small baton that becomes absolutely fixed at its current point in space when activated and remains unsupported until deliberately released."
+      }
+    },
+    {
+      "id": "folded_pit",
+      "name": "Folded Pit",
+      "fields": {
+        "description": "A foldable cloth that creates an extradimensional pit when spread across a surface and keeps its contents when folded closed."
+      }
+    },
+    {
+      "id": "endless_flask",
+      "name": "Endless Flask",
+      "fields": {
+        "description": "A flask that produces ordinary water without emptying, either as a manageable stream or a forceful jet."
+      }
+    },
+    {
+      "id": "endless_sand_jar",
+      "name": "Endless Sand Jar",
+      "fields": {
+        "description": "An open jar continuously produces dry sand, enough to fill rooms, block passages, reshape terrain, or cause disaster if forgotten."
+      }
+    },
+    {
+      "id": "beastbag",
+      "name": "Beastbag",
+      "fields": {
+        "description": "Objects placed in this magical storage bag can unpredictably emerge as small living animals instead of their original forms."
+      }
+    },
+    {
+      "id": "chaos_scepter",
+      "name": "Chaos Scepter",
+      "fields": {
+        "description": "Each deliberate activation produces an unpredictable supernatural phenomenon chosen by the GM."
+      }
+    },
+    {
+      "id": "wandering_pot",
+      "name": "Wandering Pot",
+      "fields": {
+        "description": "A cooking cauldron on small legs follows its owner, carries its contents, and obeys simple movement instructions."
+      }
+    },
+    {
+      "id": "reality_paint",
+      "name": "Reality Paint",
+      "fields": {
+        "description": "A convincingly painted mundane object, opening, architectural feature, or environmental detail becomes physically real under reasonable GM interpretation."
+      }
+    },
+    {
+      "id": "patchcloak",
+      "name": "Patchcloak",
+      "fields": {
+        "description": "Removable patches on this garment depict mundane objects and become those real objects when peeled away."
+      }
+    },
+    {
+      "id": "pocket_bastion",
+      "name": "Pocket Bastion",
+      "fields": {
+        "description": "A tiny portable object rapidly unfolds into a defensible temporary building or tower."
+      }
+    },
+    {
+      "id": "perfect_adhesive",
+      "name": "Perfect Adhesive",
+      "fields": {
+        "description": "A small amount permanently joins ordinary solid objects unless an exceptional countermeasure separates them."
+      }
+    },
+    {
+      "id": "thirsting_dust",
+      "name": "Thirsting Dust",
+      "fields": {
+        "description": "A pinch absorbs a vast volume of water into a compact solid; breaking that solid releases all stored water at once."
+      }
+    },
+    {
+      "id": "mercurial_weapon",
+      "name": "Mercurial Weapon",
+      "fields": {
+        "description": "One magical weapon can transform among several ordinary weapon forms while remaining the same underlying artifact."
+      }
+    },
+    {
+      "id": "phantom_cards",
+      "name": "Phantom Cards",
+      "fields": {
+        "description": "A placed or thrown card creates a convincing but intangible creature, object, or scene depicted on its face."
+      }
+    },
+    {
+      "id": "command_rope",
+      "name": "Command Rope",
+      "fields": {
+        "description": "This rope obeys simple spoken orders to move, knot itself, coil, climb, anchor itself, or reach toward a specified point."
+      }
+    },
+    {
+      "id": "smoke_vessel",
+      "name": "Smoke Vessel",
+      "fields": {
+        "description": "Once opened, the vessel continuously releases dense obscuring smoke until correctly closed or otherwise stopped."
+      }
+    },
+    {
+      "id": "sleeping_idol",
+      "name": "Sleeping Idol",
+      "fields": {
+        "description": "A small animal figurine can temporarily become a living version of the represented creature before returning to figurine form."
+      }
+    },
+    {
+      "id": "provision_jug",
+      "name": "Provision Jug",
+      "fields": {
+        "description": "A magical jug produces limited quantities of several useful mundane liquids or foodstuffs, rewarding practical improvisation."
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 4,
+  "id": "modifier_site_interiors",
+  "visibility": "internal",
+  "name": "Modificateurs de site historiques",
+  "description": "Variations historiques descriptives compatibles avec des générateurs de lieux précis",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "hidden",
+      "name": "Caché",
+      "fields": {
+        "description": "L’accès est dissimulé par le terrain, une construction plus récente ou une illusion entretenue."
+      }
+    },
+    {
+      "id": "cramped",
+      "name": "Exigu",
+      "fields": {
+        "description": "Les passages et espaces utilisables limitent les mouvements, la visibilité et l’emploi d’équipements encombrants."
+      }
+    },
+    {
+      "id": "non_euclidean",
+      "name": "Non euclidien",
+      "fields": {
+        "description": "Les angles, les distances et les liaisons intérieures ne peuvent tenir dans les dimensions extérieures ; les cartes restent justes localement, mais se contredisent dans leur ensemble."
+      }
+    },
+    {
+      "id": "rearranging",
+      "name": "Changeant",
+      "fields": {
+        "description": "Les pièces, les couloirs, les portes ou d’autres espaces intérieurs changent de place dès que personne ne les observe directement."
+      }
+    },
+    {
+      "id": "mislabelled",
+      "name": "Mal étiqueté",
+      "fields": {
+        "description": "Les panneaux, les étiquettes, les indications et les noms de pièces sont systématiquement faux avec une assurance parfaite, même lorsqu’on les remplace ou les corrige."
+      }
+    },
+    {
+      "id": "overlapping_eras",
+      "name": "Époques superposées",
+      "fields": {
+        "description": "Les mêmes salles existent simultanément à deux époques de leur histoire ; les objets et les actes de l'une peuvent modifier ce que révèle l'autre."
+      }
+    },
+    {
+      "id": "independent_reflections",
+      "name": "Reflets indépendants",
+      "fields": {
+        "description": "Les reflets bougent, réagissent, révèlent des détails cachés et prennent des décisions indépendamment des personnes et des objets auxquels ils ressemblent."
+      }
+    }
+  ]
+}

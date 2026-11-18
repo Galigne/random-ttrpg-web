@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 4,
+  "id": "performer",
+  "visibility": "internal",
+  "name": "Archétypes d’artiste",
+  "description": "Rôles liés au spectacle et à la parole publique",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "musician",
+      "name": "Musicien",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "actor",
+      "name": "Comédien",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "storyteller",
+      "name": "Conteur",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "acrobat",
+      "name": "Acrobate",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "singer",
+      "name": "Chanteur",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "troubadour",
+      "name": "Troubadour",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "jester",
+      "name": "Bouffon",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "fortune_teller",
+      "name": "Diseuse de bonne aventure",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "dancer",
+      "name": "Danseur",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "street_entertainer",
+      "name": "Artiste de rue",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "prostitute",
+      "name": "Prostitué",
+      "weight": 0.5,
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "professional_dominatrix",
+      "name": "Dominatrice professionnelle",
+      "weight": 0.5,
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "erotic_writer",
+      "name": "Auteur de littérature érotique",
+      "weight": 0.75,
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "pit_fighter",
+      "name": "Combattant d’arène clandestine",
+      "weight": 0.75,
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 4,
+  "id": "sailor",
+  "visibility": "internal",
+  "name": "Sailor archetypes",
+  "description": "Maritime and dockside roles",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "sailor",
+      "name": "Sailor"
+    },
+    {
+      "id": "fisher",
+      "name": "Fisher"
+    },
+    {
+      "id": "pirate",
+      "name": "Pirate",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "navigator",
+      "name": "Navigator",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "deckhand",
+      "name": "Deckhand",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "dock_worker",
+      "name": "Dock worker",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "ship_captain",
+      "name": "Ship captain",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "smuggler",
+      "name": "Smuggler",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "salvager",
+      "name": "Salvager",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "pilot",
+      "name": "Pilot",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    }
+  ]
+}

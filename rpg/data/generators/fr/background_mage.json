@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 4,
+  "id": "mage",
+  "visibility": "internal",
+  "name": "Archétypes de mage",
+  "description": "Rôles liés à l’étude et à la pratique de la magie",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "apprentice",
+      "name": "Apprenti",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "hedge_mage",
+      "name": "Mage autodidacte",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "magical_researcher",
+      "name": "Chercheur en magie",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "battle_mage",
+      "name": "Mage de bataille",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "ritualist",
+      "name": "Ritualiste",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "alchemist",
+      "name": "Alchimiste",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "runesmith",
+      "name": "Graveur de runes",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "diviner",
+      "name": "Voyant",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "court_mage",
+      "name": "Mage de cour",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "enchanter",
+      "name": "Enchanteur",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    }
+  ]
+}

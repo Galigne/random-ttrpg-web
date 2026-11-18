@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 4,
+  "id": "loot",
+  "visibility": "public",
+  "name": "Butin",
+  "description": "Objets aléatoires issus de toutes les catégories de butin",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "weapons",
+      "name": "armes",
+      "generator": "weapons"
+    },
+    {
+      "id": "shields",
+      "name": "boucliers",
+      "generator": "shields"
+    },
+    {
+      "id": "armors",
+      "name": "Armures",
+      "generator": "armors"
+    },
+    {
+      "id": "supplies",
+      "name": "matériel",
+      "generator": "supplies"
+    },
+    {
+      "id": "consumable",
+      "name": "consommables",
+      "generator": "consumable"
+    },
+    {
+      "id": "food_and_drink",
+      "name": "nourriture et boissons",
+      "generator": "food_and_drink"
+    },
+    {
+      "id": "valuables",
+      "name": "objets de valeur",
+      "generator": "valuables"
+    },
+    {
+      "id": "material",
+      "name": "Matériaux",
+      "generator": "material"
+    },
+    {
+      "id": "curio",
+      "name": "curiosités",
+      "generator": "curio"
+    },
+    {
+      "id": "artifact",
+      "name": "artefacts",
+      "generator": "artifact"
+    }
+  ]
+}

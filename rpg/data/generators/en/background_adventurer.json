@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 4,
+  "id": "adventurer",
+  "visibility": "internal",
+  "name": "Adventurer archetypes",
+  "description": "Exploration and expedition roles",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "explorer",
+      "name": "Explorer"
+    },
+    {
+      "id": "mercenary",
+      "name": "Mercenary",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "monster_hunter",
+      "name": "Monster hunter",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "bounty_hunter",
+      "name": "Bounty hunter",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "scout",
+      "name": "Scout",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "treasure_hunter",
+      "name": "Treasure hunter",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "pilgrim",
+      "name": "Pilgrim",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "frontier_guide",
+      "name": "Frontier guide",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "ruins_delver",
+      "name": "Ruins delver",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "demon_hunter",
+      "name": "Demon hunter",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "protector",
+      "name": "Protector",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "relic_hunter",
+      "name": "Relic hunter"
+    },
+    {
+      "id": "dungeon_cartographer",
+      "name": "Dungeon cartographer"
+    }
+  ]
+}

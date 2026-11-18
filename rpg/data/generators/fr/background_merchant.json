@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 4,
+  "id": "merchant",
+  "visibility": "internal",
+  "name": "Archétypes marchands",
+  "description": "Rôles commerciaux et liés au négoce",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "trader",
+      "name": "Marchand",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "shopkeeper",
+      "name": "Boutiquier",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "caravaner",
+      "name": "Caravanier"
+    },
+    {
+      "id": "factor",
+      "name": "Facteur de commerce",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "appraiser",
+      "name": "Expert",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "innkeeper",
+      "name": "Aubergiste",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "fishmonger",
+      "name": "Poissonnier"
+    },
+    {
+      "id": "supplier",
+      "name": "Fournisseur",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "peddler",
+      "name": "Colporteur",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "market_broker",
+      "name": "Courtier du marché",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    }
+  ]
+}

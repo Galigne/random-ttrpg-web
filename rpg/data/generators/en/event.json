@@ -1,0 +1,555 @@
+{
+  "schemaVersion": 4,
+  "id": "event",
+  "visibility": "public",
+  "name": "Event",
+  "description": "Incidents and changes that alter the current situation",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "entries": [
+    {
+      "id": "every_flame_in_the_area_turns_green_and",
+      "name": "Guiding Green Flames",
+      "weight": 2,
+      "fields": {
+        "description": "Green flames spring up spontaneously on nearby surfaces and point toward the place described as {{ site.generator.name }} for one minute."
+      }
+    },
+    {
+      "id": "a_terrified_courier_mistakes_a_party_member_for",
+      "name": "Misdelivered Confession",
+      "weight": 3,
+      "fields": {
+        "description": "A terrified courier mistakes someone present for a contact, delivers a powerful figure's sealed confession implicating {{ faction.name }}, and flees."
+      }
+    },
+    {
+      "id": "a_localized_rainstorm_follows_one_character_while_the",
+      "name": "Personal Raincloud",
+      "weight": 2,
+      "fields": {
+        "description": "A compact raincloud follows one person while the sky remains clear a few steps away."
+      }
+    },
+    {
+      "id": "two_merchants_begin_an_escalating_auction_for_an",
+      "name": "Bidding War",
+      "weight": 3,
+      "fields": {
+        "description": "Two merchants abruptly begin bidding against each other for the item known as {{ loot.generator.name }} and refuse to explain its value."
+      }
+    },
+    {
+      "id": "a_wounded_monster_crashes_into_the_scene_fleeing",
+      "name": "Fleeing Monster",
+      "weight": 3,
+      "fields": {
+        "description": "A wounded creature of the {{ monster.name }} type bursts into view, fleeing something much more dangerous that remains out of sight."
+      }
+    },
+    {
+      "id": "all_spoken_lies_become_visible_as_black_smoke",
+      "name": "Visible Lies",
+      "fields": {
+        "description": "Until sunset, every deliberate spoken lie releases a curl of black smoke visible to everyone nearby."
+      }
+    },
+    {
+      "id": "a_festival_starts_unexpectedly_its_central_competition_recreates",
+      "name": "Impromptu Celebration",
+      "weight": 3,
+      "fields": {
+        "description": "Strangers abruptly begin a celebration centered on a contest involving {{ ability.name }} that reenacts a wildly distorted version of a recent deed by someone present."
+      }
+    },
+    {
+      "id": "an_earthquake_opens_a_stairway_beneath_the_road",
+      "name": "Opened Passage",
+      "weight": 2,
+      "fields": {
+        "description": "A patch of ground gives way, revealing an old stairway that descends toward a place described as {{ site:dungeon.generator.name }} while making the surrounding route dangerous."
+      }
+    },
+    {
+      "id": "a_child_calmly_asks_the_party_to_remove",
+      "name": "Disputed Haunting",
+      "weight": 2,
+      "fields": {
+        "description": "A child asks for help with a haunting at a nearby site of the following kind: {{ building.name }}. The apparition insists that the child is the true intruder."
+      }
+    },
+    {
+      "id": "a_shower_of_tiny_harmless_frogs_falls_from",
+      "name": "Runed Frogfall",
+      "fields": {
+        "description": "Tiny harmless frogs rain from a cloudless sky, each bearing the same golden rune of {{ rules.name }}."
+      }
+    },
+    {
+      "id": "the_party_encounters_their_own_wanted_posters_issued",
+      "name": "Tomorrow’s Wanted Posters",
+      "fields": {
+        "description": "Fresh wanted posters appear, dated tomorrow and accusing the party of involvement in {{ crime.name }}, which has not happened yet."
+      }
+    },
+    {
+      "id": "a_nearby_statue_turns_its_head_and_whispers",
+      "name": "Whispering Statue",
+      "weight": 2,
+      "fields": {
+        "description": "A nearby statue turns its head and quietly warns the least observant onlooker of immediate danger."
+      }
+    },
+    {
+      "id": "a_caravan_offers_safe_passage_but_every_traveler",
+      "name": "False Familiarity",
+      "weight": 3,
+      "fields": {
+        "description": "A band of travelers offers safe passage, but every member insists they have known the same person present for years."
+      }
+    },
+    {
+      "id": "for_one_hour_shadows_detach_from_their_owners",
+      "name": "Rebellious Shadows",
+      "fields": {
+        "description": "For one hour, shadows detach from their owners and act out intentions their owners have not admitted."
+      }
+    },
+    {
+      "id": "a_bridge_collapses_after_the_party_crosses_separating",
+      "name": "Severed Route",
+      "weight": 3,
+      "fields": {
+        "description": "A nearby bridge, tunnel, or causeway collapses, dividing those present and cutting off the easiest route to the settlement described as {{ settlement.name }}."
+      }
+    },
+    {
+      "id": "a_magical_market_appears_between_two_trees_and",
+      "name": "Fleeting Market",
+      "fields": {
+        "description": "A magical market unfolds in an ordinary open space and prominently offers the item known as {{ loot.generator.name }}. It will vanish after exactly thirteen purchases."
+      }
+    },
+    {
+      "id": "a_dying_raven_delivers_a_signet_ring_and",
+      "name": "Unmapped Name",
+      "weight": 2,
+      "fields": {
+        "description": "A dying messenger bird delivers a signet ring and repeats the name of the settlement described as {{ settlement.name }}, although it appears on no map."
+      }
+    },
+    {
+      "id": "an_eclipse_begins_years_ahead_of_schedule_magical",
+      "name": "Untimely Eclipse",
+      "fields": {
+        "description": "An eclipse begins years ahead of every prediction, and magic associated with {{ rules.name }} produces reversed or symbolic effects."
+      }
+    },
+    {
+      "id": "a_noble_procession_blocks_the_road_while_masked",
+      "name": "Procession Ambush",
+      "weight": 3,
+      "fields": {
+        "description": "A formal procession representing {{ faction.name }} enters the area just as masked attackers exploit the crowd and confusion to strike."
+      }
+    },
+    {
+      "id": "the_nearest_river_runs_backward_exposing_a_wreck",
+      "name": "Reversed Waters",
+      "fields": {
+        "description": "Nearby flowing water reverses direction, exposing a long-submerged wreck and an unusual find: {{ curio.name }}. Something beside them stirs."
+      }
+    },
+    {
+      "id": "a_famous_adventurer_publicly_credits_the_party_for",
+      "name": "Borrowed Glory",
+      "weight": 2,
+      "fields": {
+        "description": "A celebrated adventurer with the {{ background:adventurer.generator.name }} background publicly credits someone present for a deed they never performed and asks them to maintain the story."
+      }
+    },
+    {
+      "id": "everyone_in_a_village_has_fallen_asleep_except",
+      "name": "Widespread Slumber",
+      "weight": 2,
+      "fields": {
+        "description": "Nearly everyone in the immediate area falls asleep at once, leaving awake only a wary stranger with the {{ background.generator.name }} background."
+      }
+    },
+    {
+      "id": "a_wandering_judge_declares_an_improvised_trial_over",
+      "name": "Improvised Trial",
+      "weight": 2,
+      "fields": {
+        "description": "A wandering judge convenes an immediate trial over ownership of the unusual item known as {{ loot:curio.generator.name }} and demands witnesses from those present."
+      }
+    },
+    {
+      "id": "a_harmless_animal_begins_speaking_with_the_voice",
+      "name": "Borrowed Voice",
+      "weight": 2,
+      "fields": {
+        "description": "A harmless animal begins speaking with the voice of an absent acquaintance with the {{ background.generator.name }} background and asks for urgent help."
+      }
+    },
+    {
+      "id": "the_moon_briefly_shows_a_second_face_after",
+      "name": "Second Moon-Face",
+      "fields": {
+        "description": "The moon briefly reveals a second face, after which every compass nearby points toward the settlement described as {{ settlement.name }}."
+      }
+    },
+    {
+      "id": "a_battlefield_from_the_distant_past_overlays_the",
+      "name": "Ghostly Battlefield",
+      "fields": {
+        "description": "A battlefield from the distant past overlays the present surroundings, and ghostly actions cause real damage."
+      }
+    },
+    {
+      "id": "a_thief_steals_something_trivial_but_leaves_behind",
+      "name": "Unequal Exchange",
+      "weight": 3,
+      "fields": {
+        "description": "A thief steals something trivial nearby but leaves the valuable item known as {{ loot:valuables.generator.name }}, which is dangerously recognizable."
+      }
+    },
+    {
+      "id": "a_bell_rings_underground_local_elders_insist_there",
+      "name": "Buried Bell",
+      "weight": 2,
+      "fields": {
+        "description": "A bell consecrated to the faith known as {{ religion.name }} rings beneath the ground while nearby residents deny that it exists and urgently seek shelter."
+      }
+    },
+    {
+      "id": "a_spontaneous_peace_negotiation_begins_between_two_hostile",
+      "name": "Sudden Truce Talks",
+      "weight": 3,
+      "fields": {
+        "description": "Envoys from {{ faction.name }} and {{ faction.name }} unexpectedly request neutral witnesses for immediate peace talks."
+      }
+    },
+    {
+      "id": "time_skips_forward_three_hours_for_everyone_except",
+      "name": "Missing Hours",
+      "fields": {
+        "description": "Time lurches forward by three hours; evidence shows that consequential events occurred during the gap, but memories conflict."
+      }
+    },
+    {
+      "id": "sudden_tremor",
+      "name": "Sudden Tremor",
+      "fields": {
+        "description": "The ground shakes hard enough to interrupt events. A fissure opens beneath a nearby site of the following kind: {{ building.name }}."
+      }
+    },
+    {
+      "id": "panicked_animals",
+      "name": "Panicked Animals",
+      "fields": {
+        "description": "Cries draw nearer as wildlife flees an unseen creature of the {{ monster.name }} type."
+      }
+    },
+    {
+      "id": "distress_call",
+      "name": "Distress Call",
+      "fields": {
+        "description": "A voice calls for help from the place described as {{ site:dungeon.generator.name }}, although nobody should be able to survive there."
+      }
+    },
+    {
+      "id": "nauseating_odor",
+      "name": "Nauseating Odor",
+      "fields": {
+        "description": "An unusual stench fills the area and warns of danger. Its trail leads to a nearby site of the following kind: {{ building.name }}."
+      }
+    },
+    {
+      "id": "bewitching_perfume",
+      "name": "Bewitching Perfume",
+      "fields": {
+        "description": "A pleasant scent subtly alters the attention, emotions, or behavior of those exposed."
+      }
+    },
+    {
+      "id": "shared_pain",
+      "name": "Shared Pain",
+      "fields": {
+        "description": "Several people feel the same pain at once without visible injury."
+      }
+    },
+    {
+      "id": "fainting",
+      "name": "Sudden Collapse",
+      "fields": {
+        "description": "Someone nearby with the {{ background.generator.name }} background loses consciousness moments after trying to warn others about an unclear danger."
+      }
+    },
+    {
+      "id": "gathering_storm",
+      "name": "Gathering Storm",
+      "fields": {
+        "description": "The atmosphere shifts as the following weather condition gathers unnaturally: {{ weather }} Travel, combat, or communication becomes more difficult."
+      }
+    },
+    {
+      "id": "unexpected_arrival",
+      "name": "Unexpected Arrival",
+      "fields": {
+        "description": "A newcomer with the {{ background.generator.name }} background appears and claims to have known one of the people present for years."
+      }
+    },
+    {
+      "id": "hostile_migration",
+      "name": "Hostile Migration",
+      "fields": {
+        "description": "Several creatures of the {{ monster.name }} type enter the area after a greater threat drives them from their territory."
+      }
+    },
+    {
+      "id": "disrupted_cycle",
+      "name": "Disrupted Cycle",
+      "fields": {
+        "description": "Night falls or day breaks hours too early, while clocks and memories disagree."
+      }
+    },
+    {
+      "id": "impossible_message",
+      "name": "Message from Elsewhen",
+      "fields": {
+        "description": "A written message names {{ faction.name }} and bears its mark, yet arrives from another time and contains details only its present recipient should know."
+      }
+    },
+    {
+      "id": "return_of_the_past",
+      "name": "Return of the Past",
+      "fields": {
+        "description": "Someone’s history returns in the form of a witness, debt, possession, or accusation."
+      }
+    },
+    {
+      "id": "sudden_epidemic",
+      "name": "Sudden Outbreak",
+      "fields": {
+        "description": "Several nearby people suddenly show signs of the affliction known as {{ affliction.name }}."
+      }
+    },
+    {
+      "id": "supplies_exhausted",
+      "name": "Compromised Supplies",
+      "fields": {
+        "description": "A crucial supply—{{ loot:supplies.generator.name }}—suddenly disappears or becomes unusable after being damaged, contaminated, sabotaged, or otherwise compromised."
+      }
+    },
+    {
+      "id": "extreme_temperature",
+      "name": "Extreme Temperature",
+      "fields": {
+        "description": "Abnormal heat or cold forces everyone to seek shelter or an explanation quickly."
+      }
+    },
+    {
+      "id": "gravity_turns_sideways",
+      "name": "Sideways Gravity",
+      "fields": {
+        "description": "For several minutes, gravity pulls sideways and sends unsecured people and objects sliding toward the place described as {{ site.generator.name }}."
+      }
+    },
+    {
+      "id": "sudden_silence",
+      "name": "Absolute Silence",
+      "fields": {
+        "description": "All sound vanishes from the area, preventing speech and masking every approaching danger."
+      }
+    },
+    {
+      "id": "shared_memory",
+      "name": "Borrowed Memory",
+      "fields": {
+        "description": "Several nearby people simultaneously remember visiting the place described as {{ site.generator.name }}, though none remembers ever going there."
+      }
+    },
+    {
+      "id": "vanishing_landmark",
+      "name": "Missing Landmark",
+      "fields": {
+        "description": "A familiar landmark of the following kind vanishes: {{ building.name }}. Altered terrain and contradictory recollections remain behind."
+      }
+    },
+    {
+      "id": "arcane_blackout",
+      "name": "Arcane Blackout",
+      "fields": {
+        "description": "All active magic associated with {{ rules.name }} goes dark or dormant at once while ordinary light and machinery continue to work."
+      }
+    },
+    {
+      "id": "duplicated_object",
+      "name": "Impossible Duplicate",
+      "fields": {
+        "description": "A perfect duplicate of the item known as {{ loot.generator.name }} appears beside it, including marks no observer had noticed on the original."
+      }
+    },
+    {
+      "id": "refugees_arrive",
+      "name": "Unexpected Refugees",
+      "fields": {
+        "description": "A weary group from the settlement described as {{ settlement.name }} arrives seeking immediate shelter as creatures of the {{ monster.name }} type close in behind them."
+      }
+    },
+    {
+      "id": "doorway_elsewhere",
+      "name": "Doorway Elsewhere",
+      "fields": {
+        "description": "An ordinary door, arch, or narrow gap suddenly opens onto the impossibly distant place described as {{ site.generator.name }}."
+      }
+    },
+    {
+      "id": "falling_star_fragment",
+      "name": "Fallen Star",
+      "fields": {
+        "description": "A brilliant object made of {{ material.name }} crosses the sky and strikes close enough to shake the area and draw immediate attention."
+      }
+    },
+    {
+      "id": "exposed_crime_evidence",
+      "name": "Evidence in Plain Sight",
+      "fields": {
+        "description": "A dropped dossier bursts open in front of gathering witnesses, exposing evidence that someone nearby may be connected to {{ crime.name }}."
+      }
+    },
+    {
+      "id": "urgent_service_commission",
+      "name": "Urgent Commission",
+      "fields": {
+        "description": "A breathless agent offers immediate payment for the following service, but insists it must begin at once and remain discreet: {{ service.name }}."
+      }
+    },
+    {
+      "id": "names_forgotten",
+      "name": "Forgotten Names",
+      "fields": {
+        "description": "For one hour, nobody in the area can remember or recognize proper names, titles, or written signatures."
+      }
+    },
+    {
+      "id": "temporary_animal_speech",
+      "name": "Speaking Beasts",
+      "weight": 2,
+      "fields": {
+        "description": "For one hour, every nearby animal—including creatures of the {{ animal.name }} kind—can speak; each knows only what it has personally noticed and pursues its own priorities."
+      }
+    },
+    {
+      "id": "wandering_doors",
+      "name": "Wayward Doors",
+      "fields": {
+        "description": "Until dawn, every door in the area opens onto an unexpected or incorrect nearby location, and its destination changes again after it closes."
+      }
+    },
+    {
+      "id": "shared_dream_event",
+      "name": "Common Dream",
+      "weight": 2,
+      "fields": {
+        "description": "Everyone who sleeps in the area experiences the same vivid dream about the place described as {{ site.generator.name }}, though their memories of it begin to diverge after waking."
+      }
+    },
+    {
+      "id": "regional_rule_effect",
+      "name": "Regional RULE",
+      "fields": {
+        "description": "For one day, {{ rules.name }} temporarily affects an entire settlement and its surroundings; the GM decides its broad manifestation, limits, and practical complications."
+      }
+    },
+    {
+      "id": "unfinished_mundane_business",
+      "name": "The Dead’s Errands",
+      "fields": {
+        "description": "The dead briefly return to settle debts, return borrowed items, deliver old messages, finish household tasks, or resolve similarly mundane unfinished business."
+      }
+    },
+    {
+      "id": "exchanged_voices",
+      "name": "Exchanged Voices",
+      "fields": {
+        "description": "Everyone in the area finds their voice randomly exchanged with someone else’s, while speech and identity otherwise remain unchanged."
+      }
+    },
+    {
+      "id": "tilting_gravity",
+      "name": "Tilting Gravity",
+      "fields": {
+        "description": "Over several hours, gravity tilts a little farther every few minutes, steadily changing which surfaces are floors and which routes remain safe."
+      }
+    },
+    {
+      "id": "prominent_figure_compromised",
+      "name": "Prominent Figure Caught Compromised",
+      "weight": 0.5,
+      "fields": {
+        "description": "A respected adult official, noble, priest, or other prominent figure is caught in a spectacularly compromising situation with another consenting adult as witnesses gather; the exact circumstances remain decorously obscured."
+      }
+    },
+    {
+      "id": "accurate_scandal_lists",
+      "name": "Accurate Scandal Lists",
+      "weight": 0.5,
+      "fields": {
+        "description": "Someone anonymously distributes accurate lists of local affairs between adults, debts, bribes, illegitimate children, and other scandals; copies spread faster than authorities can seize them."
+      }
+    },
+    {
+      "id": "uncontrollable_profanity",
+      "name": "Uncontrollable Profanity",
+      "weight": 0.75,
+      "fields": {
+        "description": "A magical or mundane influence causes widespread uncontrollable profanity, disrupting solemn rites, negotiations, trials, performances, and polite conversation."
+      }
+    },
+    {
+      "id": "speaking_recent_dead",
+      "name": "The Dead Speak Around Their Deaths",
+      "fields": {
+        "description": "For one hour, recently dead creatures can converse normally and remember their lives, but cannot explain their own deaths or directly identify whoever caused them."
+      }
+    },
+    {
+      "id": "synchronized_magic_pause",
+      "name": "Synchronized Magical Pause",
+      "fields": {
+        "description": "All magical and RULE effects in the area become dormant for several minutes, then resume simultaneously from where they stopped."
+      }
+    },
+    {
+      "id": "memory_exchange",
+      "name": "Exchanged Memories",
+      "fields": {
+        "description": "Everyone nearby receives someone else's memory from the same category, such as a first love, greatest fear, childhood home, or final meal, without learning its owner."
+      }
+    },
+    {
+      "id": "physical_hour_loop",
+      "name": "The Hour That Leaves Marks",
+      "fields": {
+        "description": "One hour repeats from its beginning, but wounds, moved objects, opened doors, writing, destruction, and every other physical change persist between repetitions."
+      }
+    },
+    {
+      "id": "remembered_new_structure",
+      "name": "Remembered Overnight Structure",
+      "fields": {
+        "description": "A structure of the following kind appears overnight: {{ building.name }}. Locals remember it as ancient, but maps and physical evidence contradict them."
+      }
+    },
+    {
+      "id": "contract_addendum",
+      "name": "Universal Contract Addendum",
+      "fields": {
+        "description": "Every written contract in the area acquires one additional, magically valid-looking clause that none of its signatories remembers accepting."
+      }
+    }
+  ]
+}

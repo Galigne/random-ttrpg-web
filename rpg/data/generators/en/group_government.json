@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 4,
+  "id": "government",
+  "visibility": "internal",
+  "name": "Government",
+  "description": "Political systems, leadership structures, strengths, and tensions",
+  "entrySchema": {
+    "required": ["structure", "leadership", "strength", "tension"]
+  },
+  "entries": [
+    {
+      "id": "hereditary_monarchy",
+      "name": "Hereditary Monarchy",
+      "weight": 3,
+      "fields": {
+        "structure": "A sovereign inherits rule through an established bloodline.",
+        "leadership": "Monarch advised by ministers and powerful families.",
+        "strength": "Clear succession and fast centralized decisions.",
+        "tension": "An unsuitable heir and rival branches threaten civil war."
+      }
+    },
+    {
+      "id": "feudal_kingdom",
+      "name": "Feudal Kingdom",
+      "weight": 3,
+      "fields": {
+        "structure": "The crown exchanges land and privilege for military service.",
+        "leadership": "Monarch above semi-independent dukes, counts, and knights.",
+        "strength": "Local defense and administration need little central bureaucracy.",
+        "tension": "Great vassals obey selectively and maintain private armies."
+      }
+    },
+    {
+      "id": "elected_council",
+      "name": "Elected Council",
+      "weight": 3,
+      "fields": {
+        "structure": "Districts or communities elect representatives for fixed terms.",
+        "leadership": "Council selects a speaker with limited executive authority.",
+        "strength": "Broad participation and peaceful replacement of leaders.",
+        "tension": "Slow compromise leaves urgent problems unanswered."
+      }
+    },
+    {
+      "id": "merchant_republic",
+      "name": "Merchant Republic",
+      "weight": 3,
+      "fields": {
+        "structure": "Property-holding guilds and trading families elect magistrates.",
+        "leadership": "A doge or first consul checked by commercial councils.",
+        "strength": "Strong finance, diplomacy, infrastructure, and trade.",
+        "tension": "Poor citizens have little voice and corruption is normalized."
+      }
+    },
+    {
+      "id": "tribal_confederation",
+      "name": "Tribal Confederation",
+      "weight": 2,
+      "fields": {
+        "structure": "Autonomous clans unite for war, migration, and shared law.",
+        "leadership": "Clan chiefs meet under a chosen high speaker.",
+        "strength": "Flexible local rule and strong personal obligations.",
+        "tension": "Old feuds and disputed grazing rights fracture consensus."
+      }
+    },
+    {
+      "id": "theocracy",
+      "name": "Theocracy",
+      "weight": 2,
+      "fields": {
+        "structure": "Religious law and civil authority are formally identical.",
+        "leadership": "High priesthood interprets doctrine and appoints administrators.",
+        "strength": "Shared purpose, welfare institutions, and moral legitimacy.",
+        "tension": "Doctrinal disagreement is treated as political treason."
+      }
+    },
+    {
+      "id": "military_directorate",
+      "name": "Military Directorate",
+      "weight": 2,
+      "fields": {
+        "structure": "Senior officers govern through emergency decrees and regional commands.",
+        "leadership": "A council of generals chaired by a supreme commander.",
+        "strength": "Rapid mobilization, logistics, and crisis response.",
+        "tension": "Permanent emergency rule suppresses civilians and divides officers."
+      }
+    },
+    {
+      "id": "guild_oligarchy",
+      "name": "Guild Oligarchy",
+      "weight": 2,
+      "fields": {
+        "structure": "Recognized professional guilds hold seats according to economic importance.",
+        "leadership": "Guildmasters negotiate policy through a closed grand chamber.",
+        "strength": "Expert administration and investment in skilled production.",
+        "tension": "Unguilded workers and new industries are excluded."
+      }
+    },
+    {
+      "id": "constitutional_monarchy",
+      "name": "Constitutional Monarchy",
+      "weight": 2,
+      "fields": {
+        "structure": "A hereditary monarch shares authority with an elected assembly.",
+        "leadership": "Crown manages continuity while ministers require legislative support.",
+        "strength": "Combines symbolic unity with accountable government.",
+        "tension": "Neither side agrees where royal emergency powers end."
+      }
+    },
+    {
+      "id": "direct_democracy",
+      "name": "Direct Democracy",
+      "weight": 2,
+      "fields": {
+        "structure": "Citizens vote personally on laws in regular assemblies.",
+        "leadership": "Short-term elected officials execute public decisions.",
+        "strength": "High legitimacy and strong civic participation.",
+        "tension": "Citizenship exclusions and manipulation by wealthy speakers persist."
+      }
+    },
+    {
+      "id": "magocracy",
+      "name": "Magocracy",
+      "weight": 2,
+      "fields": {
+        "structure": "Political authority depends on recognized magical competence.",
+        "leadership": "A conclave of licensed master mages assigns civil offices.",
+        "strength": "Powerful public works and informed magical regulation.",
+        "tension": "Non-mages face exclusion and magical accidents lack oversight."
+      }
+    },
+    {
+      "id": "elder_council",
+      "name": "Elder Council",
+      "weight": 2,
+      "fields": {
+        "structure": "Each lineage appoints its oldest capable representative.",
+        "leadership": "Consensus council led by the most respected mediator.",
+        "strength": "Long memory and caution preserve stability.",
+        "tension": "Young people and recent arrivals cannot influence policy."
+      }
+    },
+    {
+      "id": "lottery_republic",
+      "name": "Lottery Republic",
+      "weight": 1,
+      "fields": {
+        "structure": "Eligible citizens are randomly selected for temporary public offices.",
+        "leadership": "Rotating committees supervised by permanent civil servants.",
+        "strength": "Difficult to capture through elections or hereditary privilege.",
+        "tension": "Inexperienced officials depend heavily on unelected administrators."
+      }
+    },
+    {
+      "id": "dual_crown",
+      "name": "Dual Crown",
+      "weight": 1,
+      "fields": {
+        "structure": "Two sovereigns from different peoples must approve major decisions.",
+        "leadership": "Separate courts joined by a shared chancellery.",
+        "strength": "Protects the autonomy of both founding populations.",
+        "tension": "Routine disputes can paralyze the entire state."
+      }
+    },
+    {
+      "id": "city_league",
+      "name": "City League",
+      "weight": 1,
+      "fields": {
+        "structure": "Independent cities share defense, currency, and foreign policy.",
+        "leadership": "Delegates meet in a congress with a rotating host city.",
+        "strength": "Local freedom backed by collective economic power.",
+        "tension": "Rich cities avoid burdens while dominating shared decisions."
+      }
+    },
+    {
+      "id": "judicial_state",
+      "name": "Judicial State",
+      "weight": 1,
+      "fields": {
+        "structure": "Precedent and courts govern more strongly than elected lawmaking.",
+        "leadership": "A hierarchy of judges culminates in a supreme tribunal.",
+        "strength": "Predictable law and strong protection from arbitrary rulers.",
+        "tension": "Legal complexity empowers judges and excludes ordinary citizens."
+      }
+    },
+    {
+      "id": "oracle_regency",
+      "name": "Oracle Regency",
+      "weight": 1,
+      "fields": {
+        "structure": "Policy follows authenticated prophecies interpreted by civil officials.",
+        "leadership": "A regent governs until a predicted rightful ruler appears.",
+        "strength": "Long-term planning can anticipate otherwise invisible threats.",
+        "tension": "Competing interpretations justify repression and endless delay."
+      }
+    },
+    {
+      "id": "necrocracy",
+      "name": "Necrocracy",
+      "weight": 1,
+      "fields": {
+        "structure": "Dead rulers remain legally in office through ritual consultation.",
+        "leadership": "Living ministers interpret votes from preserved ancestral spirits.",
+        "strength": "Institutional memory literally survives each generation.",
+        "tension": "The dead resist change and ministers may falsify their wishes."
+      }
+    },
+    {
+      "id": "seasonal_government",
+      "name": "Seasonal Government",
+      "weight": 1,
+      "fields": {
+        "structure": "Authority transfers among four administrations with the seasons.",
+        "leadership": "Each seasonal court controls policy for three months.",
+        "strength": "Different priorities receive guaranteed recurring attention.",
+        "tension": "Long projects are sabotaged or reversed every transition."
+      }
+    },
+    {
+      "id": "corporate_colony",
+      "name": "Corporate Colony",
+      "weight": 1,
+      "fields": {
+        "structure": "A chartered company owns infrastructure and exercises public authority.",
+        "leadership": "An appointed governor answers to distant shareholders.",
+        "strength": "Efficient investment and rapid exploitation of resources.",
+        "tension": "Residents are treated as employees, debtors, or obstacles rather than citizens."
+      }
+    }
+  ]
+}

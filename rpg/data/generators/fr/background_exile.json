@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 4,
+  "id": "exile",
+  "visibility": "internal",
+  "name": "Archétypes d’exilé",
+  "description": "Rôles sociaux de personnes déplacées ou traquées",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "refugee",
+      "name": "Réfugié"
+    },
+    {
+      "id": "fugitive",
+      "name": "Fugitif",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "banished_noble",
+      "name": "Noble banni",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "displaced_survivor",
+      "name": "Rescapé déplacé"
+    },
+    {
+      "id": "political_exile",
+      "name": "Exilé politique",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "deserter",
+      "name": "Déserteur",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "migrant",
+      "name": "Migré"
+    },
+    {
+      "id": "wanderer",
+      "name": "Vagabond"
+    },
+    {
+      "id": "dissident",
+      "name": "Dissident",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "outlaw",
+      "name": "Hors-la-loi",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    }
+  ]
+}

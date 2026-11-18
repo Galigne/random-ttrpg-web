@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 4,
+  "id": "artisan",
+  "visibility": "internal",
+  "name": "Artisan archetypes",
+  "description": "Craft and workshop occupations",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "blacksmith",
+      "name": "Blacksmith",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "carpenter",
+      "name": "Carpenter"
+    },
+    {
+      "id": "tailor",
+      "name": "Tailor"
+    },
+    {
+      "id": "alchemist",
+      "name": "Alchemist",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "clockmaker",
+      "name": "Clockmaker",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "baker",
+      "name": "Baker"
+    },
+    {
+      "id": "butcher",
+      "name": "Butcher",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "cook",
+      "name": "Cook"
+    },
+    {
+      "id": "mechanic",
+      "name": "Mechanic",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "engineer",
+      "name": "Engineer",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "runesmith",
+      "name": "Runesmith",
+      "generation": {
+        "statProfile": "character-mage"
+      }
+    },
+    {
+      "id": "potter",
+      "name": "Potter"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 4,
+  "id": "race",
+  "visibility": "public",
+  "name": "Race",
+  "description": "Ancestries with culture, appearance, and suggested traits",
+  "entrySchema": {
+    "required": ["description", "skill_bonus", "physical_ability"]
+  },
+  "entries": [
+    {
+      "id": "human",
+      "name": "Human",
+      "fields": {
+        "description": "Highly diverse communities whose traditions emphasize adaptation, alliances, and rapid transmission of knowledge.",
+        "skill_bonus": "Versatility: a bonus in one skill chosen at creation.",
+        "physical_ability": "Adaptive endurance: better withstands abrupt changes of climate or pace."
+      }
+    },
+    {
+      "id": "elf",
+      "name": "Elf",
+      "fields": {
+        "description": "A long-lived people with keen senses, attached to the memory of places and the distant consequences of decisions.",
+        "skill_bonus": "{{ ability:perception.name }} applied carefully to natural and magical details.",
+        "physical_ability": "Effective twilight vision in low light."
+      }
+    },
+    {
+      "id": "dwarf",
+      "name": "Dwarf",
+      "fields": {
+        "description": "A people of builders whose communities define status through craft mastery and one’s given word.",
+        "skill_bonus": "{{ ability:crafting.name }} with stone, metal, or mechanisms.",
+        "physical_ability": "Stability: better resists impacts and forced movement."
+      }
+    },
+    {
+      "id": "orc",
+      "name": "Orc",
+      "fields": {
+        "description": "A robust people organized around community ties, public challenges, and a strong oral tradition.",
+        "skill_bonus": "{{ ability:intimidation.name }} or {{ ability:survival.name }} in hostile territory.",
+        "physical_ability": "Physical power during a brief, intense effort."
+      }
+    },
+    {
+      "id": "goblin",
+      "name": "Goblin",
+      "fields": {
+        "description": "An ingenious people quick to turn waste, tools, and unexpected opportunities into useful solutions.",
+        "skill_bonus": "Tinkering, traps, and material recovery.",
+        "physical_ability": "Small size: slips through narrow passages and cluttered cover."
+      }
+    },
+    {
+      "id": "halfling",
+      "name": "Halfling",
+      "fields": {
+        "description": "Travelers and rural communities valuing hospitality, discretion, and shared stories.",
+        "skill_bonus": "{{ ability:stealth.name }} in crowds or domestic settings.",
+        "physical_ability": "Quick footing: keeps balance more easily."
+      }
+    },
+    {
+      "id": "reptilian",
+      "name": "Reptilian",
+      "fields": {
+        "description": "A scaled people adapted to heat, long stillness, and humid environments.",
+        "skill_bonus": "{{ ability:tracking.name }} through marks, heat, and scent.",
+        "physical_ability": "Natural scales provide light protection."
+      }
+    },
+    {
+      "id": "fishfolk",
+      "name": "Fishfolk",
+      "fields": {
+        "description": "An amphibious people living among coastal communities, reefs, and partly submerged cities.",
+        "skill_bonus": "{{ ability:navigation.name }}, {{ ability:fishing.name }}, and knowledge of currents.",
+        "physical_ability": "Aquatic breathing and natural underwater movement."
+      }
+    },
+    {
+      "id": "avian",
+      "name": "Avian",
+      "fields": {
+        "description": "A feathered highland people who prize currents, distances, and messages.",
+        "skill_bonus": "Long-range observation and aerial orientation.",
+        "physical_ability": "Gliding flight slows falls and crosses short gaps."
+      }
+    },
+    {
+      "id": "sylvan",
+      "name": "Sylvan",
+      "fields": {
+        "description": "A plantlike or tree-bonded people whose memory passes through seasons and roots.",
+        "skill_bonus": "Plant knowledge and communication with ecosystems.",
+        "physical_ability": "Photosynthesis: light and water can sustain them briefly."
+      }
+    },
+    {
+      "id": "slugfolk",
+      "name": "Slugfolk",
+      "fields": {
+        "description": "A flexible people adapted to damp places, vertical surfaces, and hard-to-reach spaces.",
+        "skill_bonus": "Detects substances through touch and taste.",
+        "physical_ability": "Adhesion: moves slowly across very steep surfaces."
+      }
+    },
+    {
+      "id": "beastfolk",
+      "name": "Beastfolk",
+      "fields": {
+        "description": "Humanoid lineages sharing animal traits and traditions closely tied to their environment.",
+        "skill_bonus": "Instinct and interaction with the related species.",
+        "physical_ability": "One heightened animal sense chosen for the lineage."
+      }
+    },
+    {
+      "id": "fairy",
+      "name": "Fairy",
+      "fields": {
+        "description": "A small supernatural people bound to promises, emotions, and magically charged places.",
+        "skill_bonus": "Reading intentions and understanding pacts.",
+        "physical_ability": "Levitation or limited flight while lightly loaded."
+      }
+    },
+    {
+      "id": "giant",
+      "name": "Giant",
+      "fields": {
+        "description": "A very large people whose homes, tools, and stories use an unusual scale.",
+        "skill_bonus": "Work based on {{ ability:strength.name }} and knowledge of monumental terrain.",
+        "physical_ability": "Far greater reach and carrying capacity."
+      }
+    },
+    {
+      "id": "centaur",
+      "name": "Centaur",
+      "fields": {
+        "description": "A nomadic people with humanoid torsos and quadrupedal bodies, adapted to open land and long travel.",
+        "skill_bonus": "Land travel, {{ ability:tracking.name }}, and mounted combat.",
+        "physical_ability": "Fast running on open terrain and great carrying capacity."
+      }
+    },
+    {
+      "id": "crafted_people",
+      "name": "Crafted People",
+      "fields": {
+        "description": "A people whose bodies are deliberately built from worked matter and awakened by a mind, spirit, or living enchantment.",
+        "skill_bonus": "Construction, repair, and identifying the purpose of artificial objects.",
+        "physical_ability": "Constructed body: does not need to breathe and can replace visibly damaged components with suitable crafted parts."
+      }
+    },
+    {
+      "id": "elemental_people",
+      "name": "Elemental People",
+      "fields": {
+        "description": "Humanoid lineages whose bodies visibly mingle flesh with fire, water, stone, air, ice, lightning, or another elemental substance.",
+        "skill_bonus": "Knowledge of elemental phenomena and environments shaped by their own element.",
+        "physical_ability": "Elemental body: safely endures ordinary contact with the substance visibly composing it."
+      }
+    },
+    {
+      "id": "chorus_born",
+      "name": "Chorus-Born",
+      "fields": {
+        "description": "Distinct individuals who naturally exchange fragments of thought, emotion, memory, dreams, or sensation with nearby members of their people.",
+        "skill_bonus": "Coordination and reading the emotional state of a familiar group.",
+        "physical_ability": "Shared awareness: can silently convey a simple sensation or emotion to a nearby willing Chorus-Born."
+      }
+    }
+  ]
+}

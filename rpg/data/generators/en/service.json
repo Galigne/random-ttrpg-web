@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 4,
+  "id": "service",
+  "visibility": "internal",
+  "name": "Services",
+  "description": "Reusable services that people and organizations may request or purchase",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    { "id": "escort", "name": "escort duty" },
+    { "id": "guard_duty", "name": "guard duty" },
+    { "id": "healing", "name": "healing" },
+    { "id": "translation", "name": "translation" },
+    { "id": "investigation", "name": "investigation" },
+    { "id": "tracking", "name": "tracking" },
+    { "id": "surveying", "name": "surveying" },
+    { "id": "transportation", "name": "transportation" },
+    { "id": "smuggling", "name": "smuggling" },
+    { "id": "forgery", "name": "forgery" },
+    { "id": "mediation", "name": "mediation" },
+    { "id": "exorcism", "name": "exorcism" },
+    { "id": "retrieval", "name": "retrieval" },
+    { "id": "construction", "name": "construction" },
+    { "id": "repair", "name": "repair work" },
+    { "id": "bodyguard_work", "name": "bodyguard work" },
+    { "id": "information_gathering", "name": "information gathering" },
+    { "id": "magical_consultation", "name": "magical consultation" },
+    { "id": "legal_representation", "name": "legal representation" },
+    { "id": "discreet_delivery", "name": "discreet delivery" },
+    { "id": "guiding", "name": "guiding" },
+    { "id": "training", "name": "training" },
+    { "id": "appraisal", "name": "appraisal" },
+    { "id": "warding", "name": "magical warding" },
+    { "id": "funerary_rites", "name": "funerary rites" },
+    { "id": "rescue", "name": "rescue work" },
+    { "id": "messenger_work", "name": "messenger work" },
+    { "id": "supply_procurement", "name": "supply procurement" },
+    {
+      "id": "haunting_verification",
+      "name": "verification of whether a place or object is genuinely haunted",
+      "weight": 0.75
+    },
+    {
+      "id": "escaped_livestock_recovery",
+      "name": "recovery of an escaped {{ animal.name }}"
+    },
+    {
+      "id": "no_ground_contact_transport",
+      "name": "transport of something that must not touch the ground",
+      "weight": 0.5
+    },
+    {
+      "id": "cursed_object_disposal",
+      "name": "safe removal or disposal of the following cursed item: {{ loot.generator.name }}",
+      "weight": 0.75
+    },
+    {
+      "id": "suspicious_food_tasting",
+      "name": "taste-testing suspicious or potentially magical {{ food_and_drink.name }}",
+      "weight": 0.5
+    },
+    {
+      "id": "unusual_creature_training",
+      "name": "training an unusual {{ creature.generator.name }}",
+      "weight": 0.75
+    },
+    {
+      "id": "ceremonial_impersonation",
+      "name": "impersonating someone with the {{ background.generator.name }} background at a ceremony or formal occasion",
+      "weight": 0.5
+    },
+    {
+      "id": "discreet_adult_encounter",
+      "name": "arranging a discreet romantic or sexual encounter between consenting adults",
+      "weight": 0.5
+    },
+    {
+      "id": "intimate_letter_delivery",
+      "name": "delivering an intimate letter without being discovered",
+      "weight": 0.75
+    },
+    {
+      "id": "secret_lover_search",
+      "name": "finding someone’s secret adult lover",
+      "weight": 0.75
+    },
+    {
+      "id": "infidelity_investigation",
+      "name": "investigating suspected infidelity",
+      "weight": 0.75
+    },
+    {
+      "id": "adult_party_entertainment",
+      "name": "organizing entertainment for a private adult party",
+      "weight": 0.5
+    },
+    {
+      "id": "compromising_evidence_removal",
+      "name": "removing compromising evidence before it is discovered",
+      "weight": 0.5
+    }
+  ]
+}

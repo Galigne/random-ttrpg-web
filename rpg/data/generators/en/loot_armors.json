@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 4,
+  "id": "armors",
+  "visibility": "internal",
+  "name": "Armors",
+  "description": "Concrete armor forms with independent rarity and materials",
+  "entrySchema": {
+    "required": ["type", "description"]
+  },
+  "modifiers": {
+    "modifier_rarity": 100,
+    "modifier_material": 15,
+    "modifier_loot": 10
+  },
+  "entries": [
+    {
+      "id": "padded_armor",
+      "name": "Padded armor",
+      "fields": {
+        "type": "light",
+        "description": "Layers of quilted cloth soften impacts while preserving freedom of movement."
+      }
+    },
+    {
+      "id": "gambeson",
+      "name": "Gambeson",
+      "fields": {
+        "type": "light",
+        "description": "A fitted, heavily quilted coat worn alone or beneath harder protection."
+      }
+    },
+    {
+      "id": "leather_armor",
+      "name": "Leather armor",
+      "fields": {
+        "type": "light",
+        "description": "A flexible suit of shaped panels suited to travel and mobile combat."
+      }
+    },
+    {
+      "id": "reinforced_leather_armor",
+      "name": "Reinforced leather armor",
+      "fields": {
+        "type": "light",
+        "description": "Flexible armor strengthened at vulnerable points without becoming cumbersome."
+      }
+    },
+    {
+      "id": "duelist_coat",
+      "name": "Duelist coat",
+      "fields": {
+        "type": "light",
+        "description": "A close-fitted protective coat cut for quick footwork and precise movement."
+      }
+    },
+    {
+      "id": "chain_shirt",
+      "name": "Chain shirt",
+      "fields": {
+        "type": "medium",
+        "description": "A short linked shirt that protects the torso without the weight of a full hauberk."
+      }
+    },
+    {
+      "id": "scale_armor",
+      "name": "Scale armor",
+      "fields": {
+        "type": "medium",
+        "description": "Overlapping scales cover a flexible backing and turn aside glancing blows."
+      }
+    },
+    {
+      "id": "brigandine",
+      "name": "Brigandine",
+      "fields": {
+        "type": "medium",
+        "description": "Small overlapping plates are riveted inside a sturdy fitted garment."
+      }
+    },
+    {
+      "id": "lamellar_armor",
+      "name": "Lamellar armor",
+      "fields": {
+        "type": "medium",
+        "description": "Rows of small rigid plates are laced together into resilient protection."
+      }
+    },
+    {
+      "id": "breastplate",
+      "name": "Breastplate",
+      "fields": {
+        "type": "medium",
+        "description": "A shaped rigid cuirass protects the torso while leaving the limbs relatively free."
+      }
+    },
+    {
+      "id": "coat_of_plates",
+      "name": "Coat of plates",
+      "fields": {
+        "type": "medium",
+        "description": "Broad hidden plates line a heavy coat for balanced coverage and mobility."
+      }
+    },
+    {
+      "id": "chain_mail",
+      "name": "Chain mail",
+      "fields": {
+        "type": "heavy",
+        "description": "A long, dense suit of interlocking links provides extensive protection."
+      }
+    },
+    {
+      "id": "splint_armor",
+      "name": "Splint armor",
+      "fields": {
+        "type": "heavy",
+        "description": "Long rigid strips reinforce a heavy backing across the body and limbs."
+      }
+    },
+    {
+      "id": "plate_armor",
+      "name": "Plate armor",
+      "fields": {
+        "type": "heavy",
+        "description": "Articulated plates protect most of the body with carefully fitted joints."
+      }
+    },
+    {
+      "id": "full_plate",
+      "name": "Full plate",
+      "fields": {
+        "type": "heavy",
+        "description": "A complete articulated harness encloses its wearer from head to foot."
+      }
+    },
+    {
+      "id": "siege_armor",
+      "name": "Siege armor",
+      "fields": {
+        "type": "heavy",
+        "description": "Massive reinforced protection is built for the most punishing assaults."
+      }
+    }
+  ]
+}

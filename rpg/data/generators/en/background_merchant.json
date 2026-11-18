@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 4,
+  "id": "merchant",
+  "visibility": "internal",
+  "name": "Merchant archetypes",
+  "description": "Trade and commercial roles",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "trader",
+      "name": "Trader",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "shopkeeper",
+      "name": "Shopkeeper",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "caravaner",
+      "name": "Caravaner"
+    },
+    {
+      "id": "factor",
+      "name": "Factor",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "appraiser",
+      "name": "Appraiser",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "innkeeper",
+      "name": "Innkeeper",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "fishmonger",
+      "name": "Fishmonger"
+    },
+    {
+      "id": "supplier",
+      "name": "Supplier",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "peddler",
+      "name": "Peddler",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "market_broker",
+      "name": "Market broker",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    }
+  ]
+}

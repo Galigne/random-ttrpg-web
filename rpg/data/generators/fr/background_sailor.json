@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 4,
+  "id": "sailor",
+  "visibility": "internal",
+  "name": "Archétypes maritimes",
+  "description": "Rôles liés à la mer et aux quais",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "sailor",
+      "name": "Marin"
+    },
+    {
+      "id": "fisher",
+      "name": "Pêcheur"
+    },
+    {
+      "id": "pirate",
+      "name": "Pirate",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "navigator",
+      "name": "Navigateur",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "deckhand",
+      "name": "Matelot",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "dock_worker",
+      "name": "Docker",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "ship_captain",
+      "name": "Capitaine de navire",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "smuggler",
+      "name": "Contrebandier",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "salvager",
+      "name": "Récupérateur d’épaves",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "pilot",
+      "name": "Pilote",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    }
+  ]
+}

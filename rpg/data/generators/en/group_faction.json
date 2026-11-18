@@ -1,0 +1,332 @@
+{
+  "schemaVersion": 4,
+  "id": "faction",
+  "visibility": "internal",
+  "name": "Faction",
+  "description": "Organizations with goals, resources, hierarchy, allies, and enemies",
+  "entrySchema": {
+    "required": ["type", "goal", "resources", "hierarchy", "allies", "enemies"]
+  },
+  "entries": [
+    {
+      "id": "the_wayfarers_guild",
+      "name": "The Wayfarers' Guild",
+      "weight": 3,
+      "fields": {
+        "type": "Adventurers' guild",
+        "goal": "Make dangerous travel and exploration profitable but survivable.",
+        "resources": "Maps, chapterhouses, veteran guides, rescue funds.",
+        "hierarchy": "Elected guildmaster, regional captains, licensed members.",
+        "allies": "Merchants, frontier settlements, cartographers.",
+        "enemies": "Bandit leagues, fraudulent guides, territorial nobles."
+      }
+    },
+    {
+      "id": "house_valeward",
+      "name": "House Valeward",
+      "weight": 3,
+      "fields": {
+        "type": "Noble house",
+        "goal": "Secure a royal marriage and control the western river trade.",
+        "resources": "Fertile estates, cavalry, marriage ties, river tolls.",
+        "hierarchy": "Duchess, family council, sworn household officers.",
+        "allies": "River guilds, two minor houses.",
+        "enemies": "A rival duke, republican reformers, smugglers."
+      }
+    },
+    {
+      "id": "the_ashen_lanterns",
+      "name": "The Ashen Lanterns",
+      "weight": 3,
+      "fields": {
+        "type": "Religious order",
+        "goal": "Find and safely destroy undead outbreaks before panic spreads.",
+        "resources": "Exorcists, sanctified fire, hidden hospices, burial records.",
+        "hierarchy": "High Keeper, lantern-bearers, lay informants.",
+        "allies": "Temples, gravediggers, village healers.",
+        "enemies": "Necromancers, corpse merchants, officials hiding outbreaks."
+      }
+    },
+    {
+      "id": "the_brass_compact",
+      "name": "The Brass Compact",
+      "weight": 3,
+      "fields": {
+        "type": "Merchant guild",
+        "goal": "Standardize weights, contracts, and currency across the region.",
+        "resources": "Warehouses, caravans, banks, hired guards.",
+        "hierarchy": "Board of factors, auditors, member companies.",
+        "allies": "Urban governments, craftsmen, caravanserais.",
+        "enemies": "Counterfeiters, protection rackets, isolationist lords."
+      }
+    },
+    {
+      "id": "the_red_knives",
+      "name": "The Red Knives",
+      "weight": 2,
+      "fields": {
+        "type": "Criminal syndicate",
+        "goal": "Control contraband without allowing uncontrolled street violence.",
+        "resources": "Smuggling routes, bribed guards, safehouses, informants.",
+        "hierarchy": "Hidden council, district bosses, crews.",
+        "allies": "Corrupt officials, fences, selected dockworkers.",
+        "enemies": "Independent gangs, honest magistrates, rival smugglers."
+      }
+    },
+    {
+      "id": "the_verdant_covenant",
+      "name": "The Verdant Covenant",
+      "weight": 2,
+      "fields": {
+        "type": "Druidic circle",
+        "goal": "Prevent settlement from crossing ancient ecological boundaries.",
+        "resources": "Shape-shifters, sacred groves, animal messengers, weather lore.",
+        "hierarchy": "Seasonal council and autonomous local circles.",
+        "allies": "Foresters, rural healers, nature spirits.",
+        "enemies": "Logging consortiums, expanding barons, blight cults."
+      }
+    },
+    {
+      "id": "the_seventh_banner",
+      "name": "The Seventh Banner",
+      "weight": 2,
+      "fields": {
+        "type": "Mercenary army",
+        "goal": "Win land and legal recognition after decades of foreign wars.",
+        "resources": "Disciplined infantry, engineers, siege equipment, veterans.",
+        "hierarchy": "Marshal, banner captains, elected sergeants.",
+        "allies": "Veterans' families, pragmatic rulers.",
+        "enemies": "Unpaid former employers, aristocratic officers, deserters."
+      }
+    },
+    {
+      "id": "the_quiet_archive",
+      "name": "The Quiet Archive",
+      "weight": 2,
+      "fields": {
+        "type": "Scholarly society",
+        "goal": "Collect dangerous knowledge and restrict access to it.",
+        "resources": "Secret libraries, translators, memory magic, academic agents.",
+        "hierarchy": "Curators, sealed committees, field researchers.",
+        "allies": "Universities, cautious mages, some monasteries.",
+        "enemies": "Book burners, reckless collectors, forbidden-text dealers."
+      }
+    },
+    {
+      "id": "the_salt_throne",
+      "name": "The Salt Throne",
+      "weight": 2,
+      "fields": {
+        "type": "Pirate confederacy",
+        "goal": "Force coastal states to recognize a free maritime territory.",
+        "resources": "Fast ships, island coves, stolen charts, coastal spies.",
+        "hierarchy": "Elected admiral and captains' moot.",
+        "allies": "Dissident ports, smugglers, freed prisoners.",
+        "enemies": "Royal navies, slave traders, merchant monopolies."
+      }
+    },
+    {
+      "id": "the_white_veil",
+      "name": "The White Veil",
+      "weight": 2,
+      "fields": {
+        "type": "Assassins' order",
+        "goal": "Remove leaders judged likely to cause mass suffering.",
+        "resources": "Disguises, poisons, intelligence networks, false identities.",
+        "hierarchy": "Anonymous judges, handlers, isolated operatives.",
+        "allies": "Whistleblowers, spies, a few reformist nobles.",
+        "enemies": "Secret police, tyrants, assassins for hire."
+      }
+    },
+    {
+      "id": "the_hearth_union",
+      "name": "The Hearth Union",
+      "weight": 2,
+      "fields": {
+        "type": "Workers' league",
+        "goal": "Secure fair contracts, safe workplaces, and political representation.",
+        "resources": "Strike funds, skilled labor, meeting halls, public support.",
+        "hierarchy": "Local delegates and a rotating central committee.",
+        "allies": "Urban poor, reformers, independent craftsmen.",
+        "enemies": "Exploitative guildmasters, strikebreakers, corrupt courts."
+      }
+    },
+    {
+      "id": "the_ivory_standard",
+      "name": "The Ivory Standard",
+      "weight": 2,
+      "fields": {
+        "type": "Knightly order",
+        "goal": "Restore lawful roads and defend communities abandoned by the crown.",
+        "resources": "Fortified keeps, trained cavalry, squires, public prestige.",
+        "hierarchy": "Grand commander, castellans, sworn knights.",
+        "allies": "Villages, pilgrims, lawful temples.",
+        "enemies": "Raiders, corrupt nobles, monsters controlling roads."
+      }
+    },
+    {
+      "id": "the_new_dawn_assembly",
+      "name": "The New Dawn Assembly",
+      "weight": 1,
+      "fields": {
+        "type": "Revolutionary movement",
+        "goal": "Replace hereditary rule with elected regional councils.",
+        "resources": "Pamphlet presses, neighborhood cells, defectors, donations.",
+        "hierarchy": "Secret congress, local speakers, independent cells.",
+        "allies": "Students, workers, excluded minorities.",
+        "enemies": "Royal intelligence, conservative clergy, loyalist militias."
+      }
+    },
+    {
+      "id": "the_hollow_choir",
+      "name": "The Hollow Choir",
+      "weight": 1,
+      "fields": {
+        "type": "Apocalyptic cult",
+        "goal": "Silence every source of sound to awaken a sleeping god.",
+        "resources": "Fanatical converts, silence magic, infiltrated musicians.",
+        "hierarchy": "Mute prophet, conductors, choristers.",
+        "allies": "Desperate hermits, certain aberrations.",
+        "enemies": "Bards, bell-founders, nearly every established religion."
+      }
+    },
+    {
+      "id": "the_sapphire_embassy",
+      "name": "The Sapphire Embassy",
+      "weight": 1,
+      "fields": {
+        "type": "Foreign political network",
+        "goal": "Make neighboring states economically dependent without open war.",
+        "resources": "Diplomats, loans, luxury goods, trained agents.",
+        "hierarchy": "Ambassador, commercial attachés, covert office.",
+        "allies": "Debtor nobles, import guilds, cosmopolitan elites.",
+        "enemies": "Protectionists, rival diplomats, local intelligence services."
+      }
+    },
+    {
+      "id": "the_chainbreakers",
+      "name": "The Chainbreakers",
+      "weight": 1,
+      "fields": {
+        "type": "Liberation network",
+        "goal": "End slavery and relocate freed people beyond retaliation.",
+        "resources": "Safehouses, forged papers, sympathetic sailors, hidden funds.",
+        "hierarchy": "Independent routes coordinated by masked dispatchers.",
+        "allies": "Former slaves, abolitionist temples, dock unions.",
+        "enemies": "Traffickers, plantation lords, bounty hunters."
+      }
+    },
+    {
+      "id": "the_gilded_scale",
+      "name": "The Gilded Scale",
+      "weight": 1,
+      "fields": {
+        "type": "Banking consortium",
+        "goal": "Control sovereign debt and make warfare financially impossible without them.",
+        "resources": "Vaults, credit ledgers, debt collectors, political leverage.",
+        "hierarchy": "Five partner families and professional clerks.",
+        "allies": "Merchants, indebted rulers, mint officials.",
+        "enemies": "Debtors' movements, counterfeiters, competing banks."
+      }
+    },
+    {
+      "id": "the_starfall_society",
+      "name": "The Starfall Society",
+      "weight": 1,
+      "fields": {
+        "type": "Arcane research society",
+        "goal": "Recover celestial objects before governments weaponize them.",
+        "resources": "Observatories, mages, expedition teams, meteor fragments.",
+        "hierarchy": "Scientific council, principal investigators, apprentices.",
+        "allies": "Astronomers, universities, cautious elementals.",
+        "enemies": "War ministries, artifact smugglers, cosmic cults."
+      }
+    },
+    {
+      "id": "the_black_orchard",
+      "name": "The Black Orchard",
+      "weight": 1,
+      "fields": {
+        "type": "Poisoners' cartel",
+        "goal": "Monopolize rare toxins and the antidotes that control them.",
+        "resources": "Hidden gardens, alchemists, apothecary fronts, blackmail files.",
+        "hierarchy": "Master gardeners, distributors, contracted collectors.",
+        "allies": "Assassins, corrupt physicians, exotic traders.",
+        "enemies": "Healers, rival alchemists, victims' families."
+      }
+    },
+    {
+      "id": "the_common_shield",
+      "name": "The Common Shield",
+      "weight": 1,
+      "fields": {
+        "type": "Citizen militia",
+        "goal": "Keep local defense under community control rather than noble armies.",
+        "resources": "Volunteers, town arsenals, watchtowers, local knowledge.",
+        "hierarchy": "Elected captains accountable to public assemblies.",
+        "allies": "Farmers, shopkeepers, nearby communes.",
+        "enemies": "Invaders, would-be warlords, nobles demanding disarmament."
+      }
+    },
+    {
+      "id": "the_vaultward_order",
+      "name": "The Vaultward Order",
+      "fields": {
+        "type": "An order of supernatural custodians",
+        "goal": "Locate anomalous objects, transport them safely, study their limits, and contain those that cannot be destroyed.",
+        "resources": "Specialized vaults, insulated transport cases, catalogues of incidents, and recovery teams.",
+        "hierarchy": "Field recoverers answer to vault keepers, who each control only the procedures needed for their assigned collection.",
+        "allies": "Careful scholars, communities threatened by dangerous relics, and rulers willing to fund discreet storage.",
+        "enemies": "Relic traffickers, apocalyptic cults, reckless collectors, and escaped objects that can choose their own holders."
+      }
+    },
+    {
+      "id": "the_long_memory_collegium",
+      "name": "The Long Memory Collegium",
+      "fields": {
+        "type": "A scholarly society with intelligent undead among its senior members",
+        "goal": "Preserve research, experiments, archives, and institutional memory across centuries without surrendering intellectual freedom.",
+        "resources": "Living laboratories, sealed archives, patient patrons, and undead scholars who personally remember ancient projects.",
+        "hierarchy": "Short-lived fellows lead current work while senior chairs retain custody of studies spanning several generations.",
+        "allies": "Universities, archivists, healers, and rulers who value durable expertise.",
+        "enemies": "Undead hunters, grave robbers, plagiarists, and members who manipulate history by claiming only they remember it correctly."
+      }
+    },
+    {
+      "id": "the_measured_hunt",
+      "name": "The Measured Hunt",
+      "fields": {
+        "type": "A professional monster-management fellowship",
+        "goal": "Study territories, breeding, food chains, migration, and conflict before deciding whether a creature should be relocated, controlled, negotiated with, or killed.",
+        "resources": "Field bestiaries, trackers, anatomists, mobile cages, antidotes, and agreements with frontier communities.",
+        "hierarchy": "Regional ecologists assess cases before licensed hunters accept a contract and document its outcome.",
+        "allies": "Farmers, naturalists, cautious monster communities, and officials facing recurring attacks.",
+        "enemies": "Trophy hunters, poachers, frightened mobs, and patrons who conceal how their own actions disrupted an ecosystem."
+      }
+    },
+    {
+      "id": "the_fleeting_gate_company",
+      "name": "The Fleeting Gate Company",
+      "fields": {
+        "type": "An expeditionary society for temporary portals and unstable places",
+        "goal": "Discover vanishing openings, map what lies beyond, and recover people and objects before every known route closes.",
+        "resources": "Rapid-response explorers, synchronized clocks, anchor beacons, portable camps, and an archive of expired routes.",
+        "hierarchy": "Pathfinders lead individual crossings while route archivists decide which unstable openings justify an expedition.",
+        "allies": "Missing-person networks, curious scholars, merchants seeking brief opportunities, and settlements divided by anomalies.",
+        "enemies": "Portal predators, stranded rivals, secretive authorities, and clients who lie about what was lost beyond a closing route."
+      }
+    },
+    {
+      "id": "the_sealbound_registry",
+      "name": "The Sealbound Registry",
+      "fields": {
+        "type": "A neutral guild of magically enforced contracts",
+        "goal": "Make high-stakes agreements credible by recording them and binding deliberate violations to stated supernatural consequences.",
+        "resources": "Trusted witnesses, secure archives, ritual seals, traveling arbiters, and experts in ambiguous wording.",
+        "hierarchy": "Licensed witnesses register ordinary agreements while a masked council reviews contracts capable of harming whole communities.",
+        "allies": "Merchants, diplomats, lenders, rulers, and anyone whose agreement must survive distance or mistrust.",
+        "enemies": "Oathbreakers, coercive patrons, counterfeit registrars, and literal-minded entities that exploit badly written clauses."
+      }
+    }
+  ]
+}

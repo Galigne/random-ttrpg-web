@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 4,
+  "id": "outlander",
+  "visibility": "internal",
+  "name": "Outlander archetypes",
+  "description": "Wilderness and frontier roles",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "hunter",
+      "name": "Hunter",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "nomad",
+      "name": "Nomad"
+    },
+    {
+      "id": "hermit",
+      "name": "Hermit"
+    },
+    {
+      "id": "tribal_envoy",
+      "name": "Tribal envoy",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "frontier_guide",
+      "name": "Frontier guide",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "ranger",
+      "name": "Ranger",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "wilderness_healer",
+      "name": "Wilderness healer",
+      "generation": {
+        "statProfile": "character-cleric"
+      }
+    },
+    {
+      "id": "tracker",
+      "name": "Tracker",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "wilderness_scout",
+      "name": "Wilderness scout",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    }
+  ]
+}

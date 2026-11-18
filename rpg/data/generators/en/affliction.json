@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 4,
+  "id": "affliction",
+  "visibility": "public",
+  "name": "Affliction",
+  "description": "Persistent diseases and curses",
+  "entrySchema": {
+    "required": ["type", "description"]
+  },
+  "entries": [
+    {
+      "id": "ash_fever",
+      "name": "Ash Fever",
+      "fields": {
+        "type": "disease",
+        "description": "A smoky fever causes the {{ status_effect:feverish.name }} status effect; exposure to open flame worsens the illness and can make its symptoms flare."
+      }
+    },
+    {
+      "id": "glass_cough",
+      "name": "Glass Cough",
+      "fields": {
+        "type": "disease",
+        "description": "A painful dry cough produces tiny translucent crystals; severe fits can compromise stealth, and strenuous activity may provoke or worsen the {{ status_effect:bleeding.name }} status effect."
+      }
+    },
+    {
+      "id": "sleeping_sickness",
+      "name": "Sleeping Sickness",
+      "fields": {
+        "type": "disease",
+        "description": "Recurring bouts of sleep interrupt ordinary activity and become difficult to resist; severe episodes can cause the {{ status_effect:unconscious.name }} status effect."
+      }
+    },
+    {
+      "id": "frost_rot",
+      "name": "Frost Rot",
+      "fields": {
+        "type": "disease",
+        "description": "Numb, discolored tissue spreads after prolonged cold or supernatural exposure; cold worsens the disease and may inflict either the {{ status_effect:chilled.name }} or {{ status_effect:slowed.name }} status effect, while warmth provides temporary relief."
+      }
+    },
+    {
+      "id": "spore_fever",
+      "name": "Spore Fever",
+      "fields": {
+        "type": "disease",
+        "description": "An invasive fungus causes vivid dreams and the {{ status_effect:confused.name }} status effect."
+      }
+    },
+    {
+      "id": "black_vein",
+      "name": "Black Vein",
+      "fields": {
+        "type": "disease",
+        "description": "Darkened veins slowly spread from an infected wound, interfering with healing and passive recovery; severe or newly opened wounds accelerate its progression."
+      }
+    },
+    {
+      "id": "oathbrand",
+      "name": "Oathbrand",
+      "fields": {
+        "type": "curse",
+        "description": "A visible mark enforces a sworn duty or prohibition; it burns as a warning near a breach, and deliberate defiance invokes a supernatural consequence chosen by the GM."
+      }
+    },
+    {
+      "id": "haunting_presence",
+      "name": "Haunting Presence",
+      "fields": {
+        "type": "curse",
+        "description": "An unseen presence follows the bearer, disturbing rest and reliably disrupting attempts at silence or stealth with involuntary sounds or other signs; its agitation may also betray nearby supernatural danger."
+      }
+    },
+    {
+      "id": "hunger_mark",
+      "name": "Hunger Mark",
+      "fields": {
+        "type": "curse",
+        "description": "Ordinary food cannot satisfy the supernatural hunger imposed by the curse or prevent the consequences of the {{ status_effect:starving.name }} status effect; only an unusual form of sustenance chosen by the GM can do so."
+      }
+    },
+    {
+      "id": "stone_sleep",
+      "name": "Stone Sleep",
+      "fields": {
+        "type": "curse",
+        "description": "After deep sleep, part of the body remains temporarily cold, heavy, and stone-like, leaving the bearer with either the {{ status_effect:slowed.name }} or {{ status_effect:weakened.name }} status effect until it recovers."
+      }
+    },
+    {
+      "id": "whispering_mark",
+      "name": "Whispering Mark",
+      "fields": {
+        "type": "curse",
+        "description": "A hidden mark can uncontrollably reveal fragments of nearby hidden conversations or secrets; its utterances may betray the bearer’s position or create social complications."
+      }
+    },
+    {
+      "id": "nightmare_chain",
+      "name": "Nightmare Chain",
+      "fields": {
+        "type": "curse",
+        "description": "Recurring nightmares connect the bearer to a creature, place, or object; while the curse persists, normal passive healing and recovery from rest are greatly reduced and may be entirely prevented, and the dreams offer clues about the linked creature, place, or object."
+      }
+    },
+    {
+      "id": "withering_touch",
+      "name": "Withering Touch",
+      "fields": {
+        "type": "curse",
+        "description": "Prolonged handling rapidly spoils vulnerable organic materials such as food, herbs, medicine, and similar supplies."
+      }
+    },
+    {
+      "id": "monsters_mark",
+      "name": "Monster's Mark",
+      "fields": {
+        "type": "curse",
+        "description": "{{ creature:monster.generator.name }} can sense or track the bearer from an unusually great distance. The mark also reacts when one of those creatures is nearby, giving the bearer some warning."
+      }
+    },
+    {
+      "id": "truthbound",
+      "name": "Truthbound",
+      "fields": {
+        "type": "curse",
+        "description": "A deliberate lie causes immediate supernatural pain and imposes -2 on all actions until the bearer truthfully corrects or retracts it. Mistakes, uncertainty, and statements the bearer genuinely believes do not trigger the curse."
+      }
+    },
+    {
+      "id": "crystal_bloom",
+      "name": "Crystal Bloom",
+      "fields": {
+        "type": "disease",
+        "description": "Supernatural crystals grow around wounds and joints. Serious injury can restrict movement and inflict the {{ status_effect:slowed.name }} status effect, while breaking or forcibly removing the growth risks inflicting the {{ status_effect:bleeding.name }} status effect."
+      }
+    },
+    {
+      "id": "unquiet_return",
+      "name": "Unquiet Return",
+      "fields": {
+        "type": "curse",
+        "description": "Death no longer holds the afflicted permanently. Each return leaves a meaningful cost or lasting change chosen by the GM."
+      }
+    },
+    {
+      "id": "name_erosion",
+      "name": "Name Erosion",
+      "fields": {
+        "type": "curse",
+        "description": "Other people gradually lose the ability to remember, speak, write, or recognize the afflicted person's name while still remembering the person."
+      }
+    },
+    {
+      "id": "shared_wound",
+      "name": "Shared Wound",
+      "fields": {
+        "type": "curse",
+        "description": "Injuries and illnesses affecting the afflicted also begin appearing on another mysteriously linked creature, or pass from that creature to the afflicted."
+      }
+    },
+    {
+      "id": "dream_parasite",
+      "name": "Dream Parasite",
+      "fields": {
+        "type": "curse",
+        "description": "A presence first encountered only in dreams gradually leaves evidence, inflicts consequences, and manifests parts of itself in waking reality."
+      }
+    }
+  ]
+}

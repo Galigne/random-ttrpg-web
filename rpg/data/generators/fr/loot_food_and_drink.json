@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 4,
+  "id": "food_and_drink",
+  "visibility": "internal",
+  "name": "Nourriture et boissons",
+  "description": "Provisions, repas et boissons ordinaires ou inhabituels",
+  "entrySchema": {
+    "required": ["description"]
+  },
+  "modifiers": {
+    "modifier_loot": 5
+  },
+  "entries": [
+    {
+      "id": "three_travel_rations",
+      "name": "Trois rations de voyage",
+      "weight": 8,
+      "fields": {
+        "description": "Des provisions compactes suffisantes pour trois jours."
+      }
+    },
+    {
+      "id": "fresh_bread",
+      "name": "Pain frais",
+      "weight": 8,
+      "fields": {
+        "description": "Un pain frais à la croûte croustillante, idéal pour un repas quotidien."
+      }
+    },
+    {
+      "id": "cheese_wheel",
+      "name": "Meule de fromage",
+      "weight": 7,
+      "fields": {
+        "description": "Une petite meule de fromage ferme, facile à transporter et à conserver."
+      }
+    },
+    {
+      "id": "dried_meat",
+      "name": "Viande séchée",
+      "weight": 7,
+      "fields": {
+        "description": "Des lamelles salées qui se conservent bien dans un paquetage."
+      }
+    },
+    {
+      "id": "smoked_fish",
+      "name": "Poisson fumé",
+      "weight": 6,
+      "fields": {
+        "description": "Un poisson ferme et salé, conservé par fumage pour le voyage ou les réserves d’hiver."
+      }
+    },
+    {
+      "id": "fresh_fruit",
+      "name": "Fruits frais",
+      "weight": 7,
+      "fields": {
+        "description": "Des fruits de saison prêts à être consommés avant de s’abîmer."
+      }
+    },
+    {
+      "id": "preserved_fruit",
+      "name": "Fruits conservés",
+      "weight": 6,
+      "fields": {
+        "description": "Des fruits séchés, confits ou mis en pot pour un voyage plus long."
+      }
+    },
+    {
+      "id": "vegetables",
+      "name": "Légumes",
+      "weight": 7,
+      "fields": {
+        "description": "Un assortiment pratique de racines, de feuilles et de produits frais de saison."
+      }
+    },
+    {
+      "id": "pickled_vegetables",
+      "name": "Légumes au vinaigre",
+      "weight": 5,
+      "fields": {
+        "description": "Des légumes saisonniers croquants conservés dans une saumure bien relevée."
+      }
+    },
+    {
+      "id": "roasted_chicken",
+      "name": "Poulet rôti",
+      "weight": 6,
+      "fields": {
+        "description": "Un poulet entier rôti avec du sel et des herbes communes."
+      }
+    },
+    {
+      "id": "roasted_meat",
+      "name": "Viande rôtie",
+      "weight": 6,
+      "fields": {
+        "description": "Une généreuse pièce de viande rôtie au feu ou au four."
+      }
+    },
+    {
+      "id": "soup",
+      "name": "Soupe",
+      "weight": 7,
+      "fields": {
+        "description": "Une soupe chaude et simple préparée avec les légumes et les restes disponibles."
+      }
+    },
+    {
+      "id": "stew",
+      "name": "Ragoût",
+      "weight": 7,
+      "fields": {
+        "description": "Un ragoût épais et nourrissant, mijoté avec des ingrédients locaux ordinaires."
+      }
+    },
+    {
+      "id": "porridge",
+      "name": "Bouillie",
+      "weight": 7,
+      "fields": {
+        "description": "Un bol chaud de céréales cuites dans de l’eau ou du lait."
+      }
+    },
+    {
+      "id": "eggs",
+      "name": "Œufs",
+      "weight": 7,
+      "fields": {
+        "description": "Plusieurs œufs frais prêts à être cuits, intégrés à une recette ou échangés."
+      }
+    },
+    {
+      "id": "ale",
+      "name": "Cervoise",
+      "weight": 6,
+      "fields": {
+        "description": "Une chope ou une cruche bouchée de cervoise locale ordinaire."
+      }
+    },
+    {
+      "id": "beer",
+      "name": "Bière",
+      "weight": 6,
+      "fields": {
+        "description": "Une boisson fermentée courante dont la couleur et l’amertume reflètent les céréales et le houblon locaux."
+      }
+    },
+    {
+      "id": "mead",
+      "name": "Hydromel",
+      "weight": 4,
+      "fields": {
+        "description": "Une boisson fermentée à base de miel, légère et sèche ou riche et sucrée."
+      }
+    },
+    {
+      "id": "cider",
+      "name": "Cidre",
+      "weight": 5,
+      "fields": {
+        "description": "Une boisson de fruits fermentés, généralement préparée avec des pommes ou des poires locales."
+      }
+    },
+    {
+      "id": "wine",
+      "name": "Vin",
+      "weight": 5,
+      "fields": {
+        "description": "Une bouteille ou une cruche dont le caractère et la qualité dépendent de la région."
+      }
+    },
+    {
+      "id": "spirits",
+      "name": "Eau-de-vie",
+      "weight": 3,
+      "fields": {
+        "description": "Une petite bouteille d’alcool distillé puissant, à servir avec modération."
+      }
+    },
+    {
+      "id": "water",
+      "name": "Eau",
+      "weight": 8,
+      "fields": {
+        "description": "De l’eau potable conservée dans une cruche ou une outre fermée."
+      }
+    },
+    {
+      "id": "herbal_tea",
+      "name": "Tisane",
+      "weight": 5,
+      "fields": {
+        "description": "Un mélange parfumé préparé pour se réchauffer, accueillir un invité ou apporter un léger réconfort."
+      }
+    },
+    {
+      "id": "exotic_fruit",
+      "name": "Fruit exotique",
+      "weight": 1,
+      "fields": {
+        "description": "Un fruit rare dont la forme et la saveur inconnues attirent les acheteurs curieux."
+      }
+    },
+    {
+      "id": "regional_delicacy",
+      "name": "Spécialité régionale",
+      "weight": 2,
+      "fields": {
+        "description": "Un mets caractéristique apprécié sur place, mais parfois surprenant pour les visiteurs."
+      }
+    },
+    {
+      "id": "mushroom_broth",
+      "name": "Bouillon aux champignons",
+      "weight": 2,
+      "fields": {
+        "description": "Un bouillon sombre et savoureux préparé avec plusieurs variétés de champignons comestibles."
+      }
+    }
+  ]
+}

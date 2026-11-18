@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 4,
+  "id": "exile",
+  "visibility": "internal",
+  "name": "Exile archetypes",
+  "description": "Displaced and fugitive social roles",
+  "entrySchema": {
+    "required": []
+  },
+  "entries": [
+    {
+      "id": "refugee",
+      "name": "Refugee"
+    },
+    {
+      "id": "fugitive",
+      "name": "Fugitive",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    },
+    {
+      "id": "banished_noble",
+      "name": "Banished noble",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "displaced_survivor",
+      "name": "Displaced survivor"
+    },
+    {
+      "id": "political_exile",
+      "name": "Political exile",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "deserter",
+      "name": "Deserter",
+      "generation": {
+        "statProfile": "character-fighter"
+      }
+    },
+    {
+      "id": "migrant",
+      "name": "Migrant"
+    },
+    {
+      "id": "wanderer",
+      "name": "Wanderer"
+    },
+    {
+      "id": "dissident",
+      "name": "Dissident",
+      "generation": {
+        "statProfile": "character-diplomat"
+      }
+    },
+    {
+      "id": "outlaw",
+      "name": "Outlaw",
+      "generation": {
+        "statProfile": "character-rogue"
+      }
+    }
+  ]
+}
