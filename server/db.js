@@ -72,7 +72,7 @@ function openDatabase(filename) {
     CREATE TABLE IF NOT EXISTS entity_history (
       entity_id TEXT NOT NULL REFERENCES entities(id) ON DELETE CASCADE,
       version INTEGER NOT NULL, data TEXT NOT NULL, created_at INTEGER NOT NULL,
-      actor_id TEXT NOT NULL REFERENCES users(id), portrait_hash TEXT, PRIMARY KEY(entity_id,version)
+      actor_id TEXT REFERENCES users(id), portrait_hash TEXT, PRIMARY KEY(entity_id,version)
     );
     CREATE TABLE IF NOT EXISTS entity_images (
       entity_id TEXT NOT NULL REFERENCES entities(id) ON DELETE CASCADE,
