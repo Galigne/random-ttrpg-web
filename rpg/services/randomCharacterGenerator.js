@@ -75,14 +75,26 @@ function populateRandomCharacter(character, options = {}) {
 
 	character.level = level;
 	const generatedName = pickOne('name', locale, random);
-	character.name.firstName = getField(generatedName, 'first_name');
-	character.name.lastName = getField(generatedName, 'last_name');
+	character.name.firstName = resolveSelectedField('name', generatedName, 'first_name', {
+		locale, random, resolver, path: 'root.character.name.firstName',
+	});
+	character.name.lastName = resolveSelectedField('name', generatedName, 'last_name', {
+		locale, random, resolver, path: 'root.character.name.lastName',
+	});
 
 	const race = pickOne('race', locale, random);
-	character.race.name = getField(race, 'name');
-	character.race.physicalDescription = getField(race, 'description');
-	character.race.traits.skillBonus = getField(race, 'skill_bonus');
-	character.race.traits.physicalAbility = getField(race, 'physical_ability');
+	character.race.name = resolveSelectedField('race', race, 'name', {
+		locale, random, resolver, path: 'root.character.race.name',
+	});
+	character.race.physicalDescription = resolveSelectedField('race', race, 'description', {
+		locale, random, resolver, path: 'root.character.race.physicalDescription',
+	});
+	character.race.traits.skillBonus = resolveSelectedField('race', race, 'skill_bonus', {
+		locale, random, resolver, path: 'root.character.race.skillBonus',
+	});
+	character.race.traits.physicalAbility = resolveSelectedField('race', race, 'physical_ability', {
+		locale, random, resolver, path: 'root.character.race.physicalAbility',
+	});
 
 	const backgroundSelection = resolveScopedRoutedArchetype({
 		getGenerator,
@@ -167,9 +179,11 @@ function populateRandomCharacter(character, options = {}) {
 
 function createCharacterGenerationDefaults({ character, formatGold }) {
 	return {
-		beforeStatistics({ locale, random }) {
+		beforeStatistics({ locale, random, resolver }) {
 			character.personality.traits = pickMany('personality', 2, locale, random)
-				.map(entry => getField(entry, 'description'));
+				.map((entry, index) => resolveSelectedField('personality', entry, 'description', {
+					locale, random, resolver, path: `root.character.personality.${index}`,
+				}));
 		},
 		modifiers({ locale, modifierReferenceOptions, random, resolver }) {
 			return maybeGenerateDescriptiveModifiers({
@@ -181,13 +195,17 @@ function createCharacterGenerationDefaults({ character, formatGold }) {
 				resolverOptions: modifierReferenceOptions,
 			});
 		},
-		fixedRules({ locale, random, statistics }) {
+		fixedRules({ locale, random, resolver, statistics }) {
 			const rulePointCount = calculateRulePoints(statistics.intelligence);
 			const ruleLevels = allocateRuleLevels(rulePointCount);
 			return pickMany('rules', ruleLevels.length, locale, random)
 				.map((entry, index) => ({
-					name: getField(entry, 'name'),
-					description: getField(entry, 'description'),
+					name: resolveSelectedField('rules', entry, 'name', {
+						locale, random, resolver, path: `root.character.rules.${index}.name`,
+					}),
+					description: resolveSelectedField('rules', entry, 'description', {
+						locale, random, resolver, path: `root.character.rules.${index}.description`,
+					}),
 					level: ruleLevels[index],
 				}));
 		},
@@ -404,6 +422,14 @@ function getField(entry, requestedField) {
 		);
 	}
 	return entry.fields[requestedField];
+}
+
+function resolveSelectedField(generatorId, entry, field, { locale, path, random, resolver }) {
+	const result = resolver.resolveReference(`${generatorId}:${entry.id}.${field}`, locale, {
+		path,
+		random,
+	});
+	return getField(result, field);
 }
 
 function getResolvedTextValue(result) {

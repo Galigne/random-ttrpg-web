@@ -2,7 +2,9 @@ const generatorCatalog = require('./generatorCatalog');
 const { generatorResolutionError } = require('./generatorResolutionError');
 const { createReferenceResolver } = require('./referenceResolver');
 const {
+	extractInlineReferences,
 	parseWrappedInlineReference,
+	validateReference,
 } = require('./generatorSchema/referenceValidation');
 const {
 	analyzeGeneratorTraversalPath,
@@ -61,6 +63,7 @@ function createGeneratorResolver({
 				'Ordinary generator references must use a canonical path string.',
 			);
 		}
+		validateReference(reference, options.path ?? 'root.reference');
 		return referenceResolver.resolveReference(
 			reference,
 			locale,
@@ -122,7 +125,14 @@ function createGeneratorResolver({
 				'The generator reference path is invalid.',
 			);
 		}
-		return resolveAnalyzedTraversal(analysis, state, path);
+		const resolved = resolveAnalyzedTraversal(analysis, state, path);
+		if (!resolved) {
+			throw generatorResolutionError(
+				'INVALID_GENERATOR_REFERENCE_PATH',
+				'The generator reference path could not be resolved.',
+			);
+		}
+		return resolved;
 	}
 
 	function resolveAnalyzedTraversal(analysis, state, path, options = {}) {
@@ -356,6 +366,7 @@ function createGeneratorResolver({
 				modifiers: [],
 			};
 		}
+		extractInlineReferences(value, path);
 		const matcher = /\{\{([^{}]*)\}\}/g;
 		let output = '';
 		let cursor = 0;

@@ -76,7 +76,10 @@ function selectResolvedOutput(resolved, selector) {
 		return resolved.value;
 	}
 	if (selector === 'fields' && resolved.outputType === 'fields') {
-		return { ...resolved.fields };
+		return Object.fromEntries(Object.entries(resolved.fields).map(([field, value]) => [
+			field,
+			typeof value === 'string' ? resolved.displayFields[field] : value,
+		]));
 	}
 	if (selector.startsWith('fields.') && resolved.selectedField !== undefined) {
 		return resolved.selectedField;
