@@ -3,7 +3,10 @@
   "references": {
     "media/references/adventurer & monster.jpg": "d6d7aada47f1a938f284d52f776caacd675006f34198185161c17bcd06683791",
     "media/references/castle entry.jpg": "8c38c4486e689873160ff899355c77088a4e166838001de751709cc42b290ad9",
-    "media/references/mage.jpg": "323c136427494899efbcfd00ccca912e1238d43bc495139453ceadbfa4d8e4f9"
+    "media/references/mage.jpg": "323c136427494899efbcfd00ccca912e1238d43bc495139453ceadbfa4d8e4f9",
+    "media/references/skeletton wizard.jpg": "99390314e7d6ba048483788616a3a1e817384a6eaaeb93cafa05d281d5f09986",
+    "media/references/old dwarf.jpg": "7fae2814b5d57e05bbba241efa1f448ece71617cdc3e57e61c9d1a08ac6ac901",
+    "media/references/young guy.jpg": "96ca6c9a3d89020870ff8fafb546a957465473c2aae9a0fa812147abd1579e2c"
   },
   "illustrations": [
     {
@@ -59,7 +62,23 @@
         "media/references/adventurer & monster.jpg"
       ],
       "promptTemplate": "Use case: illustration-story. Asset type: a static {code} tabletop die icon. The two supplied images are style references only. Draw exactly one isolated {shape} gaming die, centered with generous warm-white paper around it. Leave a large front face clear so the interface can overlay a number. Traditional hand-drawn fantasy illustration, reminiscent of an illustrator's pencil studies for a classic tabletop RPG rulebook. Graphite pencil and fine ink on warm, pure-white paper. Monochromatic with natural graphite grays. Loose, confident, expressive linework, visible construction lines, overlapping strokes, varied line weight, irregular contours, and organic imperfections. Detailed cross-hatching and directional pencil shading. Some areas carefully rendered while others remain deliberately unfinished. Authentic traditional sketchbook aesthetic, visibly handmade. No watercolor, painted color fills, digital gradients, airbrushing, photorealism, polished digital concept art, or 3D rendering. No numbers, text, logos, or watermark."
+    },
+    {
+      "output": "public/media/combat-card.webp",
+      "sha256": "bd05054c406e0852ae736d500762e48ba208049320c8689adea5ffd74f86b5cd",
+      "inputs": [
+        "media/references/skeletton wizard.jpg",
+        "media/references/old dwarf.jpg",
+        "media/references/young guy.jpg"
+      ],
+      "prompt": "Use case: illustration-story. Asset: original fantasy tabletop RPG rulebook chapter opening and small website card. Use the supplied actual images as visual references for expressive hand-drawn linework, anatomy and fantasy mood, not as characters or compositions to copy; do not reproduce any markings, writing or signatures in them. Traditional hand-drawn fantasy illustration, reminiscent of an illustrator's pencil studies for a classic tabletop RPG rulebook. Graphite pencil and fine ink on warm, pure-white paper. Monochromatic with natural graphite grays. Loose, confident, expressive linework, visible construction lines, overlapping strokes, varied line weight, irregular contours, and organic imperfections. Detailed cross-hatching and directional pencil shading. Some areas carefully rendered while others remain deliberately unfinished. Authentic traditional sketchbook aesthetic, visibly handmade. No watercolor, painted color fills, digital gradients, airbrushing, photorealism, polished digital concept art, or 3D rendering. Composition: landscape 3:2, intended native image 1536 by 1024, one clear and compact action with distinct readable silhouettes, anatomically convincing poses, strong expressions, and no tiny details needed to understand the action. Loose unfinished edges dissolve naturally into warm pure-white paper on all sides; no enclosed rectangular frame, panel, border or page mockup. No text, letters, labels, symbols, signatures, logos or watermarks.\n\nA tense melee viewed from a high three-quarter angle: two different adventurers fight an original armored skeletal knight on a few broken ancient stone steps. One adventurer braces a small wooden shield as the skeletal knight's single sword pierces straight through it, while a woman with a short spear darts in from a clearly separate flank. Depict a single decisive moment, obvious which limbs and weapons belong to whom, and expressive concentration; the exposed skull conveys menace. The steps are mere loose sketch marks fading away, not an architectural frame. No blood or gore, no magic circles.\n\nThe knight lunges with its left leg and left foot forward, planted on the lower step toward the shield bearer, its rear leg behind for balance. The sword is one straight, continuous blade: its tip emerges visibly through the back of the shield along the same line as the blade and hilt. Natural arm, hand, hip and leg anatomy; no extra swords or detached blade fragments.",
+      "generatedPngSha256": "c9bad898fefe4d5950f53934203c2b22e9d56e6cf62acf587c7baf4efe1942c2",
+      "sourceWebp": {
+        "path": "media/rulebook/combat.webp",
+        "sha256": "123d205acd6d70d5edcf8ac91279e40ee1244aa9664b33360c840df052a3a719"
+      },
+      "preparation": "Resized from the approved 1536 × 1024 PNG to the existing 560 × 373 card size using Lanczos, then encoded as WebP at quality 90."
     }
   ],
-  "encoding": "Lossless WebP; decoded RGBA pixels verified identical to the generated PNG."
+  "encoding": "Unless otherwise noted per illustration, lossless WebP; decoded RGBA pixels verified identical to the generated PNG."
 }

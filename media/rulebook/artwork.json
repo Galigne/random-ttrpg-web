@@ -96,15 +96,15 @@
     },
     {
       "name": "combat",
-      "prompt": "Use case: illustration-story. Original wide 3:2 narrative vignette for the Combat chapter of RANDOM. The actual image inputs are visual STYLE references: adventurer & monster for spatial storytelling, female corsair for gestural action and clothing, young guy for dynamic pose and perspective. Match their line character; do not copy their people, monster, composition, signatures or handwriting. The visual references take precedence over the written description wherever they differ.\nA quick-thinking traveler braces a round plain shield against an enormous invented many-legged insect creature while a companion pulls a hanging rope to drop a loose timber between them. The creature is a fantastical beetle-like silhouette, not a named species or recognizable IP. Three-quarter elevated perspective inside the small broken corner of a stone ruin; strong diagonal action, equipment and fabric caught in motion, no blood or injury. Emphasize teamwork and using the environment rather than class-specific combat powers. Keep two figures and one creature anatomically readable, avoid clutter. The scene dissolves at all edges into warm off-white paper, no enclosing rectangular frame. Landscape image with enough margin that every figure is fully visible.\nTraditional hand-drawn fantasy illustration, reminiscent of an illustrator's pencil studies for a classic tabletop RPG rulebook. Graphite pencil and fine ink on warm, off-white paper. Predominantly monochromatic with natural graphite grays and subtle sepia tones. Loose, confident, expressive linework, visible construction lines, overlapping strokes, varied line weight, irregular contours, and organic imperfections. Detailed cross-hatching and directional pencil shading. Some areas carefully rendered while others remain deliberately unfinished. Authentic traditional sketchbook aesthetic, visibly handmade. No watercolor, painted color fills, digital gradients, airbrushing, photorealism, polished digital concept art, or 3D rendering.\nNo watercolor or flat color washes. Dense directional hatching at focal points, spare incomplete lines at margins. No labels, text, symbols implying rules, signature or watermark.",
+      "prompt": "Use case: illustration-story. Asset: original fantasy tabletop RPG rulebook chapter opening and small website card. Use the supplied actual images as visual references for expressive hand-drawn linework, anatomy and fantasy mood, not as characters or compositions to copy; do not reproduce any markings, writing or signatures in them. Traditional hand-drawn fantasy illustration, reminiscent of an illustrator's pencil studies for a classic tabletop RPG rulebook. Graphite pencil and fine ink on warm, pure-white paper. Monochromatic with natural graphite grays. Loose, confident, expressive linework, visible construction lines, overlapping strokes, varied line weight, irregular contours, and organic imperfections. Detailed cross-hatching and directional pencil shading. Some areas carefully rendered while others remain deliberately unfinished. Authentic traditional sketchbook aesthetic, visibly handmade. No watercolor, painted color fills, digital gradients, airbrushing, photorealism, polished digital concept art, or 3D rendering. Composition: landscape 3:2, intended native image 1536 by 1024, one clear and compact action with distinct readable silhouettes, anatomically convincing poses, strong expressions, and no tiny details needed to understand the action. Loose unfinished edges dissolve naturally into warm pure-white paper on all sides; no enclosed rectangular frame, panel, border or page mockup. No text, letters, labels, symbols, signatures, logos or watermarks.\n\nA tense melee viewed from a high three-quarter angle: two different adventurers fight an original armored skeletal knight on a few broken ancient stone steps. One adventurer braces a small wooden shield as the skeletal knight's single sword pierces straight through it, while a woman with a short spear darts in from a clearly separate flank. Depict a single decisive moment, obvious which limbs and weapons belong to whom, and expressive concentration; the exposed skull conveys menace. The steps are mere loose sketch marks fading away, not an architectural frame. No blood or gore, no magic circles.\n\nThe knight lunges with its left leg and left foot forward, planted on the lower step toward the shield bearer, its rear leg behind for balance. The sword is one straight, continuous blade: its tip emerges visibly through the back of the shield along the same line as the blade and hilt. Natural arm, hand, hip and leg anatomy; no extra swords or detached blade fragments.",
       "references": [
         {
-          "path": "media/references/adventurer & monster.jpg",
-          "sha256": "d6d7aada47f1a938f284d52f776caacd675006f34198185161c17bcd06683791"
+          "path": "media/references/skeletton wizard.jpg",
+          "sha256": "99390314e7d6ba048483788616a3a1e817384a6eaaeb93cafa05d281d5f09986"
         },
         {
-          "path": "media/references/female corsair.jpg",
-          "sha256": "bc93e11d6c6e7ff4a6e36ff22b27ac46306230d5063554cd9b1519ad84abd02f"
+          "path": "media/references/old dwarf.jpg",
+          "sha256": "7fae2814b5d57e05bbba241efa1f448ece71617cdc3e57e61c9d1a08ac6ac901"
         },
         {
           "path": "media/references/young guy.jpg",
@@ -113,27 +113,55 @@
       ],
       "original": {
         "path": "combat_new.png",
-        "sha256": "3faf25fbe4d385b1eac47dbcbd73197d2388a4b83eab8b520af6dabe5c65ac05"
+        "sha256": "c9bad898fefe4d5950f53934203c2b22e9d56e6cf62acf587c7baf4efe1942c2"
       },
       "web": {
         "path": "combat.webp",
-        "sha256": "e011d61025cb6cf300b8ece86c32ed43319fd47c3d857fad8752dcfd3873923f"
+        "sha256": "123d205acd6d70d5edcf8ac91279e40ee1244aa9664b33360c840df052a3a719"
       },
       "width": 1536,
       "height": 1024,
-      "generationDate": "2026-11-01",
+      "generationDate": "2026-11-19",
       "placement": {
         "section": "combat",
         "kind": "opening"
       },
       "initialOriginal": {
         "path": "combat.png",
-        "sha256": "b9045d6602730c96bc30aad49239987f6e4c65a4b063b280df749510dfb7ec1f"
+        "sha256": "3ce54afca7e97d625be4da12a44d8d24c4f0b5c749c6daa2558dfa33d4195bed",
+        "previouslyRecordedSha256": "b9045d6602730c96bc30aad49239987f6e4c65a4b063b280df749510dfb7ec1f"
       },
       "revision": {
-        "source": "User-supplied final artwork",
-        "integratedDate": "2026-11-13",
-        "preparation": "Native resolution, neutral continuous grayscale, lossless WebP. No resampling, sharpening, thresholding or dithering. Soft edge blending is applied by the shared stylesheet."
+        "source": "Fresh image_gen.imagegen generation; user-approved proposal S1",
+        "integratedDate": "2026-11-19",
+        "preparation": "Approved PNG preserved byte-for-byte. Lossless WebP encoded at native resolution without resizing, recoloring, sharpening, or dithering."
+      },
+      "previousArtwork": {
+        "originalGeneration": {
+          "generationDate": "2026-11-01",
+          "prompt": "Use case: illustration-story. Original wide 3:2 narrative vignette for the Combat chapter of RANDOM. The actual image inputs are visual STYLE references: adventurer & monster for spatial storytelling, female corsair for gestural action and clothing, young guy for dynamic pose and perspective. Match their line character; do not copy their people, monster, composition, signatures or handwriting. The visual references take precedence over the written description wherever they differ.\nA quick-thinking traveler braces a round plain shield against an enormous invented many-legged insect creature while a companion pulls a hanging rope to drop a loose timber between them. The creature is a fantastical beetle-like silhouette, not a named species or recognizable IP. Three-quarter elevated perspective inside the small broken corner of a stone ruin; strong diagonal action, equipment and fabric caught in motion, no blood or injury. Emphasize teamwork and using the environment rather than class-specific combat powers. Keep two figures and one creature anatomically readable, avoid clutter. The scene dissolves at all edges into warm off-white paper, no enclosing rectangular frame. Landscape image with enough margin that every figure is fully visible.\nTraditional hand-drawn fantasy illustration, reminiscent of an illustrator's pencil studies for a classic tabletop RPG rulebook. Graphite pencil and fine ink on warm, off-white paper. Predominantly monochromatic with natural graphite grays and subtle sepia tones. Loose, confident, expressive linework, visible construction lines, overlapping strokes, varied line weight, irregular contours, and organic imperfections. Detailed cross-hatching and directional pencil shading. Some areas carefully rendered while others remain deliberately unfinished. Authentic traditional sketchbook aesthetic, visibly handmade. No watercolor, painted color fills, digital gradients, airbrushing, photorealism, polished digital concept art, or 3D rendering.\nNo watercolor or flat color washes. Dense directional hatching at focal points, spare incomplete lines at margins. No labels, text, symbols implying rules, signature or watermark.",
+          "references": [
+            {
+              "path": "media/references/adventurer & monster.jpg",
+              "sha256": "d6d7aada47f1a938f284d52f776caacd675006f34198185161c17bcd06683791"
+            },
+            {
+              "path": "media/references/female corsair.jpg",
+              "sha256": "bc93e11d6c6e7ff4a6e36ff22b27ac46306230d5063554cd9b1519ad84abd02f"
+            },
+            {
+              "path": "media/references/young guy.jpg",
+              "sha256": "96ca6c9a3d89020870ff8fafb546a957465473c2aae9a0fa812147abd1579e2c"
+            }
+          ]
+        },
+        "userSuppliedRevision": {
+          "source": "User-supplied final artwork",
+          "integratedDate": "2026-11-13",
+          "originalSha256": "3faf25fbe4d385b1eac47dbcbd73197d2388a4b83eab8b520af6dabe5c65ac05",
+          "webSha256": "e011d61025cb6cf300b8ece86c32ed43319fd47c3d857fad8752dcfd3873923f",
+          "preparation": "Native resolution, neutral continuous grayscale, lossless WebP. No resampling, sharpening, thresholding or dithering. Soft edge blending is applied by the shared stylesheet."
+        }
       }
     },
     {
