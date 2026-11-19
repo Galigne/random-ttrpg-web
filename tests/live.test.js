@@ -91,6 +91,11 @@ test("presence counts tabs, chat expires after the last member leaves, and priva
     rollerId: "player",
     result: { total: 7 },
   });
+  const playerRoll = live.history("c", { id: "player", role: "user" })[0];
+  const gmRoll = live.history("c", { id: "gm", role: "user" }).find(item => item.type === "roll");
+  assert.match(playerRoll.id, /^[0-9a-f-]{36}$/);
+  assert.equal(playerRoll.id, gmRoll.id);
+  assert.ok(player.lines.some(line => line.includes(playerRoll.id)));
   assert.equal(live.history("c", { id: "owner", role: "user" }).length, 1);
   assert.equal(live.history("c", { id: "gm", role: "user" }).length, 2);
   assert.equal(live.history("c", { id: "player", role: "user" }).length, 1);

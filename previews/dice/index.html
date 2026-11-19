@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f8f5ec">
+    <title>Dice preview · RANDOM</title>
+    <link rel="stylesheet" href="preview.css">
+    <script defer src="../../public/dice/coin.js"></script>
+    <script defer src="../../public/dice/d20.js"></script>
+    <script defer src="preview.js"></script>
+  </head>
+  <body id="random-dice-preview">
+    <header>
+      <strong class="brand">RANDOM</strong>
+      <nav aria-label="Language">
+        <button type="button" lang="en" data-lang="en" aria-pressed="true">English</button>
+        <button type="button" lang="fr" data-lang="fr" aria-pressed="false">Français</button>
+      </nav>
+    </header>
+    <main>
+      <div class="intro">
+        <div>
+          <h1 data-copy="title">Dice in motion</h1>
+          <p data-copy="intro">Play the paired examples, or choose a face to inspect its landing.</p>
+        </div>
+        <button id="pair" type="button" disabled data-copy="pair">Play next pair</button>
+      </div>
+      <div class="spread">
+        <section id="coin" aria-labelledby="coin-title">
+          <div class="heading"><span>D2</span><h2 id="coin-title" data-copy="coin">Coin toss</h2></div>
+          <canvas width="440" height="260" aria-hidden="true"></canvas>
+          <output aria-live="polite" aria-atomic="true"></output>
+          <div class="controls">
+            <button type="button" disabled data-copy="toss">Toss coin</button>
+            <select disabled aria-label="Choose a coin face"><option value="" data-copy="choose">Choose a face…</option></select>
+          </div>
+        </section>
+        <section id="die" aria-labelledby="die-title">
+          <div class="heading"><span>D20</span><h2 id="die-title" data-copy="die">Twenty-sided die</h2></div>
+          <canvas width="440" height="260" aria-hidden="true"></canvas>
+          <output aria-live="polite" aria-atomic="true"></output>
+          <div class="controls">
+            <button type="button" disabled data-copy="roll">Roll die</button>
+            <select disabled aria-label="Choose a D20 face"><option value="" data-copy="choose">Choose a face…</option></select>
+          </div>
+        </section>
+      </div>
+      <p id="error" role="alert" hidden></p>
+    </main>
+  </body>
+</html>

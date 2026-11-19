@@ -1,4 +1,5 @@
 const access = require("./access");
+const { randomUUID } = require("node:crypto");
 
 function createLive(db, { now = () => Date.now(), retention = 300000 } = {}) {
   const clients = new Set();
@@ -85,7 +86,7 @@ function createLive(db, { now = () => Date.now(), retention = 300000 } = {}) {
   }
   function append(campaignId, event) {
     sweep();
-    const item = { ...event, campaignId, time: now() };
+    const item = { ...event, id: randomUUID(), campaignId, time: now() };
     const list = messages.get(campaignId) ?? [];
     list.push(item);
     messages.set(campaignId, list);

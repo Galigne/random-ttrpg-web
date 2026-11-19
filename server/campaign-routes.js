@@ -237,6 +237,7 @@ module.exports = ({ db, live, route, fail }) => {
       presence: live.presence(c.id),
       chat:
         campaignMember || user.role === "admin" ? live.history(c.id, user) : [],
+      chatSnapshotTime: Date.now(),
     };
   });
   route("POST", "/api/campaigns/:id", ({ user, params, body }) => {

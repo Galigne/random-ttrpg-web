@@ -1,0 +1,63 @@
+@font-face {
+  font-family: Cinzel;
+  src: url("../../documentation/rulebook/fonts/Cinzel.ttf") format("truetype");
+  font-weight: 400 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: Garamond;
+  src: url("../../documentation/rulebook/fonts/EBGaramond.ttf") format("truetype");
+  font-weight: 400 800;
+  font-display: swap;
+}
+:root {
+  color-scheme: light;
+  font: 19px/1.4 Garamond, Georgia, serif;
+  color: #312a24;
+  background: #f8f5ec;
+  --rule: #b8a98d;
+  --red: #77322c;
+}
+* { box-sizing: border-box; }
+body { margin: 0 auto; max-width: 1180px; padding: 0 clamp(16px, 5vw, 66px) 44px; }
+header, .intro, .heading, nav, .controls { display: flex; align-items: center; }
+header {
+  min-height: 78px;
+  justify-content: space-between;
+  border-bottom: 3px double var(--rule);
+}
+.brand { font: 700 24px Cinzel, Georgia, serif; letter-spacing: .1em; }
+nav { gap: .3rem; }
+button, select { font: inherit; cursor: pointer; min-height: 44px; }
+button:focus-visible, select:focus-visible { outline: 3px solid #975e21; outline-offset: 3px; }
+button { border: 1px solid; border-radius: 3px; padding: .35rem .95rem; }
+nav button { padding: 0 .4rem; background: transparent; border: 0; color: #665a4d; font-size: 16px; }
+nav button[aria-pressed="true"] { color: var(--red); text-decoration: underline; text-underline-offset: 4px; }
+.intro { justify-content: space-between; gap: 1rem; margin: clamp(28px, 5vw, 62px) 0 30px; }
+h1, h2, p { margin: 0; }
+h1 { font: 500 clamp(38px, 5vw, 64px)/1.1 Cinzel, Georgia, serif; letter-spacing: -.04em; }
+.intro p { margin-top: .45rem; color: #64594c; }
+#pair, select { color: #503d32; background: #f8f5ec; border: 1px solid #a79a83; }
+#pair { flex-shrink: 0; }
+.spread { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 2.4vw, 30px); }
+section { min-width: 0; background: #fffcf5; border: 1px solid var(--rule); border-top: 3px double #937e59; }
+.heading { padding: 1.05rem 1.2rem 0; gap: .7rem; }
+.heading span { font: 600 17px Cinzel, Georgia, serif; color: var(--red); border-right: 1px solid var(--rule); padding-right: .7rem; }
+h2 { font: 500 clamp(20px, 2.2vw, 28px)/1.2 Cinzel, Georgia, serif; }
+canvas { display: block; width: 100%; height: auto; }
+output { display: block; min-height: 2.2rem; text-align: center; font-size: 22px; font-weight: 600; }
+.controls { flex-wrap: wrap; border-top: 1px solid #d9cdb8; margin: .45rem 1.2rem 0; padding: .85rem 0 1rem; gap: .6rem; }
+.controls button { background: var(--red); color: #fffaf0; border-color: #662923; }
+.controls select { max-width: 100%; border-radius: 3px; padding: .35rem .5rem; }
+button:enabled:hover, select:enabled:hover { filter: brightness(.94); }
+#error { margin-top: 1rem; color: var(--red); }
+@media (max-width: 740px) {
+  .spread { grid-template-columns: minmax(0, 1fr); }
+  .intro { align-items: start; flex-direction: column; margin-bottom: 20px; }
+  header { min-height: 60px; }
+  body { max-width: 550px; }
+}
+@media (max-width: 430px) {
+  .controls { margin-inline: .75rem; gap: .45rem; font-size: 17px; }
+  .controls button { padding-inline: .65rem; }
+}

@@ -373,6 +373,11 @@ footer {
   display: block;
   mix-blend-mode: multiply;
 }
+.dice-art {
+  width: min(100%, 24rem);
+  height: auto;
+  margin: 0 auto 1rem;
+}
 .cover {
   width: 100%;
   height: 165px;
@@ -661,6 +666,21 @@ footer {
   width: 110px;
   height: 110px;
   object-fit: contain;
+}
+.dice-motion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 100%;
+}
+.dice-motion canvas {
+  display: block;
+  width: min(240px, 55vw);
+  height: auto;
+  aspect-ratio: 440 / 260;
+}
+.dice-animated [role="status"] {
+  color: var(--muted);
 }
 .die {
   display: inline-flex;

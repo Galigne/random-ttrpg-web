@@ -162,6 +162,7 @@ const copy = {
       "The dice are rolled on the server. Personal rolls stay with you.",
     expression: "Dice expression",
     diceExample: "For example: 1d20, 2d6+3, 4d8-2",
+    diceRolling: "Rolling…",
     personalRoll: "Personal roll",
     rulebookIntro:
       "Read the original illustrated rules, complete with their search and navigation tools.",
@@ -396,6 +397,7 @@ const copy = {
       "Les dés sont lancés par le serveur. Les jets personnels restent privés.",
     expression: "Expression de dé",
     diceExample: "Par exemple : 1d20, 2d6+3, 4d8-2",
+    diceRolling: "Les dés roulent…",
     personalRoll: "Jet personnel",
     rulebookIntro:
       "Lisez le livre de règles illustré d’origine, avec sa recherche et sa navigation.",
@@ -631,7 +633,26 @@ function resourcePills(resources) {
       <span class="resource-value"><b>${esc(resources[key].current)}</b> / ${esc(resources[key].max)}</span></span>`;
   }).join("")}</div>`;
 }
-function diceDisplay(r) {
+const campaignRolls = new Map();
+const recentChat = new Map();
+let personalRoll = null;
+let personalRequest = 0;
+
+function animatedDice(result) {
+  return [2, 20].includes(result.sides) && Array.isArray(result.rolls);
+}
+function diceDetails(r) {
+  return `<div class="dice-details"><div class="eyebrow">${esc(r.normalized)}</div><div>${esc(r.rolls.join(" + "))}${r.modifier ? ` ${r.modifier > 0 ? "+" : "−"} ${esc(Math.abs(r.modifier))} (${esc(t("modifier"))})` : ""}</div><strong class="result-total">${esc(t("total"))}: ${esc(r.total)}</strong></div>`;
+}
+function showDiceResult(element, result) {
+  element.querySelector('[role="status"]')?.remove();
+  element.insertAdjacentHTML("beforeend", diceDetails(result));
+}
+function mountDice(record, element) {
+  window.RandomDicePlayback.mount(record, element, t("diceRolling"), showDiceResult);
+}
+function diceDisplay(r, rollId = "") {
+  if (animatedDice(r)) return `<div class="dice-result dice-animated" aria-live="polite" data-roll-id="${attr(rollId)}"></div>`;
   const illustrated = [4, 6, 8, 10, 12, 20].includes(r.sides);
   const faces = r.animation
     ? `<img src="/media/${attr(r.animation)}" alt="${attr(r.rolls[0])}">`
@@ -642,7 +663,7 @@ function diceDisplay(r) {
             : `<span class="die-number">${esc(n)}</span>`,
         )
         .join("");
-  return `<div class="dice-result">${faces}<div><div class="eyebrow">${esc(r.normalized)}</div><div>${esc(r.rolls.join(" + "))}${r.modifier ? ` ${r.modifier > 0 ? "+" : "−"} ${esc(Math.abs(r.modifier))} (${esc(t("modifier"))})` : ""}</div><strong class="result-total">${esc(t("total"))}: ${esc(r.total)}</strong></div></div>`;
+  return `<div class="dice-result">${faces}${diceDetails(r)}</div>`;
 }
 function chatMessage(item) {
   const who = item.identity?.characterName
@@ -652,9 +673,23 @@ function chatMessage(item) {
     item.type === "text"
       ? `<p>${esc(item.text)}</p>`
       : item.type === "roll"
-        ? `${item.privateRoll ? tag(t("private")) : ""}${diceDisplay(item.result)}`
+        ? `${item.privateRoll ? tag(t("private")) : ""}${diceDisplay(item.result, item.id || "")}`
         : `<p><strong>${esc(item.entityName)}</strong> · ${esc(t(item.action === "end-turn" ? "endTurn" : item.action === "resource" ? "status" : item.action))}</p>${item.resources ? resourcePills(item.resources) : ""}`;
-  return `<div class="chat-message"><strong>${esc(who)}</strong> <small>${esc(new Date(item.time).toLocaleTimeString(state.language, { hour: "2-digit", minute: "2-digit" }))}</small>${content}</div>`;
+  return `<div class="chat-message" data-chat-id="${attr(item.id || "")}"><strong>${esc(who)}</strong> <small>${esc(new Date(item.time).toLocaleTimeString(state.language, { hour: "2-digit", minute: "2-digit" }))}</small>${content}</div>`;
+}
+function mountChatRolls(container, items) {
+  const elements = container.querySelectorAll(".dice-animated");
+  const rolls = items.filter(item => item.type === "roll" && animatedDice(item.result));
+  elements.forEach((element, index) => {
+    const item = rolls[index];
+    if (!item) return;
+    let record = item.id && campaignRolls.get(item.id);
+    if (!record) {
+      record = window.RandomDicePlayback.create(item.result, false);
+      if (item.id) campaignRolls.set(item.id, record);
+    }
+    mountDice(record, element);
+  });
 }
 function memberList(data, interactive = false) {
   const c = data.campaign;
@@ -690,7 +725,21 @@ function campaignTabs(id, selected) {
   return `<nav class="tabs">${tabs.map((x) => `<a ${x === selected ? 'class="active" aria-current="page"' : ""} href="#/campaign/${attr(id)}/${x}">${esc(t(x))}</a>`).join("")}</nav>`;
 }
 async function campaignScreen(campaignId, tabName) {
+  const requestStarted = performance.now();
   const data = await api(`/api/campaigns/${encodeURIComponent(campaignId)}`);
+  const earliestNewMessage = data.chatSnapshotTime - (performance.now() - requestStarted);
+  const known = new Set(data.chat.map(item => item.id));
+  for (const { item, received } of recentChat.values()) {
+    if (item.campaignId === campaignId && received >= requestStarted && !known.has(item.id) &&
+        (item.type === "text" || item.type === "roll") &&
+        (!item.privateRoll || item.rollerId === state.user.id || data.gm))
+      data.chat.push(item);
+  }
+  for (const item of data.chat) {
+    if (item.id && item.type === "roll" && animatedDice(item.result) &&
+        item.time >= earliestNewMessage && !campaignRolls.has(item.id))
+      campaignRolls.set(item.id, window.RandomDicePlayback.create(item.result, true));
+  }
   if (tabName === "members" && data.membership && !data.gm)
     data.controlledCharacters = (
       await api("/api/entities?type=character")
@@ -711,7 +760,7 @@ async function campaignScreen(campaignId, tabName) {
       message.className = "muted";
       message.textContent = t("membersOnly");
       chat.replaceChildren(message);
-    }
+    } else mountChatRolls(chat, data.chat);
     chat.scrollTop = chat.scrollHeight;
   } else if (tabName === "members") {
     app.innerHTML =
@@ -1016,7 +1065,14 @@ async function generatorScreen() {
   app.innerHTML = `${header(t("generators"), t("generationIntro"))}${types}<div class="split generator-layout"><section class="paper"><label>${esc(t("generationLanguage"))}${langSelect("generationLanguage", gen.language)}</label>${gen.kind !== "general" ? `<label>${esc(t("level"))}<select id="generation-level"><option value="">${esc(t("random"))}</option>${Array.from({ length: 10 }, (_, i) => `<option value="${i + 1}" ${String(gen.level || "") === String(i + 1) ? "selected" : ""}>${i + 1}</option>`).join("")}</select></label><div class="divider">✦</div><h3>${esc(t("generationPath"))}</h3>` : ""}${chooser}<div class="divider">✦</div>${action(gen.preview || gen.result ? t("regenerate") : t("generate"), "generate-now", "", "")}</section><section><h2>${esc(gen.kind === "general" ? t("result") : t("generatedPreview"))}</h2>${gen.kind === "general" ? resultMarkup(gen.result) : gen.preview ? `<div class="paper"><div class="actions">${action(t("saveToLibrary"), "save-generated", "", "")}</div>${gen.kind === "character" && gen.preview.data.background?.archetype ? `<p><strong>${esc(fieldLabel("character.fields.backgroundArchetype"))}:</strong> ${esc(gen.preview.data.background.archetype)}</p>` : ""}${sheetContents(gen.preview)}</div>` : `<div class="empty">${esc(t("noPreview"))}</div>`}</section></div>`;
 }
 function diceScreen() {
-  app.innerHTML = `${header(t("dice"), t("diceIntro"))}<div class="grid two"><section class="paper"><img class="card-art" src="/media/dice-card.webp" alt=""><form id="dice-form">${input(t("expression"), "expression", "1d20", "required")}<small>${esc(t("diceExample"))}</small><p><button>${esc(t("roll"))}</button></p></form></section><section class="paper"><h2>${esc(t("personalRoll"))}</h2><div id="dice-result"><p class="muted">${esc(t("noPreview"))}</p></div></section></div>`;
+  app.innerHTML = `${header(t("dice"), t("diceIntro"))}<div class="grid two"><section class="paper"><img class="card-art dice-art" src="/media/dice-card.webp" alt=""><form id="dice-form">${input(t("expression"), "expression", "1d20", "required")}<small>${esc(t("diceExample"))}</small><p><button>${esc(t("roll"))}</button></p></form></section><section class="paper"><h2>${esc(t("personalRoll"))}</h2><div id="dice-result"><p class="muted">${esc(t("noPreview"))}</p></div></section></div>`;
+  if (personalRoll) {
+    const target = document.querySelector("#dice-result");
+    if (animatedDice(personalRoll.result)) {
+      target.innerHTML = diceDisplay(personalRoll.result);
+      mountDice(personalRoll, target.firstElementChild);
+    } else target.innerHTML = diceDisplay(personalRoll.result);
+  }
 }
 function rulebookScreen() {
   const language = state.rulebookLanguage || state.language;
@@ -1160,15 +1216,30 @@ function connect(campaignId) {
     state.stream.close();
     state.stream = null;
   }
+  campaignRolls.clear();
+  recentChat.clear();
   state.streamCampaign = campaignId;
   const query = new URLSearchParams({ tab: state.tab });
   if (campaignId) query.set("campaign", campaignId);
   const stream = new EventSource(`/api/events?${query}`);
   state.stream = stream;
   stream.addEventListener("chat", (event) => {
+    if (state.stream !== stream) return;
+    const item = JSON.parse(event.data);
+    if (item.id && recentChat.has(item.id)) return;
+    if (item.id) {
+      recentChat.set(item.id, { item, received: performance.now() });
+      if (recentChat.size > 500) recentChat.delete(recentChat.keys().next().value);
+    }
+    if (item.id && item.type === "roll" && animatedDice(item.result) && !campaignRolls.has(item.id)) {
+      campaignRolls.set(item.id, window.RandomDicePlayback.create(item.result, true));
+      if (campaignRolls.size > 500) campaignRolls.delete(campaignRolls.keys().next().value);
+    }
     const box = document.querySelector("#chat");
-    if (box) {
-      box.insertAdjacentHTML("beforeend", chatMessage(JSON.parse(event.data)));
+    if (box && parseRoute().parts[1] === campaignId) {
+      if (item.id && [...box.children].some(node => node.dataset.chatId === item.id)) return;
+      box.insertAdjacentHTML("beforeend", chatMessage(item));
+      mountChatRolls(box.lastElementChild, [item]);
       box.scrollTop = box.scrollHeight;
     }
   });
@@ -1335,6 +1406,7 @@ document.addEventListener("submit", async (event) => {
       );
       form.reset();
     } else if (form.id === "dice-form") {
+      const request = ++personalRequest;
       const campaignId =
         parseRoute().parts[0] === "campaign"
           ? state.campaign.campaign.id
@@ -1345,7 +1417,13 @@ document.addEventListener("submit", async (event) => {
         private: Boolean(form.elements.private?.checked),
       });
       const target = document.querySelector("#dice-result");
-      if (target) target.innerHTML = diceDisplay(result.result);
+      if (!campaignId && request === personalRequest && target) {
+        personalRoll = animatedDice(result.result)
+          ? window.RandomDicePlayback.create(result.result, true)
+          : { result: result.result };
+        target.innerHTML = diceDisplay(result.result);
+        if (animatedDice(result.result)) mountDice(personalRoll, target.firstElementChild);
+      }
     } else if (form.id === "damage-form" || form.id === "heal-form") {
       await flushSheet();
       const actionName = form.id === "damage-form" ? "damage" : "heal";
@@ -1432,6 +1510,9 @@ document.addEventListener("click", async (event) => {
       state.streamCampaign = undefined;
       state.user = null;
       state.csrf = null;
+      campaignRolls.clear();
+      recentChat.clear();
+      personalRoll = null;
       state.editing = false;
       state.sheet = null;
       history.replaceState(null, "", location.pathname);

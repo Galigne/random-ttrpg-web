@@ -78,6 +78,40 @@
         "sha256": "123d205acd6d70d5edcf8ac91279e40ee1244aa9664b33360c840df052a3a719"
       },
       "preparation": "Resized from the approved 1536 × 1024 PNG to the existing 560 × 373 card size using Lanczos, then encoded as WebP at quality 90."
+    },
+    {
+      "outputs": {
+        "public/dice/art/heads.webp": {
+          "sha256": "d93e93d36e809132480a1055bdac0ceee8cac94b65f7d8ba0b2a3621b6c1ce13"
+        },
+        "public/dice/art/tails.webp": {
+          "sha256": "4bcc940fbcc1065eb76e319572e58f711d72368c3beb7aa4d0b97cb91d6c0cad"
+        }
+      },
+      "inputs": [
+        "media/references/old dwarf.jpg",
+        "media/references/castle entry.jpg"
+      ],
+      "generationInputs": [
+        "../incroyable-bot-discord/media/references/old dwarf.jpg",
+        "../incroyable-bot-discord/media/references/castle entry.jpg"
+      ],
+      "prompt": "Design from scratch a matched pair of silver coin faces for a fantasy game's coin toss. The only image inputs are two original rulebook drawings: use old dwarf.jpg for the character and lively pen work, and castle entry.jpg for the heraldic architecture. Draw a numismatist's study of the obverse and reverse of ONE hand-struck medieval SILVER coin, straight-on in orthographic view. A wide 2:1 sheet of clean white paper, two round disks of equal diameter next to one another with a narrow plain gutter and all outer rims inside frame. Obverse on left: sculptural left-facing profile of a resolute crowned dwarf with a strong nose, one braid, and flowing beard, simplified into distinctive high relief. Reverse on right: a heraldic twin-towered gate with an open arch and portcullis as a compact raised stamp, seen head-on. The illustrated devices are bright RESERVED PAPER raised silver cut against very conspicuous medium-dark steel-gray hammered fields; strongly contrasting blackened recessed cuts, narrow broken white highlights, small gray directional engraved strokes carving the modeling. Show broad crisp angular reflection shapes on the curved polished crown, metal fields and raised rim. Make it immediately read as a collectible SILVER PIECE at just 140 pixels wide: a cool mid gray metal mass with paper-white high points, sculpted and heavy. A narrow raised milled rim with delicate die-struck markings but no text. Place both devices above a small unmarked bright metal oval cartouche centered at 50% x, 82% y of each circle (its diameter about a third of the coin width), so we can typeset a numeral. The shiny silver is described by value contrasts and engraved strokes, never by digital gloss. No numbers, no text, no signature, no watermark, no grids, no colored inks, no gold or sepia, no cast shadows, no backing scene. Traditional hand-drawn fantasy illustration, reminiscent of an illustrator's pencil studies for a classic tabletop RPG rulebook. Graphite pencil and fine ink on warm, pure-white paper. Monochromatic with natural graphite grays. Loose, confident, expressive linework, visible construction lines, overlapping strokes, varied line weight, irregular contours, and organic imperfections. Detailed cross-hatching and directional pencil shading. Some areas carefully rendered while others remain deliberately unfinished. Authentic traditional sketchbook aesthetic, visibly handmade. No watercolor, painted color fills, digital gradients, airbrushing, photorealism, polished digital concept art, or 3D rendering.",
+      "generatedPngSha256": "91efa33601138f6073aa7e105e46928ca9cd43814039c8a19985ee0d8e2af842",
+      "preparation": "Cropped both faces to their minted rims, converted to neutral grayscale, resized to 320 × 320 using Lanczos and encoded as WebP at quality 88. The numerals are set separately in Cinzel."
+    },
+    {
+      "output": "public/dice/art/marble.webp",
+      "sha256": "c9e947631a30b7c42f7774b8015d649438bfebaa9b1af77a0e15c771d73894ad",
+      "inputs": [
+        "media/references/castle entry.jpg"
+      ],
+      "generationInputs": [
+        "../incroyable-bot-discord/media/references/castle entry.jpg"
+      ],
+      "prompt": "Create a single edge-to-edge flat square texture study of a polished slab of very pale Carrara marble with unmistakable flowing graphite-gray mineral veins. This material will wrap a small fantasy gaming die, and must read as marble even when the entire swatch is reduced to 150px. Use the attached original rulebook illustration castle entry.jpg as actual reference for the draftsman's expressive varied nib pressure, dry graphite and hand-hatching. Draw three or four long, uneven silvery slate vein bands that drift diagonally across the entire sample with branching hairline tributaries, wispy folded layers, occasional angular jogs, alternating wider and sharply pinched passages. Let the bands cross the center as well as the margins, with luminous quiet chalk-white areas between them. Two prominent smoky mineral ribbons have broad softly broken graphite flanks and a fine dark mineral thread off-center, with a few related fine branches. Avoid a web of cracks, uniform zigzags or dense noise. Treat it as a geologist's material study drawn by the rulebook illustrator: visible pencil strokes and ink accents within the mineral bands, light graphite grain around them; monochrome silver-gray on white. Material swatch only, no object, facets, decorative frame, geometric grid, lettering, digits, icons, scenery or signature. Traditional hand-drawn fantasy illustration, reminiscent of an illustrator's pencil studies for a classic tabletop RPG rulebook. Graphite pencil and fine ink on warm, pure-white paper. Monochromatic with natural graphite grays. Loose, confident, expressive linework, visible construction lines, overlapping strokes, varied line weight, irregular contours, and organic imperfections. Detailed cross-hatching and directional pencil shading. Some areas carefully rendered while others remain deliberately unfinished. Authentic traditional sketchbook aesthetic, visibly handmade. No watercolor, painted color fills, digital gradients, airbrushing, photorealism, polished digital concept art, or 3D rendering.",
+      "generatedPngSha256": "a37c79b45f227d18a7d50b38788a897d794c58876c5302d6b4e20f2a93af5eee",
+      "preparation": "Converted the full marble study to grayscale, resized to 512 × 512 using Lanczos and encoded as WebP at quality 87. The animation projects this single field of veins across the solid."
     }
   ],
   "encoding": "Unless otherwise noted per illustration, lossless WebP; decoded RGBA pixels verified identical to the generated PNG."
