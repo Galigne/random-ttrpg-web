@@ -2,6 +2,13 @@
 "use strict";
 const copy = {
   en: {
+    tagline: "Tabletop roleplaying",
+    navigation: "Main navigation",
+    characterSheet: "Character sheet",
+    creatureSheet: "Creature sheet",
+    noValue: "Not specified",
+    sheetSettings: "Sheet settings",
+    currentMax: "current:maximum",
     home: "Home",
     campaigns: "Campaigns",
     characters: "Characters",
@@ -220,6 +227,13 @@ const copy = {
     INTERNAL_ERROR: "Something went wrong. Please try again.",
   },
   fr: {
+    tagline: "Jeu de rôle sur table",
+    navigation: "Navigation principale",
+    characterSheet: "Fiche de personnage",
+    creatureSheet: "Fiche de créature",
+    noValue: "Non renseigné",
+    sheetSettings: "Gestion de la fiche",
+    currentMax: "actuel:maximum",
     home: "Accueil",
     campaigns: "Campagnes",
     characters: "Personnages",
@@ -523,7 +537,7 @@ function action(label, actionName, value = "", cls = "secondary") {
   return `<button type="button" class="${cls}" data-action="${attr(actionName)}" data-value="${attr(value)}">${esc(label)}</button>`;
 }
 function header(title, description = "", buttons = "") {
-  return `<div class="page-head"><div><div class="eyebrow">RANDOM · TTRPG</div><h1>${esc(title)}</h1>${description ? `<p>${esc(description)}</p>` : ""}</div><div class="actions">${buttons}</div></div>`;
+  return `<header class="page-head"><div><h1>${esc(title)}</h1>${description ? `<p>${esc(description)}</p>` : ""}</div>${buttons ? `<div class="actions">${buttons}</div>` : ""}</header>`;
 }
 function input(label, name, value = "", options = "") {
   return `<label>${esc(label)}<input name="${attr(name)}" value="${attr(value)}" ${options}></label>`;
@@ -542,8 +556,17 @@ function mast() {
     "rulebook",
   ];
   if (state.user?.role === "admin") nav.push("admin");
-  masthead.innerHTML = `<div class="mast-inner"><a class="brand" href="#/home">RANDOM<small>TABLETOP ROLEPLAYING</small></a>${state.user ? `<nav class="main-nav" aria-label="Main navigation">${nav.map((n) => `<a class="${state.screen === n ? "active" : ""}" href="#/${n}">${esc(t(n))}</a>`).join("")}</nav><div class="account"><span class="username">${esc(state.user.username)}</span>${langSelect("siteLanguage")}<button class="secondary" data-action="logout">${esc(t("signOut"))}</button></div>` : `<div class="account">${langSelect("siteLanguage")}</div>`}</div>`;
+  const links = nav.map((n) =>
+    `<a href="#/${n}" ${state.screen === n ? 'class="active" aria-current="page"' : ""}>${esc(t(n))}</a>`
+  ).join("");
+  masthead.innerHTML = `<div class="mast-inner">
+    <a class="brand" href="#/home">RANDOM<small>${esc(t("tagline"))}</small></a>
+    ${state.user ? `<nav class="main-nav" aria-label="${attr(t("navigation"))}">${links}</nav>` : ""}
+    <div class="account">${state.user ? `<span class="username" title="${attr(state.user.username)}">${esc(state.user.username)}</span>` : ""}
+    ${langSelect("siteLanguage")}${state.user ? `<button class="secondary" data-action="logout">${esc(t("signOut"))}</button>` : ""}</div></div>`;
   document.documentElement.lang = state.language;
+  document.title = `RANDOM · ${t("tagline")}`;
+  document.querySelector("#footer-tagline").textContent = t("tagline");
 }
 function authScreen(mode = "login", status = "") {
   state.screen = "auth";
@@ -561,10 +584,20 @@ function authScreen(mode = "login", status = "") {
         : invite
           ? t("inviteRegister")
           : t("register");
-  app.innerHTML = `<div class="auth-layout"><div class="auth-art"><div class="auth-copy"><div class="eyebrow">RANDOM · TABLETOP ROLEPLAYING</div><h2>${esc(t("welcome"))}</h2><p>${esc(t("welcomeText"))}</p></div><img src="/media/journey.webp" alt=""></div><div class="auth-form"><div class="eyebrow">✦ &nbsp; RANDOM</div><h1>${esc(title)}</h1>${status ? `<p class="warning">${esc(status)}</p>` : ""}<form id="auth-form" data-mode="${mode}">${mode !== "reset" ? input(t("username"), "username", "", 'required autocomplete="username" minlength="3" maxlength="32"') : ""}${mode === "register" ? `<small>${esc(t("usernameHint"))}</small>` : ""}${input(t("password"), "password", "", 'required minlength="12" type="password" autocomplete="' + (mode === "login" ? "current-password" : "new-password") + '"')}${mode !== "login" ? `<small>${esc(t("passwordHint"))}</small>` : ""}${mode === "register" ? `<label>${esc(t("language"))}${langSelect()}</label>` : ""}<p><button class="full">${esc(title)}</button></p></form><div class="divider">✦</div>${mode === "login" ? action(t("register"), "auth-mode", "register", "plain") : !reset ? action(t("signIn"), "auth-mode", "login", "plain") : ""}</div></div>`;
+  app.innerHTML = `<div class="auth-layout"><div class="auth-art"><div class="auth-copy"><h2>${esc(t("welcome"))}</h2><p>${esc(t("welcomeText"))}</p></div><img src="/media/journey-1000.webp" srcset="/media/journey-1000.webp 1000w, /media/journey.webp 1672w" sizes="(max-width: 720px) 100vw, 50vw" alt=""></div><div class="auth-form"><h1>${esc(title)}</h1>${status ? `<p class="warning">${esc(status)}</p>` : ""}<form id="auth-form" data-mode="${mode}">${mode !== "reset" ? input(t("username"), "username", "", 'required autocomplete="username" minlength="3" maxlength="32"') : ""}${mode === "register" ? `<small>${esc(t("usernameHint"))}</small>` : ""}${input(t("password"), "password", "", 'required minlength="12" type="password" autocomplete="' + (mode === "login" ? "current-password" : "new-password") + '"')}${mode !== "login" ? `<small>${esc(t("passwordHint"))}</small>` : ""}${mode === "register" ? `<label>${esc(t("language"))}${langSelect()}</label>` : ""}<p><button class="full">${esc(title)}</button></p></form><div class="divider">✦</div>${mode === "login" ? action(t("register"), "auth-mode", "register", "plain") : !reset ? action(t("signIn"), "auth-mode", "login", "plain") : ""}</div></div>`;
 }
 function homeScreen() {
-  app.innerHTML = `<section class="hero paper" style="padding:0"><div class="hero-copy"><div class="eyebrow">✦ &nbsp; RANDOM · TABLETOP ROLEPLAYING</div><h1>${esc(t("adventure"))}</h1><p>${esc(t("homeIntro"))}</p><a class="button" href="#/campaigns">${esc(t("openCampaigns"))}</a></div><img class="hero-art" src="/media/journey.webp" alt=""></section><div class="shortcuts"><div class="eyebrow">${esc(t("begin"))}</div><div class="divider">✦</div><div class="grid">${["characters", "creatures", "generators", "dice", "rulebook"].map((x) => `<a class="paper shortcut" href="#/${x}"><strong>${esc(t(x))}</strong><p>${esc(x === "dice" ? t("diceIntro") : x === "rulebook" ? t("rulebookIntro") : x === "generators" ? t("generationIntro") : t("entityIntro"))}</p></a>`).join("")}</div></div>`;
+  const destinations = [
+    ["characters", "characters"],
+    ["creatures", "combat"],
+    ["generators", "loot"],
+    ["dice", "dice"],
+    ["rulebook", "cover"],
+  ];
+  app.innerHTML = `<section class="hero paper"><div class="hero-copy"><h1>${esc(t("adventure"))}</h1><p>${esc(t("homeIntro"))}</p><a class="button" href="#/campaigns">${esc(t("openCampaigns"))}</a></div><img class="hero-art" src="/media/journey-1000.webp" srcset="/media/journey-1000.webp 1000w, /media/journey.webp 1672w" sizes="(max-width: 720px) 100vw, 50vw" alt=""></section>
+    <section class="shortcuts"><h2 class="ruled-title">${esc(t("begin"))}</h2><div class="shortcut-grid">${destinations.map(([page, art]) =>
+      `<a class="card shortcut" href="#/${page}"><img src="/media/${art}-card.webp" alt=""><span class="shortcut-title">${esc(t(page))}<span aria-hidden="true">→</span></span></a>`
+    ).join("")}</div></section>`;
 }
 function imageFor(type, id, portrait, extra = "") {
   if (
@@ -576,18 +609,27 @@ function imageFor(type, id, portrait, extra = "") {
     extra = `?preview=1&tab=${encodeURIComponent(state.tab)}`;
   return portrait
     ? `/api/entities/${encodeURIComponent(id)}/portrait${extra}`
-    : `/media/${type === "creature" ? "combat" : "characters"}.webp`;
+    : `/media/${type === "creature" ? "combat" : "characters"}-card.webp`;
 }
 function entityCard(e, campaign = "") {
   const query = campaign ? `?campaign=${encodeURIComponent(campaign)}` : "";
-  return `<article class="card"><img class="card-art" src="${attr(imageFor(e.type, e.id, e.portrait))}" alt=""><div class="card-body"><h3>${esc(e.name)}</h3><p>${tag(t(e.type === "character" ? "characters" : "creatures"))}</p><a href="#/sheet/${attr(e.id)}${query}">${esc(t("viewSheet"))}</a></div></article>`;
+  return `<article class="card entity-card"><a href="#/sheet/${attr(e.id)}${query}">
+    <img class="card-art" src="${attr(imageFor(e.type, e.id, e.portrait))}" alt="">
+    <div class="card-body"><div class="eyebrow">${esc(t(e.type === "character" ? "characterSheet" : "creatureSheet"))}</div>
+    <h2>${esc(e.name)}</h2><span class="card-link">${esc(t("viewSheet"))}<span aria-hidden="true">→</span></span></div>
+    </a></article>`;
 }
 async function campaignList() {
   const data = await api("/api/campaigns");
-  app.innerHTML = `${header(t("campaigns"), t("campaignIntro"), action(t("newCampaign"), "show-new-campaign", "", ""))}<section id="new-campaign" class="paper" hidden><h2>${esc(t("newCampaign"))}</h2><form id="create-campaign">${input(t("name"), "name", "", 'required maxlength="120"')}<label>${esc(t("description"))}<textarea name="description" maxlength="4000"></textarea></label><label>${esc(t("language"))}${langSelect()}</label><p><button>${esc(t("create"))}</button></p></form></section>${data.invitations.length ? `<section class="paper"><h2>${esc(t("invitations"))}</h2><div class="list">${data.invitations.map((i) => `<div class="list-row"><div class="grow"><strong>${esc(i.name)}</strong><p class="muted">${esc(t("invitedBy"))} ${esc(i.invitedBy)}</p></div>${action(t("accept"), "campaign-invite", `${i.id}|accept`)}${action(t("reject"), "campaign-invite", `${i.id}|reject`)}</div>`).join("")}</div></section><div class="divider">✦</div>` : ""}${data.campaigns.length ? `<div class="grid">${data.campaigns.map((c) => `<article class="card"><img class="cover" src="${c.cover ? `/api/campaigns/${attr(c.id)}/cover` : "/media/journey.webp"}" alt=""><div class="card-body"><h3>${esc(c.name)}</h3><p>${esc(c.description)}</p><p>${tag(c.role === "gm" ? t("gm") : c.role ? t("member") : t("owner"))}</p><a href="#/campaign/${attr(c.id)}/overview">${esc(t("overview"))}</a></div></article>`).join("")}</div>` : `<div class="empty">${esc(t("noCampaigns"))}</div>`}`;
+  app.innerHTML = `${header(t("campaigns"), t("campaignIntro"), action(t("newCampaign"), "show-new-campaign", "", ""))}<section id="new-campaign" class="paper" hidden><h2>${esc(t("newCampaign"))}</h2><form id="create-campaign">${input(t("name"), "name", "", 'required maxlength="120"')}<label>${esc(t("description"))}<textarea name="description" maxlength="4000"></textarea></label><label>${esc(t("language"))}${langSelect()}</label><p><button>${esc(t("create"))}</button></p></form></section>${data.invitations.length ? `<section class="paper"><h2>${esc(t("invitations"))}</h2><div class="list">${data.invitations.map((i) => `<div class="list-row"><div class="grow"><strong>${esc(i.name)}</strong><p class="muted">${esc(t("invitedBy"))} ${esc(i.invitedBy)}</p></div>${action(t("accept"), "campaign-invite", `${i.id}|accept`)}${action(t("reject"), "campaign-invite", `${i.id}|reject`)}</div>`).join("")}</div></section><div class="divider">✦</div>` : ""}${data.campaigns.length ? `<div class="grid">${data.campaigns.map((c) => `<article class="card"><img class="cover" src="${c.cover ? `/api/campaigns/${attr(c.id)}/cover` : "/media/journey-1000.webp"}" alt=""><div class="card-body"><h3>${esc(c.name)}</h3><p>${esc(c.description)}</p><p>${tag(c.role === "gm" ? t("gm") : c.role ? t("member") : t("owner"))}</p><a href="#/campaign/${attr(c.id)}/overview">${esc(t("overview"))}</a></div></article>`).join("")}</div>` : `<div class="empty">${esc(t("noCampaigns"))}</div>`}`;
 }
 function resourcePills(resources) {
-  return `<div class="resources">${["hp", "ar", "ap", "md"].map((k) => `<span class="resource"><strong>${esc(fieldLabel(`character.resources.${k}.abbreviation`))}</strong> ${esc(resources[k].current)} / ${esc(resources[k].max)}</span>`).join("")}</div>`;
+  return `<div class="resources">${["hp", "ar", "ap", "md"].map((key) => {
+    const label = fieldLabel(`character.resources.${key}.name`);
+    const short = fieldLabel(`character.resources.${key}.abbreviation`);
+    return `<span class="resource" title="${attr(label)}"><span class="resource-label"><abbr title="${attr(label)}">${esc(short)}</abbr><span class="resource-name">${esc(label)}</span></span>
+      <span class="resource-value"><b>${esc(resources[key].current)}</b> / ${esc(resources[key].max)}</span></span>`;
+  }).join("")}</div>`;
 }
 function diceDisplay(r) {
   const illustrated = [4, 6, 8, 10, 12, 20].includes(r.sides);
@@ -645,7 +687,7 @@ function memberList(data, interactive = false) {
 }
 function campaignTabs(id, selected) {
   const tabs = ["overview", "members", "characters", "creatures", "settings"];
-  return `<nav class="tabs">${tabs.map((x) => `<a class="${x === selected ? "active" : ""}" href="#/campaign/${attr(id)}/${x}">${esc(t(x))}</a>`).join("")}</nav>`;
+  return `<nav class="tabs">${tabs.map((x) => `<a ${x === selected ? 'class="active" aria-current="page"' : ""} href="#/campaign/${attr(id)}/${x}">${esc(t(x))}</a>`).join("")}</nav>`;
 }
 async function campaignScreen(campaignId, tabName) {
   const data = await api(`/api/campaigns/${encodeURIComponent(campaignId)}`);
@@ -694,7 +736,24 @@ async function libraryScreen(type) {
   const title = t(type === "character" ? "characters" : "creatures");
   app.innerHTML = `${header(title, t("entityIntro"), `${action(t("newBlank"), "new-entity", type, "")} <a class="button secondary" href="#/generators?kind=${type}">${esc(t(type === "character" ? "generateCharacter" : "generateCreature"))}</a>`)}${data.entities.length ? `<div class="grid">${data.entities.map((e) => entityCard(e)).join("")}</div>` : `<div class="empty">${esc(t("noEntities"))}</div>`}`;
 }
-function sectionMarkup(section, enabled = false) {
+function sheetValue(field, section, data, value) {
+  if (value == null || value === "")
+    return `<span class="muted" aria-hidden="true">—</span><span class="sr-only">${esc(t("noValue"))}</span>`;
+  if (field.pair) return esc(String(value).replace(":", " / "));
+  if (field.format) {
+    const entries = section.kind === "multiline"
+      ? data[section.id]
+      : field.id.split(".").reduce((record, key) => record?.[key], data);
+    if (Array.isArray(entries))
+      return `<ul class="sheet-entries">${entries.map((entry) => {
+        if (typeof entry === "string") return `<li>${esc(entry)}</li>`;
+        const level = entry.level == null ? "" : ` <small>${esc(t("level"))} ${esc(entry.level)}</small>`;
+        return `<li><strong>${esc(entry.name)}</strong>${level}<div>${esc(entry.description)}</div></li>`;
+      }).join("")}</ul>`;
+  }
+  return esc(value);
+}
+function sectionMarkup(section, data, enabled) {
   const fields = ["multi", "named-lines"].includes(section.kind)
     ? section.fields
     : [
@@ -713,7 +772,8 @@ function sectionMarkup(section, enabled = false) {
           }),
         )
       : null;
-  return `<details class="sheet-section" open><summary>${esc(fieldLabel(section.labelKey))}</summary><div class="section-body" data-section="${attr(section.id)}" data-kind="${attr(section.kind)}">${fields
+  const title = fieldLabel(section.labelKey);
+  const body = fields
     .map((field) => {
       const value =
         section.kind === "multi"
@@ -723,24 +783,33 @@ function sectionMarkup(section, enabled = false) {
             : section.value;
       const paragraph = field.paragraph || section.kind === "multiline";
       const label = fieldLabel(field.labelKey);
-      const pairLabel =
-        state.language === "fr" ? "actuel:maximum" : "current:maximum";
-      return `<label class="${paragraph ? "wide" : ""}">${esc(label)}${field.pair ? ` <small>(${pairLabel})</small>` : ""}${enabled && field.format ? ` <small>(${esc(t(field.format))})</small>` : ""}${paragraph ? `<textarea data-field="${attr(field.id)}" ${enabled ? "" : "disabled"}>${esc(value)}</textarea>` : `<input data-field="${attr(field.id)}" value="${attr(value)}" ${field.numeric ? 'inputmode="decimal"' : ""} ${enabled ? "" : "disabled"}>`}</label>`;
+      if (!enabled) {
+        const hideLabel = fields.length === 1 && label === title;
+        return `<div class="sheet-field${paragraph ? " wide" : ""}"><dt${hideLabel ? ' class="sr-only"' : ""}>${esc(label)}</dt><dd>${sheetValue(field, section, data, value)}</dd></div>`;
+      }
+      const hint = field.pair ? t("currentMax") : field.format ? t(field.format) : "";
+      return `<label class="sheet-field${paragraph ? " wide" : ""}">${esc(label)}${hint ? ` <small>(${esc(hint)})</small>` : ""}${paragraph ? `<textarea data-field="${attr(field.id)}">${esc(value)}</textarea>` : `<input data-field="${attr(field.id)}" value="${attr(value)}" ${field.numeric ? 'inputmode="decimal"' : ""}>`}</label>`;
     })
-    .join("")}</div></details>`;
+    .join("");
+  const wrapper = enabled ? "div" : "dl";
+  return `<details class="sheet-section section-${attr(section.id)}" open>
+    <summary>${esc(title)}</summary>
+    <${wrapper} class="section-body" data-section="${attr(section.id)}" data-kind="${attr(section.kind)}">${body}</${wrapper}></details>`;
 }
 function sheetContents(entity, enabled = false) {
-  const extra =
-    entity.type === "character" && entity.data.background?.archetype
-      ? `<p><strong>${esc(fieldLabel("character.fields.backgroundArchetype"))}:</strong> ${esc(entity.data.background.archetype)}</p>`
-      : "";
-  return `${extra}<div class="sheet-sections">${entity.sections.map((section) => sectionMarkup(section, enabled)).join("")}</div>`;
+  const sections = [
+    ...entity.sections.filter((s) => s.id === "statistics"),
+    ...entity.sections.filter((s) => s.id !== "statistics"),
+  ];
+  return `<div class="sheet-sections">${sections.map((section) => sectionMarkup(section, entity.data, enabled)).join("")}</div>`;
 }
 async function entityScreen(entityId, campaignId = "") {
   const entity = await api(
     `/api/entities/${encodeURIComponent(entityId)}${campaignId ? `?campaign=${encodeURIComponent(campaignId)}` : ""}`,
   );
   state.sheet = entity;
+  state.screen = entity.type === "creature" ? "creatures" : "characters";
+  mast();
   state.sheetCampaign = campaignId;
   state.editing = false;
   state.preview = false;
@@ -748,6 +817,25 @@ async function entityScreen(entityId, campaignId = "") {
   if (entity.isOwner) campaigns = (await api("/api/campaigns")).campaigns;
   state.availableCampaigns = campaigns;
   renderSheet();
+}
+function sheetIdentity(entity) {
+  const archetype = entity.type === "character" && entity.data.background?.archetype;
+  return `<div class="eyebrow">${esc(t(entity.type === "character" ? "characterSheet" : "creatureSheet"))}</div>
+    <h1>${esc(entity.name)}</h1>
+    <div class="sheet-meta"><strong>${esc(t("level"))} ${esc(entity.data.level)}</strong>
+    ${archetype ? `<span><span class="sr-only">${esc(fieldLabel("character.fields.backgroundArchetype"))}: </span>${esc(archetype)}</span>` : ""}
+    <span>${esc(t("owner"))} · ${esc(entity.owner)}</span></div>`;
+}
+function combatMenus() {
+  const resource = (key) => esc(fieldLabel(`character.resources.${key}.abbreviation`));
+  return `<details class="action-menu"><summary>${esc(t("damage"))}</summary>
+    <form id="damage-form">${input(t("amount"), "amount", "1", 'type="number" min="1" step="1" required')}
+      <label><input type="checkbox" name="piercing"> ${esc(t("piercing"))}</label><button>${esc(t("damage"))}</button></form></details>
+    <details class="action-menu"><summary>${esc(t("heal"))}</summary><form id="heal-form">
+      <label>${esc(t("healResource"))}<select name="resource"><option value="hp">${resource("hp")}</option>
+      <option value="armor">${resource("ar")}</option><option value="both">${resource("hp")} + ${resource("ar")}</option></select></label>
+      ${input(t("percentage"), "percentage", "100", 'type="number" min="0" max="100" required')}
+      <button>${esc(t("heal"))}</button></form></details>${action(t("endTurn"), "combat", "end-turn")}`;
 }
 function renderSheet() {
   const e = state.sheet,
@@ -762,36 +850,32 @@ function renderSheet() {
       ? `${action(t("finishEditing"), "lock-finish", "", "")} ${action(t("undo"), "undo", "undo")} ${preview ? action(t("redo"), "undo", "redo") + action(t("saveReversal"), "undo", "save", "") + action(t("cancelReversal"), "undo", "cancel") : ""}`
       : action(t("startEditing"), "lock-start", "", "")
     : "";
-  const back = state.sheetCampaign
-    ? `#/campaign/${attr(state.sheetCampaign)}/${e.type === "character" ? "characters" : "creatures"}`
-    : `#/${e.type === "character" ? "characters" : "creatures"}`;
-  app.innerHTML = `${header(e.name, `${t("owner")}: ${e.owner || ""}`, `<a class="button secondary" href="${back}">${esc(t("back"))}</a>`)}<div class="sheet-bar"><div class="actions">${controls}${lockText}</div>${resourcePills(e.data.resources)}</div>${preview ? `<p class="warning">${esc(t("previewing"))}</p>` : ""}<div id="lock-warning" class="warning" hidden></div><div class="split"><section class="paper"><div class="sheet-heading"><img class="portrait large" src="${attr(imageFor(e.type, e.id, e.portrait))}" alt=""><div><div class="eyebrow">${esc(t(e.type === "character" ? "characters" : "creatures"))}</div><h2>${esc(e.name)}</h2><p>${esc(t("level"))} ${esc(e.data.level)}</p>${edit && !preview ? `<form id="entity-portrait-form"><input type="file" name="image" accept="image/png,image/jpeg,image/webp" required><p><button>${esc(t("upload"))}</button> ${action(t("removeImage"), "entity-portrait-remove")}</p></form><small>${esc(t("imageHint"))}</small>` : ""}</div></div><p class="muted">${esc(t("editHint"))}</p>${sheetContents(e, edit && !preview)}</section><aside class="stack">${edit && !preview ? `<section class="panel"><h2>${esc(t("damage"))} &amp; ${esc(t("heal"))}</h2><form id="damage-form">${input(t("amount"), "amount", "1", 'type="number" min="1" step="1" required')}<label><input type="checkbox" name="piercing"> ${esc(t("piercing"))}</label><p><button>${esc(t("damage"))}</button></p></form><div class="divider">✦</div><form id="heal-form"><label>${esc(t("healResource"))}<select name="resource"><option value="hp">HP</option><option value="armor">AR</option><option value="both">HP + AR</option></select></label>${input(t("percentage"), "percentage", "100", 'type="number" min="0" max="100" required')}<p><button>${esc(t("heal"))}</button></p></form>${action(t("endTurn"), "combat", "end-turn")}</section>` : ""}${
+  const library = e.type === "character" ? "characters" : "creatures";
+  const back = state.sheetCampaign ? `#/campaign/${attr(state.sheetCampaign)}/${library}` : `#/${library}`;
+  const editable = edit && !preview;
+  app.innerHTML = `<a class="back-link" href="${back}"><span aria-hidden="true">←</span> ${esc(t(library))}</a>
+    <header class="sheet-heading paper${e.portrait ? " has-portrait" : ""}">
+      <div class="sheet-identity">${sheetIdentity(e)}</div>
+      <img class="sheet-portrait" src="${attr(imageFor(e.type, e.id, e.portrait))}" alt="">
+    </header>
+    <div class="sheet-bar">${resourcePills(e.data.resources)}
+      ${controls || lockText ? `<div class="actions">${controls}${lockText}${editable ? combatMenus() : ""}</div>` : ""}</div>
+    ${preview ? `<p class="warning">${esc(t("previewing"))}</p>` : ""}
+    <div id="lock-warning" class="warning" hidden></div>
+    ${editable ? `<div class="edit-intro"><p>${esc(t("editHint"))}</p>
+      <form id="entity-portrait-form"><label>${esc(t("portrait"))}<input type="file" name="image" accept="image/png,image/jpeg,image/webp" required></label>
+      <div class="actions"><button>${esc(t("upload"))}</button>${action(t("removeImage"), "entity-portrait-remove")}</div>
+      <small>${esc(t("imageHint"))}</small></form></div>` : ""}
+    ${sheetContents(e, editable)}${
     e.isOwner
-      ? `<section class="panel"><h2>${esc(t("permissions"))}</h2>${e.permissions.length ? e.permissions.map((p) => `<div class="list-row"><span class="grow">${esc(p.username)} · ${esc(t(p.permission))}</span>${action(t("revoke"), "revoke-permission", p.username)}</div>`).join("") : `<p class="muted">${esc(t("private"))}</p>`}<form id="permission-form">${input(t("username"), "username", "", "required")}<label>${esc(t("permissions"))}<select name="permission"><option value="viewer">${esc(t("viewer"))}</option><option value="editor">${esc(t("editor"))}</option></select></label><p><button>${esc(t("grant"))}</button></p></form></section><section class="panel"><h2>${esc(t("assignments"))}</h2>${e.assignments.map((a) => `<div class="list-row"><div class="grow">${esc(a.name)}<br>${tag(t(a.state === "pending" ? "pending" : "active"))} ${tag(t(a.visibility))}</div>${action(t("withdraw"), "entity-assignment-remove", a.campaign_id)}${action(t("changeVisibility"), "entity-assignment-visibility", `${a.campaign_id}|${a.visibility === "shared" ? "private" : "shared"}`)}</div>`).join("")}<form id="assignment-form"><label>${esc(t("requestAssignment"))}<select name="campaignId" required>${state.availableCampaigns
+      ? `<section class="sheet-settings"><h2 class="ruled-title">${esc(t("sheetSettings"))}</h2><div class="settings-grid"><section class="panel"><h3>${esc(t("permissions"))}</h3>${e.permissions.length ? e.permissions.map((p) => `<div class="list-row"><span class="grow">${esc(p.username)} · ${esc(t(p.permission))}</span>${action(t("revoke"), "revoke-permission", p.username)}</div>`).join("") : `<p class="muted">${esc(t("private"))}</p>`}<form id="permission-form">${input(t("username"), "username", "", "required")}<label>${esc(t("permissions"))}<select name="permission"><option value="viewer">${esc(t("viewer"))}</option><option value="editor">${esc(t("editor"))}</option></select></label><p><button>${esc(t("grant"))}</button></p></form></section><section class="panel"><h3>${esc(t("assignments"))}</h3>${e.assignments.map((a) => `<div class="list-row"><div class="grow">${esc(a.name)}<br>${tag(t(a.state === "pending" ? "pending" : "active"))} ${tag(t(a.visibility))}</div>${action(t("withdraw"), "entity-assignment-remove", a.campaign_id)}${action(t("changeVisibility"), "entity-assignment-visibility", `${a.campaign_id}|${a.visibility === "shared" ? "private" : "shared"}`)}</div>`).join("")}<form id="assignment-form"><label>${esc(t("requestAssignment"))}<select name="campaignId" required>${state.availableCampaigns
           .filter((c) => !e.assignments.some((a) => a.campaign_id === c.id))
           .map((c) => `<option value="${attr(c.id)}">${esc(c.name)}</option>`)
           .join(
             "",
-          )}</select></label><label>${esc(t("status"))}<select name="visibility"><option value="private">${esc(t("private"))}</option><option value="shared">${esc(t("shared"))}</option></select></label><p><button>${esc(t("request"))}</button></p></form></section><section class="panel"><h2>${esc(t("transferOwnership"))}</h2><form id="entity-transfer">${input(t("username"), "username", "", "required")}<p><button>${esc(t("transfer"))}</button></p></form><div class="divider">✦</div><h3 class="danger">${esc(t("deleteEntity"))}</h3><p>${esc(t("confirmEntity"))}</p><form id="entity-delete">${input(t("name"), "confirm", "", "required")}<p><button>${esc(t("deleteEntity"))}</button></p></form></section>`
+          )}</select></label><label>${esc(t("status"))}<select name="visibility"><option value="private">${esc(t("private"))}</option><option value="shared">${esc(t("shared"))}</option></select></label><p><button>${esc(t("request"))}</button></p></form></section><section class="panel"><h3>${esc(t("transferOwnership"))}</h3><form id="entity-transfer">${input(t("username"), "username", "", "required")}<p><button>${esc(t("transfer"))}</button></p></form><div class="divider">✦</div><h3 class="danger">${esc(t("deleteEntity"))}</h3><p>${esc(t("confirmEntity"))}</p><form id="entity-delete">${input(t("name"), "confirm", "", "required")}<p><button>${esc(t("deleteEntity"))}</button></p></form></section></div></section>`
       : ""
-  }</aside></div>`;
-  if (edit && !preview) {
-    const panel = document.querySelector("#damage-form").closest(".panel");
-    const holder = document.querySelector(".sheet-bar .actions");
-    for (const [formId, label] of [
-      ["damage-form", t("damage")],
-      ["heal-form", t("heal")],
-    ]) {
-      const menu = document.createElement("details");
-      menu.className = "action-menu";
-      const summary = document.createElement("summary");
-      summary.textContent = label;
-      menu.append(summary, document.querySelector(`#${formId}`));
-      holder.append(menu);
-    }
-    holder.append(panel.querySelector('[data-action="combat"]'));
-    panel.remove();
-  }
+  }`;
   const assignmentForm = document.querySelector("#assignment-form");
   if (assignmentForm) {
     assignmentForm.elements.campaignId.required = false;
@@ -871,6 +955,8 @@ function saveSection(container) {
               resourcePills(state.sheet.data.resources),
             ),
         );
+      const identity = document.querySelector(".sheet-identity");
+      if (identity) identity.innerHTML = sheetIdentity(state.sheet);
       notify(t("saved"));
     });
   const pending = state.saveQueue.catch((error) => {
@@ -926,15 +1012,15 @@ async function generatorScreen() {
   const chooser = browsing.roots
     ? `<h3>${esc(t("chooseCategory"))}</h3><div class="list">${browsing.roots.map((item) => `<div class="list-row"><div class="grow"><strong>${esc(item.name)}</strong><p class="muted">${esc(item.description)}</p></div>${action(t("choose"), "gen-path", item.id)}</div>`).join("")}</div>`
     : `<p>${action(t("back"), "gen-up")} &nbsp; ${tag(path)} ${action(t("randomChoice"), "gen-select-random", path)}</p>${browsing.candidates.length ? `<h3>${esc(t("entries"))}</h3><div class="list">${browsing.candidates.map((item) => `<div class="list-row"><span class="grow">${esc(item.label)}</span>${action(t("choose"), "gen-path", item.value)}</div>`).join("")}</div>` : ""}${browsing.fields.length ? `<h3>${esc(t("fields"))}</h3><div class="actions">${browsing.fields.map((item) => action(item.label, "gen-path", item.value)).join("")}</div>` : ""}`;
-  const types = `<nav class="tabs">${["general", "character", "creature"].map((k) => `<button type="button" class="${gen.kind === k ? "active" : ""}" data-action="gen-kind" data-value="${k}">${esc(t(k === "general" ? "generators" : k === "character" ? "generateCharacter" : "generateCreature"))}</button>`).join("")}</nav>`;
-  app.innerHTML = `${header(t("generators"), t("generationIntro"))}${types}<div class="split"><section class="paper"><label>${esc(t("generationLanguage"))}${langSelect("generationLanguage", gen.language)}</label>${gen.kind !== "general" ? `<label>${esc(t("level"))}<select id="generation-level"><option value="">${esc(t("random"))}</option>${Array.from({ length: 10 }, (_, i) => `<option value="${i + 1}" ${String(gen.level || "") === String(i + 1) ? "selected" : ""}>${i + 1}</option>`).join("")}</select></label><div class="divider">✦</div><h3>${esc(t("generationPath"))}</h3>` : ""}${chooser}<div class="divider">✦</div>${action(gen.preview || gen.result ? t("regenerate") : t("generate"), "generate-now", "", "")}</section><section><h2>${esc(gen.kind === "general" ? t("result") : t("generatedPreview"))}</h2>${gen.kind === "general" ? resultMarkup(gen.result) : gen.preview ? `<div class="paper"><div class="actions">${action(t("saveToLibrary"), "save-generated", "", "")}</div>${sheetContents({ type: gen.kind, data: gen.preview.data, sections: gen.preview.sections }, false)}</div>` : `<div class="empty">${esc(t("noPreview"))}</div>`}</section></div>`;
+  const types = `<nav class="tabs">${["general", "character", "creature"].map((k) => `<button type="button" aria-pressed="${gen.kind === k}" class="${gen.kind === k ? "active" : ""}" data-action="gen-kind" data-value="${k}">${esc(t(k === "general" ? "generators" : k === "character" ? "generateCharacter" : "generateCreature"))}</button>`).join("")}</nav>`;
+  app.innerHTML = `${header(t("generators"), t("generationIntro"))}${types}<div class="split generator-layout"><section class="paper"><label>${esc(t("generationLanguage"))}${langSelect("generationLanguage", gen.language)}</label>${gen.kind !== "general" ? `<label>${esc(t("level"))}<select id="generation-level"><option value="">${esc(t("random"))}</option>${Array.from({ length: 10 }, (_, i) => `<option value="${i + 1}" ${String(gen.level || "") === String(i + 1) ? "selected" : ""}>${i + 1}</option>`).join("")}</select></label><div class="divider">✦</div><h3>${esc(t("generationPath"))}</h3>` : ""}${chooser}<div class="divider">✦</div>${action(gen.preview || gen.result ? t("regenerate") : t("generate"), "generate-now", "", "")}</section><section><h2>${esc(gen.kind === "general" ? t("result") : t("generatedPreview"))}</h2>${gen.kind === "general" ? resultMarkup(gen.result) : gen.preview ? `<div class="paper"><div class="actions">${action(t("saveToLibrary"), "save-generated", "", "")}</div>${gen.kind === "character" && gen.preview.data.background?.archetype ? `<p><strong>${esc(fieldLabel("character.fields.backgroundArchetype"))}:</strong> ${esc(gen.preview.data.background.archetype)}</p>` : ""}${sheetContents(gen.preview)}</div>` : `<div class="empty">${esc(t("noPreview"))}</div>`}</section></div>`;
 }
 function diceScreen() {
-  app.innerHTML = `${header(t("dice"), t("diceIntro"))}<div class="grid two"><section class="paper"><img class="card-art" src="/media/dice.webp" alt=""><form id="dice-form">${input(t("expression"), "expression", "1d20", "required")}<small>${esc(t("diceExample"))}</small><p><button>${esc(t("roll"))}</button></p></form></section><section class="paper"><h2>${esc(t("personalRoll"))}</h2><div id="dice-result"><p class="muted">${esc(t("noPreview"))}</p></div></section></div>`;
+  app.innerHTML = `${header(t("dice"), t("diceIntro"))}<div class="grid two"><section class="paper"><img class="card-art" src="/media/dice-card.webp" alt=""><form id="dice-form">${input(t("expression"), "expression", "1d20", "required")}<small>${esc(t("diceExample"))}</small><p><button>${esc(t("roll"))}</button></p></form></section><section class="paper"><h2>${esc(t("personalRoll"))}</h2><div id="dice-result"><p class="muted">${esc(t("noPreview"))}</p></div></section></div>`;
 }
 function rulebookScreen() {
   const language = state.rulebookLanguage || state.language;
-  app.innerHTML = `${header(t("rulebook"), t("rulebookIntro"), `<a class="button secondary" href="/rulebook/${language}" target="_blank" rel="noopener">${esc(t("openEdition"))}</a>`)}<div class="tabs">${["en", "fr"].map((x) => `<button type="button" class="${x === language ? "active" : ""}" data-action="rulebook-language" data-value="${x}">${x === "fr" ? "Français" : "English"}</button>`).join("")}</div><iframe class="rulebook-frame" title="${attr(t("rulebook"))}" src="/rulebook/${language}"></iframe>`;
+  app.innerHTML = `${header(t("rulebook"), t("rulebookIntro"), `<a class="button secondary" href="/rulebook/${language}" target="_blank" rel="noopener">${esc(t("openEdition"))}</a>`)}<div class="tabs">${["en", "fr"].map((x) => `<button type="button" aria-pressed="${x === language}" class="${x === language ? "active" : ""}" data-action="rulebook-language" data-value="${x}">${x === "fr" ? "Français" : "English"}</button>`).join("")}</div><iframe class="rulebook-frame" title="${attr(t("rulebook"))}" src="/rulebook/${language}"></iframe>`;
 }
 async function adminScreen() {
   const [{ users }, { invitations }] = await Promise.all([
