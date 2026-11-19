@@ -43,6 +43,11 @@ h1 { font: 500 clamp(38px, 5vw, 64px)/1.1 Cinzel, Georgia, serif; letter-spacing
 section { min-width: 0; background: #fffcf5; border: 1px solid var(--rule); border-top: 3px double #937e59; }
 .heading { padding: 1.05rem 1.2rem 0; gap: .7rem; }
 .heading span { font: 600 17px Cinzel, Georgia, serif; color: var(--red); border-right: 1px solid var(--rule); padding-right: .7rem; }
+.reading-guide { display: flex; margin-top: -.6rem; text-align: center; color: #625649; font-size: .85rem; }
+.reading-guide span { flex: 1; }
+.spread section { display: flex; flex-direction: column; }
+.spread .controls { margin-top: auto; }
+@media (min-width: 1020px) { .spread { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 h2 { font: 500 clamp(20px, 2.2vw, 28px)/1.2 Cinzel, Georgia, serif; }
 canvas { display: block; width: 100%; height: auto; }
 output { display: block; min-height: 2.2rem; text-align: center; font-size: 22px; font-weight: 600; }

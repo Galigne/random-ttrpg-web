@@ -3,17 +3,21 @@
   "use strict";
   const copy = {
     en: {
-      title: "Dice in motion", intro: "Play the paired examples, or choose a face to inspect its landing.",
-      pair: "Play next pair", coin: "Coin toss", die: "Twenty-sided die", toss: "Toss coin", roll: "Roll die",
+      title: "Dice in motion", intro: "Roll the dice together, or choose a result to inspect one landing.",
+      pair: "Roll all dice", coin: "Coin toss", die: "Twenty-sided die", toss: "Toss coin", roll: "Roll die",
+      d4: "Tetrahedron", d6: "Cube", d8: "Octahedron", d10: "Trapezohedron", d12: "Dodecahedron", d100: "Percentile dice",
+      tip: "Read the number at the tip.", tens: "Tens", units: "Units",
       choose: "Choose a face…", coinChoice: "Choose a coin face", dieChoice: "Choose a D20 face",
-      rolling: "Rolling…", tossing: "Tossing…", heads: "Heads", tails: "Tails", result: "Result",
+      rolling: "Rolling…", pairRolling: "Rolling…", tossing: "Tossing…", heads: "Heads", tails: "Tails", result: "Result",
       error: "The artwork could not load. Open the preview with its art folder alongside it."
     },
     fr: {
-      title: "Les dés en mouvement", intro: "Lancez les deux exemples ou choisissez une face pour observer le résultat.",
-      pair: "Voir le duo suivant", coin: "Pile ou face", die: "Dé à vingt faces", toss: "Lancer la pièce", roll: "Lancer le dé",
+      title: "Les dés en mouvement", intro: "Lancez tous les dés ou choisissez un résultat pour observer un dé à l’arrêt.",
+      pair: "Lancer tous les dés", coin: "Pile ou face", die: "Dé à vingt faces", toss: "Lancer la pièce", roll: "Lancer le dé",
+      d4: "Tétraèdre", d6: "Cube", d8: "Octaèdre", d10: "Trapézoèdre", d12: "Dodécaèdre", d100: "Dés de pourcentage",
+      tip: "Lisez le nombre à la pointe.", tens: "Dizaines", units: "Unités",
       choose: "Choisir une face…", coinChoice: "Choisir un côté de la pièce", dieChoice: "Choisir une face du D20",
-      rolling: "Le dé roule…", tossing: "La pièce tourne…", heads: "Face", tails: "Pile", result: "Résultat",
+      rolling: "Le dé roule…", pairRolling: "Les dés roulent…", tossing: "La pièce tourne…", heads: "Face", tails: "Pile", result: "Résultat",
       error: "Les illustrations sont introuvables. Ouvrez l’aperçu avec son dossier art au même emplacement."
     }
   };
@@ -74,9 +78,9 @@
     function updateStatus() {
       const words = copy[lang];
       if (progress < 1) {
-        status.textContent = sides === 2 ? words.tossing : words.rolling;
+        status.textContent = sides === 2 ? words.tossing : sides === 100 ? words.pairRolling : words.rolling;
       } else {
-        const label = sides === 20 ? words.result : target === 1 ? words.heads : words.tails;
+        const label = sides !== 2 ? words.result : target === 1 ? words.heads : words.tails;
         status.textContent = label + " · " + target;
       }
     }
@@ -110,7 +114,7 @@
     });
     button.addEventListener("click", () => play(1 + Math.floor(Math.random() * sides)));
     function translatePanel() {
-      select.setAttribute("aria-label", copy[lang][sides === 2 ? "coinChoice" : "dieChoice"]);
+      select.setAttribute("aria-label", sides === 2 ? copy[lang].coinChoice : copy[lang].dieChoice.replace("D20", "D" + sides));
       if (sides === 2) {
         select.options[1].text = copy[lang].heads + " · 1";
         select.options[2].text = copy[lang].tails + " · 2";
@@ -125,18 +129,38 @@
   const artReady = ["heads", "tails", "marble"].map(loadImage);
   const numeralsReady = document.fonts.load("600 34px Cinzel", "0123456789").catch(() => []);
   Promise.all([...artReady, numeralsReady]).then(([heads, tails, marble]) => {
+    const classic = [4, 6, 8, 10, 12, 100].map(sides => {
+      const section = preview.querySelector("#die").cloneNode(true);
+      const id = "d" + sides;
+      section.id = id;
+      const title = section.querySelector("h2");
+      title.id = id + "-title";
+      title.dataset.copy = id;
+      section.setAttribute("aria-labelledby", title.id);
+      section.querySelector(".heading span").textContent = "D" + sides;
+      if (sides === 100 || sides === 4) {
+        const legend = document.createElement("div");
+        legend.className = "reading-guide";
+        for (const key of sides === 4 ? ["tip"] : ["tens", "units"]) {
+          const label = document.createElement("span");
+          label.dataset.copy = key;
+          legend.append(label);
+        }
+        section.querySelector("output").before(legend);
+      }
+      preview.querySelector(".spread").insertBefore(section, preview.querySelector("#coin"));
+      const draw = (ctx, t, value, art) => window.RandomClassicDice.draw(ctx, t, sides, value, art);
+      return {sides, panel: makePanel(id, sides, 1500, draw, marble)};
+    });
     const coin = makePanel("coin", 2, 1350, window.RandomCoin.draw, { heads, tails });
     const die = makePanel("die", 20, 1500, window.RandomD20.draw, marble);
-    panels.push(coin, die);
-    let secondPair = false;
-    function playPair() {
-      coin.play(secondPair ? 2 : 1);
-      die.play(secondPair ? 1 : 20);
-      secondPair = !secondPair;
-    }
-    pair.addEventListener("click", playPair);
+    panels.push(coin, die, ...classic.map(entry => entry.panel));
+    const entries = [...classic, {sides: 2, panel: coin}, {sides: 20, panel: die}];
+    pair.addEventListener("click", () => {
+      for (const {sides, panel} of entries) panel.play(1 + Math.floor(Math.random() * sides));
+    });
     pair.disabled = false;
-    playPair();
+    for (const {sides, panel} of entries) panel.play(sides);
     translate();
   }).catch(() => {
     error.textContent = copy[lang].error;

@@ -163,6 +163,7 @@ const copy = {
     expression: "Dice expression",
     diceExample: "For example: 1d20, 2d6+3, 4d8-2",
     diceRolling: "Rolling…",
+    tens: "Tens", units: "Units",
     personalRoll: "Personal roll",
     rulebookIntro:
       "Read the original illustrated rules, complete with their search and navigation tools.",
@@ -398,6 +399,7 @@ const copy = {
     expression: "Expression de dé",
     diceExample: "Par exemple : 1d20, 2d6+3, 4d8-2",
     diceRolling: "Les dés roulent…",
+    tens: "Dizaines", units: "Unités",
     personalRoll: "Jet personnel",
     rulebookIntro:
       "Lisez le livre de règles illustré d’origine, avec sa recherche et sa navigation.",
@@ -639,7 +641,8 @@ let personalRoll = null;
 let personalRequest = 0;
 
 function animatedDice(result) {
-  return [2, 20].includes(result.sides) && Array.isArray(result.rolls);
+  return Array.isArray(result.rolls) &&
+    (result.sides === 2 || result.sides === 20 || window.RandomClassicDice?.supports(result.sides));
 }
 function diceDetails(r) {
   return `<div class="dice-details"><div class="eyebrow">${esc(r.normalized)}</div><div>${esc(r.rolls.join(" + "))}${r.modifier ? ` ${r.modifier > 0 ? "+" : "−"} ${esc(Math.abs(r.modifier))} (${esc(t("modifier"))})` : ""}</div><strong class="result-total">${esc(t("total"))}: ${esc(r.total)}</strong></div>`;
@@ -652,7 +655,10 @@ function mountDice(record, element) {
   window.RandomDicePlayback.mount(record, element, t("diceRolling"), showDiceResult);
 }
 function diceDisplay(r, rollId = "") {
-  if (animatedDice(r)) return `<div class="dice-result dice-animated" aria-live="polite" data-roll-id="${attr(rollId)}"></div>`;
+  if (animatedDice(r)) {
+    const places = r.sides === 100 ? ` data-tens="${attr(t("tens"))}" data-units="${attr(t("units"))}"` : "";
+    return `<div class="dice-result dice-animated" aria-live="polite" data-roll-id="${attr(rollId)}"${places}></div>`;
+  }
   const illustrated = [4, 6, 8, 10, 12, 20].includes(r.sides);
   const faces = r.animation
     ? `<img src="/media/${attr(r.animation)}" alt="${attr(r.rolls[0])}">`

@@ -11,6 +11,10 @@ function environment(reduced = false) {
   const rendered = [];
   const motion = { matches: reduced, addEventListener() {} };
   const window = {
+    RandomClassicDice: {
+      supports: sides => [4, 6, 8, 10, 12, 100].includes(sides),
+      draw: (_, progress, sides, value) => rendered.push({ progress, sides, value }),
+    },
     RandomCoin: { draw: (_, progress, value) => rendered.push({ progress, value }) },
     RandomD20: { draw: (_, progress, value) => rendered.push({ progress, value }) },
   };
@@ -33,7 +37,7 @@ function environment(reduced = false) {
     setTimeout() {},
     document: {
       createElement() {
-        return { getContext: () => ({ clearRect() {} }) };
+        return { dataset: {}, append() {}, getContext: () => ({ clearRect() {}, drawImage() {} }) };
       },
     },
   };
@@ -46,6 +50,7 @@ function environment(reduced = false) {
     const status = { textContent: "" };
     return {
       isConnected: true,
+      dataset: { tens: "Tens", units: "Units" },
       set innerHTML(value) { this.markup = value; },
       querySelector(selector) { return selector === ".dice-motion" ? area : status; },
       area,
@@ -96,4 +101,30 @@ test("reduced motion reveals immediately while artwork loads", () => {
   const revealed = [];
   env.playback.mount(record, env.element(), "Rolling", (_, result) => revealed.push(result.total));
   assert.deepEqual(revealed, [20]);
+});
+
+test("classic dice finish together with their supplied values and modified totals", async () => {
+  const env = environment();
+  const results = [
+    { sides: 6, rolls: [3, 5, 3], total: 13 },
+    { sides: 10, rolls: [1, 10], total: 11 },
+    { sides: 100, rolls: [7, 90, 100], total: 197 },
+  ];
+  const revealed = [];
+  for (const result of results) {
+    const display = env.element();
+    env.playback.mount(env.playback.create(result, true), display, "Rolling", (_, r) => revealed.push(r));
+    assert.equal(display.area.canvases.length, result.rolls.length);
+  }
+  await new Promise(setImmediate);
+  env.advance(1499);
+  assert.deepEqual(revealed, []);
+  env.advance(1500);
+  assert.deepEqual(revealed, results);
+  for (const result of results) {
+    assert.deepEqual(
+      env.rendered.filter(f => f.progress === 1 && f.sides === result.sides).map(f => f.value),
+      [...new Set(result.rolls)],
+    );
+  }
 });

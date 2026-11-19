@@ -3,7 +3,6 @@
   "use strict";
 
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-  const durations = { 2: 1350, 20: 1500 };
   const assets = {};
 
   function image(name) {
@@ -38,12 +37,24 @@
     element.innerHTML = `<div class="dice-motion" aria-hidden="true"></div><span role="status"></span>`;
     element.querySelector('[role="status"]').textContent = rollingText;
     const area = element.querySelector(".dice-motion");
-    const canvases = record.result.rolls.map(() => {
+    const { sides, rolls } = record.result;
+    const classic = window.RandomClassicDice?.supports(sides);
+    const sources = new Map();
+    const tiles = rolls.map(value => {
       const canvas = document.createElement("canvas");
       canvas.width = 440;
       canvas.height = 260;
-      area.append(canvas);
-      return canvas;
+      if (sides === 100) {
+        const pair = document.createElement("div");
+        pair.className = "percentile-dice";
+        pair.dataset.tens = element.dataset.tens;
+        pair.dataset.units = element.dataset.units;
+        pair.append(canvas);
+        area.append(pair);
+      } else area.append(canvas);
+      const source = sources.get(value);
+      if (classic && !source) sources.set(value, canvas);
+      return { canvas, value, source, context: canvas.getContext("2d") };
     });
 
     function finish() {
@@ -57,12 +68,13 @@
 
     function draw(progress) {
       const render = record.result.sides === 2 ? window.RandomCoin : window.RandomD20;
-      if (!render || !record.art) return;
-      for (let i = 0; i < canvases.length; i++) {
-        const context = canvases[i].getContext("2d");
+      if (!record.art) return;
+      for (const { context, value, source } of tiles) {
         if (!context) continue;
         context.clearRect(0, 0, 440, 260);
-        render.draw(context, progress, record.result.rolls[i], record.art);
+        if (source) context.drawImage(source, 0, 0);
+        else if (classic) window.RandomClassicDice.draw(context, progress, sides, value, record.art);
+        else render.draw(context, progress, value, record.art);
       }
     }
 
@@ -73,7 +85,7 @@
         return;
       }
       const progress = !record.finished && record.animate
-        ? Math.min(1, (now - record.start) / durations[record.result.sides])
+        ? Math.min(1, (now - record.start) / (sides === 2 ? 1350 : 1500))
         : 1;
       try {
         draw(progress);
@@ -140,7 +152,6 @@
         active.delete(record);
         onComplete?.();
       });
-      active.add(record);
       return record;
     },
     mount(record, element, rollingText, showResult) {

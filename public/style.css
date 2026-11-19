@@ -700,6 +700,15 @@ footer {
 .dice-animated [role="status"] {
   color: var(--muted);
 }
+.percentile-dice {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+  font-size: .85rem;
+}
+.percentile-dice canvas { grid-column: 1 / -1; grid-row: 1; }
+.percentile-dice::before { content: attr(data-tens); grid-area: 2 / 1; }
+.percentile-dice::after { content: attr(data-units); grid-area: 2 / 2; }
 .die {
   display: inline-flex;
   align-items: center;

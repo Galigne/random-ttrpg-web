@@ -102,7 +102,7 @@ function createApplication(db, options = {}) {
     if (url.pathname === "/") filename = "public/index.html";
     else if (url.pathname === "/app.js") filename = "public/app.js";
     else if (url.pathname === "/style.css") filename = "public/style.css";
-    else if (/^\/dice\/(?:(?:coin|d20|playback)\.js|art\/(?:heads|tails|marble)\.webp)$/.test(url.pathname))
+    else if (/^\/dice\/(?:(?:coin|d20|classic|playback)\.js|art\/(?:heads|tails|marble)\.webp)$/.test(url.pathname))
       filename = `public${url.pathname}`;
     else if (
       /^\/media\/(?:characters|cover|dice|combat)\.webp$/.test(url.pathname)

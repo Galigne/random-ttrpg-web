@@ -24,6 +24,7 @@ test("shared art and fonts are served while rulebook editions require authentica
     ["/media/die-d6.webp", "public/media/die-d6.webp"],
     ["/dice/coin.js", "public/dice/coin.js"],
     ["/dice/d20.js", "public/dice/d20.js"],
+    ["/dice/classic.js", "public/dice/classic.js"],
     ["/dice/playback.js", "public/dice/playback.js"],
     ["/dice/art/heads.webp", "public/dice/art/heads.webp"],
     ["/dice/art/tails.webp", "public/dice/art/tails.webp"],
