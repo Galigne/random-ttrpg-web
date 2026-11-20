@@ -20,6 +20,10 @@ function openDatabase(filename) {
       language TEXT NOT NULL DEFAULT 'en' CHECK(language IN ('en','fr')),
       created_at INTEGER NOT NULL
     );
+    CREATE TABLE IF NOT EXISTS dice_preferences (
+      user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+      skin TEXT NOT NULL, glow TEXT
+    );
     CREATE TABLE IF NOT EXISTS sessions (
       token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
       csrf TEXT NOT NULL, expires_at INTEGER NOT NULL

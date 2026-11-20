@@ -31,7 +31,11 @@ function createApplication(db, options = {}) {
     );
     routes.push({ method, regex, names, handler, settings });
   }
-  const ctx = { db, live, route, fail, secureCookies };
+  function diceAppearance(userId) {
+    return db.prepare("SELECT skin, glow FROM dice_preferences WHERE user_id=?").get(userId)
+      || { skin: "marble", glow: null };
+  }
+  const ctx = { db, live, route, fail, secureCookies, diceAppearance };
   route("GET", "/api/locale", ({ user }) => {
     const translations = require(
       `../rpg/locales/${user.language === "fr" ? "fr" : "en"}.json`,
@@ -103,7 +107,7 @@ function createApplication(db, options = {}) {
     if (url.pathname === "/") filename = "public/index.html";
     else if (url.pathname === "/app.js" || url.pathname === "/generators.js") filename = `public${url.pathname}`;
     else if (url.pathname === "/style.css") filename = "public/style.css";
-    else if (/^\/dice\/(?:(?:coin|d20|classic|playback)\.js|art\/(?:heads|tails|marble)\.webp)$/.test(url.pathname))
+    else if (/^\/dice\/(?:(?:coin|d20|classic|skins|playback)\.js|art\/[a-z0-9-]+\.webp)$/.test(url.pathname))
       filename = `public${url.pathname}`;
     else if (
       /^\/media\/(?:characters|cover|dice|combat)\.webp$/.test(url.pathname)

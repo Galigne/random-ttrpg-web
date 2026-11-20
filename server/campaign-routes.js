@@ -4,7 +4,7 @@ const access = require("./access");
 const rpg = require("./rpg");
 const { readImage, sendImage } = require("./images");
 
-module.exports = ({ db, live, route, fail }) => {
+module.exports = ({ db, live, route, fail, diceAppearance }) => {
   const member = (campaignId, userId) =>
     access.membership(db, campaignId, userId);
   function getCampaign(user, campaignId) {
@@ -401,7 +401,7 @@ module.exports = ({ db, live, route, fail }) => {
     return { ok: true };
   });
   route("POST", "/api/dice", ({ user, body }) => {
-    const result = rpg.roll(body.expression);
+    const result = { ...rpg.roll(body.expression), appearance: diceAppearance(user.id) };
     if (body.campaignId) {
       const c = getCampaign(user, body.campaignId);
       canParticipate(user, c.id);

@@ -26,10 +26,10 @@ async function setup(t) {
   const server = http.createServer(app.handler);
   await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
   const base = `http://127.0.0.1:${server.address().port}`;
-  const aborters = [];
+  const streams = [];
   t.after(async () => {
     app.live.shutdown();
-    for (const a of aborters) a.abort();
+    for (const { controller } of streams) controller.abort();
     server.closeAllConnections();
     await new Promise((resolve) => server.close(resolve));
     db.close();
@@ -64,16 +64,47 @@ async function setup(t) {
   }
   async function stream(client, campaign) {
     const controller = new AbortController();
-    aborters.push(controller);
     const response = await fetch(
       `${base}/api/events?tab=${client.tab}${campaign ? `&campaign=${campaign}` : ""}`,
       { headers: { cookie: client.cookie }, signal: controller.signal },
     );
     assert.equal(response.status, 200);
+    // Keep the live response reachable for as long as the test holds its tab's editing lock.
+    streams.push({ controller, response });
     return controller;
   }
   return { db, users, request, login, stream, live: app.live, base };
 }
+
+test("dice appearance belongs to the account and is snapshotted for campaign participants", async (t) => {
+  const { request, login } = await setup(t);
+  const alice = await login("Alice"), bob = await login("Bob");
+  const defaults = { skin: "marble", glow: null };
+  const custom = { skin: "lapis", glow: "#ff9900" };
+  const save = (client, appearance) => request(client, "/api/dice/appearance", "POST", appearance);
+  assert.equal((await save(null, custom)).status, 401);
+  assert.equal((await save(alice, { skin: "constructor", glow: null })).status, 400);
+  assert.equal((await save(alice, { skin: "iron", glow: "red" })).status, 400);
+  assert.deepEqual((await save(alice, custom)).data.appearance, custom);
+  const nextSession = await login("Alice");
+  assert.deepEqual((await request(nextSession, "/api/me")).data.user.diceAppearance, custom);
+  assert.deepEqual((await request(bob, "/api/me")).data.user.diceAppearance, defaults);
+  const campaign = (await request(alice, "/api/campaigns", "POST", {
+    name: "Dice table", language: "fr",
+  })).data.id;
+  await request(alice, `/api/campaigns/${campaign}/invite`, "POST", { username: "Bob" });
+  await request(bob, `/api/campaign-invitations/${campaign}`, "POST", { action: "accept" });
+  const roll = (client, options) => request(client, "/api/dice", "POST", {
+    expression: "2d20+3", ...options,
+  });
+  assert.deepEqual((await roll(nextSession, { campaignId: campaign })).data.result.appearance, custom);
+  await roll(alice, { campaignId: campaign, private: true });
+  await save(alice, { skin: "iron", glow: null });
+  assert.deepEqual((await roll(bob, { appearance: custom })).data.result.appearance, defaults);
+  const visible = (await request(bob, `/api/campaigns/${campaign}`)).data.chat;
+  assert.equal(visible.length, 1);
+  assert.deepEqual(visible[0].result.appearance, custom);
+});
 
 test("registration requires approval or a single-use invitation; reset revokes sessions", async (t) => {
   const { request, login } = await setup(t);

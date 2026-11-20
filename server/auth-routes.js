@@ -12,13 +12,16 @@ const {
 } = require("./security");
 const { isIP } = require("node:net");
 
-module.exports = ({ db, live, route, fail, secureCookies }) => {
+const diceSkins = require("../public/dice/skins");
+
+module.exports = ({ db, live, route, fail, secureCookies, diceAppearance }) => {
   const allowAuth = makeLimiter({ limit: 20 });
   const publicUser = (user) => ({
     id: user.id,
     username: user.username,
     role: user.role,
     language: user.language,
+    diceAppearance: diceAppearance(user.id),
   });
   const rate = (req) => {
     const forwarded =
@@ -132,6 +135,17 @@ module.exports = ({ db, live, route, fail, secureCookies }) => {
     live.disconnectSession(auth.hash);
     res.setHeader("Set-Cookie", sessionCookie("", secureCookies, 0));
     return { ok: true };
+  });
+  route("POST", "/api/dice/appearance", ({ user, body }) => {
+    const { skin, glow } = body;
+    if (typeof skin !== "string" || !Object.hasOwn(diceSkins, skin) ||
+        !(glow === null || (typeof glow === "string" && /^#[0-9a-f]{6}$/i.test(glow))))
+      fail(400, "INVALID_DICE_APPEARANCE");
+    const appearance = { skin, glow: glow?.toLowerCase() ?? null };
+    db.prepare(`INSERT INTO dice_preferences(user_id,skin,glow) VALUES(?,?,?)
+      ON CONFLICT(user_id) DO UPDATE SET skin=excluded.skin, glow=excluded.glow`)
+      .run(user.id, appearance.skin, appearance.glow);
+    return { appearance };
   });
   route("POST", "/api/language", ({ user, body }) => {
     if (!["en", "fr"].includes(body.language)) fail(400, "INVALID_LANGUAGE");

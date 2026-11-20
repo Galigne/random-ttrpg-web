@@ -66,6 +66,7 @@
     shadow(ctx, x + 2, 190, 72, 39, 0.20 * Math.exp(-altitude / 9));
 
     ctx.save();
+    if (art.glow) window.RandomDiceMaterials.halo(ctx, x, y, art.glow, .32);
     ctx.translate(x, y);
     ctx.rotate(-0.045 + (1 - flight) * -0.26 + Math.sin(Math.PI * rebound) * 0.06);
     const h = Math.max(0.05, radius * Math.abs(cosine));
@@ -104,6 +105,25 @@
     const heads = cosine >= 0;
     const face = heads ? art.heads : art.tails;
     if (face) ctx.drawImage(face, -radius, -radius, radius * 2, radius * 2);
+    if (art.finish === "silver-rim") {
+      ctx.save();
+      ctx.globalCompositeOperation = "multiply";
+      ctx.fillStyle = "#94929b";
+      ctx.fillRect(-radius, -radius, radius * 2, radius * 2);
+      ctx.restore();
+      ctx.beginPath();
+      ctx.arc(0, 0, radius - 2.5, 0, turn);
+      ctx.strokeStyle = "#d5d3da";
+      ctx.lineWidth = 4;
+      ctx.stroke();
+    } else if (art.texture) {
+      // Keep the minted relief readable beneath the selected material.
+      ctx.save();
+      ctx.globalCompositeOperation = "multiply";
+      ctx.globalAlpha = 0.83;
+      ctx.drawImage(art.texture, -radius, -radius, radius * 2, radius * 2);
+      ctx.restore();
+    }
     silverReflection(ctx, angle);
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";

@@ -164,6 +164,17 @@ const copy = {
     diceRolling: "Rolling…",
     tens: "Tens", units: "Units",
     personalRoll: "Personal roll",
+    appearance: "Dice appearance",
+    texture: "Texture",
+    glow: "Glow color",
+    matchTexture: "Match the texture",
+    customGlow: "Custom color",
+    hexColor: "Hex color",
+    criticalPreview: "Critical preview",
+    replay: "Replay both",
+    criticalSuccess: "Critical success",
+    criticalFailure: "Critical failure",
+    INVALID_DICE_APPEARANCE: "Choose a dice texture and a valid glow color.",
     rulebookIntro:
       "Read the original illustrated rules, complete with their search and navigation tools.",
     edition: "Edition",
@@ -399,6 +410,17 @@ const copy = {
     diceRolling: "Les dés roulent…",
     tens: "Dizaines", units: "Unités",
     personalRoll: "Jet personnel",
+    appearance: "Apparence des dés",
+    texture: "Texture",
+    glow: "Couleur de la lueur",
+    matchTexture: "Assortir à la texture",
+    customGlow: "Couleur libre",
+    hexColor: "Couleur hexadécimale",
+    criticalPreview: "Aperçu des critiques",
+    replay: "Rejouer les deux",
+    criticalSuccess: "Réussite critique",
+    criticalFailure: "Échec critique",
+    INVALID_DICE_APPEARANCE: "Choisissez une texture de dé et une couleur de lueur valide.",
     rulebookIntro:
       "Lisez le livre de règles illustré d’origine, avec sa recherche et sa navigation.",
     edition: "Édition",
@@ -644,7 +666,10 @@ function animatedDice(result) {
     (result.sides === 2 || result.sides === 20 || window.RandomClassicDice?.supports(result.sides));
 }
 function diceDetails(r) {
-  return `<div class="dice-details"><div class="eyebrow">${esc(r.normalized)}</div><div>${esc(r.rolls.join(" + "))}${r.modifier ? ` ${r.modifier > 0 ? "+" : "−"} ${esc(Math.abs(r.modifier))} (${esc(t("modifier"))})` : ""}</div><strong class="result-total">${esc(t("total"))}: ${esc(r.total)}</strong></div>`;
+  const criticalLabels = r.sides === 20 ? [[1, "criticalSuccess"], [20, "criticalFailure"]]
+    .filter(([face]) => r.rolls.includes(face))
+    .map(([face, key]) => tag(`${face} · ${t(key)}`)).join(" ") : "";
+  return `<div class="dice-details"><div class="eyebrow">${esc(r.normalized)}</div><div>${esc(r.rolls.join(" + "))}${r.modifier ? ` ${r.modifier > 0 ? "+" : "−"} ${esc(Math.abs(r.modifier))} (${esc(t("modifier"))})` : ""}</div><strong class="result-total">${esc(t("total"))}: ${esc(r.total)}</strong>${criticalLabels && `<div>${criticalLabels}</div>`}</div>`;
 }
 function showDiceResult(element, result) {
   element.querySelector('[role="status"]')?.remove();
@@ -668,7 +693,8 @@ function diceDisplay(r, rollId = "") {
             : `<span class="die-number">${esc(n)}</span>`,
         )
         .join("");
-  return `<div class="dice-result">${faces}${diceDetails(r)}</div>`;
+  const { id, ink, glow, finish } = window.RandomDiceMaterials.resolve(r.appearance);
+  return `<div class="dice-result" data-finish="${attr(finish || "")}" style="--die-texture:url('/dice/art/${id}.webp');--die-ink:${ink};--die-glow:${glow}">${faces}${diceDetails(r)}</div>`;
 }
 function chatMessage(item) {
   const who = item.identity?.characterName
@@ -1047,8 +1073,86 @@ function resultMarkup(result) {
       : `<p>${esc(result.value || result.display || "")}</p>`
   }${result.modifiers?.length ? `<div class="divider">✦</div><h3>${esc(t("modifiers"))}</h3>${result.modifiers.map((m) => `<p>${esc(m.display || m.value || "")}</p>`).join("")}` : ""}</article>`;
 }
+const glowPalette = [
+  { color: "#dc4452", en: "Ruby", fr: "Rubis" },
+  { color: "#ec9c28", en: "Amber", fr: "Ambre" },
+  { color: "#37af83", en: "Jade", fr: "Jade" },
+  { color: "#39bcd2", en: "Aquamarine", fr: "Aigue-marine" },
+  { color: "#5389ed", en: "Sapphire", fr: "Saphir" },
+  { color: "#a66cf0", en: "Amethyst", fr: "Améthyste" },
+  { color: "#ed77a9", en: "Rose quartz", fr: "Quartz rose" },
+];
+
+function diceAppearanceForm() {
+  const { skin, glow } = state.user.diceAppearance;
+  const skins = window.RandomDiceMaterials.skins;
+  const choices = Object.entries(skins).map(([id, material]) =>
+    `<label class="skin-choice"><input type="radio" name="skin" value="${id}" ${skin === id ? "checked" : ""}>${material.finish === "silver-rim"
+      ? '<span class="skin-sample silver-rim" aria-hidden="true"></span>'
+      : `<img class="skin-sample" src="/dice/art/${id}.webp" alt="">`}<span>${esc(material[state.language])}</span></label>`
+  ).join("");
+  const color = glow || skins[skin].color;
+  const choice = !glow ? "auto" : glowPalette.some(p => p.color === glow) ? glow : "custom";
+  const radio = value => `<input type="radio" name="glowChoice" value="${value}" ${choice === value ? "checked" : ""}>`;
+  const palette = glowPalette.map(p => `<label class="glow-swatch" title="${attr(p[state.language])}">
+    ${radio(p.color)}<span style="--swatch:${p.color}"><span class="sr-only">${esc(p[state.language])}</span></span></label>`).join("");
+  return `<form id="dice-appearance" class="paper dice-appearance"><h2>${esc(t("appearance"))}</h2>
+    <div class="dice-workshop"><div class="dice-controls">
+    <fieldset><legend>${esc(t("texture"))}</legend><div class="skin-choices">${choices}</div></fieldset>
+    <fieldset><legend>${esc(t("glow"))}</legend><div class="glow-palette">
+      <label class="glow-auto">${radio("auto")}<span>${esc(t("matchTexture"))}</span></label>${palette}
+    </div><div class="custom-glow">
+      <label>${radio("custom")} ${esc(t("customGlow"))}</label>
+      <input type="color" aria-label="${attr(t("glow"))}" name="glow" value="${attr(color)}">
+      <input type="text" name="hex" aria-label="${attr(t("hexColor"))}" value="${attr(color.toUpperCase())}" pattern="#?[0-9a-fA-F]{6}" maxlength="7" spellcheck="false" autocomplete="off" required>
+    </div></fieldset>
+    <button type="submit" class="secondary">${esc(t("save"))}</button></div>
+    <section class="critical-preview"><div class="preview-heading"><h3>${esc(t("criticalPreview"))}</h3>
+    <button type="button" class="secondary" data-replay>${esc(t("replay"))}</button></div>
+    <div class="critical-tray"><div class="preview-stage" aria-hidden="true"></div>
+    <span><b>1</b> ${esc(t("criticalSuccess"))}</span><span><b>20</b> ${esc(t("criticalFailure"))}</span></div>
+    </section></div></form>`;
+}
+
+function chosenAppearance(form) {
+  const { skin, glowChoice, glow } = form.elements;
+  return { skin: skin.value, glow: glowChoice.value === "auto" ? null : glow.value };
+}
+
+function previewCriticals(form, replay = false) {
+  if (!form.isConnected) return;
+  const stage = form.querySelector(".preview-stage");
+  const appearance = chosenAppearance(form);
+  const key = JSON.stringify(appearance);
+  if (!replay && stage.dataset.appearance === key) return;
+  stage.dataset.appearance = key;
+  const view = document.createElement("div");
+  stage.replaceChildren(view);
+  const playback = window.RandomDicePlayback;
+  const record = playback.create({ sides: 20, rolls: [1, 20], appearance }, true);
+  playback.mount(record, view, "", node => node.querySelector('[role="status"]')?.remove());
+}
+
+function updateGlow(form, target, editing = false) {
+  const { skin, glowChoice, glow, hex } = form.elements;
+  if (target === hex) {
+    if (!hex.validity.valid) return;
+    glow.value = "#" + hex.value.replace(/^#/, "");
+  }
+  if (target === glow || target === hex) glowChoice.value = "custom";
+  if (glowChoice.value === "auto") glow.value = window.RandomDiceMaterials.skins[skin.value].color;
+  else if (glowChoice.value !== "custom") glow.value = glowChoice.value;
+  if (target !== hex || !editing) hex.value = glow.value.toUpperCase();
+  clearTimeout(form.glowTimer);
+  if (editing) form.glowTimer = setTimeout(() => previewCriticals(form), 180);
+  else previewCriticals(form);
+}
 function diceScreen() {
   app.innerHTML = `${header(t("dice"), t("diceIntro"))}<div class="grid two"><section class="paper"><img class="card-art dice-art" src="/media/dice-card.webp" alt=""><form id="dice-form">${input(t("expression"), "expression", "1d20", "required")}<small>${esc(t("diceExample"))}</small><p><button>${esc(t("roll"))}</button></p></form></section><section class="paper"><h2>${esc(t("personalRoll"))}</h2><div id="dice-result" class="chat"></div></section></div>`;
+  app.insertAdjacentHTML("beforeend", diceAppearanceForm());
+  const form = document.querySelector("#dice-appearance");
+  form.querySelector("[data-replay]").addEventListener("click", () => previewCriticals(form, true));
+  previewCriticals(form);
   renderPersonalRolls();
 }
 function renderPersonalRolls() {
@@ -1386,6 +1490,19 @@ document.addEventListener("submit", async (event) => {
         data,
       );
       form.reset();
+    } else if (form.id === "dice-appearance") {
+      const user = state.user;
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      try {
+        const { appearance } = await api("/api/dice/appearance", "POST", chosenAppearance(form));
+        if (state.user === user) {
+          user.diceAppearance = appearance;
+          notify(t("saved"));
+        }
+      } finally {
+        button.disabled = false;
+      }
     } else if (form.id === "dice-form") {
       const request = ++personalRequest;
       const session = personalSession;
@@ -1636,7 +1753,9 @@ document.addEventListener("click", async (event) => {
 document.addEventListener("change", async (event) => {
   const target = event.target;
   try {
-    if (target.name === "siteLanguage") {
+    if (target.form?.id === "dice-appearance") {
+      updateGlow(target.form, target);
+    } else if (target.name === "siteLanguage") {
       if (state.editing && !state.preview) await flushSheet();
       state.language = target.value;
       localStorage.setItem("random-language", state.language);
@@ -1669,6 +1788,9 @@ document.addEventListener("change", async (event) => {
   }
 });
 document.addEventListener("input", (event) => {
+  const target = event.target;
+  if (target.form?.id === "dice-appearance" && (target.name === "hex" || target.name === "glow"))
+    updateGlow(target.form, target, true);
   const section = event.target.closest("[data-section]");
   if (section && state.editing && !state.preview) section.dataset.dirty = "1";
 });

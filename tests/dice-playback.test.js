@@ -9,14 +9,17 @@ function environment(reduced = false) {
   let nextFrame = 0;
   const frames = new Map();
   const rendered = [];
-  const motion = { matches: reduced, addEventListener() {} };
+  const motion = { matches: reduced, addEventListener(_, listener) { this.change = listener; } };
   const window = {
     RandomClassicDice: {
       supports: sides => [4, 6, 8, 10, 12, 100].includes(sides),
       draw: (_, progress, sides, value) => rendered.push({ progress, sides, value }),
     },
     RandomCoin: { draw: (_, progress, value) => rendered.push({ progress, value }) },
-    RandomD20: { draw: (_, progress, value) => rendered.push({ progress, value }) },
+    RandomD20: {
+      draw: (_, progress, value) => rendered.push({ progress, value }),
+      drawCritical: (_, progress, value, art, quiet) => rendered.push({ progress, value, art, quiet }),
+    },
   };
   class Image {
     set src(value) {
@@ -35,16 +38,15 @@ function environment(reduced = false) {
     },
     cancelAnimationFrame(id) { frames.delete(id); },
     setTimeout() {},
+    clearTimeout() {},
     document: {
       createElement() {
         return { dataset: {}, append() {}, getContext: () => ({ clearRect() {}, drawImage() {} }) };
       },
     },
   };
-  runInNewContext(
-    readFileSync(path.join(__dirname, "../public/dice/playback.js"), "utf8"),
-    context,
-  );
+  for (const file of ["skins.js", "playback.js"])
+    runInNewContext(readFileSync(path.join(__dirname, "../public/dice", file), "utf8"), context);
   function element() {
     const area = { canvases: [], append(canvas) { this.canvases.push(canvas); }, remove() {} };
     const status = { textContent: "" };
@@ -58,12 +60,14 @@ function environment(reduced = false) {
     };
   }
   function advance(time) {
-    now = time;
-    const callbacks = [...frames.values()];
-    frames.clear();
-    for (const callback of callbacks) callback(now);
+    while (now < time) {
+      now = Math.min(now + 20, time);
+      const callbacks = [...frames.values()];
+      frames.clear();
+      for (const callback of callbacks) callback(now);
+    }
   }
-  return { playback: window.RandomDicePlayback, rendered, element, advance };
+  return { playback: window.RandomDicePlayback, rendered, element, advance, motion, document: context.document };
 }
 
 test("simultaneous rolls keep values hidden through refresh until their animations finish", async () => {
@@ -91,16 +95,48 @@ test("simultaneous rolls keep values hidden through refresh until their animatio
   env.advance(1350);
   assert.deepEqual(revealed, [5]);
   env.advance(1500);
+  assert.deepEqual(revealed, [5]);
+  env.advance(4999);
+  assert.deepEqual(revealed, [5]);
+  env.advance(5000);
   assert.deepEqual(revealed, [5, 24]);
   assert.ok(env.rendered.some(frame => frame.progress === 1 && frame.value === 20));
 });
 
-test("reduced motion reveals immediately while artwork loads", () => {
+test("reduced motion reveals ordinary rolls immediately while artwork loads", () => {
   const env = environment(true);
-  const record = env.playback.create({ sides: 20, rolls: [20], total: 20 }, true);
+  const record = env.playback.create({ sides: 20, rolls: [19], total: 20 }, true);
   const revealed = [];
   env.playback.mount(record, env.element(), "Rolling", (_, result) => revealed.push(result.total));
   assert.deepEqual(revealed, [20]);
+});
+
+test("critical playback uses the roller's material and resumes its visible time after remount", async () => {
+  const env = environment(true);
+  const result = { sides: 20, rolls: [7, 20], appearance: { skin: "iron", glow: "#3366ff" } };
+  const record = env.playback.create(result, false);
+  let count = 0;
+  const first = env.element();
+  env.playback.mount(record, first, "Rolling", () => count++);
+  await new Promise(setImmediate);
+  env.advance(2000);
+  assert.ok(env.rendered.some(frame => frame.value === 7 && frame.progress === 1));
+  const frame = env.rendered.find(frame => frame.value === 20);
+  assert.equal(frame.art.glow, "#3366ff");
+  assert.equal(frame.art.texture.path, "/dice/art/iron.webp");
+  assert.equal(frame.quiet, true);
+  env.motion.change();
+  env.document.hidden = true;
+  env.advance(8000);
+  first.isConnected = false;
+  env.advance(9000);
+  env.document.hidden = false;
+  env.playback.mount(record, env.element(), "Rolling", () => count++);
+  await new Promise(setImmediate);
+  env.advance(11999);
+  assert.equal(count, 0);
+  env.advance(12000);
+  assert.equal(count, 1);
 });
 
 test("classic dice finish together with their supplied values and modified totals", async () => {

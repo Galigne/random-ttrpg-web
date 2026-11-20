@@ -60,11 +60,13 @@
     const select = root.querySelector("select");
     for (let n = 1; n <= sides; n++) select.add(new Option(String(n), String(n)));
 
-    let target = 1, progress = 1, pending = 0;
+    const { criticalRoll } = window.RandomDicePlayback;
+    let target = 1, progress = 1, pending = 0, critical = false;
     function drawFrame() {
       ctx.setTransform(canvas.width / 440, 0, 0, canvas.height / 260, 0, 0);
       ctx.clearRect(0, 0, 440, 260);
-      draw(ctx, progress, target, art);
+      if (critical) window.RandomD20.drawCritical(ctx, progress, target, art, reducedMotion.matches);
+      else draw(ctx, progress, target, art);
     }
     function resize() {
       const width = Math.round(canvas.clientWidth * Math.min(window.devicePixelRatio || 1, 2));
@@ -86,27 +88,34 @@
     }
     function finish() {
       cancelAnimationFrame(pending);
+      select.disabled = button.disabled = false;
       progress = 1;
       drawFrame();
       updateStatus();
     }
     function play(value) {
+      if (critical && progress < 1) return;
       cancelAnimationFrame(pending);
       target = value;
-      if (reducedMotion.matches) { finish(); return; }
+      critical = criticalRoll.matches(sides, value);
+      if (reducedMotion.matches && !critical) { finish(); return; }
+      select.disabled = button.disabled = critical;
       progress = 0;
       updateStatus();
       drawFrame();
       const start = performance.now();
+      const clock = { elapsed: 0, lastFrame: start };
       function tick(now) {
-        progress = Math.min(1, (now - start) / duration);
+        progress = Math.min(1, critical
+          ? criticalRoll.advance(clock, now) / criticalRoll.duration
+          : (now - start) / duration);
         if (progress >= 1) { finish(); return; }
         drawFrame();
         pending = requestAnimationFrame(tick);
       }
       pending = requestAnimationFrame(tick);
     }
-    reducedMotion.addEventListener("change", () => { if (reducedMotion.matches) finish(); });
+    reducedMotion.addEventListener("change", () => { if (reducedMotion.matches && !critical) finish(); });
     select.addEventListener("change", () => {
       const value = Number(select.value);
       select.value = "";
@@ -153,7 +162,8 @@
       return {sides, panel: makePanel(id, sides, 1500, draw, marble)};
     });
     const coin = makePanel("coin", 2, 1350, window.RandomCoin.draw, { heads, tails });
-    const die = makePanel("die", 20, 1500, window.RandomD20.draw, marble);
+    const die = makePanel("die", 20, 1500, window.RandomD20.draw,
+      { ...window.RandomDiceMaterials.resolve(), texture: marble });
     panels.push(coin, die, ...classic.map(entry => entry.panel));
     const entries = [...classic, {sides: 2, panel: coin}, {sides: 20, panel: die}];
     pair.addEventListener("click", () => {

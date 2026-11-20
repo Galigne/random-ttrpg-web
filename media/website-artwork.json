@@ -119,6 +119,36 @@
         "revision": "3e2b4834affe8ca78b734f7feafd88489131384f",
         "sha256": "d433d62b9c4e28d630fafc1e9bad2f4183c59567576601849089d297061fdad4"
       }
+    },
+    {
+      "output": "public/dice/art/garnet.webp",
+      "sha256": "5fc214d24c54f9041c83c2b32e9ac3974aaff0445df259ec5dad13a39923294b",
+      "inputs": [
+        "media/references/castle entry.jpg"
+      ],
+      "prompt": "Use case: stylized-concept. Create a full bleed square planar dice material texture, an albedo swatch viewed straight on under even lighting. Garnet red jasper, asymmetric branching ember-red mineral seams with thin charcoal hatching embedded in oxblood crystal. Use the attached castle entry drawing as the reference for hand-engraved strokes, imperfections and the vintage fantasy rulebook style. No scene, buildings, letters, numbers, border, signature or depicted dice. The pattern should remain legible when reduced to 150 pixels.",
+      "generatedPngSha256": "e20159f28651409705befc8a4ac75a348e26a10c4f62158074821c0acb054ed0",
+      "preparation": "Resized to 512 x 512 using Lanczos and encoded as WebP at quality 90."
+    },
+    {
+      "output": "public/dice/art/lapis.webp",
+      "sha256": "3883589b7b29f454ea5fffbc19234ea6e5f800e0267b676ca6572ceb4b986037",
+      "inputs": [
+        "media/references/castle entry.jpg"
+      ],
+      "prompt": "Use case: stylized-concept. Create a full bleed square planar dice material texture, an albedo swatch viewed straight on under even lighting. Lapis lazuli blue, undulating ocean-current bands of ink blue and cobalt with small flecks of muted gold pyrite. Use the attached castle entry drawing as the reference for hand-engraved strokes, imperfections and the vintage fantasy rulebook style. No scene, buildings, letters, numbers, border, signature or depicted dice. The pattern should remain legible when reduced to 150 pixels.",
+      "generatedPngSha256": "1ea44dd9ab11d8319209d8409d0de46eb3e0724184150302d2296547c2789b49",
+      "preparation": "Resized to 512 x 512 using Lanczos and encoded as WebP at quality 90."
+    },
+    {
+      "output": "public/dice/art/iron.webp",
+      "sha256": "2aa8aa31bbd1c49f8cf074e168ec182feccc184a0a40901d4c774992fd5690ad",
+      "inputs": [
+        "media/references/castle entry.jpg"
+      ],
+      "prompt": "Use case: stylized-concept. Create a full bleed square planar dice material texture, an albedo swatch viewed straight on under even lighting. Dark gunmetal, engraved interlacing lozenges in a hammered iron field with narrow silver cut highlights, a repeating medieval armorer's pattern. Use the attached castle entry drawing as the reference for hand-engraved strokes, imperfections and the vintage fantasy rulebook style. No scene, buildings, letters, numbers, border, signature or depicted dice. The pattern should remain legible when reduced to 150 pixels.",
+      "generatedPngSha256": "dcf9d77337fbd96cd929299992577c6744f0aa0b71796cbd67a11a0f5a7fa175",
+      "preparation": "Resized to 512 x 512 using Lanczos and encoded as WebP at quality 90."
     }
   ],
   "encoding": "Unless otherwise noted per illustration, lossless WebP; decoded RGBA pixels verified identical to the generated PNG."

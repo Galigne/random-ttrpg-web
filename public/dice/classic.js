@@ -172,15 +172,8 @@
   }
 
   function engraving(ctx, face, art, brightness, label) {
-    if (art && art.naturalWidth) {
-      ctx.save();
-      ctx.transform(...face.marble);
-      ctx.globalCompositeOperation = 'multiply';
-      ctx.globalAlpha = 0.92;
-      ctx.drawImage(art, 0, 0, 1, 1);
-      ctx.restore();
-    }
-    ctx.fillStyle = '#292b2e';
+    window.RandomDiceMaterials.paintTexture(ctx, face, art, radius, brightness);
+    ctx.fillStyle = art?.ink || '#292b2e';
     ctx.font = '600 34px Cinzel, Georgia, serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -219,6 +212,7 @@
     ctx.transform(right[0], right[1], -up[0], -up[1], ...center);
     engraving(ctx, face, art, brightness, label);
     ctx.restore();
+    if (art?.finish === "silver-rim") return;
 
     polygon(ctx, points);
     ctx.strokeStyle = '#505156';
@@ -258,6 +252,7 @@
     shadow(ctx, centerX + 13, floorY + 1, 82 + hop / 5, 45, 0.23 - hop / 400);
     shadow(ctx, centerX + 4, floorY + 3, 56, 32, 0.40 * (1 - hop / 55));
     ctx.lineJoin = 'round';
+    if (art?.glow) window.RandomDiceMaterials.halo(ctx, centerX, centerY, art.glow, .32);
     ctx.lineCap = 'round';
     for (const face of faces) {
       const digit = String(face.number % 10);
