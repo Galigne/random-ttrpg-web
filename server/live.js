@@ -173,13 +173,11 @@ function createLive(db, { now = () => Date.now(), retention = 300000 } = {}) {
     sweep();
     return locks.get(entityId) || null;
   }
+  function hasTab(session, tab) {
+    return [...clients].some(c => c.session === session && c.tab === tab && currentUser(c));
+  }
   function acquire(entityId, user, session, tab) {
-    if (
-      ![...clients].some(
-        (c) => c.session === session && c.tab === tab && currentUser(c),
-      )
-    )
-      return false;
+    if (!hasTab(session, tab)) return false;
     const held = getLock(entityId);
     if (held && (held.session !== session || held.tab !== tab)) return false;
     const lock = held || {
@@ -297,6 +295,7 @@ function createLive(db, { now = () => Date.now(), retention = 300000 } = {}) {
     history,
     presence,
     getLock,
+    hasTab,
     acquire,
     requireLock,
     release,

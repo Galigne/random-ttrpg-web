@@ -354,6 +354,38 @@ test("private entities, campaign roles, exclusive locks and shared undo are enfo
   );
 });
 
+test("only the owner can customize or save a generated preview and failed edits are atomic", async (t) => {
+  const { request, login, db } = await setup(t);
+  const alice = await login("Alice"), bob = await login("Bob");
+  const create = { type: "character", language: "fr", level: 4 };
+  const first = (await request(alice, "/api/entity-previews", "POST", create)).data;
+  const second = (await request(alice, "/api/entity-previews", "POST", { ...create, replace: first.previewId })).data;
+  assert.notEqual(first.data.key, second.data.key);
+  assert.equal((await request(alice, `/api/entity-previews/${first.previewId}/save`, "POST")).status, 404);
+  const base = `/api/entity-previews/${second.previewId}`;
+  const choice = { key: "root.character.race", value: "human", revision: 0 };
+  assert.equal((await request(bob, base + "/options?key=" + choice.key)).status, 404);
+  assert.equal((await request(bob, base + "/choice", "POST", choice)).status, 404);
+  assert.equal((await request(bob, base + "/save", "POST")).status, 404);
+  const options = (await request(alice, base + "/options?key=" + choice.key)).data.options;
+  assert.ok(options.some(item => item.id === "human"));
+  assert.equal((await request(alice, base + "/choice", "POST", { ...choice, value: "arbitrary text" })).status, 400);
+  assert.equal((await request(alice, base + "/choice", "POST", { ...choice, key: "__proto__" })).status, 400);
+  const changed = await request(alice, base + "/choice", "POST", choice);
+  assert.equal(changed.status, 200);
+  assert.equal(changed.data.revision, 1);
+  assert.equal(changed.data.data.race.name, options.find(item => item.id === "human").name);
+  assert.equal((await request(alice, base + "/choice", "POST", choice)).status, 409);
+  assert.equal((await request(alice, base + "/save", "POST", { revision: 0 })).status, 409);
+  assert.equal(db.prepare("SELECT count(*) AS n FROM entities").get().n, 0);
+  assert.equal(db.prepare("SELECT count(*) AS n FROM entity_history").get().n, 0);
+  const saved = await request(alice, base + "/save", "POST", { revision: 1, data: { name: "ignored" } });
+  assert.equal(saved.status, 200);
+  assert.deepEqual((await request(alice, "/api/entities/" + saved.data.id)).data.data, changed.data.data);
+  assert.equal(db.prepare("SELECT count(*) AS n FROM entity_history").get().n, 1);
+  assert.equal((await request(alice, base + "/save", "POST")).status, 404);
+});
+
 test("preview is not persisted and campaign deletion preserves shared entities and other assignments", async (t) => {
   const { request, login, users, db, live } = await setup(t);
   const alice = await login("Alice"),

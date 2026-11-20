@@ -39,6 +39,7 @@ function createApplication(db, options = {}) {
     return {
       character: translations.character,
       creature: translations.creature,
+      generatorFields: translations.generatorFields,
       errors: translations.errors,
     };
   });
@@ -100,7 +101,7 @@ function createApplication(db, options = {}) {
   function staticFile(req, res, url, auth) {
     let filename;
     if (url.pathname === "/") filename = "public/index.html";
-    else if (url.pathname === "/app.js") filename = "public/app.js";
+    else if (url.pathname === "/app.js" || url.pathname === "/generators.js") filename = `public${url.pathname}`;
     else if (url.pathname === "/style.css") filename = "public/style.css";
     else if (/^\/dice\/(?:(?:coin|d20|classic|playback)\.js|art\/(?:heads|tails|marble)\.webp)$/.test(url.pathname))
       filename = `public${url.pathname}`;

@@ -1,3 +1,4 @@
+const { optionalRoll } = require('./generationDraft');
 const { readNormalizedRandom } = require('./random');
 
 const DESCRIPTIVE_MODIFIER_CHANCE = 0.25;
@@ -9,8 +10,9 @@ function maybeGenerateDescriptiveModifiers({
 	random = Math.random,
 	path = 'root.descriptiveModifier',
 	resolverOptions = {},
+	draft,
 }) {
-	if (readNormalizedRandom(random) >= DESCRIPTIVE_MODIFIER_CHANCE) {
+	if (!optionalRoll(draft, path, () => readNormalizedRandom(random) < DESCRIPTIVE_MODIFIER_CHANCE)) {
 		return [];
 	}
 	return [generateDescriptiveModifier({

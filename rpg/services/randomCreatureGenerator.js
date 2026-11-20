@@ -11,6 +11,7 @@ const {
 	resolveGenerationMetadata,
 } = require('./generationMetadata');
 const { createGeneratedResources } = require('./mechanics/resources');
+const { rollLevel, withDraft } = require('./generationDraft');
 const { randomInteger } = require('./random');
 const {
 	prepareScopedRoutedArchetype,
@@ -21,7 +22,8 @@ function populateRandomCreature(creature, options = {}) {
 	const random = options.random ?? Math.random;
 	const locale = options.locale ?? 'en';
 	const requestedType = options.type;
-	const resolver = options.resolver ?? generatorResolver;
+	const draft = options.draft;
+	const resolver = withDraft(options.resolver ?? generatorResolver, draft);
 	const getGenerator = options.getGenerator ?? generatorCatalog.getGenerator;
 	generatorResolver.assertGeneratorResolverInterface(resolver);
 	if (typeof resolver.resolveInlineString !== 'function') {
@@ -46,7 +48,7 @@ function populateRandomCreature(creature, options = {}) {
 			'errors.creatureTypeInvalid',
 		);
 	}
-	const level = options.level ?? randomInteger(1, 10, random);
+	const level = rollLevel(draft, options.level, () => randomInteger(1, 10, random));
 	validateLevel(level);
 	const selection = resolveScopedRoutedArchetype({
 		getGenerator,
@@ -82,6 +84,7 @@ function populateRandomCreature(creature, options = {}) {
 	creature.description = requireLocalizedField(detailFields, 'description');
 	const resolvedGeneration = resolveGenerationMetadata({
 		entityType: 'creature',
+		draft,
 		generation,
 		level,
 		locale,
@@ -94,6 +97,7 @@ function populateRandomCreature(creature, options = {}) {
 			modifiers({ locale: modifierLocale, random: modifierRandom, resolver: modifierResolver }) {
 				return maybeGenerateDescriptiveModifiers({
 					generator: 'modifier_creature',
+					draft,
 					resolver: modifierResolver,
 					locale: modifierLocale,
 					random: modifierRandom,

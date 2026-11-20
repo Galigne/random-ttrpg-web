@@ -78,6 +78,8 @@ function resolveScopedRoutedArchetype({
 		locale,
 		{
 			random,
+			choicePath: 'archetype',
+			editableTraversal: true,
 		},
 	);
 	if (!result) {

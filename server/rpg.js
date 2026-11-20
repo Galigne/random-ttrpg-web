@@ -18,6 +18,7 @@ const {
 const { rollDiceExpression } = require("../rpg/services/diceRollService");
 const catalog = require("../rpg/services/generatorCatalog");
 const resolver = require("../rpg/services/generatorResolver");
+const { isGeneratorRouter } = require("../rpg/services/generatorSchema/routerValidation");
 const traversal = require("../rpg/services/generatorTraversal");
 const { id } = require("./security");
 const localizedContent = {
@@ -33,10 +34,10 @@ function createEntity(type, options = {}) {
     throw new Error("INVALID_ENTITY_TYPE");
   const entity =
     type === "character"
-      ? new Character(id(), { visibility: "private", access: [] })
-      : new Creature(id(), { visibility: "private", access: [] });
+      ? new Character(options.key ?? id(), { visibility: "private", access: [] })
+      : new Creature(options.key ?? id(), { visibility: "private", access: [] });
   if (options.random) {
-    const opts = { locale: locale(options.language) };
+    const opts = { locale: locale(options.language), draft: options.draft };
     if (
       options.level !== "" &&
       options.level !== undefined &&
@@ -152,6 +153,18 @@ function roll(expression) {
         : null;
   return { ...result, animation };
 }
+function catalogLabel(name, language) {
+  if (!name?.includes("{{")) return name;
+  return name.replace(/\{\{([^{}]+)\}\}/g, (_, expression) => {
+    const analysis = traversal.analyzeGeneratorTraversalPath(expression.trim(), locale(language), {
+      allowAliases: false, rootVisibility: "all", implicitRouterSelections: false,
+    });
+    const context = analysis?.contexts[0];
+    if (!context) return "…";
+    const fixed = context.generator.entries.find(entry => entry.id === context.entryId);
+    return fixed && !fixed.name.includes("{{") ? fixed.name : `‹${context.generator.name}›`;
+  });
+}
 function browse(path, language) {
   const lang = locale(language);
   if (!path)
@@ -171,7 +184,8 @@ function browse(path, language) {
     lang,
   );
   const fields = traversal.getGeneratorTraversalSuggestions(`${path}.`, lang);
-  return { path, candidates, fields };
+  const branches = analysis.contexts.every(({ generator }) => isGeneratorRouter(generator));
+  return { path, candidates: candidates.map(item => ({ ...item, label: catalogLabel(item.label, lang) })), fields, branches };
 }
 function generate(path, language) {
   const value = resolver.generate(path, locale(language));
@@ -187,5 +201,6 @@ module.exports = {
   combat,
   roll,
   browse,
+  catalogLabel,
   generate,
 };

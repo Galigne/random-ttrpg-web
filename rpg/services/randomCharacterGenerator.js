@@ -18,7 +18,7 @@ const {
 	prepareScopedRoutedArchetype,
 	resolveScopedRoutedArchetype,
 } = require('./routedArchetypeSelection');
-const { selectWeightedEntry } = require('./weightedSelector');
+const { pickEntry, roll, rollLevel, optionalRoll, withDraft } = require('./generationDraft');
 const {
 	randomInteger,
 	readNormalizedRandom,
@@ -42,7 +42,8 @@ function populateRandomCharacter(character, options = {}) {
 	const random = options.random ?? Math.random;
 	const locale = options.locale ?? 'en';
 	const formatGold = options.formatGold ?? (gold => `${gold} gold`);
-	const resolver = options.resolver ?? generatorResolver;
+	const draft = options.draft;
+	const resolver = withDraft(options.resolver ?? generatorResolver, draft);
 	const getGenerator = options.getGenerator ?? generatorCatalog.getGenerator;
 	generatorResolver.assertGeneratorResolverInterface(resolver);
 	const preparedBackground = prepareScopedRoutedArchetype({
@@ -65,7 +66,7 @@ function populateRandomCharacter(character, options = {}) {
 			{ category: options.background ?? BACKGROUND_ROUTER_ID },
 		);
 	}
-	const level = options.level ?? randomInteger(1, 10, random);
+	const level = rollLevel(draft, options.level, () => randomInteger(1, 10, random));
 	if (!Number.isInteger(level) || level < 1 || level > 10) {
 		throw generationError(
 			'Character level must be a whole number between 1 and 10.',
@@ -74,7 +75,7 @@ function populateRandomCharacter(character, options = {}) {
 	}
 
 	character.level = level;
-	const generatedName = pickOne('name', locale, random);
+	const generatedName = pickOne('name', locale, random, undefined, draft, 'root.character.name');
 	character.name.firstName = resolveSelectedField('name', generatedName, 'first_name', {
 		locale, random, resolver, path: 'root.character.name.firstName',
 	});
@@ -82,7 +83,7 @@ function populateRandomCharacter(character, options = {}) {
 		locale, random, resolver, path: 'root.character.name.lastName',
 	});
 
-	const race = pickOne('race', locale, random);
+	const race = pickOne('race', locale, random, undefined, draft, 'root.character.race');
 	character.race.name = resolveSelectedField('race', race, 'name', {
 		locale, random, resolver, path: 'root.character.race.name',
 	});
@@ -131,6 +132,7 @@ function populateRandomCharacter(character, options = {}) {
 
 	const resolvedGeneration = resolveGenerationMetadata({
 		entityType: 'character',
+		draft,
 		generation,
 		level,
 		locale,
@@ -153,6 +155,7 @@ function populateRandomCharacter(character, options = {}) {
 		],
 		defaults: createCharacterGenerationDefaults({
 			character,
+			draft,
 			formatGold,
 		}),
 	});
@@ -177,10 +180,10 @@ function populateRandomCharacter(character, options = {}) {
 	return character;
 }
 
-function createCharacterGenerationDefaults({ character, formatGold }) {
+function createCharacterGenerationDefaults({ character, draft, formatGold }) {
 	return {
 		beforeStatistics({ locale, random, resolver }) {
-			character.personality.traits = pickMany('personality', 2, locale, random)
+			character.personality.traits = pickMany('personality', 2, locale, random, undefined, draft, 'root.character.personality')
 				.map((entry, index) => resolveSelectedField('personality', entry, 'description', {
 					locale, random, resolver, path: `root.character.personality.${index}`,
 				}));
@@ -188,6 +191,7 @@ function createCharacterGenerationDefaults({ character, formatGold }) {
 		modifiers({ locale, modifierReferenceOptions, random, resolver }) {
 			return maybeGenerateDescriptiveModifiers({
 				generator: 'modifier_character',
+				draft,
 				resolver,
 				locale,
 				random,
@@ -198,7 +202,7 @@ function createCharacterGenerationDefaults({ character, formatGold }) {
 		fixedRules({ locale, random, resolver, statistics }) {
 			const rulePointCount = calculateRulePoints(statistics.intelligence);
 			const ruleLevels = allocateRuleLevels(rulePointCount);
-			return pickMany('rules', ruleLevels.length, locale, random)
+			return pickMany('rules', ruleLevels.length, locale, random, undefined, draft, 'root.character.rules')
 				.map((entry, index) => ({
 					name: resolveSelectedField('rules', entry, 'name', {
 						locale, random, resolver, path: `root.character.rules.${index}.name`,
@@ -211,7 +215,7 @@ function createCharacterGenerationDefaults({ character, formatGold }) {
 		},
 		templates({ level, locale, random, resolver }) {
 			const talentCount = calculateTalentCount(level);
-			const selectedTalents = pickMany('talents', talentCount, locale, random);
+			const selectedTalents = pickMany('talents', talentCount, locale, random, undefined, draft, 'root.character.talents');
 			return resolveSelectedDescribedEntries(
 				'talents',
 				selectedTalents,
@@ -224,10 +228,10 @@ function createCharacterGenerationDefaults({ character, formatGold }) {
 			).map(({ name, description }) => `${name} — ${description}`);
 		},
 		statusEffects({ locale, random, resolver }) {
-			if (random() >= 0.25) {
+			if (!optionalRoll(draft, 'root.character.status.effects', () => random() < 0.25)) {
 				return [];
 			}
-			const selectedStatusEffect = pickOne('status_effect', locale, random);
+			const selectedStatusEffect = pickOne('status_effect', locale, random, undefined, draft, 'root.character.status.effects.0');
 			return resolveSelectedDescribedEntries(
 				'status_effect',
 				[selectedStatusEffect],
@@ -251,6 +255,7 @@ function createCharacterGenerationDefaults({ character, formatGold }) {
 					statistics.constitution,
 					getField(entry, 'type'),
 				),
+				draft, 'root.character.armor',
 			);
 			return resolveArmorReference(`armors:${armor.id}`, {
 				createError: generationError,
@@ -261,11 +266,12 @@ function createCharacterGenerationDefaults({ character, formatGold }) {
 			});
 		},
 		equipment({ locale, random, resolver }) {
-			const mainEquipmentCount = randomInteger(1, 2, random);
+			const mainEquipmentCount = roll(draft, 'root.character.equipment.count', () => randomInteger(1, 2, random), { label: 'quantity' });
 			const mainEquipment = pickMainEquipment(
 				mainEquipmentCount,
 				locale,
 				random,
+				draft,
 			);
 			return resolveGearReferences(
 				mainEquipment.map(item => `${item.generatorId}:${item.entry.id}`),
@@ -284,31 +290,32 @@ function createCharacterGenerationDefaults({ character, formatGold }) {
 				locale,
 				random,
 				resolver,
+				draft,
 			);
-			const gold = level * randomInteger(1, 20, random) + 5;
+			const gold = level * roll(draft, 'root.character.gold', () => randomInteger(1, 20, random), { label: 'gold' }) + 5;
 			inventory.push(formatGold(gold));
 			return { values: inventory };
 		},
 	};
 }
 
-function pickMainEquipment(count, locale, random) {
-	const generatorIds = Array.from(
-		{ length: count },
-		() => selectMainEquipmentGenerator(random),
-	);
-	const entriesByGenerator = new Map();
-	for (const generatorId of new Set(generatorIds)) {
-		const generatorCount = generatorIds.filter(id => id === generatorId).length;
-		entriesByGenerator.set(
-			generatorId,
-			pickMany(generatorId, generatorCount, locale, random),
-		);
-	}
-	return generatorIds.map(generatorId => ({
-		generatorId,
-		entry: entriesByGenerator.get(generatorId).shift(),
+function pickMainEquipment(count, locale, random, draft) {
+	draft?.retainSlots('root.character.equipment', count);
+	const categoryOptions = draft && ['weapons', 'shields'].map(id => ({
+		id, name: generatorCatalog.getGenerator(id, locale).name,
 	}));
+	const categoryIds = Array.from({ length: count }, (_, index) => roll(
+		draft, `root.character.equipment.${index}.category`, () => selectMainEquipmentGenerator(random),
+		{ label: 'category', options: categoryOptions },
+	));
+	const items = [];
+	for (const generatorId of new Set(categoryIds)) {
+		const slots = categoryIds.flatMap((id, index) => id === generatorId ? [index] : []);
+		const entries = pickMany(generatorId, slots.length, locale, random, undefined, draft,
+			'root.character.equipment', slots.map(index => `root.character.equipment.${index}`));
+		slots.forEach((index, i) => { items[index] = { generatorId, entry: entries[i] }; });
+	}
+	return items;
 }
 
 function selectMainEquipmentGenerator(random) {
@@ -317,24 +324,24 @@ function selectMainEquipmentGenerator(random) {
 		: 'shields';
 }
 
-function pickCarriedLoot(count, locale, random, resolver) {
+function pickCarriedLoot(count, locale, random, resolver, draft) {
 	const selectedIdentities = new Set();
 	const selectedValues = [];
 	for (let index = 0; index < count; index += 1) {
 		let selected;
 		for (let attempt = 0; attempt < LOOT_DUPLICATE_MAX_ATTEMPTS; attempt += 1) {
+			const before = draft && new Map(draft.records);
 			const resolved = resolver.generate(
 				'loot.generator',
 				locale,
-				{ random },
+				{ random, choicePath: `root.character.inventory.${index}`, uniqueLoot: true },
 			);
 			selected = {
 				identity: getLootSelectionIdentity(resolved?.provenance),
 				value: getResolvedDisplayValue(resolved, locale),
 			};
-			if (!selectedIdentities.has(selected.identity)) {
-				break;
-			}
+			if (!selectedIdentities.has(selected.identity) || attempt === LOOT_DUPLICATE_MAX_ATTEMPTS - 1) break;
+			if (draft) draft.records = before;
 		}
 		selectedIdentities.add(selected.identity);
 		selectedValues.push(selected.value);
@@ -372,11 +379,12 @@ function getResolvedDisplayValue(result, locale) {
 	return value;
 }
 
-function pickOne(generatorId, locale, random, predicate = () => true) {
-	return pickMany(generatorId, 1, locale, random, predicate)[0];
+function pickOne(generatorId, locale, random, predicate, draft, key) {
+	return pickMany(generatorId, 1, locale, random, predicate, draft, key, [key])[0];
 }
 
-function pickMany(generatorId, count, locale, random, predicate = () => true) {
+function pickMany(generatorId, count, locale, random, predicate = () => true, draft, key, slotKeys) {
+	if (!slotKeys) draft?.retainSlots(key, count);
 	const generator = generatorCatalog.getGenerator(generatorId, locale);
 	if (!generator) {
 		throw generationError(
@@ -396,9 +404,10 @@ function pickMany(generatorId, count, locale, random, predicate = () => true) {
 
 	const selectedEntries = [];
 	for (let index = 0; index < count; index += 1) {
-		const entry = selectWeightedEntry(availableEntries, random);
+		const slot = slotKeys?.[index] ?? `${key}.${index}`;
+		const entry = pickEntry(draft, slot, generator, availableEntries, random, `${key}:${generatorId}`);
 		selectedEntries.push(entry);
-		availableEntries.splice(availableEntries.indexOf(entry), 1);
+		if (!draft) availableEntries.splice(availableEntries.indexOf(entry), 1);
 	}
 	return selectedEntries;
 }

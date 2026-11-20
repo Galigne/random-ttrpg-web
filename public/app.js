@@ -384,7 +384,7 @@ const copy = {
     entries: "Choisir une entrée précise",
     fields: "Choisir un champ",
     generate: "Générer",
-    regenerate: "Regénérer",
+    regenerate: "Régénérer",
     generationLanguage: "Langue de génération",
     level: "Niveau",
     random: "Aléatoire",
@@ -480,13 +480,7 @@ const state = {
   editing: false,
   preview: false,
   saveQueue: Promise.resolve(),
-  generation: {
-    kind: "general",
-    path: "",
-    language: null,
-    preview: null,
-    result: null,
-  },
+  generation: { kind: "general" },
 };
 const app = document.querySelector("#app");
 const masthead = document.querySelector("#masthead");
@@ -573,6 +567,7 @@ function mast() {
   document.querySelector("#footer-tagline").textContent = t("tagline");
 }
 function authScreen(mode = "login", status = "") {
+  resetGenerators();
   state.screen = "auth";
   mast();
   const params = new URLSearchParams(location.search),
@@ -797,24 +792,25 @@ async function libraryScreen(type) {
   const title = t(type === "character" ? "characters" : "creatures");
   app.innerHTML = `${header(title, t("entityIntro"), `${action(t("newBlank"), "new-entity", type, "")} <a class="button secondary" href="#/generators?kind=${type}">${esc(t(type === "character" ? "generateCharacter" : "generateCreature"))}</a>`)}${data.entities.length ? `<div class="grid">${data.entities.map((e) => entityCard(e)).join("")}</div>` : `<div class="empty">${esc(t("noEntities"))}</div>`}`;
 }
-function sheetValue(field, section, data, value) {
+function sheetValue(field, section, data, value, controls) {
   if (value == null || value === "")
     return `<span class="muted" aria-hidden="true">—</span><span class="sr-only">${esc(t("noValue"))}</span>`;
   if (field.pair) return esc(String(value).replace(":", " / "));
-  if (field.format) {
+  if (field.format || (controls && Array.isArray(data[section.id]))) {
     const entries = section.kind === "multiline"
       ? data[section.id]
       : field.id.split(".").reduce((record, key) => record?.[key], data);
     if (Array.isArray(entries))
-      return `<ul class="sheet-entries">${entries.map((entry) => {
-        if (typeof entry === "string") return `<li>${esc(entry)}</li>`;
+      return `<ul class="sheet-entries">${entries.map((entry, index) => {
+        const actions = controls?.(field.id, index) || "";
+        if (typeof entry === "string") return `<li>${esc(entry)}${actions}</li>`;
         const level = entry.level == null ? "" : ` <small>${esc(t("level"))} ${esc(entry.level)}</small>`;
-        return `<li><strong>${esc(entry.name)}</strong>${level}<div>${esc(entry.description)}</div></li>`;
+        return `<li><strong>${esc(entry.name)}</strong>${level}<div>${esc(entry.description)}</div>${actions}</li>`;
       }).join("")}</ul>`;
   }
   return esc(value);
 }
-function sectionMarkup(section, data, enabled) {
+function sectionMarkup(section, data, enabled, controls) {
   const fields = ["multi", "named-lines"].includes(section.kind)
     ? section.fields
     : [
@@ -846,7 +842,7 @@ function sectionMarkup(section, data, enabled) {
       const label = fieldLabel(field.labelKey);
       if (!enabled) {
         const hideLabel = fields.length === 1 && label === title;
-        return `<div class="sheet-field${paragraph ? " wide" : ""}"><dt${hideLabel ? ' class="sr-only"' : ""}>${esc(label)}</dt><dd>${sheetValue(field, section, data, value)}</dd></div>`;
+        return `<div class="sheet-field${paragraph ? " wide" : ""}"><dt${hideLabel ? ' class="sr-only"' : ""}>${esc(label)}</dt><dd>${sheetValue(field, section, data, value, controls)}${controls?.(field.id) || ""}</dd></div>`;
       }
       const hint = field.pair ? t("currentMax") : field.format ? t(field.format) : "";
       return `<label class="sheet-field${paragraph ? " wide" : ""}">${esc(label)}${hint ? ` <small>(${esc(hint)})</small>` : ""}${paragraph ? `<textarea data-field="${attr(field.id)}">${esc(value)}</textarea>` : `<input data-field="${attr(field.id)}" value="${attr(value)}" ${field.numeric ? 'inputmode="decimal"' : ""}>`}</label>`;
@@ -855,7 +851,7 @@ function sectionMarkup(section, data, enabled) {
   const wrapper = enabled ? "div" : "dl";
   return `<details class="sheet-section section-${attr(section.id)}" open>
     <summary>${esc(title)}</summary>
-    <${wrapper} class="section-body" data-section="${attr(section.id)}" data-kind="${attr(section.kind)}">${body}</${wrapper}></details>`;
+    <${wrapper} class="section-body" data-section="${attr(section.id)}" data-kind="${attr(section.kind)}">${body}</${wrapper}>${controls?.(section.id) || ""}</details>`;
 }
 function sheetContents(entity, enabled = false) {
   const sections = [
@@ -1047,34 +1043,11 @@ function resultMarkup(result) {
       ? Object.entries(fields)
           .map(
             ([key, value]) =>
-              `<p><strong>${esc(key.replace(/_/g, " "))}</strong><br>${esc(typeof value === "string" ? value : JSON.stringify(value))}</p>`,
+              `<p><strong>${esc(generatorFieldName(key))}</strong><br>${esc(typeof value === "string" ? value : JSON.stringify(value))}</p>`,
           )
           .join("")
       : `<p>${esc(result.value || result.display || "")}</p>`
   }${result.modifiers?.length ? `<div class="divider">✦</div><h3>${esc(t("modifiers"))}</h3>${result.modifiers.map((m) => `<p>${esc(m.display || m.value || "")}</p>`).join("")}` : ""}</article>`;
-}
-async function generatorScreen() {
-  const gen = state.generation;
-  if (!gen.language) gen.language = state.language;
-  const root =
-    gen.kind === "character"
-      ? "background"
-      : gen.kind === "creature"
-        ? "creature"
-        : "";
-  const path = gen.kind === "general" ? gen.path : gen.path || root;
-  const browsing = await api(
-    `/api/generators?language=${gen.language}&path=${encodeURIComponent(path)}`,
-  );
-  if (gen.kind !== "general" && browsing.fields)
-    browsing.fields = browsing.fields.filter(
-      (item) => item.segment === "generator",
-    );
-  const chooser = browsing.roots
-    ? `<h3>${esc(t("chooseCategory"))}</h3><div class="list">${browsing.roots.map((item) => `<div class="list-row"><div class="grow"><strong>${esc(item.name)}</strong><p class="muted">${esc(item.description)}</p></div>${action(t("choose"), "gen-path", item.id)}</div>`).join("")}</div>`
-    : `<p>${action(t("back"), "gen-up")} &nbsp; ${tag(path)} ${action(t("randomChoice"), "gen-select-random", path)}</p>${browsing.candidates.length ? `<h3>${esc(t("entries"))}</h3><div class="list">${browsing.candidates.map((item) => `<div class="list-row"><span class="grow">${esc(item.label)}</span>${action(t("choose"), "gen-path", item.value)}</div>`).join("")}</div>` : ""}${browsing.fields.length ? `<h3>${esc(t("fields"))}</h3><div class="actions">${browsing.fields.map((item) => action(item.label, "gen-path", item.value)).join("")}</div>` : ""}`;
-  const types = `<nav class="tabs">${["general", "character", "creature"].map((k) => `<button type="button" aria-pressed="${gen.kind === k}" class="${gen.kind === k ? "active" : ""}" data-action="gen-kind" data-value="${k}">${esc(t(k === "general" ? "generators" : k === "character" ? "generateCharacter" : "generateCreature"))}</button>`).join("")}</nav>`;
-  app.innerHTML = `${header(t("generators"), t("generationIntro"))}${types}<div class="split generator-layout"><section class="paper"><label>${esc(t("generationLanguage"))}${langSelect("generationLanguage", gen.language)}</label>${gen.kind !== "general" ? `<label>${esc(t("level"))}<select id="generation-level"><option value="">${esc(t("random"))}</option>${Array.from({ length: 10 }, (_, i) => `<option value="${i + 1}" ${String(gen.level || "") === String(i + 1) ? "selected" : ""}>${i + 1}</option>`).join("")}</select></label><div class="divider">✦</div><h3>${esc(t("generationPath"))}</h3>` : ""}${chooser}<div class="divider">✦</div>${action(gen.preview || gen.result ? t("regenerate") : t("generate"), "generate-now", "", "")}</section><section><h2>${esc(gen.kind === "general" ? t("result") : t("generatedPreview"))}</h2>${gen.kind === "general" ? resultMarkup(gen.result) : gen.preview ? `<div class="paper"><div class="actions">${action(t("saveToLibrary"), "save-generated", "", "")}</div>${gen.kind === "character" && gen.preview.data.background?.archetype ? `<p><strong>${esc(fieldLabel("character.fields.backgroundArchetype"))}:</strong> ${esc(gen.preview.data.background.archetype)}</p>` : ""}${sheetContents(gen.preview)}</div>` : `<div class="empty">${esc(t("noPreview"))}</div>`}</section></div>`;
 }
 function diceScreen() {
   app.innerHTML = `${header(t("dice"), t("diceIntro"))}<div class="grid two"><section class="paper"><img class="card-art dice-art" src="/media/dice-card.webp" alt=""><form id="dice-form">${input(t("expression"), "expression", "1d20", "required")}<small>${esc(t("diceExample"))}</small><p><button>${esc(t("roll"))}</button></p></form></section><section class="paper"><h2>${esc(t("personalRoll"))}</h2><div id="dice-result" class="chat"></div></section></div>`;
@@ -1176,28 +1149,14 @@ async function renderRoute() {
       if (newSheet === state.sheet?.id && state.editing) renderSheet();
       else await entityScreen(parts[1], campaignId || "");
     } else if (page === "generators") {
-      const kind = query.get("kind");
-      if (
-        kind &&
-        kind !== state.generation.kind &&
-        ["character", "creature"].includes(kind)
-      )
-        state.generation = {
-          kind,
-          path: "",
-          language: state.language,
-          preview: null,
-          result: null,
-        };
-      const sourceCampaign = query.get("campaign") || null;
-      if (state.generation.campaign !== sourceCampaign) {
-        const source = sourceCampaign
-          ? await api(`/api/campaigns/${encodeURIComponent(sourceCampaign)}`)
-          : null;
-        state.generation.campaign = sourceCampaign;
-        state.generation.language = source?.campaign.language || state.language;
-        state.generation.path = "";
+      const campaign = query.get("campaign") || "";
+      const kind = query.get("kind") || state.generation.kind;
+      let language = state.language;
+      if (campaign && state.generation.campaign !== campaign) {
+        language = (await api(`/api/campaigns/${encodeURIComponent(campaign)}`)).campaign.language;
+        if (sequence !== renderSequence) return;
       }
+      activateGenerator(kind, campaign, language);
       await generatorScreen();
     } else if (page === "dice") diceScreen();
     else if (page === "rulebook") rulebookScreen();
@@ -1651,65 +1610,8 @@ document.addEventListener("click", async (event) => {
           : { action: "visibility", visibility },
       );
       await refreshSheet();
-    } else if (what === "gen-kind") {
-      state.generation = {
-        kind: value,
-        path: "",
-        language: state.generation.language || state.language,
-        preview: null,
-        result: null,
-        campaign: state.generation.campaign,
-      };
-      await generatorScreen();
-    } else if (what === "gen-path") {
-      state.generation.path = value;
-      state.generation.preview = null;
-      state.generation.result = null;
-      await generatorScreen();
-    } else if (what === "gen-up") {
-      const gen = state.generation,
-        root =
-          gen.kind === "character"
-            ? "background"
-            : gen.kind === "creature"
-              ? "creature"
-              : "";
-      const current = gen.path || root;
-      const cut = Math.max(current.lastIndexOf(":"), current.lastIndexOf("."));
-      gen.path = cut >= 0 ? current.slice(0, cut) : "";
-      if (root && !gen.path) gen.path = root;
-      gen.preview = null;
-      gen.result = null;
-      await generatorScreen();
-    } else if (what === "generate-now" || what === "gen-select-random") {
-      const gen = state.generation;
-      if (gen.kind === "general") {
-        if (!gen.path) throw new Error("INVALID_GENERATOR_PATH");
-        gen.result = (
-          await api("/api/generators", "POST", {
-            path: gen.path,
-            language: gen.language,
-          })
-        ).result;
-      } else {
-        const root = gen.kind === "character" ? "background" : "creature";
-        const full = gen.path || root;
-        const path = full === root ? "" : full.slice(root.length + 1);
-        gen.preview = await api("/api/entity-previews", "POST", {
-          type: gen.kind,
-          language: gen.language,
-          level: gen.level || "",
-          path,
-        });
-      }
-      await generatorScreen();
-    } else if (what === "save-generated") {
-      const result = await api(
-        `/api/entity-previews/${state.generation.preview.previewId}/save`,
-        "POST",
-      );
-      state.generation.preview = null;
-      location.hash = `#/sheet/${result.id}`;
+    } else if (what.startsWith("gen-")) {
+      await generatorAction(what, value, button);
     } else if (what === "rulebook-language") {
       state.rulebookLanguage = value;
       rulebookScreen();
@@ -1746,13 +1648,11 @@ document.addEventListener("change", async (event) => {
         await renderRoute();
       } else authScreen();
     } else if (target.name === "generationLanguage") {
-      state.generation.language = target.value;
-      state.generation.path = "";
-      state.generation.result = null;
-      state.generation.preview = null;
+      const gen = state.generation;
+      gen.language = target.value;
+      gen.trail = [];
       await generatorScreen();
-    } else if (target.id === "generation-level")
-      state.generation.level = target.value;
+    } else if (target.id === "generation-level") state.generation.level = target.value;
     else if (target.dataset.playing) {
       await api(
         `/api/campaigns/${state.campaign.campaign.id}/playing/${target.dataset.playing}`,

@@ -12,8 +12,9 @@ const {
 const {
 	isGeneratorRouter,
 } = require('./generatorSchema/routerValidation');
-const { selectWeightedEntry } = require('./weightedSelector');
 const { readNormalizedRandom } = require('./random');
+
+const { pickEntry, optionalRoll } = require('./generationDraft');
 
 const DEFAULT_MAX_DEPTH = 5;
 const MAX_ALLOWED_DEPTH = 5;
@@ -142,7 +143,8 @@ function createGeneratorResolver({
 		const initialDepth = state.activeSelections.length;
 		try {
 			for (const [index, step] of traversal.steps.entries()) {
-				const entry = selectTraversalEntry(generator, step.entryId, state);
+				const routePath = `${path}.route${index}`;
+				const entry = selectTraversalEntry(generator, step.entryId, state, routePath, options.indexedPaths);
 				if (!entry?.generator) {
 					return null;
 				}
@@ -150,7 +152,7 @@ function createGeneratorResolver({
 				routeProvenance.push(createEntryProvenance(
 					generator,
 					entry,
-					step.entryId === undefined ? 'random' : 'fixed',
+					state.mode(routePath, step.entryId),
 					options.indexedPaths
 						? `${path}.${index}`
 						: `${path}.routes.${index}`,
@@ -164,6 +166,8 @@ function createGeneratorResolver({
 				generator,
 				traversal.entryId,
 				state,
+				path,
+				options.indexedPaths,
 			);
 			if (!entry) {
 				return null;
@@ -171,7 +175,7 @@ function createGeneratorResolver({
 			const resolved = resolveSelection(
 				generator,
 				entry,
-				traversal.entryId === undefined ? 'random' : 'fixed',
+				state.mode(path, traversal.entryId),
 				state,
 				options.indexedPaths
 					? `${path}.${traversal.steps.length}`
@@ -251,7 +255,11 @@ function createGeneratorResolver({
 			[modifierId, percentage],
 			index,
 		) => {
-			if (readNormalizedRandom(state.random) >= percentage / 100) {
+			const modifierPath = `${path}.${index}.${modifierId}`;
+			const applies = () => readNormalizedRandom(state.random) < percentage / 100;
+			if (!(percentage > 0 && percentage < 100
+				? optionalRoll(state.draft, state.key(modifierPath), applies, getGenerator(modifierId, state.locale).name)
+				: applies())) {
 				return [];
 			}
 			const modifierGenerator = getGenerator(modifierId, state.locale);
@@ -261,12 +269,11 @@ function createGeneratorResolver({
 					'The requested modifier generator is unavailable.',
 				);
 			}
-			const entry = selectWeightedEntry(modifierGenerator.entries, state.random);
-			const modifierPath = `${path}.${index}.${modifierId}`;
+			const entry = pickEntry(state.draft, state.key(modifierPath), modifierGenerator, modifierGenerator.entries, state.random);
 			const resolved = resolveSelection(
 				modifierGenerator,
 				entry,
-				'random',
+				state.mode(modifierPath),
 				state,
 				modifierPath,
 			);
@@ -411,6 +418,13 @@ function createGeneratorResolver({
 	function createState(locale, options, random) {
 		return {
 			activeSelections: [],
+			draft: options.draft,
+			uniqueLoot: options.uniqueLoot,
+			editableTraversal: options.editableTraversal,
+			mode(path, fixed) {
+				return this.draft?.records.get(this.key(path))?.mode ?? (fixed === undefined ? 'random' : 'fixed');
+			},
+			key: path => options.choicePath ? path.replace('root.traversal', options.choicePath) : path,
 			excludedEntryIdsByGenerator: normalizeEntryExclusions(
 				options.excludedEntryIdsByGenerator,
 			),
@@ -475,7 +489,10 @@ function createCompletedFieldResult(generator, entry, resolved, field) {
 	};
 }
 
-function selectTraversalEntry(generator, entryId, state) {
+function selectTraversalEntry(generator, entryId, state, path, topLevel) {
+	if (entryId !== undefined && state.draft && topLevel && state.editableTraversal) {
+		return pickEntry(state.draft, state.key(path), generator, generator.entries, state.random, undefined, entryId);
+	}
 	if (entryId !== undefined) {
 		return generator.entries.find(entry => entry.id === entryId);
 	}
@@ -493,7 +510,8 @@ function selectTraversalEntry(generator, entryId, state) {
 			'The generator has no eligible random entry.',
 		);
 	}
-	return selectWeightedEntry(eligibleEntries, state.random);
+	const group = state.uniqueLoot && topLevel && path === 'root.traversal' ? 'loot:' + generator.id : undefined;
+	return pickEntry(state.draft, state.key(path), generator, eligibleEntries, state.random, group);
 }
 
 function normalizeEntryExclusions(exclusions = {}) {

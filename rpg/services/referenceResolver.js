@@ -1,5 +1,5 @@
 const { generatorResolutionError } = require('./generatorResolutionError');
-const { selectWeightedEntry } = require('./weightedSelector');
+const { pickEntry } = require('./generationDraft');
 
 function createReferenceResolver({ getGenerator, resolveSelection }) {
 	if (typeof getGenerator !== 'function' || typeof resolveSelection !== 'function') {
@@ -10,17 +10,17 @@ function createReferenceResolver({ getGenerator, resolveSelection }) {
 		const sourceResult = resolveWeightedSource(
 			reference.generator.oneOf,
 			locale,
-			state.random,
+			state,
 			path,
 		);
-		const entry = selectWeightedEntry(sourceResult.generator.entries, state.random);
+		const entry = pickEntry(state.draft, state.key(path), sourceResult.generator, sourceResult.generator.entries, state.random);
 		const requestedField = reference.select.startsWith('fields.')
 			? reference.select.slice('fields.'.length)
 			: undefined;
 		const resolved = resolveSelection(
 			sourceResult.generator,
 			entry,
-			'random',
+			state.mode(path),
 			state,
 			path,
 			requestedField,
@@ -39,13 +39,14 @@ function createReferenceResolver({ getGenerator, resolveSelection }) {
 		};
 	}
 
-	function resolveWeightedSource(sources, locale, random, path) {
-		const selected = selectWeightedEntry(sources, random);
+	function resolveWeightedSource(sources, locale, state, path) {
+		const candidates = !state.draft ? sources : sources.map(source => ({ ...source, name: requireGenerator(source.id, locale).name }));
+		const selected = pickEntry(state.draft, state.key(path) + '.source', { id: 'source', name: 'category' }, candidates, state.random);
 		return {
 			generator: requireGenerator(selected.id, locale),
 			provenance: [{
 				type: 'generator-source',
-				selection: 'weighted',
+				selection: state.draft?.records.get(state.key(path) + '.source')?.mode === 'fixed' ? 'fixed' : 'weighted',
 				generatorId: selected.id,
 				path,
 			}],

@@ -2,6 +2,7 @@ const { transaction } = require("./db");
 const { id } = require("./security");
 const access = require("./access");
 const rpg = require("./rpg");
+const generatorPreviews = require("./generator-previews");
 const { readImage, sendImage } = require("./images");
 const { createHash } = require("node:crypto");
 
@@ -194,38 +195,65 @@ module.exports = ({ db, live, route, fail }) => {
       fail(400, "INVALID_GENERATOR_PATH");
     return { result: rpg.generate(body.path, body.language || user.language) };
   });
-  route("POST", "/api/entity-previews", ({ user, body }) => {
+  function ownedPreview(previewId, user) {
+    const preview = generated.get(previewId);
+    if (!preview || preview.owner !== user.id)
+      fail(404, "PREVIEW_NOT_FOUND");
+    return preview;
+  }
+  function keepPreview(previewId, preview, user, session, tabId) {
+    clearTimeout(generated.get(previewId)?.timer);
+    const stored = { ...preview, owner: user.id, session, tabId };
+    // Retain all drafts of an open tab, including those behind another generator.
+    const expire = () => {
+      if (tabId && live.hasTab(session, tabId)) stored.timer = setTimeout(expire, 1800000).unref();
+      else generated.delete(previewId);
+    };
+    stored.timer = setTimeout(expire, 1800000).unref();
+    generated.set(previewId, stored);
+    return generatorPreviews.response(previewId, preview);
+  }
+  route("POST", "/api/entity-previews", ({ user, auth, body }) => {
+    const tabId = body.tab === undefined ? undefined : tab(body);
     if (!["character", "creature"].includes(body.type))
       fail(400, "INVALID_ENTITY_TYPE");
-    const data = rpg.createEntity(body.type, {
-      random: true,
-      language: body.language || user.language,
-      level: body.level,
-      path: body.path,
+    const preview = generatorPreviews.build(body.type, {
+      language: body.language === "fr" || (!body.language && user.language === "fr") ? "fr" : "en",
+      level: body.level, path: body.path,
     });
-    const previewId = id();
-    generated.set(previewId, {
-      owner: user.id,
-      type: body.type,
-      data,
-      expires: Date.now() + 1800000,
-    });
-    const expiration = setTimeout(() => generated.delete(previewId), 1800000);
-    expiration.unref();
-    for (const [key, value] of generated)
-      if (value.expires < Date.now()) generated.delete(key);
-    return {
-      previewId,
-      type: body.type,
-      data,
-      sections: rpg.sections(body.type, rpg.hydrate(body.type, data)),
-    };
+    if (body.replace) {
+      const previous = generated.get(body.replace);
+      if (previous?.owner === user.id && previous.type === body.type) {
+        clearTimeout(previous.timer);
+        generated.delete(body.replace);
+      }
+    }
+    return keepPreview(id(), preview, user, auth.hash, tabId);
   });
-  route("POST", "/api/entity-previews/:id/save", ({ user, params }) => {
-    const preview = generated.get(params.id);
-    if (!preview || preview.owner !== user.id || preview.expires < Date.now())
-      fail(404, "PREVIEW_NOT_FOUND");
+  route("GET", "/api/entity-previews/:id", ({ user, params }) =>
+    generatorPreviews.response(params.id, ownedPreview(params.id, user)),
+  );
+  route("GET", "/api/entity-previews/:id/options", ({ user, params, url }) => {
+    const preview = ownedPreview(params.id, user);
+    const key = url.searchParams.get("key");
+    if (!preview.draft.records.get(key)?.label) fail(400, "INVALID_GENERATION_CHOICE");
+    return { revision: preview.revision, options: preview.draft.options(key).map(item => ({
+      id: item.id, name: rpg.catalogLabel(item.name, preview.options.language),
+    })) };
+  });
+  route("POST", "/api/entity-previews/:id/choice", ({ user, params, body }) => {
+    const preview = ownedPreview(params.id, user);
+    if (body.revision !== preview.revision) fail(409, "VERSION_CONFLICT");
+    const next = generatorPreviews.build(preview.type, preview.options, preview, {
+      key: body.key, value: body.value,
+    });
+    return keepPreview(params.id, next, user, preview.session, preview.tabId);
+  });
+  route("POST", "/api/entity-previews/:id/save", ({ user, params, body }) => {
+    const preview = ownedPreview(params.id, user);
+    if (body.revision !== undefined && body.revision !== preview.revision) fail(409, "VERSION_CONFLICT");
     const entityId = insert(user, preview.type, preview.data);
+    clearTimeout(preview.timer);
     generated.delete(params.id);
     return { id: entityId };
   });

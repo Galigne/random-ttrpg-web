@@ -44,6 +44,7 @@ function resolveGenerationMetadata({
 	level,
 	locale,
 	random = Math.random,
+	draft,
 	resolver,
 	getProfile = getStatProfile,
 	createError,
@@ -120,7 +121,7 @@ function resolveGenerationMetadata({
 		defaults.beforeStatistics(context);
 	}
 
-	resolved.statistics = generateStats({ level, profile, random });
+	resolved.statistics = generateStats({ level, profile, random: draft?.randomStream('statistics', random) ?? random });
 	context.statistics = resolved.statistics;
 
 	for (const category of categoryOrder) {
