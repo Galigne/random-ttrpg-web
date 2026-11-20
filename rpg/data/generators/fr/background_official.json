@@ -12,67 +12,109 @@
       "id": "administrator",
       "name": "Administrateur",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "diplomat",
       "name": "Diplomate",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "tax_collector",
       "name": "Collecteur d’impôts",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "judge",
       "name": "Juge",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "inspector",
       "name": "Inspecteur",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "clerk",
-      "name": "Greffier"
+      "name": "Greffier",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "character-diplomat", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "magistrate",
       "name": "Magistrat",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "bailiff",
       "name": "Bailli",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "notary",
       "name": "Notaire",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "envoy",
       "name": "Émissaire",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
@@ -80,7 +122,10 @@
       "name": "Bourreau",
       "weight": 0.75,
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
@@ -88,7 +133,11 @@
       "name": "Tortionnaire",
       "weight": 0.5,
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     }
   ]

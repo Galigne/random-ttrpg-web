@@ -12,77 +12,124 @@
       "id": "pickpocket",
       "name": "Coupe-bourse",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "smuggler",
       "name": "Contrebandier",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "bandit",
       "name": "Bandit",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-rogue", "weight": 4 },
+          { "id": "character-mage", "weight": 1 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "fence",
       "name": "Receleur",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "forger",
       "name": "Faussaire",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "poisoner",
       "name": "Empoisonneur",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "assassin",
       "name": "Assassin",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "pirate",
       "name": "Pirate",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "corrupt_official",
       "name": "Fonctionnaire corrompu",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "blackmailer",
       "name": "Maître chanteur",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "grave_robber",
       "name": "Pilleur de tombes",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
@@ -90,7 +137,11 @@
       "name": "Tenancier de maison close",
       "weight": 0.5,
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
@@ -98,7 +149,11 @@
       "name": "Proxénète",
       "weight": 0.5,
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
@@ -106,7 +161,11 @@
       "name": "Joueur professionnel",
       "weight": 0.75,
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
@@ -114,7 +173,11 @@
       "name": "Trafiquant d’alcool",
       "weight": 0.75,
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     }
   ]

@@ -16,7 +16,7 @@ class GenerationDraft {
 		}
 	}
 
-	draw(key, draw, { signature = '', options, label, group, initial, catalogDefault } = {}) {
+	draw(key, draw, { signature = '', options, label, group, initial, catalogDefault, retainFixed = false } = {}) {
 		const old = this.previous.get(key);
 		const edited = this.edit?.key === key;
 		const downstream = this.edit && key.startsWith(this.edit.key + '.');
@@ -27,7 +27,7 @@ class GenerationDraft {
 		let value;
 		if (edited && this.edit.value !== undefined) {
 			value = this.edit.value;
-		} else if (!reset && old && old.signature === signature &&
+		} else if (!reset && old && (old.signature === signature || (retainFixed && old.mode === 'fixed')) &&
 			(!eligible || eligible.some(item => item.id === old.value))) {
 			value = old.value;
 		} else {
@@ -36,7 +36,7 @@ class GenerationDraft {
 		}
 		let mode;
 		if (edited) mode = this.edit.value === undefined ? 'random' : 'fixed';
-		else if (!reset && old?.signature === signature && old.value === value) mode = old.mode;
+		else if (!reset && old?.value === value && (old.signature === signature || (retainFixed && old.mode === 'fixed'))) mode = old.mode;
 		this.records.set(key, { value, signature, options, label, group, mode });
 		return value;
 	}

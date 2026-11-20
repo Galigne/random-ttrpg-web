@@ -10,86 +10,157 @@
   "entries": [
     {
       "id": "student",
-      "name": "Student"
+      "name": "Student",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-mage", "weight": 6 },
+          { "id": "character-diplomat", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "researcher",
       "name": "Researcher",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "scribe",
-      "name": "Scribe"
+      "name": "Scribe",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-mage", "weight": 6 },
+          { "id": "character-diplomat", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "librarian",
       "name": "Librarian",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "historian",
       "name": "Historian",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "cartographer",
       "name": "Cartographer",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "physician",
       "name": "Physician",
       "generation": {
-        "statProfile": "character-cleric"
+        "statProfiles": [
+          { "id": "character-cleric", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "theologian",
       "name": "Theologian",
       "generation": {
-        "statProfile": "character-cleric"
+        "statProfiles": [
+          { "id": "character-cleric", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "archivist",
       "name": "Archivist",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "professor",
       "name": "Professor",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "chronicler",
       "name": "Chronicler",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "monster_anatomist",
-      "name": "Monster anatomist"
+      "name": "Monster anatomist",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-mage", "weight": 6 },
+          { "id": "character-cleric", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "magical_investigator",
-      "name": "Magical investigator"
+      "name": "Magical investigator",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-mage", "weight": 6 },
+          { "id": "character-rogue", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "containment_specialist",
-      "name": "Supernatural containment specialist"
+      "name": "Supernatural containment specialist",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-mage", "weight": 6 },
+          { "id": "character-cleric", "weight": 2 },
+          { "id": "character-fighter", "weight": 2 }
+        ]
+      }
     }
   ]
 }

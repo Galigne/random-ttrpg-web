@@ -10,63 +10,111 @@
   "entries": [
     {
       "id": "household_servant",
-      "name": "Serviteur domestique"
+      "name": "Serviteur domestique",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "character-rogue", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "attendant",
       "name": "Assistant",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "day_laborer",
       "name": "Journalier",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "cook",
-      "name": "Cuisinier"
+      "name": "Cuisinier",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "character-fighter", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "stable_hand",
       "name": "Palefrenier",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "courier",
       "name": "Courrier",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "driver",
       "name": "Conducteur",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "steward",
       "name": "Intendant",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "groundskeeper",
-      "name": "Garde des domaines"
+      "name": "Garde des domaines",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "character-rogue", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "messenger",
       "name": "Messager",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     }
   ]

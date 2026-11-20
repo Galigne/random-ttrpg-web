@@ -16,7 +16,10 @@
         "description": "suit les odeurs familières, veille sur les dormeurs et se méfie d’un PNJ en apparence inoffensif."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": ["{{ traits:keen_smell }}"]
       }
     },
@@ -28,7 +31,10 @@
         "description": "excelle à débusquer la vermine, les coins chauds et la nourriture laissée sans surveillance."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:keen_hearing }}", "{{ traits:darkvision }}"]
       }
     },
@@ -40,7 +46,10 @@
         "description": "retourne fidèlement au foyer choisi en transportant un message très court."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "Instinct de retour — Connaît toujours la direction d’un foyer qu’elle a occupé pendant au moins une semaine."
@@ -56,7 +65,10 @@
         "description": "porte une quantité raisonnable de matériel, mange presque tout et refuse obstinément les chemins manifestement maudits."
       },
       "generation": {
-        "statProfile": "creature-companion-magic",
+        "statProfiles": [
+          { "id": "creature-companion-magic", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": ["{{ traits:sure_footed }}", "{{ traits:powerful_build }}"],
         "inventory": ["food_and_drink:three_travel_rations"]
       }
@@ -69,7 +81,10 @@
         "description": "se faufile dans les espaces minuscules et apprend des consignes simples associées à des objets."
       },
       "generation": {
-        "statProfile": "creature-companion"
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ]
       }
     },
     {
@@ -80,7 +95,10 @@
         "description": "interpelle bruyamment les inconnus, les créatures invisibles et toute personne munie de pain."
       },
       "generation": {
-        "statProfile": "creature-companion-magic",
+        "statProfiles": [
+          { "id": "creature-companion-magic", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "Cri d’alarme — Les alliés capables de l’entendre gagnent +1 en Vitesse pour déterminer l’Initiative contre une menace détectée par la créature."
         ]
@@ -94,7 +112,10 @@
         "description": "rapporte de petits objets et les cache dans les endroits les moins pratiques."
       },
       "generation": {
-        "statProfile": "creature-companion"
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ]
       }
     },
     {
@@ -105,7 +126,10 @@
         "description": "monture fiable au pied très sûr, qui oppose un veto absolu aux ponts dangereux."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": ["{{ traits:sure_footed }}", "{{ traits:powerful_build }}"],
         "inventory": [
           {
@@ -134,7 +158,10 @@
         "description": "diffuse une douce lumière et se tait lorsque des prédateurs approchent."
       },
       "generation": {
-        "statProfile": "creature-companion-magic",
+        "statProfiles": [
+          { "id": "creature-companion-magic", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "Plumage lumineux — Émet une douce lumière dans un rayon de 5 mètres et peut l’éteindre ou la raviver à volonté."
@@ -149,7 +176,10 @@
         "description": "réchauffe son entourage, allume l’amadou sec et dort dans les ustensiles de cuisine."
       },
       "generation": {
-        "statProfile": "creature-companion-magic",
+        "statProfiles": [
+          { "id": "creature-companion-magic", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:amphibious }}", "{{ traits:fire_immunity }}"]
       }
     },
@@ -161,7 +191,10 @@
         "description": "fait lentement pousser des herbes médicinales communes sur sa carapace."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "Jardin médicinal — Une fois par jour, produit assez d’herbes communes pour accorder +1 à une action de soins."
         ]
@@ -175,7 +208,10 @@
         "description": "mémorise les voix et répète plusieurs phrases courtes avec une précision inquiétante."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-magic", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "Imitation parfaite — Peut reproduire toute phrase courte ou voix familière qu’elle a clairement entendue."
@@ -190,7 +226,10 @@
         "description": "dissout sans danger la saleté, les aliments avariés et, parfois, un document important."
       },
       "generation": {
-        "statProfile": "creature-companion-magic",
+        "statProfiles": [
+          { "id": "creature-companion-magic", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:poison_immunity }}",
           "{{ traits:disease_immunity }}",
@@ -206,7 +245,10 @@
         "description": "enregistre une heure de son et la restitue lorsqu’on remonte son mécanisme."
       },
       "generation": {
-        "statProfile": "creature-companion-magic",
+        "statProfiles": [
+          { "id": "creature-companion-magic", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:poison_immunity }}",
           "{{ traits:disease_immunity }}",
@@ -223,7 +265,10 @@
         "description": "change de couleur avec le temps et plane sur de courtes distances d’une personne à l’autre."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:gliding }}"]
       }
     },
@@ -235,7 +280,10 @@
         "description": "se repère dans l’obscurité totale et revient lorsqu’elle entend un sifflement précis."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:flight }}", "{{ traits:echolocation }}"]
       }
     },
@@ -247,7 +295,10 @@
         "description": "nage, rapporte les objets flottants et tient absolument à ouvrir des coquillages pendant les scènes sérieuses."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:amphibious }}", "{{ traits:aquatic_speed }}"]
       }
     },
@@ -259,7 +310,10 @@
         "description": "défend férocement un sac à dos précis et chasse les insectes au moyen de piqués spectaculaires."
       },
       "generation": {
-        "statProfile": "creature-companion-magic",
+        "statProfiles": [
+          { "id": "creature-companion-magic", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": ["{{ traits:flight }}", "{{ traits:natural_weapons }}"]
       }
     },
@@ -271,7 +325,10 @@
         "description": "se téléporte de quelques mètres lorsqu’il prend peur, rarement dans la direction la plus sûre."
       },
       "generation": {
-        "statProfile": "creature-companion-magic",
+        "statProfiles": [
+          { "id": "creature-companion-magic", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:swift_reflexes }}",
           "Bond éclair — Une fois par tour lorsqu’il est surpris ou attaqué, peut se téléporter jusqu’à 3 mètres dans un espace libre visible."
@@ -286,7 +343,10 @@
         "description": "se replie à plat, transporte des messages écrits et crache juste assez de feu pour cacheter de la cire."
       },
       "generation": {
-        "statProfile": "creature-companion-magic",
+        "statProfiles": [
+          { "id": "creature-companion-magic", "weight": 5 },
+          { "id": "creature-companion", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "Corps pliable — Peut s’aplatir assez pour franchir une fente aussi étroite qu’une feuille de papier.",
@@ -309,7 +369,10 @@
         "description": "traverse les cloisons minces et devient visible après avoir mangé du fromage."
       },
       "generation": {
-        "statProfile": "creature-companion-magic",
+        "statProfiles": [
+          { "id": "creature-companion-magic", "weight": 5 },
+          { "id": "creature-companion", "weight": 2 }
+        ],
         "traits": ["{{ traits:incorporeal }}"]
       }
     },
@@ -321,7 +384,10 @@
         "description": "petit chien flottant fait de brume, capable de dissimuler brièvement le visage d’une personne."
       },
       "generation": {
-        "statProfile": "creature-companion-magic",
+        "statProfiles": [
+          { "id": "creature-companion-magic", "weight": 5 },
+          { "id": "creature-companion", "weight": 2 }
+        ],
         "traits": [
           "Voile de brume — Une fois par scène, crée un nuage de 2 mètres qui dissimule une créature jusqu’au début de son prochain tour."
         ]
@@ -335,7 +401,10 @@
         "description": "créature de pierre grosse comme un poing qui détecte les tunnels proches et la maçonnerie ouvragée."
       },
       "generation": {
-        "statProfile": "creature-elemental",
+        "statProfiles": [
+          { "id": "creature-elemental", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:stone_body }}",
           "Sens de la maçonnerie — +2 aux actions de {{ ability:perception.name }} pour repérer tunnels, cavités ou fragilités dans la pierre taillée."
@@ -351,7 +420,10 @@
         "description": "absorbe les faibles résidus magiques et luit en présence d’enchantements actifs."
       },
       "generation": {
-        "statProfile": "creature-companion-magic",
+        "statProfiles": [
+          { "id": "creature-companion-magic", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:flight }}", "{{ traits:magic_sense }}"]
       }
     },
@@ -363,7 +435,10 @@
         "description": "Un oiseau territorial pouvant être dressé à reconnaître des personnes, des emblèmes et des itinéraires."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "Vue perçante — +2 aux actions de {{ ability:perception.name }} reposant sur la vue à longue distance."
@@ -378,7 +453,10 @@
         "description": "une minuscule armure animée qui cherche une personne assez grande pour devenir son écuyer."
       },
       "generation": {
-        "statProfile": "creature-companion-magic",
+        "statProfiles": [
+          { "id": "creature-companion-magic", "weight": 5 },
+          { "id": "creature-companion", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:poison_immunity }}",
           "{{ traits:disease_immunity }}",
@@ -395,7 +473,10 @@
         "description": "Une monture dressée, habituée à porter un cavalier sur les routes et en terrain découvert."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:charge }}"],
         "naturalArmorPercentage": 5
       }
@@ -408,7 +489,10 @@
         "description": "Une petite monture stable, adaptée aux cavaliers légers, au bât et aux sentiers étroits."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:sure_footed }}"],
         "naturalArmorPercentage": 5
       }
@@ -421,7 +505,10 @@
         "description": "Un animal de bât patient, apprécié pour son endurance, sa prudence et son pied sûr."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": ["{{ traits:sure_footed }}", "{{ traits:powerful_build }}"],
         "naturalArmorPercentage": 5
       }
@@ -434,7 +521,10 @@
         "description": "Une monture et bête de somme du désert capable de parcourir de longues distances avec peu d’eau."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:powerful_build }}",
           "Endurance du désert — +2 aux actions de {{ ability:constitution.name }} pour résister à la chaleur ordinaire, à la soif ou aux longues traversées désertiques."
@@ -450,7 +540,10 @@
         "description": "Un oiseau nocturne discret, dressé pour reconnaître les environs, chasser les nuisibles ou transporter de très petits objets."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "{{ traits:keen_hearing }}",
@@ -466,7 +559,10 @@
         "description": "Un corvidé observateur capable d’apprendre des habitudes, de reconnaître les visages et d’imiter des sons simples."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "Glaneur ingénieux — +2 aux actions de {{ ability:perception.name }} pour repérer de la nourriture cachée ou de petits objets laissés sans surveillance."
@@ -481,7 +577,10 @@
         "description": "Un oiseau sociable et coloré qui apprend des voix familières et de courtes phrases."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "Imitation parfaite — Peut reproduire toute courte phrase ou voix familière qu’il a clairement entendue."
@@ -496,7 +595,10 @@
         "description": "Un petit compagnon amphibie à l’aise sur les sols humides, dans les mares comme au fond d’un sac."
       },
       "generation": {
-        "statProfile": "creature-companion",
+        "statProfiles": [
+          { "id": "creature-companion", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:amphibious }}"]
       }
     }

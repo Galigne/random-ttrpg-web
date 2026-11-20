@@ -12,70 +12,111 @@
       "id": "soldier",
       "name": "Soldat",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "guard",
       "name": "Garde",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "officer",
       "name": "Officier",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "veteran",
       "name": "Vétéran",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "mercenary",
       "name": "Mercenaire",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "military_engineer",
       "name": "Ingénieur militaire",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "sentry",
       "name": "Sentinelle",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "captain",
       "name": "Capitaine",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "quartermaster",
       "name": "Intendant militaire",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "military_scout",
       "name": "Éclaireur militaire",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     }
   ]

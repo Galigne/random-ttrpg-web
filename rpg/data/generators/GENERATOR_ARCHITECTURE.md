@@ -221,7 +221,7 @@ followed by rarity, material, and loot modifiers.
 `data/generators/stat-profile.json` is a separate, non-localized schema. Its
 kebab-case profile IDs define minimums, maximums, and allocation weights for the
 seven base statistics. The `default` profile is used by both entity types whenever
-generation metadata omits `statProfile`. Profiles do not contain localized prose, entity types,
+generation metadata omits both profile properties. Profiles do not contain localized prose, entity types,
 resource formulas, RULE allocation, traits, gear, or encumbrance behavior.
 
 Characters and creatures share the level 1-10 stat budget, nonlinear point costs,
@@ -246,8 +246,9 @@ reference resolution:
 3. That entry's top-level `generator` property directly names the matching internal
    name-only `<category>` generator stored in
    `background_<category>.json`. Resolving it supplies the reusable background
-   archetype. Its optional `generation.statProfile` selects the statistical
-   allocation profile for this character; omission selects `default`.
+   archetype. Its optional `generation.statProfile` or weighted
+   `generation.statProfiles` selects the statistical allocation profile for this
+   character; omitting both selects `default`.
 4. It independently resolves `{{ physical_description.description }}`. Physical description is
    not part of the selected archetype route, so the two rolls remain combinable.
 5. It applies each explicitly present archetype generation override and uses the
@@ -260,7 +261,7 @@ inside character modifiers; fixed references and all other generation categories
 retain their normal behavior.
 
 Background and creature archetypes share one optional `generation` model. Both can
-override `statProfile`, `naturalArmorPercentage`, `fixedRules`, `statusEffects`,
+override `statProfile` or `statProfiles`, `naturalArmorPercentage`, `fixedRules`, `statusEffects`,
 `modifiers`, `armor`, `equipment`, and `inventory`; characters additionally use
 `talents`, while creatures use `traits`. An explicit value replaces the normal
 category, including an explicit empty array. The two locale catalogs preserve

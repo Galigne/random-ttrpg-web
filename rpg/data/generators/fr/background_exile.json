@@ -10,60 +10,114 @@
   "entries": [
     {
       "id": "refugee",
-      "name": "Réfugié"
+      "name": "Réfugié",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "character-diplomat", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "fugitive",
       "name": "Fugitif",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "banished_noble",
       "name": "Noble banni",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "displaced_survivor",
-      "name": "Rescapé déplacé"
+      "name": "Rescapé déplacé",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "character-fighter", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "political_exile",
       "name": "Exilé politique",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "deserter",
       "name": "Déserteur",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "migrant",
-      "name": "Migré"
+      "name": "Migré",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "character-diplomat", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "wanderer",
-      "name": "Vagabond"
+      "name": "Vagabond",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "character-fighter", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "dissident",
       "name": "Dissident",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "outlaw",
       "name": "Hors-la-loi",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     }
   ]

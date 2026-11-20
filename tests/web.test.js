@@ -386,6 +386,30 @@ test("only the owner can customize or save a generated preview and failed edits 
   assert.equal((await request(alice, base + "/save", "POST")).status, 404);
 });
 
+test("preview profile choices enforce the current archetype and save authoritative results", async (t) => {
+  const { request, login } = await setup(t);
+  const alice = await login("Alice"), bob = await login("Bob");
+  const created = await request(alice, "/api/entity-previews", "POST", {
+    type: "creature", language: "fr", level: 1, path: "monster:bell_wraith",
+  });
+  const base = `/api/entity-previews/${created.data.previewId}`;
+  const options = await request(alice, base + "/options?key=statProfile");
+  assert.deepEqual(options.data.options.map(item => item.id), ["creature-caster", "creature-brute", "creature-elemental"]);
+  assert.equal(options.data.options[1].name, "Brute");
+  assert.equal((await request(bob, base + "/options?key=statProfile")).status, 404);
+  assert.equal((await request(alice, base + "/choice", "POST", {
+    revision: 0, key: "statProfile", value: "character-mage",
+  })).status, 400);
+  const changed = await request(alice, base + "/choice", "POST", {
+    revision: 0, key: "statProfile", value: "creature-brute",
+  });
+  assert.equal(changed.status, 200);
+  assert.equal(changed.data.data.source.statProfileId, "creature-brute");
+  assert.deepEqual(changed.data.data.rules, created.data.data.rules);
+  const saved = await request(alice, base + "/save", "POST", { revision: 1 });
+  assert.deepEqual((await request(alice, `/api/entities/${saved.data.id}`)).data.data, changed.data.data);
+});
+
 test("preview is not persisted and campaign deletion preserves shared entities and other assignments", async (t) => {
   const { request, login, users, db, live } = await setup(t);
   const alice = await login("Alice"),

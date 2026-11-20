@@ -216,8 +216,10 @@ test('production routed generation metadata resolves for every localized archety
 			for (const route of router.entries) {
 				const child = catalog.get(route.generator);
 				for (const entry of child.entries) {
-					const profileId = entry.generation?.statProfile ?? 'default';
-					assert.ok(profiles.has(profileId), `${locale}:${child.id}:${entry.id}`);
+					const candidates = entry.generation?.statProfiles ?? [{ id: entry.generation?.statProfile ?? 'default' }];
+					for (const { id } of candidates) {
+						assert.ok(profiles.has(id), `${locale}:${child.id}:${entry.id}:${id}`);
+					}
 					for (const reference of collectGenerationReferences(entry.generation)) {
 						const result = generatorResolver.resolveReference(reference, locale, {
 							random: () => 0,

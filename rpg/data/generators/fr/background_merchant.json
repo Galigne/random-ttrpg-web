@@ -12,64 +12,110 @@
       "id": "trader",
       "name": "Marchand",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "shopkeeper",
       "name": "Boutiquier",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "caravaner",
-      "name": "Caravanier"
+      "name": "Caravanier",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "character-rogue", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "factor",
       "name": "Facteur de commerce",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "appraiser",
       "name": "Expert",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "innkeeper",
       "name": "Aubergiste",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "fishmonger",
-      "name": "Poissonnier"
+      "name": "Poissonnier",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "character-fighter", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "supplier",
       "name": "Fournisseur",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "peddler",
       "name": "Colporteur",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "market_broker",
       "name": "Courtier du marché",
       "generation": {
-        "statProfile": "character-diplomat"
+        "statProfiles": [
+          { "id": "character-diplomat", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     }
   ]

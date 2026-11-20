@@ -12,70 +12,108 @@
       "id": "apprentice",
       "name": "Apprentice",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "hedge_mage",
       "name": "Hedge mage",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "character-cleric", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "magical_researcher",
       "name": "Magical researcher",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "battle_mage",
       "name": "Battle mage",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "character-cleric", "weight": 2 }
+        ]
       }
     },
     {
       "id": "ritualist",
       "name": "Ritualist",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "character-cleric", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "alchemist",
       "name": "Alchemist",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "character-cleric", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "runesmith",
       "name": "Runesmith",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "diviner",
       "name": "Diviner",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "court_mage",
       "name": "Court mage",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "enchanter",
       "name": "Enchanter",
       "generation": {
-        "statProfile": "character-mage"
+        "statProfiles": [
+          { "id": "character-mage", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     }
   ]

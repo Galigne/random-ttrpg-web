@@ -10,85 +10,148 @@
   "entries": [
     {
       "id": "explorer",
-      "name": "Explorer"
+      "name": "Explorer",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "mercenary",
       "name": "Mercenary",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "monster_hunter",
       "name": "Monster hunter",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "bounty_hunter",
       "name": "Bounty hunter",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 },
+          { "id": "character-diplomat", "weight": 2 }
+        ]
       }
     },
     {
       "id": "scout",
       "name": "Scout",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "treasure_hunter",
       "name": "Treasure hunter",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "pilgrim",
       "name": "Pilgrim",
       "generation": {
-        "statProfile": "character-cleric"
+        "statProfiles": [
+          { "id": "character-cleric", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "frontier_guide",
       "name": "Frontier guide",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-diplomat", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "ruins_delver",
       "name": "Ruins delver",
       "generation": {
-        "statProfile": "character-rogue"
+        "statProfiles": [
+          { "id": "character-rogue", "weight": 5 },
+          { "id": "character-fighter", "weight": 2 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "demon_hunter",
       "name": "Demon hunter",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-cleric", "weight": 2 },
+          { "id": "character-rogue", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "protector",
       "name": "Protector",
       "generation": {
-        "statProfile": "character-fighter"
+        "statProfiles": [
+          { "id": "character-fighter", "weight": 5 },
+          { "id": "character-cleric", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ]
       }
     },
     {
       "id": "relic_hunter",
-      "name": "Relic hunter"
+      "name": "Relic hunter",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "character-rogue", "weight": 2 }
+        ]
+      }
     },
     {
       "id": "dungeon_cartographer",
-      "name": "Dungeon cartographer"
+      "name": "Dungeon cartographer",
+      "generation": {
+        "statProfiles": [
+          { "id": "default", "weight": 5 },
+          { "id": "character-mage", "weight": 2 },
+          { "id": "character-rogue", "weight": 2 }
+        ]
+      }
     }
   ]
 }

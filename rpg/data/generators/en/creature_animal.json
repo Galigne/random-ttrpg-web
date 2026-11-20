@@ -16,7 +16,10 @@
         "description": "a calm forest grazer whose antlers host flowers, insects, and medicinal herbs."
       },
       "generation": {
-        "statProfile": "creature-animal-runner",
+        "statProfiles": [
+          { "id": "creature-animal-runner", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "naturalArmorPercentage": 5
       }
     },
@@ -28,7 +31,10 @@
         "description": "a tiny bird with glowing feathers that gathers near safe campsites."
       },
       "generation": {
-        "statProfile": "creature-animal-magic",
+        "statProfiles": [
+          { "id": "creature-animal-magic", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "Luminous Plumage — Sheds gentle light in a 5-meter radius and can extinguish or restore it at will."
         ],
@@ -43,7 +49,10 @@
         "description": "a playful, clever swimmer that trades polished stones for food."
       },
       "generation": {
-        "statProfile": "creature-animal-runner",
+        "statProfiles": [
+          { "id": "creature-animal-runner", "weight": 5 },
+          { "id": "creature-companion", "weight": 2 }
+        ],
         "traits": ["{{ traits:amphibious }}", "{{ traits:aquatic_speed }}"],
         "naturalArmorPercentage": 5
       }
@@ -56,7 +65,11 @@
         "description": "a woolly mountain animal light enough to survive long falls."
       },
       "generation": {
-        "statProfile": "creature-animal-magic",
+        "statProfiles": [
+          { "id": "creature-animal-magic", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:gliding }}"],
         "naturalArmorPercentage": 5
       }
@@ -69,7 +82,10 @@
         "description": "a curious red fox attracted to coins, keys, and quiet music."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "naturalArmorPercentage": 5
       }
     },
@@ -81,7 +97,10 @@
         "description": "a sturdy forager able to locate roots, truffles, and shallow buried objects."
       },
       "generation": {
-        "statProfile": "creature-animal-tank",
+        "statProfiles": [
+          { "id": "creature-animal-tank", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:keen_smell }}", "{{ traits:burrower }}"],
         "naturalArmorPercentage": 5
       }
@@ -94,7 +113,10 @@
         "description": "an alert grassland animal that stamps before storms or approaching danger."
       },
       "generation": {
-        "statProfile": "creature-animal-runner",
+        "statProfiles": [
+          { "id": "creature-animal-runner", "weight": 5 },
+          { "id": "creature-companion", "weight": 2 }
+        ],
         "traits": ["{{ traits:keen_hearing }}", "{{ traits:swift_reflexes }}"],
         "naturalArmorPercentage": 5
       }
@@ -107,7 +129,10 @@
         "description": "a sure-footed cliff grazer with mineral-rich blue horns."
       },
       "generation": {
-        "statProfile": "creature-animal-runner",
+        "statProfiles": [
+          { "id": "creature-animal-runner", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": ["{{ traits:sure_footed }}", "{{ traits:natural_weapons }}"],
         "naturalArmorPercentage": 5
       }
@@ -120,7 +145,10 @@
         "description": "a patient marsh bird often following travelers through safe water."
       },
       "generation": {
-        "statProfile": "creature-animal-runner",
+        "statProfiles": [
+          { "id": "creature-animal-runner", "weight": 5 },
+          { "id": "creature-companion", "weight": 2 }
+        ],
         "traits": ["{{ traits:flight }}"],
         "naturalArmorPercentage": 5
       }
@@ -133,7 +161,10 @@
         "description": "a small gentle bear with golden fur and an excellent memory for kindness."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": ["{{ traits:keen_smell }}"],
         "naturalArmorPercentage": 5
       }
@@ -159,7 +190,10 @@
         "description": "a warm-bodied amphibian commonly found sleeping beside ovens."
       },
       "generation": {
-        "statProfile": "creature-animal-magic",
+        "statProfiles": [
+          { "id": "creature-animal-magic", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:amphibious }}", "{{ traits:fire_immunity }}"],
         "naturalArmorPercentage": 5
       }
@@ -172,7 +206,10 @@
         "description": "a mild-tempered herd animal producing unusually strong, soft fiber."
       },
       "generation": {
-        "statProfile": "creature-animal-tank",
+        "statProfiles": [
+          { "id": "creature-animal-tank", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "naturalArmorPercentage": 5
       }
     },
@@ -184,7 +221,10 @@
         "description": "a bright frog whose call reliably predicts rainfall several hours ahead."
       },
       "generation": {
-        "statProfile": "creature-animal-magic",
+        "statProfiles": [
+          { "id": "creature-animal-magic", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:amphibious }}",
           "Weather Sense — +2 to {{ ability:perception.name }} actions made to predict rain or severe weather during the next six hours."
@@ -200,7 +240,10 @@
         "description": "a hand-sized silver moth that feeds on magical residue without harming spells."
       },
       "generation": {
-        "statProfile": "creature-animal-magic",
+        "statProfiles": [
+          { "id": "creature-animal-magic", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:flight }}", "{{ traits:magic_sense }}"],
         "naturalArmorPercentage": 5
       }
@@ -225,7 +268,10 @@
         "description": "a social alpine rodent with distinct warning calls for different threats."
       },
       "generation": {
-        "statProfile": "creature-animal-runner",
+        "statProfiles": [
+          { "id": "creature-animal-runner", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:keen_hearing }}",
           "Warning Call — Allies able to hear the call gain +1 to Speed when determining Initiative against a threat the creature has detected."
@@ -241,7 +287,10 @@
         "description": "a flightless lizard that eats pests and warms fruit trees during frost."
       },
       "generation": {
-        "statProfile": "creature-animal-magic",
+        "statProfiles": [
+          { "id": "creature-animal-magic", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "Hearthblood — Can warm a small creature or object by touch and ignite dry tinder after one uninterrupted minute."
         ],
@@ -256,7 +305,10 @@
         "description": "a pale coastal dolphin that guides lost vessels away from reefs."
       },
       "generation": {
-        "statProfile": "creature-animal-runner",
+        "statProfiles": [
+          { "id": "creature-animal-runner", "weight": 5 },
+          { "id": "creature-companion", "weight": 2 }
+        ],
         "traits": ["{{ traits:aquatic_speed }}", "{{ traits:echolocation }}"],
         "naturalArmorPercentage": 5
       }
@@ -269,7 +321,11 @@
         "description": "a rare nocturnal deer whose coat resembles the current night sky."
       },
       "generation": {
-        "statProfile": "creature-animal-magic",
+        "statProfiles": [
+          { "id": "creature-animal-magic", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": ["{{ traits:darkvision }}", "{{ traits:camouflage }}"],
         "naturalArmorPercentage": 5
       }
@@ -282,7 +338,10 @@
         "description": "a friendly black bird able to repeat one sentence it heard years ago."
       },
       "generation": {
-        "statProfile": "creature-animal-magic",
+        "statProfiles": [
+          { "id": "creature-animal-magic", "weight": 5 },
+          { "id": "creature-companion", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "Perfect Mimicry — Can reproduce any short phrase or familiar voice it has heard clearly."
@@ -298,7 +357,10 @@
         "description": "a gentle deep-sea giant whose songs make plankton shine."
       },
       "generation": {
-        "statProfile": "creature-animal-tank",
+        "statProfiles": [
+          { "id": "creature-animal-tank", "weight": 5 },
+          { "id": "creature-animal-magic", "weight": 2 }
+        ],
         "traits": ["{{ traits:aquatic_speed }}", "{{ traits:echolocation }}"],
         "naturalArmorPercentage": 5
       }
@@ -311,7 +373,10 @@
         "description": "A placid reptile that stores heat in its scales and seeks sun-exposed surfaces."
       },
       "generation": {
-        "statProfile": "creature-animal-magic",
+        "statProfiles": [
+          { "id": "creature-animal-magic", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "Solar Reserve — After one hour in direct sunlight, ignores the next harmful effect caused by ordinary cold."
         ],
@@ -326,7 +391,10 @@
         "description": "A discreet aquatic snake whose bite is painful but rarely lethal."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:amphibious }}", "{{ traits:venomous }}"],
         "naturalArmorPercentage": 5
       }
@@ -339,7 +407,10 @@
         "description": "A curious rodent that carries tools, buttons, and shiny objects to a surprisingly organized nest."
       },
       "generation": {
-        "statProfile": "creature-animal-runner"
+        "statProfiles": [
+          { "id": "creature-animal-runner", "weight": 5 },
+          { "id": "creature-companion", "weight": 2 }
+        ]
       }
     },
     {
@@ -350,7 +421,10 @@
         "description": "A large nonaggressive spider whose strong silk is prized by craftspeople."
       },
       "generation": {
-        "statProfile": "creature-animal-runner",
+        "statProfiles": [
+          { "id": "creature-animal-runner", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": ["{{ traits:web_spinner }}"],
         "naturalArmorPercentage": 10
       }
@@ -363,7 +437,10 @@
         "description": "A cautious social predator that watches a group before choosing avoidance or approach."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": ["{{ traits:keen_smell }}", "{{ traits:pack_tactics }}"],
         "naturalArmorPercentage": 10
       }
@@ -402,7 +479,10 @@
         "description": "An intelligent animal that trades stolen objects for food or new curiosities."
       },
       "generation": {
-        "statProfile": "creature-animal-runner",
+        "statProfiles": [
+          { "id": "creature-animal-runner", "weight": 5 },
+          { "id": "creature-companion", "weight": 2 }
+        ],
         "traits": [
           "Nimble Hands — +2 to {{ ability:dexterity.name }} actions made to grasp, steal, or manipulate small objects."
         ],
@@ -417,7 +497,10 @@
         "description": "A small nocturnal animal whose movement reveals air currents and hidden passages."
       },
       "generation": {
-        "statProfile": "creature-animal-runner",
+        "statProfiles": [
+          { "id": "creature-animal-runner", "weight": 5 },
+          { "id": "creature-companion", "weight": 2 }
+        ],
         "traits": ["{{ traits:flight }}", "{{ traits:echolocation }}"]
       }
     },
@@ -429,7 +512,10 @@
         "description": "A swift herd grazer found in open country and around settled lands."
       },
       "generation": {
-        "statProfile": "creature-animal-runner",
+        "statProfiles": [
+          { "id": "creature-animal-runner", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": ["{{ traits:charge }}"],
         "naturalArmorPercentage": 5
       }
@@ -442,7 +528,10 @@
         "description": "A sturdy herd animal commonly raised for milk, meat, hides, and labor."
       },
       "generation": {
-        "statProfile": "creature-animal-tank",
+        "statProfiles": [
+          { "id": "creature-animal-tank", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": ["{{ traits:powerful_build }}"],
         "naturalArmorPercentage": 10
       }
@@ -455,7 +544,10 @@
         "description": "A powerful draft animal bred to pull heavy loads across difficult ground."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": ["{{ traits:powerful_build }}", "{{ traits:charge }}"],
         "naturalArmorPercentage": 10
       }
@@ -468,7 +560,10 @@
         "description": "A tough, short-tempered forest forager armed with sharp tusks."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:keen_smell }}",
           "{{ traits:charge }}",
@@ -485,7 +580,10 @@
         "description": "A large omnivore with great strength, a keen nose, and a defensive temperament."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:keen_smell }}",
           "{{ traits:powerful_build }}",
@@ -502,7 +600,10 @@
         "description": "A towering woodland grazer capable of sudden, forceful charges."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:powerful_build }}",
           "{{ traits:charge }}",
@@ -519,7 +620,10 @@
         "description": "A large bird of prey that hunts from high above open ground and mountain slopes."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "{{ traits:natural_weapons }}",
@@ -536,7 +640,10 @@
         "description": "A silent nocturnal hunter with acute hearing and excellent vision in darkness."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "{{ traits:keen_hearing }}",
@@ -552,7 +659,10 @@
         "description": "A compact burrowing animal known for persistence and fierce self-defense."
       },
       "generation": {
-        "statProfile": "creature-animal-tank",
+        "statProfiles": [
+          { "id": "creature-animal-tank", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:burrower }}",
           "{{ traits:keen_smell }}",
@@ -569,7 +679,10 @@
         "description": "An industrious aquatic rodent that builds dams and shelters from timber and mud."
       },
       "generation": {
-        "statProfile": "creature-animal-tank",
+        "statProfiles": [
+          { "id": "creature-animal-tank", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:amphibious }}",
           "{{ traits:aquatic_speed }}",
@@ -586,7 +699,10 @@
         "description": "A heavily scaled ambush predator that waits in warm rivers, marshes, and estuaries."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:amphibious }}",
           "{{ traits:aquatic_speed }}",
@@ -604,7 +720,10 @@
         "description": "A swift marine predator able to detect prey across dark or murky water."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:aquatic_speed }}",
           "{{ traits:keen_smell }}",
@@ -621,7 +740,10 @@
         "description": "A common farm bird kept for eggs, meat, and control of small pests."
       },
       "generation": {
-        "statProfile": "creature-animal-runner"
+        "statProfiles": [
+          { "id": "creature-animal-runner", "weight": 5 },
+          { "id": "creature-companion", "weight": 2 }
+        ]
       }
     },
     {
@@ -632,7 +754,10 @@
         "description": "A watchful waterfowl found around farms, wetlands, and waterways."
       },
       "generation": {
-        "statProfile": "creature-animal-runner",
+        "statProfiles": [
+          { "id": "creature-animal-runner", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": ["{{ traits:flight }}", "{{ traits:aquatic_speed }}"]
       }
     },
@@ -644,7 +769,10 @@
         "description": "A sure-footed domestic pack animal valued for endurance and caution."
       },
       "generation": {
-        "statProfile": "creature-animal-tank",
+        "statProfiles": [
+          { "id": "creature-animal-tank", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:powerful_build }}"],
         "naturalArmorPercentage": 5
       }
@@ -657,7 +785,10 @@
         "description": "A placid herd grazer commonly raised for wool, milk, and meat."
       },
       "generation": {
-        "statProfile": "creature-animal-tank",
+        "statProfiles": [
+          { "id": "creature-animal-tank", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "naturalArmorPercentage": 5
       }
     }

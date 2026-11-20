@@ -16,7 +16,10 @@
         "description": "chasseur en meute au teint cadavérique qui flaire la peur et entraîne sous terre les proies isolées."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:keen_smell }}",
           "{{ traits:pack_tactics }}",
@@ -33,7 +36,12 @@
         "description": "brute des marais capable de se régénérer, couverte de roseaux, de sangsues et d’hameçons volés."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-elemental", "weight": 2 },
+          { "id": "creature-predator", "weight": 2 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": ["{{ traits:regeneration }}"],
         "fixedRules": [
           {
@@ -53,7 +61,11 @@
         "description": "dragon sans ailes grand comme un chien, qui crache de la résine enflammée et niche dans les cheminées."
       },
       "generation": {
-        "statProfile": "creature-elemental",
+        "statProfiles": [
+          { "id": "creature-elemental", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 },
+          { "id": "creature-caster", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:fire_immunity }}",
           "{{ traits:natural_weapons }}",
@@ -78,7 +90,10 @@
         "description": "prédatrice presque invisible qui chasse à l’affût et dont la toile cassante tranche comme du fil de fer."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits:camouflage }}", "{{ traits:web_spinner }}"],
         "fixedRules": [
           {
@@ -97,7 +112,11 @@
         "description": "fantôme en armure qui prend corps chaque fois qu’une cloche sonne à proximité."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 },
+          { "id": "creature-elemental", "weight": 2 }
+        ],
         "traits": [
           "Forme liée aux cloches — Reste incorporel tant qu’aucune cloche n’est audible et devient solide jusqu’à la fin de son prochain tour lorsqu’une cloche sonne."
         ],
@@ -120,7 +139,10 @@
         "description": "lueur chaude flottante qui sert d’appât à une immense bouche souterraine."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:camouflage }}",
           "Faux fanal — +2 aux actions de {{ ability:charisma.name }} pour attirer une créature qui prend sa lueur pour une lumière sûre."
@@ -136,7 +158,10 @@
         "description": "colonie enracinée de bras squelettiques qui saisit les créatures et plante leurs os."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:poison_immunity }}",
           "{{ traits:disease_immunity }}",
@@ -153,7 +178,11 @@
         "description": "bête cavernicole blanche qui gèle l’humidité pour former des silhouettes leurres."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-elemental", "weight": 2 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": ["{{ traits:cold_immunity }}", "{{ traits:camouflage }}"],
         "fixedRules": [
           {
@@ -174,7 +203,10 @@
         "description": "monstre fluvial qui aveugle les embarcations d’une brume noire avant de frapper par-dessous."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:aquatic_speed }}",
           "Nuage d’encre — Une fois par scène sous l’eau, crée un nuage de 5 mètres qui aveugle les autres créatures jusqu’à leur sortie."
@@ -190,7 +222,10 @@
         "description": "insecte cuirassé qui corrode rapidement le métal et attaque en essaim la cible la mieux équipée."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "Morsure corrosive — Les attaques naturelles contre des objets ou armures métalliques infligent +2 dégâts."
         ],
@@ -205,7 +240,10 @@
         "description": "parasite translucide qui laisse ses victimes endormies conscientes, mais privées de leurs souvenirs."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "Drain de mémoire — Après une minute de contact avec une créature sans défense, efface ses souvenirs de l’heure précédente."
         ],
@@ -220,7 +258,10 @@
         "description": "bête végétale territoriale qui projette des graines barbelées dans les plaies ouvertes."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:natural_weapons }}",
           "Graines barbelées — Peut porter une attaque naturelle à distance ; une cible blessée subit -1 en {{ ability:speed.name }} jusqu’au retrait du barbillon."
@@ -236,7 +277,10 @@
         "description": "humanoïde décharné qui ne peut se déplacer qu’à travers les reflets et les surfaces polies."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "Passage des miroirs — Peut entrer dans un reflet et ressortir d’un autre reflet visible à moins de 10 mètres."
         ],
@@ -258,7 +302,10 @@
         "description": "humanoïde incandescent qui s’effondre en cendres suffocantes lorsqu’il est blessé, puis se reconstitue."
       },
       "generation": {
-        "statProfile": "creature-elemental",
+        "statProfiles": [
+          { "id": "creature-elemental", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": ["{{ traits:fire_immunity }}", "{{ traits:regeneration }}"],
         "equipment": ["weapons:maul"],
         "naturalArmorPercentage": 15
@@ -272,7 +319,11 @@
         "description": "reptile à six pattes dont le regard ne pétrifie que les créatures éclairées par la lune."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 },
+          { "id": "creature-caster", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:natural_weapons }}",
           "Pétrification lunaire — Une créature qui croise son regard au clair de lune ne peut plus se déplacer jusqu’à la fin de son prochain tour."
@@ -294,7 +345,10 @@
         "description": "prédateur des tunnels qui imite simultanément plusieurs voix familières."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:burrower }}",
           "Voix familières — +2 aux actions de {{ ability:charisma.name }} pour attirer ou désorienter quelqu’un en imitant des voix déjà entendues."
@@ -310,7 +364,10 @@
         "description": "démon sans visage qui se renforce chaque fois qu’une personne proche rompt une promesse."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "Festin des serments brisés — Gagne +1 à toutes ses actions jusqu’à la fin de son prochain tour lorsqu’une personne proche rompt sciemment une promesse."
         ],
@@ -331,7 +388,11 @@
         "description": "oiseau colossal qui niche dans les nuages d’orage et chasse tout ce qui porte du métal."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 },
+          { "id": "creature-elemental", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "{{ traits:powerful_build }}",
@@ -365,7 +426,10 @@
         "description": "prédateur vacillant qui vole des secondes à ses proies pour se déplacer à une vitesse impossible."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:swift_reflexes }}",
           "Secondes volées — Après avoir infligé des dégâts, peut immédiatement parcourir jusqu’à la moitié de sa vitesse de déplacement normale."
@@ -381,7 +445,11 @@
         "description": "chaque tête tranchée repousse avec le visage et les souvenirs de la personne qui l’a abattue."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 },
+          { "id": "creature-elemental", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:regeneration }}",
           "{{ traits:natural_weapons }}",
@@ -398,7 +466,10 @@
         "description": "mort-vivant radieux dont les soins miraculeux remplacent peu à peu la volonté du bénéficiaire."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-elemental", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:disease_immunity }}",
           "Faux miracle — Une fois par scène, rend 10 % de ses PV maximums à une créature touchée ; celle-ci subit -1 aux actions d’{{ ability:intelligence.name }} jusqu’à son prochain repos."
@@ -415,7 +486,10 @@
         "description": "immense silhouette d’apparence paisible dont l’ombre dévore férocement les êtres vivants."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:powerful_build }}",
           "Ombre vivante — Son ombre peut porter des attaques naturelles contre une cible située jusqu’à 5 mètres de son corps."
@@ -431,7 +505,11 @@
         "description": "prédateur cristallin tombé du ciel, qui se multiplie au contact de la magie."
       },
       "generation": {
-        "statProfile": "creature-elemental",
+        "statProfiles": [
+          { "id": "creature-elemental", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:stone_body }}",
           "Fission magique — La première fois par scène qu’un sort l’affecte, crée dans un espace libre adjacent une copie fragile dotée de 1 PV."
@@ -448,7 +526,11 @@
         "description": "Un grand oiseau incandescent renaît d’un foyer voisin en portant les souvenirs de ceux qui ont nourri la flamme."
       },
       "generation": {
-        "statProfile": "creature-elemental",
+        "statProfiles": [
+          { "id": "creature-elemental", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 },
+          { "id": "creature-caster", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "{{ traits:fire_immunity }}",
@@ -473,7 +555,11 @@
         "description": "Un jeune géant affamé imite des adultes absents et transforme chaque jeu en véritable danger."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": ["{{ traits:powerful_build }}"],
         "naturalArmorPercentage": 15
       }
@@ -486,7 +572,10 @@
         "description": "Une créature copie l’apparence d’une personne mais comprend mal ses habitudes et ses liens."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "Imitation imparfaite — Peut copier l’apparence d’un humanoïde, mais subit -2 aux actions de {{ ability:charisma.name }} liées aux habitudes ou relations de cette personne."
         ],
@@ -507,7 +596,10 @@
         "description": "Un petit démon propose des marchés insignifiants dont la formulation dissimule des conséquences disproportionnées."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": ["{{ traits:flight }}", "{{ traits }}"],
         "naturalArmorPercentage": 5
       }
@@ -537,7 +629,11 @@
         "description": "Un gardien végétal s’éloigne de sa forêt parce que les racines de son territoire ont été empoisonnées."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-elemental", "weight": 2 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:powerful_build }}",
           "Ancrage racinaire — Tant qu’elle touche un sol naturel, gagne +2 aux actions de {{ ability:strength.name }} pour résister à un déplacement forcé."
@@ -560,7 +656,10 @@
         "description": "Un cadavre animé poursuit une tâche quotidienne sans comprendre que le monde a changé."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:poison_immunity }}",
           "{{ traits:disease_immunity }}"
@@ -576,7 +675,10 @@
         "description": "Des ossements armés répètent un itinéraire militaire et considèrent toute entorse au protocole comme une intrusion."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:poison_immunity }}",
           "{{ traits:disease_immunity }}"
@@ -593,7 +695,11 @@
         "description": "Une bête ordinaire porte une adaptation impossible provoquée par une pollution magique ou alchimique."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": ["{{ traits }}"],
         "naturalArmorPercentage": 10
       }
@@ -623,7 +729,10 @@
         "description": "Une volaille possédée manifeste une agressivité absurde, des bonds surnaturels et une résistance sans commune mesure avec sa taille."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:swift_reflexes }}",
           "{{ traits:natural_weapons }}"
@@ -639,7 +748,11 @@
         "description": "Un arthropode colossal défend un nid construit autour d’une source de chaleur ou de magie."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": ["{{ traits:natural_weapons }}"],
         "naturalArmorPercentage": 30
       }
@@ -684,7 +797,11 @@
         "description": "Un reptile surnaturel vit dans les flammes et propage involontairement le feu lorsqu’il prend peur."
       },
       "generation": {
-        "statProfile": "creature-elemental",
+        "statProfiles": [
+          { "id": "creature-elemental", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 },
+          { "id": "creature-caster", "weight": 2 }
+        ],
         "traits": ["{{ traits:fire_immunity }}"],
         "fixedRules": [
           {
@@ -705,7 +822,10 @@
         "description": "Une prédatrice ailée imite des appels familiers pour attirer les voyageurs sur un terrain dangereux."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "Voix familières — +2 aux actions de {{ ability:charisma.name }} pour attirer ou désorienter quelqu’un en imitant des voix déjà entendues."
@@ -721,7 +841,10 @@
         "description": "Une créature aquatique utilise chants et reflets pour isoler une cible du groupe."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:amphibious }}",
           "{{ traits:aquatic_speed }}",
@@ -744,7 +867,11 @@
         "description": "Un géant solitaire garde un passage dont la destination a été oubliée, mais dont l’interdiction demeure."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:powerful_build }}",
           "Vue perçante — +2 aux actions de {{ ability:perception.name }} reposant sur la vue à longue distance."
@@ -760,7 +887,10 @@
         "description": "Un prédateur immortel maintient une façade civilisée tandis que la pénurie rend son contrôle de plus en plus fragile."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:darkvision }}",
           "{{ traits:regeneration }}",
@@ -783,7 +913,10 @@
         "description": "Une petite créature se nourrit de souvenirs récents et laisse ses victimes incapables d’expliquer sa présence."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:camouflage }}",
           "Drain de mémoire — Après une minute de contact avec une créature sans défense, efface ses souvenirs de l’heure précédente."
@@ -805,7 +938,10 @@
         "description": "Un esprit rejoue une scène incomplète et devient violent lorsque des témoins en modifient le déroulement."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-elemental", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:incorporeal }}",
           "Boucle spectrale — Répète une scène ; les témoins qui l’interrompent volontairement subissent -1 aux actions d’{{ ability:intelligence.name }} jusqu’à l’apaisement de l’esprit."
@@ -821,7 +957,11 @@
         "description": "Plusieurs anatomies incompatibles luttent pour contrôler un même corps créé artificiellement."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 },
+          { "id": "creature-caster", "weight": 2 }
+        ],
         "traits": [
           "Instinct composite — Son anatomie disparate lui confère aussi cette capacité : {{ traits }}",
           "{{ traits }}"
@@ -837,7 +977,11 @@
         "description": "Une force naturelle animée cherche à rétablir l’équilibre sans comprendre les vies qui se trouvent sur son chemin."
       },
       "generation": {
-        "statProfile": "creature-elemental",
+        "statProfiles": [
+          { "id": "creature-elemental", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 },
+          { "id": "creature-caster", "weight": 2 }
+        ],
         "traits": ["{{ traits }}"],
         "naturalArmorPercentage": 25
       }
@@ -850,7 +994,10 @@
         "description": "Une sentinelle de pierre change de bâtiment chaque nuit et considère chacun de ses nouveaux emplacements comme sacré."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": ["{{ traits:stone_body }}", "{{ traits:flight }}"],
         "naturalArmorPercentage": 45
       }
@@ -863,7 +1010,10 @@
         "description": "Un prédateur majestueux protège son aire et les objets brillants qu’il prend pour des œufs."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": ["{{ traits:flight }}", "{{ traits:natural_weapons }}"],
         "naturalArmorPercentage": 20
       }
@@ -876,7 +1026,10 @@
         "description": "Une créature maudite pétrifie davantage par peur que par cruauté et collectionne les statues de ses visiteurs."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "Regard pétrifiant — Une fois par scène, une cible visible qui croise son regard ne peut plus se déplacer jusqu’à la fin de son prochain tour."
         ],
@@ -897,7 +1050,10 @@
         "description": "Une personne transformée entraîne les chasseurs loin de ses proches avant de perdre le contrôle."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:keen_smell }}",
           "{{ traits:natural_weapons }}",
@@ -914,7 +1070,10 @@
         "description": "Un ancien dignitaire préserve un lieu, un serment ou une erreur que ses descendants préféreraient oublier."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:poison_immunity }}",
           "{{ traits:disease_immunity }}"
@@ -930,7 +1089,11 @@
         "description": "Une créature modifie sans cesse son labyrinthe et considère chaque voyageur égaré comme un intrus volontaire."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 },
+          { "id": "creature-caster", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:powerful_build }}",
           "Sens du dédale — Connaît toujours le plus court chemin praticable vers tout lieu visité au cours de la dernière journée."
@@ -946,7 +1109,10 @@
         "description": "Un prédateur souterrain suit les vibrations et la chaleur, provoquant effondrements et déplacements du sol."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": ["{{ traits:burrower }}", "{{ traits:powerful_build }}"],
         "naturalArmorPercentage": 30
       }
@@ -975,7 +1141,11 @@
         "description": "Une créature immensément puissante protège davantage un secret capable de façonner une région qu’un trésor matériel."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-elemental", "weight": 2 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "{{ traits:powerful_build }}",
@@ -992,7 +1162,10 @@
         "description": "Un monstre marin bloque une route commerciale et construit un nid à partir d’épaves."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:amphibious }}",
           "{{ traits:aquatic_speed }}",
@@ -1009,7 +1182,10 @@
         "description": "Une créature gigantesque traverse périodiquement des communautés bâties sur son ancienne route migratoire."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": ["{{ traits:powerful_build }}"],
         "naturalArmorPercentage": 50
       }
@@ -1022,7 +1198,10 @@
         "description": "Une entité liée à une injustice précise frappe les symboles du coupable plutôt que ses véritables héritiers."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-elemental", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:incorporeal }}",
           "Lié aux symboles — Peut sentir tout symbole visible de l’injustice qui l’enchaîne et se diriger directement vers lui."
@@ -1044,7 +1223,10 @@
         "description": "Une créature intelligente coordonne une colonie et négocie comme si chaque individu faisait partie de son propre corps."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:pack_tactics }}",
           "Esprit de ruche — Peut percevoir par l’intermédiaire de tout insecte allié à moins de 100 mètres et ne peut pas être prise en tenaille par les créatures qu’ils détectent."
@@ -1060,7 +1242,12 @@
         "description": "Un petit humanoïde reptilien qui compte sur les pièges, le nombre et les galeries étroites."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-caster", "weight": 2 },
+          { "id": "creature-brute", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ],
         "traits": ["{{ traits:darkvision }}", "{{ traits:pack_tactics }}"],
         "equipment": ["weapons:dagger"],
         "naturalArmorPercentage": 5
@@ -1074,7 +1261,11 @@
         "description": "Un humanoïde à tête d’hyène qui chasse en meute et privilégie les proies isolées."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 },
+          { "id": "default", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:keen_smell }}",
           "{{ traits:pack_tactics }}",
@@ -1108,7 +1299,11 @@
         "description": "Un mort-vivant famélique qui rôde dans les lieux abandonnés à la recherche de chair."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:darkvision }}",
           "{{ traits:poison_immunity }}",
@@ -1127,7 +1322,10 @@
         "description": "Un rongeur charognard démesuré qui niche dans les ruines, les égouts et les tas d’ordures."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:keen_smell }}",
           "{{ traits:pack_tactics }}",
@@ -1144,7 +1342,10 @@
         "description": "Une immense araignée prédatrice qui tend des toiles entravantes dans les espaces clos."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:web_spinner }}",
           "{{ traits:wall_climber }}",
@@ -1161,7 +1362,10 @@
         "description": "Un arthropode du désert lourdement cuirassé, doté de pinces broyeuses et d’une queue venimeuse."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": ["{{ traits:natural_weapons }}", "{{ traits:venomous }}"],
         "naturalArmorPercentage": 30
       }
@@ -1174,7 +1378,10 @@
         "description": "Un serpent colossal qui surprend ses proies avant de les broyer dans ses puissants anneaux."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-animal-runner", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:heat_sense }}",
           "{{ traits:constrict }}",
@@ -1191,7 +1398,10 @@
         "description": "Un loup gigantesque qui abat de grandes proies grâce à sa vitesse et à des attaques coordonnées."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:keen_smell }}",
           "{{ traits:pack_tactics }}",
@@ -1244,7 +1454,10 @@
         "description": "Un petit reptile ailé dont la morsure peut brièvement changer la chair vivante en pierre."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-caster", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "{{ traits:natural_weapons }}",
@@ -1261,7 +1474,10 @@
         "description": "Un monstre léonin ailé, armé de griffes, de crocs et de volées de piquants caudaux."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "{{ traits:natural_weapons }}",
@@ -1278,7 +1494,10 @@
         "description": "Un reptile volant bipède qui chasse à l’aide d’une queue venimeuse et de puissantes mâchoires."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "{{ traits:natural_weapons }}",
@@ -1295,7 +1514,10 @@
         "description": "Un géant à deux têtes dont l’attention partagée le rend difficile à surprendre."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:powerful_build }}",
           "{{ traits:natural_weapons }}",
@@ -1359,7 +1581,11 @@
         "description": "Un chien de chasse surnaturel qui crache du feu et poursuit ses proies en meute coordonnée."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-elemental", "weight": 2 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:keen_smell }}",
           "{{ traits:pack_tactics }}",
@@ -1378,7 +1604,10 @@
         "description": "Un grand prédateur dissimulé dont le chant continu pousse ceux qui l'entendent à l'ignorer et à rationaliser la disparition des personnes qu'il dévore, malgré les chambres abandonnées et les possessions en trop."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-elemental", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:camouflage }}",
           "Chant d'oubli — Les auditeurs négligent inconsciemment la créature et les personnes qu'elle a dévorées ; le silence, la surdité, l'interruption du chant, l'observation indirecte ou des preuves contradictoires accablantes peuvent la révéler."
@@ -1400,7 +1629,10 @@
         "description": "Une aberration territoriale flottante dont les nombreux yeux projettent différents dangers surnaturels, tandis que son regard central dominant neutralise la magie et les effets de LOI."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:flight }}",
           "{{ traits:gaze_effect }}",
@@ -1423,7 +1655,10 @@
         "description": "Un prédateur psychique qui dévore les souvenirs, les connaissances acquises, le raisonnement ou des fragments de personnalité tout en laissant sa victime physiquement en vie."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": ["{{ traits:telepathy }}", "{{ traits:memory_theft }}"],
         "fixedRules": [
           {
@@ -1442,7 +1677,10 @@
         "description": "Un prédateur à l'affût dont l'image visible apparaît continuellement à faible distance de son véritable corps."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-caster", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:camouflage }}",
           "{{ traits:pounce }}",
@@ -1465,7 +1703,10 @@
         "description": "Un prédateur souterrain lourdement cuirassé qui détecte les mouvements en surface, fend la terre et surgit sous sa proie ou juste à côté d'elle."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:burrower }}",
           "{{ traits:tremorsense }}",
@@ -1483,7 +1724,10 @@
         "description": "Un agrégat rampant et amorphe de bouches, d'yeux et de chair à demi formée, dont les voix superposées troublent la pensée cohérente et la parole alentour."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:swarm_body }}",
           "{{ traits:poison_immunity }}",
@@ -1527,7 +1771,10 @@
         "description": "Un prédateur nocturne aplati qui ressemble à une cape, une tapisserie, une étoffe suspendue ou une plaque d'ombre avant de se déployer et d'envelopper sa proie."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:camouflage }}",
           "{{ traits:flight }}",
@@ -1544,7 +1791,10 @@
         "description": "Un observateur difforme qui perçoit la culpabilité dissimulée, les secrets personnels et les faits compromettants, puis négocie ou menace grâce à ce qu'il apprend."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:telepathy }}",
           "{{ traits:magic_sense }}",
@@ -1571,7 +1821,10 @@
         "description": "Un guerrier surnaturel dont l'armure est la véritable créature persistante ; détruire son porteur donne seulement au harnois intact le temps de fabriquer ou de posséder un nouveau corps."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:poison_immunity }}",
           "{{ traits:disease_immunity }}",
@@ -1594,7 +1847,10 @@
         "description": "Un petit mort-vivant à silhouette d'enfant assemblé avec des restes, des jouets abandonnés, du tissu, des boutons, des pièces sculptées et des débris domestiques, capable de voler et d'imiter les voix familières."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:poison_immunity }}",
           "{{ traits:disease_immunity }}",
@@ -1617,7 +1873,11 @@
         "description": "Un colossal serpent antique dont la mort maudit la créature qui lui a réellement porté le coup fatal."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 },
+          { "id": "creature-caster", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:natural_weapons }}",
           "{{ traits:swallowing }}",
@@ -1640,7 +1900,10 @@
         "description": "Une créature assemblée à partir de chair jetée, d'expériences ratées, de cadavres et de déchets organiques, capable de se déformer pour franchir des passages étroits et de se reconstruire avec des restes frais."
       },
       "generation": {
-        "statProfile": "creature-brute",
+        "statProfiles": [
+          { "id": "creature-brute", "weight": 5 },
+          { "id": "creature-animal-tank", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:swarm_body }}",
           "{{ traits:regeneration }}",
@@ -1658,7 +1921,11 @@
         "description": "Un chasseur surnaturel implacable qui revient après une destruction apparente, transformé de façon à rendre moins efficace la méthode précise déjà employée contre lui."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 },
+          { "id": "creature-caster", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:regeneration }}",
           "{{ traits:reactive_adaptation }}",
@@ -1717,7 +1984,10 @@
         "description": "Un prédateur social surnaturel qui se nourrit de ressentiment, d'humiliation et d'amertume en aggravant les désaccords et en retournant les communautés contre elles-mêmes."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-elemental", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:incorporeal }}",
           "{{ traits:telepathy }}",
@@ -1740,7 +2010,10 @@
         "description": "Une créature dont les membres, les blessures, les organes et la structure interne deviennent mutuellement incompatibles lorsqu'on les observe sous différents angles."
       },
       "generation": {
-        "statProfile": "creature-caster",
+        "statProfiles": [
+          { "id": "creature-caster", "weight": 5 },
+          { "id": "creature-predator", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:magic_resistance }}",
           "Anatomie perspective — Un changement de point de vue révèle une organisation différente de son corps ; une blessure ou un obstacle visible sous un angle peut ne pas exister sous un autre."
@@ -1779,7 +2052,10 @@
         "description": "Une créature naturellement molle qui habite des squelettes abandonnés, des armures, des mannequins ou d'autres structures rigides pour se tenir debout et se déplacer, puis abandonne chaque support devenu inutile."
       },
       "generation": {
-        "statProfile": "creature-predator",
+        "statProfiles": [
+          { "id": "creature-predator", "weight": 5 },
+          { "id": "creature-brute", "weight": 2 }
+        ],
         "traits": [
           "{{ traits:camouflage }}",
           "Structure empruntée — Peut entrer dans une armature rigide inoccupée pour en imiter la forme et les mouvements, puis l'abandonner sans dommage.",

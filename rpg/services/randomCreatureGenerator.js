@@ -86,6 +86,7 @@ function populateRandomCreature(creature, options = {}) {
 		entityType: 'creature',
 		draft,
 		generation,
+		archetypeKey: `${generatorId}:${entry.id}`,
 		level,
 		locale,
 		random,

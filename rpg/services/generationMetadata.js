@@ -9,9 +9,11 @@ const {
 } = require('./generationReferenceResolver');
 const { generateStats } = require('./mechanics/statGeneration');
 const { getStatProfile } = require('./statProfileCatalog');
+const { selectWeightedEntry } = require('./weightedSelector');
 
 const COMMON_GENERATION_PROPERTIES = Object.freeze([
 	'statProfile',
+	'statProfiles',
 	'naturalArmorPercentage',
 	'fixedRules',
 	'statusEffects',
@@ -30,8 +32,14 @@ function getGenerationMetadata(entry) {
 	return entry?.generation ?? {};
 }
 
+function getGenerationStatProfiles(generation) {
+	return generation?.statProfiles ?? [{ id: generation?.statProfile ?? DEFAULT_STAT_PROFILE_ID, weight: 1 }];
+}
+
+// Keep the original single-profile catalog helper available to existing callers.
+// For a weighted list this describes the first candidate, not a random selection.
 function getGenerationStatProfileId(generation) {
-	return generation?.statProfile ?? DEFAULT_STAT_PROFILE_ID;
+	return getGenerationStatProfiles(generation)[0].id;
 }
 
 function hasGenerationOverride(generation, property) {
@@ -41,6 +49,7 @@ function hasGenerationOverride(generation, property) {
 function resolveGenerationMetadata({
 	entityType,
 	generation,
+	archetypeKey = '',
 	level,
 	locale,
 	random = Math.random,
@@ -66,7 +75,18 @@ function resolveGenerationMetadata({
 		throw new TypeError(`Unsupported generation metadata entity type: ${entityType}.`);
 	}
 	const metadata = generation ?? {};
-	const statProfileId = getGenerationStatProfileId(metadata);
+	const choices = getGenerationStatProfiles(metadata).map(choice => ({
+		...choice,
+		name: getProfileName(choice.id, locale),
+	}));
+	const chooseProfile = eligible => eligible.length === 1
+		? eligible[0].id
+		: selectWeightedEntry(eligible, random).id;
+	const statProfileId = draft
+		? draft.draw('statProfile', chooseProfile, {
+			signature: archetypeKey, options: choices, label: 'statProfile', retainFixed: true,
+		})
+		: chooseProfile(choices);
 	const profile = getProfile(statProfileId);
 	if (!profile) {
 		throw createMissingProfileError(
@@ -139,6 +159,28 @@ function resolveGenerationMetadata({
 	}
 
 	return resolved;
+}
+
+const PROFILE_NAMES = {
+	default: ['Balanced', 'Équilibré'],
+	'character-fighter': ['Fighter', 'Combattant'],
+	'character-rogue': ['Rogue', 'Roublard'],
+	'character-mage': ['Mage', 'Mage'],
+	'character-cleric': ['Cleric', 'Clerc'],
+	'character-diplomat': ['Diplomat', 'Diplomate'],
+	'creature-predator': ['Predator', 'Prédateur'],
+	'creature-brute': ['Brute', 'Brute'],
+	'creature-caster': ['Spellcaster', 'Lanceur de sorts'],
+	'creature-elemental': ['Elemental', 'Élémentaire'],
+	'creature-animal-tank': ['Sturdy animal', 'Animal robuste'],
+	'creature-animal-runner': ['Swift animal', 'Animal rapide'],
+	'creature-animal-magic': ['Magical animal', 'Animal magique'],
+	'creature-companion': ['Agile companion', 'Compagnon agile'],
+	'creature-companion-magic': ['Magical companion', 'Compagnon magique'],
+};
+
+function getProfileName(id, locale) {
+	return PROFILE_NAMES[id]?.[locale === 'fr' ? 1 : 0] ?? id.replaceAll('-', ' ');
 }
 
 function resolveCategory(category, {
@@ -251,6 +293,7 @@ module.exports = {
 	TEMPLATE_PROPERTY_BY_ENTITY_TYPE,
 	getGenerationMetadata,
 	getGenerationStatProfileId,
+	getGenerationStatProfiles,
 	hasGenerationOverride,
 	resolveGenerationMetadata,
 };

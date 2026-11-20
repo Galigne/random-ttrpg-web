@@ -10,7 +10,7 @@ const locations = {
 
 function location(key, type, data, draft) {
   if (key === "level") return { field: "level.value" };
-  if (key === "statistics") return { field: "statistics" };
+  if (key === "statistics" || key === "statProfile") return { field: "statistics" };
   if (key.startsWith("archetype")) return { field: type === "character" ? "background.archetype" : "identity.name" };
   const [, , component, ...parts] = key.split(".");
   if (component === "background") return { field: "background.physicalDescription" };
@@ -35,6 +35,16 @@ function build(type, options, previous, edit) {
     ...control, current: rpg.catalogLabel(control.current, options.language), ...location(control.key, type, data, draft),
   }));
   const changed = previous ? sections.flatMap(section => describeChanges(section, previous, data)) : [];
+  if (previous && edit?.key.startsWith("archetype") &&
+      previous.draft.records.get("statProfile")?.value !== draft.records.get("statProfile")?.value) {
+    changed.unshift({ message: "profileChanged", to: controls.find(control => control.key === "statProfile")?.current });
+  }
+  if (previous && type === "character") {
+    const oldArmor = previous.draft.records.get("root.character.armor")?.value;
+    const newArmor = draft.records.get("root.character.armor")?.value;
+    if (oldArmor && !newArmor) changed.push({ message: "armorRemoved" });
+    else if (oldArmor && newArmor && oldArmor !== newArmor) changed.push({ message: "armorReplaced" });
+  }
   draft.previous = new Map();
   return { type, options, data, draft, sections, controls, changed, revision: (previous?.revision ?? -1) + 1 };
 }

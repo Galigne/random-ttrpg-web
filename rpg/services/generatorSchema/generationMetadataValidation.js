@@ -30,6 +30,13 @@ function validateGenerationMetadata(generation, location, entityType) {
 	if (generation.statProfile !== undefined) {
 		validateStatProfile(generation.statProfile, location, entityType);
 	}
+	if (generation.statProfiles !== undefined) {
+		if (generation.statProfile !== undefined) {
+			throw generatorSchemaError('INVALID_GENERATION_STAT_PROFILE',
+				`${entityLabel(entityType)} archetype ${location} cannot define both profile forms.`);
+		}
+		validateStatProfiles(generation.statProfiles, location, entityType);
+	}
 	if (generation.naturalArmorPercentage !== undefined) {
 		validateNaturalArmorPercentage(
 			generation.naturalArmorPercentage,
@@ -78,6 +85,30 @@ function validateGenerationMetadata(generation, location, entityType) {
 				entityType,
 			);
 		}
+	}
+}
+
+function validateStatProfiles(profiles, location, entityType) {
+	if (!Array.isArray(profiles) || profiles.length === 0 || profiles.length > 25) {
+		throw generatorSchemaError('INVALID_GENERATION_STAT_PROFILE',
+			`${entityLabel(entityType)} archetype ${location} needs one to 25 statistical profiles.`);
+	}
+	const ids = new Set();
+	let total = 0;
+	for (const profile of profiles) {
+		assertPlainObject(profile, `Invalid statistical profile choice in ${location}.`);
+		assertAllowedKeys(profile, ['id', 'weight'], `Invalid statistical profile choice in ${location}.`);
+		validateStatProfile(profile.id, location, entityType);
+		if (ids.has(profile.id) || (profile.weight !== undefined &&
+			(!Number.isFinite(profile.weight) || profile.weight <= 0))) {
+			throw generatorSchemaError('INVALID_GENERATION_STAT_PROFILE',
+				`${entityLabel(entityType)} archetype ${location} has duplicate profiles or an invalid weight.`);
+		}
+		ids.add(profile.id);
+		total += profile.weight ?? 1;
+	}
+	if (!Number.isFinite(total)) {
+		throw generatorSchemaError('INVALID_GENERATION_STAT_PROFILE', `Invalid profile weight total in ${location}.`);
 	}
 }
 

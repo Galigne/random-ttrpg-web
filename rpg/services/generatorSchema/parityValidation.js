@@ -136,6 +136,7 @@ function validateGenerationPair(english, french, file, index, templateProperty) 
 	}
 	const functionalProperties = [
 		'statProfile',
+		'statProfiles',
 		'naturalArmorPercentage',
 		'fixedRules',
 		'statusEffects',

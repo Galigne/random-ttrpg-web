@@ -387,7 +387,11 @@ that category. Do not keep empty arrays, zero `naturalArmorPercentage`, redundan
 Both entity types support these properties:
 
 - `statProfile`: a kebab-case ID from `stat-profile.json`; omission selects
-  `default`;
+  `default` when `statProfiles` is also absent;
+- `statProfiles`: a nonempty array of up to 25 unique `{ "id": "...", "weight": 1 }`
+  choices from `stat-profile.json`. Weights must be positive and finite and default
+  to `1` when omitted. A profile is selected by relative weight; authors must not
+  combine this property with `statProfile`. The single-profile form remains valid;
 - `naturalArmorPercentage`: a finite percentage from `0` to `100`;
 - `fixedRules`: up to 25 unique `{ "entry": "rule_id", "level": 1 }` records;
   a fixed `elemental_rule` must also provide an element stable ID, for example

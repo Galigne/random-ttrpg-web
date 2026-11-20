@@ -134,6 +134,7 @@ function populateRandomCharacter(character, options = {}) {
 		entityType: 'character',
 		draft,
 		generation,
+		archetypeKey: `${archetypeResult.generatorId}:${archetype.id}`,
 		level,
 		locale,
 		random,

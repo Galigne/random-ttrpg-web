@@ -5,11 +5,13 @@ const generatorCopy = {
     general: "General tables", character: "Character", creature: "Creature", options: "Generation options",
     browse: "Browse tables", search: "Search this list", empty: "No matches", category: "Category",
     roll: "Reroll", pick: "Choose", quantity: "Number of items", presence: "Include in sheet",
-    include: "Included", none: "None", gold: "Gold", statistics: "Statistics", level: "Level",
+    include: "Included", none: "None", gold: "Gold", statistics: "Statistics", statProfile: "Statistical profile", level: "Level",
     background: "Background", species: "Creature type", branch: "Follow a random branch",
     projection: "Output", subcategory: "Browse categories", entries: "Select an entry", library: "Save to library",
     preview: "Unsaved sheet", updated: "Updated", properties: "Properties", randomLoot: "Random loot",
     chooseTable: "Choose a table or roll random loot.", chooseEntity: "Generate a sheet, then choose or reroll its entries.",
+    profileNote: "The profile changes statistics; the archetype defines its abilities and equipment.",
+    profileChanged: "Statistical profile changed", armorRemoved: "Armor removed", armorReplaced: "Armor replaced",
     settingsNote: "These options apply to the next full generation.", locked: "Defined by the archetype",
     PREVIEW_NOT_FOUND: "This preview has expired. Generate a new sheet to continue.",
   },
@@ -17,11 +19,13 @@ const generatorCopy = {
     general: "Tables générales", character: "Personnage", creature: "Créature", options: "Options de génération",
     browse: "Parcourir les tables", search: "Rechercher dans la liste", empty: "Aucun résultat", category: "Catégorie",
     roll: "Relancer", pick: "Choisir", quantity: "Nombre d’objets", presence: "Inclure dans la fiche",
-    include: "Inclus", none: "Aucun", gold: "Or", statistics: "Statistiques", level: "Niveau",
+    include: "Inclus", none: "Aucun", gold: "Or", statistics: "Statistiques", statProfile: "Profil statistique", level: "Niveau",
     background: "Historique", species: "Type de créature", branch: "Suivre une branche au hasard",
     projection: "Résultat", subcategory: "Parcourir les catégories", entries: "Sélectionner une entrée", library: "Enregistrer en bibliothèque",
     preview: "Fiche non enregistrée", updated: "Mise à jour", properties: "Propriétés", randomLoot: "Butin aléatoire",
     chooseTable: "Choisissez une table ou générez du butin aléatoire.", chooseEntity: "Générez une fiche, puis choisissez ou relancez ses entrées.",
+    profileNote: "Le profil modifie les statistiques ; l’archétype définit ses capacités et son équipement.",
+    profileChanged: "Profil statistique modifié", armorRemoved: "Armure retirée", armorReplaced: "Armure remplacée",
     settingsNote: "Ces options s’appliquent à la prochaine génération complète.", locked: "Défini par l’archétype",
     PREVIEW_NOT_FOUND: "Cet aperçu a expiré. Générez une nouvelle fiche pour continuer.",
   },
@@ -100,14 +104,16 @@ function previewControls(gen, field, index) {
       <div>${genButton(gText("roll"), "reroll", control.key, `class="plain" aria-label="${attr(gText("roll") + " · " + label)}"`)}
       ${control.selectable ? genButton(gText("pick"), "options", control.key, `class="secondary" aria-expanded="false" aria-label="${attr(gText("pick") + " · " + label)}"`) : ""}</div></div>${feedback}</div>`;
   };
+  if (field === "statistics") return `<div class="gen-controls"><small class="muted">${esc(gText("profileNote"))}</small>${controls.map(row).join("")}</div>`;
   const primary = controls.find(control => !/\.(category|source|route\d+|presence)$/.test(control.key)) || controls[0];
   const rest = controls.filter(control => control !== primary);
   return `<div class="gen-controls">${row(primary)}${rest.length ? `<details class="gen-properties"><summary>${esc(gText("properties"))} (${rest.length})</summary>${rest.map(row).join("")}</details>` : ""}</div>`;
 }
 
 function changeMessage(preview) {
-  return preview.changed.map(change => fieldLabel(change.label) +
-    (change.from === undefined ? "" : ` ${change.from} → ${change.to}`)).join(", ");
+  return preview.changed.map(change => change.message
+    ? `${gText(change.message)}${change.to === undefined ? "" : `: ${change.to}`}`
+    : fieldLabel(change.label) + (change.from === undefined ? "" : ` ${change.from} → ${change.to}`)).join(", ");
 }
 
 function previewMarkup(gen) {

@@ -1,4 +1,4 @@
-const { getGenerationStatProfileId } = require('../generationMetadata');
+const { getGenerationStatProfiles } = require('../generationMetadata');
 const {
 	generatorSchemaError,
 } = require('./assertions');
@@ -266,8 +266,7 @@ function validateRoutedArchetypeStatProfileRelationships(
 				definition,
 				locale,
 				(generator, entry) => {
-					const profileId = getGenerationStatProfileId(entry.generation);
-					if (!profiles.has(profileId)) {
+					if (getGenerationStatProfiles(entry.generation).some(({ id }) => !profiles.has(id))) {
 						throw generatorSchemaError(
 							definition.profileMissingCode,
 							definition.profileMissingMessage(generator.id, entry.id),

@@ -100,7 +100,7 @@ test("creature equipment updates armor rating and provenance, and intrinsic RULE
   const drake = change(next, "archetype", "cinder_drake");
   const source = catalog.getGenerator("monster", "fr").entries.find(e => e.id === "cinder_drake");
   assert.equal(drake.data.name, source.name);
-  assert.equal(drake.data.source.statProfileId, source.generation.statProfile);
+  assert.ok(source.generation.statProfiles.some(profile => profile.id === drake.data.source.statProfileId));
   assert.deepEqual(drake.data.rules.map(r => [r.entryId, r.level]), source.generation.fixedRules.map(r => [r.entry, r.level]));
   assert.equal(drake.data.resources.ar.max, calculateArmorRating(drake.data.resources.hp.max, source.generation.naturalArmorPercentage));
   assert.ok(!drake.controls.some(c => c.key === "root.generation.armor"));
@@ -114,4 +114,106 @@ test("catalog-backed creature traits can be replaced separately and replay keeps
   assert.deepEqual(next.data.statistics, p.data.statistics);
   assert.deepEqual(change(next, "level", String(p.data.level)).data, next.data);
   assert.throws(() => change(next, "root.generation.traits.0", "free text"), /INVALID_GENERATION_CHOICE/);
+});
+
+test("character profile and statistic controls preserve independent choices and recalculate mechanics", () => {
+  for (const language of ["en", "fr"]) {
+    let p = previews.build("character", { language, path: "criminal:bandit", level: 6 });
+    p = change(p, "statProfile", "character-fighter");
+    p = change(p, "root.character.talents.0", alternative(p, "root.character.talents.0"));
+    const before = p;
+    assert.deepEqual(p.draft.options("statProfile").map(option => option.id),
+      ["character-fighter", "character-rogue", "character-mage", "default"]);
+    assert.throws(() => change(p, "statProfile", "creature-brute"), /INVALID_GENERATION_CHOICE/);
+    p = change(p, "statProfile", "character-mage");
+    assert.equal(p.draft.records.get("statProfile").value, "character-mage");
+    for (const key of ["name", "race", "background", "personality", "talents", "status"])
+      assert.deepEqual(p.data[key], before.data[key], key);
+    assert.deepEqual(p.data.gear.inventory, before.data.gear.inventory);
+    assert.equal(p.data.resources.hp.max, calculateMaxHp(p.data.statistics.constitution, 6));
+    assert.equal(p.data.resources.md.max, calculateMaxMovementDistance(p.data.statistics.speed));
+    assert.deepEqual(p.data.rules.map(rule => rule.level), allocateRuleLevels(calculateRulePoints(p.data.statistics.intelligence)));
+    assert.ok(p.changed.some(item => item.label === "character.fields.statistics"));
+    const armor = p.draft.records.get("root.character.armor");
+    if (armor) {
+      const type = catalog.getGenerator("armors", language).entries.find(e => e.id === armor.value).fields.type;
+      assert.ok(canEquipArmor(p.data.statistics.constitution, type));
+    }
+    const rerolled = change(p, "statistics");
+    assert.equal(rerolled.draft.records.get("statProfile").value, "character-mage");
+    assert.deepEqual(rerolled.data.talents, p.data.talents);
+    assert.deepEqual(rerolled.data.background, p.data.background);
+    assert.deepEqual(rerolled.data.gear.inventory, p.data.gear.inventory);
+    assert.deepEqual(rerolled.data.rules.map(rule => rule.level), allocateRuleLevels(calculateRulePoints(rerolled.data.statistics.intelligence)));
+  }
+});
+
+test("creature profile changes keep intrinsic properties and fixed RULEs even at low Intelligence", () => {
+  const originalRandom = Math.random;
+  Math.random = () => 0;
+  try {
+    for (const language of ["en", "fr"]) {
+      let p = previews.build("creature", { language, path: "monster:bell_wraith", level: 1 });
+      const before = p;
+      p = change(p, "statProfile", "creature-brute");
+      assert.ok(p.data.statistics.intelligence < 10);
+      assert.deepEqual(p.data.rules, before.data.rules);
+      assert.equal(p.data.rules[0].entryId, "echo_rule");
+      for (const key of ["name", "description", "traits", "status", "gear"])
+        assert.deepEqual(p.data[key], before.data[key], key);
+      assert.equal(p.data.source.statProfileId, "creature-brute");
+      const rerolled = change(p, "statistics");
+      assert.deepEqual(rerolled.data.rules, p.data.rules);
+      assert.deepEqual(rerolled.data.gear, p.data.gear);
+      assert.equal(rerolled.data.source.statProfileId, "creature-brute");
+    }
+  } finally { Math.random = originalRandom; }
+});
+
+test("archetype changes retain an eligible manual profile and replace an ineligible one", () => {
+  for (const language of ["en", "fr"]) {
+    let p = previews.build("creature", { language, path: "monster:bell_wraith", level: 4 });
+    p = change(p, "statProfile", "creature-elemental");
+    const drake = change(p, "archetype", "cinder_drake");
+    assert.equal(drake.data.source.statProfileId, "creature-elemental");
+    assert.equal(drake.data.rules[0].entryId, "elemental_rule");
+    assert.notDeepEqual(drake.data.traits, p.data.traits);
+    const hound = change(drake, "archetype", "grave_hound");
+    assert.ok(hound.draft.options("statProfile").some(option => option.id === hound.data.source.statProfileId));
+    assert.notEqual(hound.data.source.statProfileId, "creature-elemental");
+    assert.ok(hound.changed.some(item => item.message === "profileChanged"));
+    assert.deepEqual(hound.data.rules, []);
+    assert.throws(() => change(hound, "statProfile", "creature-elemental"), /INVALID_GENERATION_CHOICE/);
+    const animal = change(hound, "archetype.route0", "animal");
+    assert.equal(animal.data.source.generatorId, "animal");
+    assert.ok(animal.draft.options("statProfile").some(option => option.id === animal.data.source.statProfileId));
+  }
+});
+
+test("automatic armor removal is called out when a profile lowers Constitution", () => {
+  const originalRandom = Math.random;
+  Math.random = () => 0.999;
+  try {
+    let p = previews.build("character", { language: "en", path: "criminal:bandit", level: 1 });
+    p = change(p, "statProfile", "character-fighter");
+    assert.ok(p.draft.records.has("root.character.armor"));
+    const next = change(p, "statProfile", "character-mage");
+    assert.ok(!next.draft.records.has("root.character.armor"));
+    assert.ok(next.changed.some(item => item.message === "armorRemoved"));
+  } finally { Math.random = originalRandom; }
+});
+
+test("a profile change keeps a manually chosen RULE when the Intelligence allowance shrinks", () => {
+  const originalRandom = Math.random;
+  Math.random = seededRandom(123);
+  try {
+    let p = previews.build("character", { language: "en", path: "criminal:bandit", level: 6 });
+    p = change(p, "statProfile", "character-mage");
+    assert.equal(p.data.rules.length, 2);
+    p = change(p, "root.character.rules.1", alternative(p, "root.character.rules.1"));
+    const selected = p.data.rules[1].name;
+    const next = change(p, "statProfile", "character-fighter");
+    assert.equal(next.data.rules.length, 1);
+    assert.equal(next.data.rules[0].name, selected);
+  } finally { Math.random = originalRandom; }
 });
