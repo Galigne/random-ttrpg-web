@@ -65,7 +65,7 @@
     },
     {
       "output": "public/media/combat-card.webp",
-      "sha256": "bd05054c406e0852ae736d500762e48ba208049320c8689adea5ffd74f86b5cd",
+      "sha256": "3add0f4900bb40df81b21521c4ee5cf209d30b4132f0ff0473232a3171bb5b68",
       "inputs": [
         "media/references/skeletton wizard.jpg",
         "media/references/old dwarf.jpg",
@@ -75,9 +75,10 @@
       "generatedPngSha256": "c9bad898fefe4d5950f53934203c2b22e9d56e6cf62acf587c7baf4efe1942c2",
       "sourceWebp": {
         "path": "media/rulebook/combat.webp",
-        "sha256": "123d205acd6d70d5edcf8ac91279e40ee1244aa9664b33360c840df052a3a719"
+        "sha256": "50b7f1af71906b98a18426316249b1c8675cb79e030fc953911329abbd7c0c60"
       },
-      "preparation": "Resized from the approved 1536 × 1024 PNG to the existing 560 × 373 card size using Lanczos, then encoded as WebP at quality 90."
+      "preparation": "Converted the approved generated PNG to neutral grayscale, resized from 1536 × 1024 to the existing 560 × 373 card size using Lanczos, and encoded as WebP at quality 90.",
+      "preparedPngSha256": "a975c26940c1c861558e574b227dfa78f97f6cdbed6a91edb8eec148f74cb50a"
     },
     {
       "outputs": {

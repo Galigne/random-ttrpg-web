@@ -113,11 +113,11 @@
       ],
       "original": {
         "path": "combat_new.png",
-        "sha256": "c9bad898fefe4d5950f53934203c2b22e9d56e6cf62acf587c7baf4efe1942c2"
+        "sha256": "a975c26940c1c861558e574b227dfa78f97f6cdbed6a91edb8eec148f74cb50a"
       },
       "web": {
         "path": "combat.webp",
-        "sha256": "123d205acd6d70d5edcf8ac91279e40ee1244aa9664b33360c840df052a3a719"
+        "sha256": "50b7f1af71906b98a18426316249b1c8675cb79e030fc953911329abbd7c0c60"
       },
       "width": 1536,
       "height": 1024,
@@ -132,9 +132,10 @@
         "previouslyRecordedSha256": "b9045d6602730c96bc30aad49239987f6e4c65a4b063b280df749510dfb7ec1f"
       },
       "revision": {
-        "source": "Fresh image_gen.imagegen generation; user-approved proposal S1",
-        "integratedDate": "2026-11-19",
-        "preparation": "Approved PNG preserved byte-for-byte. Lossless WebP encoded at native resolution without resizing, recoloring, sharpening, or dithering."
+        "source": "User-approved generated proposal S1 converted to neutral grayscale",
+        "integratedDate": "2026-11-20",
+        "generatedPngSha256": "c9bad898fefe4d5950f53934203c2b22e9d56e6cf62acf587c7baf4efe1942c2",
+        "preparation": "Converted the approved PNG to continuous neutral grayscale with FFmpeg format=gray at its original 1536 × 1024 resolution. Saved as PNG and encoded a pixel-identical lossless WebP, without resizing, sharpening, thresholding or dithering."
       },
       "previousArtwork": {
         "originalGeneration": {
