@@ -47,7 +47,6 @@ const copy = {
     create: "Create",
     cancel: "Cancel",
     save: "Save",
-    back: "Back",
     close: "Close",
     settings: "Settings",
     noCampaigns:
@@ -278,7 +277,6 @@ const copy = {
     create: "Créer",
     cancel: "Annuler",
     save: "Enregistrer",
-    back: "Retour",
     close: "Fermer",
     settings: "Paramètres",
     noCampaigns:
@@ -754,7 +752,7 @@ async function campaignScreen(campaignId, tabName) {
   state.campaign = data;
   const c = data.campaign,
     tabs = campaignTabs(c.id, tabName);
-  const top = `${header(c.name, c.description, tabName === "overview" ? "" : `<a class="button secondary" href="#/generators?campaign=${attr(c.id)}">${esc(t("generators"))}</a> <a class="button secondary" href="#/campaigns">${esc(t("back"))}</a>`)}${tabs}`;
+  const top = `${header(c.name, c.description)}${tabs}`;
   if (tabName === "overview") {
     app.innerHTML =
       top +
