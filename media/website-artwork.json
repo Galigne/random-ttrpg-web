@@ -103,16 +103,22 @@
     },
     {
       "output": "public/dice/art/marble.webp",
-      "sha256": "c9e947631a30b7c42f7774b8015d649438bfebaa9b1af77a0e15c771d73894ad",
+      "sha256": "d433d62b9c4e28d630fafc1e9bad2f4183c59567576601849089d297061fdad4",
       "inputs": [
         "media/references/castle entry.jpg"
       ],
       "generationInputs": [
+        "public/dice/art/marble.webp",
         "../incroyable-bot-discord/media/references/castle entry.jpg"
       ],
-      "prompt": "Create a single edge-to-edge flat square texture study of a polished slab of very pale Carrara marble with unmistakable flowing graphite-gray mineral veins. This material will wrap a small fantasy gaming die, and must read as marble even when the entire swatch is reduced to 150px. Use the attached original rulebook illustration castle entry.jpg as actual reference for the draftsman's expressive varied nib pressure, dry graphite and hand-hatching. Draw three or four long, uneven silvery slate vein bands that drift diagonally across the entire sample with branching hairline tributaries, wispy folded layers, occasional angular jogs, alternating wider and sharply pinched passages. Let the bands cross the center as well as the margins, with luminous quiet chalk-white areas between them. Two prominent smoky mineral ribbons have broad softly broken graphite flanks and a fine dark mineral thread off-center, with a few related fine branches. Avoid a web of cracks, uniform zigzags or dense noise. Treat it as a geologist's material study drawn by the rulebook illustrator: visible pencil strokes and ink accents within the mineral bands, light graphite grain around them; monochrome silver-gray on white. Material swatch only, no object, facets, decorative frame, geometric grid, lettering, digits, icons, scenery or signature. Traditional hand-drawn fantasy illustration, reminiscent of an illustrator's pencil studies for a classic tabletop RPG rulebook. Graphite pencil and fine ink on warm, pure-white paper. Monochromatic with natural graphite grays. Loose, confident, expressive linework, visible construction lines, overlapping strokes, varied line weight, irregular contours, and organic imperfections. Detailed cross-hatching and directional pencil shading. Some areas carefully rendered while others remain deliberately unfinished. Authentic traditional sketchbook aesthetic, visibly handmade. No watercolor, painted color fills, digital gradients, airbrushing, photorealism, polished digital concept art, or 3D rendering.",
-      "generatedPngSha256": "a37c79b45f227d18a7d50b38788a897d794c58876c5302d6b4e20f2a93af5eee",
-      "preparation": "Converted the full marble study to grayscale, resized to 512 × 512 using Lanczos and encoded as WebP at quality 87. The animation projects this single field of veins across the solid."
+      "prompt": "Refine the first image, RANDOM's existing white marble swatch, for the surfaces of small numbered dice. Use the second image, castle entry.jpg, as the actual visual reference for the broken contours, pressure of pencil marks and short directional hatching on stone. Deliver a square, edge-to-edge flat material swatch. Keep the original pale value, vein scale and general drifting diagonal flow. Exchange the wide mesh-like bands for a few slimmer, asymmetric mineral seams with tapering forks and soft, intermittent flanks made of short, individually legible graphite strokes. Leave generous quiet areas of pale stone, with just a few tiny mineral inclusions, faint dry-pencil scuffs and patches of paper tooth. The stone should feel honed by hand; the printed numbers will be supplied separately. No writing, numerals, figures, architecture, border, cast shadow or lighting baked into the texture. Traditional hand-drawn fantasy illustration, reminiscent of an illustrator's pencil studies for a classic tabletop RPG rulebook. Graphite pencil and fine ink on warm, pure-white paper. Monochromatic with natural graphite grays. Loose, confident, expressive linework, visible construction lines, overlapping strokes, varied line weight, irregular contours, and organic imperfections. Detailed cross-hatching and directional pencil shading. Some areas carefully rendered while others remain deliberately unfinished. Authentic traditional sketchbook aesthetic, visibly handmade. No watercolor, painted color fills, digital gradients, airbrushing, photorealism, polished digital concept art, or 3D rendering.",
+      "generatedPngSha256": "bb042e781f7badbaae36f8956ba1eff3f0d94f88029982da25dd6d2222a2a97d",
+      "preparation": "Converted the generated study to neutral grayscale, resized to 512 × 512 using Lanczos, and encoded as WebP at quality 87.",
+      "sourceTexture": {
+        "path": "public/dice/art/marble.webp",
+        "revision": "3c3e8f4808c2fa114e5eec5b4bd2d76de09df062",
+        "sha256": "c9e947631a30b7c42f7774b8015d649438bfebaa9b1af77a0e15c771d73894ad"
+      }
     }
   ],
   "encoding": "Unless otherwise noted per illustration, lossless WebP; decoded RGBA pixels verified identical to the generated PNG."

@@ -1050,9 +1050,7 @@ button.gen-option:hover { background: #f0e4ca; color: var(--red); }
 .gen-picker { padding: .35rem .55rem; background: #f2ead7; }
 .gen-picker .gen-list { max-height: 13rem; }
 .gen-changes { background: #f8efd7; border-left: 3px solid var(--gold); padding: .55rem .8rem; }
-.gen-empty { background: var(--paper); border: 1px solid var(--line); text-align: center; padding: 0 0 1.4rem; box-shadow: var(--shadow); }
-.gen-empty-general { padding-top: 1.4rem; }
-.gen-empty img { width: 100%; height: clamp(7rem, 16vw, 12rem); object-fit: cover; margin-bottom: 1rem; }
+.gen-empty { background: var(--paper); border: 1px solid var(--line); text-align: center; padding: 1.4rem 0; box-shadow: var(--shadow); }
 .gen-empty p { color: var(--muted); padding: 0 1rem; }
 .gen-dock { position: fixed; inset: auto 0 0; z-index: 12; background: #432c24; border-top: 2px solid #b39766; box-shadow: 0 -3px 14px #33231c29; padding: .55rem max(1rem, env(safe-area-inset-right)) max(.55rem, env(safe-area-inset-bottom)); color: #fff8e8; }
 .gen-dock > div { margin: auto; max-width: 72rem; display: flex; align-items: center; justify-content: space-between; gap: .8rem; }

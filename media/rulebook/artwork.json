@@ -71,11 +71,11 @@
       ],
       "original": {
         "path": "characters_new.png",
-        "sha256": "e26d09bd40a98c2c189d962446871173b795d4f7141609cebf848a68768da5f0"
+        "sha256": "abfecfe1ff8562f3ef67fb213762611060bd6645c4758c13f651fe5acf5ee500"
       },
       "web": {
         "path": "characters.webp",
-        "sha256": "96851583762622fa8d02570d0c23eb6e9b19a1b90ce5cb2cc1060ea62f07b95f"
+        "sha256": "0388fc5ac290e07baf3ec2e86899619b4ef1327bb18ad6747c690a8d3ad88c25"
       },
       "width": 1536,
       "height": 1024,
@@ -91,7 +91,15 @@
       "revision": {
         "source": "User-supplied final artwork",
         "integratedDate": "2026-11-13",
-        "preparation": "Native resolution, neutral continuous grayscale, lossless WebP. No resampling, sharpening, thresholding or dithering. Soft edge blending is applied by the shared stylesheet."
+        "preparation": "Native resolution, neutral continuous grayscale, lossless WebP. No resampling, sharpening, thresholding or dithering. Soft edge blending is applied by the shared stylesheet.",
+        "backgroundEdit": {
+          "date": "2026-11-20",
+          "inputPngSha256": "e26d09bd40a98c2c189d962446871173b795d4f7141609cebf848a68768da5f0",
+          "guidePngSha256": "947f484d14751935f5295519847aee822bef96e58328d0b4a91c5dff29629d5c",
+          "tool": "image_gen.imagegen",
+          "prompt": "Edit the provided 1536 x 1024 monochrome drawing. Replace ONLY the empty gray textured paper background around the three characters with solid pure white #FFFFFF, including gaps between their silhouettes and wispy strokes. Preserve the three characters exactly, their faces, poses, hair, branches, clothing, hatching, shading, and every fine pencil mark in its original location. Keep exact framing, crop, and dimensions. No redrawing, new lines, global brightening or contrast change.",
+          "preparation": "Used the edit as a background selection guide. Composited white onto the existing grayscale pixels, protecting dark pencil strokes and blending partially covered edge pixels. Encoded the full-resolution WebP losslessly."
+        }
       }
     },
     {

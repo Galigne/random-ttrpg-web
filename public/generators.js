@@ -147,7 +147,7 @@ async function generatorScreen() {
     <div class="gen-columns"><details class="paper gen-catalog" ${gen.optionsOpen !== false ? "open" : ""}><summary>${esc(gText("options"))}</summary>
     <div class="gen-settings">${options}</div>${gen.preview ? `<p class="muted">${esc(gText("settingsNote"))}</p>` : ""}${browseMarkup(gen, gen.browse)}</details>
     <section class="gen-sheet" aria-label="${attr(general ? t("result") : gText("preview"))}">${general && gen.result ? `<h2>${esc(t("result"))}</h2>${resultMarkup(gen.result)}` : gen.preview ? previewMarkup(gen) :
-      `<div class="gen-empty${general ? " gen-empty-general" : ""}">${general ? "" : `<img src="/media/${art}-card.webp" alt="">`}<h2>${esc(general ? t("result") : t("generatedPreview"))}</h2><p>${esc(gText(general ? "chooseTable" : "chooseEntity"))}</p></div>`}</section></div>
+      `<div class="gen-empty"><h2>${esc(general ? t("result") : t("generatedPreview"))}</h2><p>${esc(gText(general ? "chooseTable" : "chooseEntity"))}</p></div>`}</section></div>
     <div class="gen-dock"><div><span class="gen-target">${esc(gText(gen.kind))}<strong>${esc(scope)}</strong></span><div class="actions">
     ${genButton(gen.result || gen.preview ? t("regenerate") : t("generate"), "generate", "", gen.busy ? "disabled" : "")}
     ${gen.preview ? genButton(gText("library"), "save", "", `class="secondary" ${gen.busy ? "disabled" : ""}`) : ""}</div></div></div></div>`;
