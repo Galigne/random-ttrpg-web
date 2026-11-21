@@ -1,31 +1,10 @@
-# RANDOM website contributor guide
+# Agent instructions
 
-This repository is the standalone website. The canonical English and French
-rulebooks are the Markdown files in `documentation/`; do not change their rules to
-match an implementation. Their generated HTML, fonts, illustrations, reader,
-and build inputs belong together. Rebuild with `node documentation/rulebook/build.js`
-only after an explicitly authorized rulebook or reader change, never by hand.
+Read the relevant code and documentation before changing behavior. The current implementation is the source of truth for website behavior; the canonical English and French Markdown rulebooks in `documentation/` are authoritative for RPG rules. Do not change rules to fit an implementation. If they conflict, investigate and report it. See the [development guide](documentation/development.md), [user guide](documentation/user-guide.md), [deployment guide](documentation/deployment.md), and [legacy import guide](documentation/legacy-migration.md).
 
-`rpg/` contains the Discord-independent domain implementation, catalogs, and
-translations migrated from the bot. Keep its formulas, generator weights, routing,
-schemas, and field catalogs authoritative. Website identity, access, and
-persistence are implemented separately in `server/`; do not use the legacy bot
-settings as website permissions or implement RPG calculations in the browser.
-
-The web server is intentionally a single Node process. SQLite owns persistent
-data and transactional history. Presence, editing locks, previews, and campaign
-chat are in memory. Every entity read, mutation, subscription, image request, and
-live event must check current server-side authorization. In particular, do not
-expose private entity names, portraits, or events to unauthorized campaign members,
-except for the explicitly limited Playing Character preview. Locks cannot be
-forcibly released by an owner or administrator.
-
-Keep both interface languages usable. A saved entity's generated text is never
-translated automatically. Any newly generated artwork must use appropriate files
-from `media/references/` as actual image inputs, and its prompt, input paths, and
-hashes must be recorded in `media/website-artwork.json`.
-
-Do not commit configuration, credentials, database files, uploads, or chat. Use
-isolated temporary databases for tests. Run `npm test`, check the affected browser
-flows when changing the interface, and preserve the original bot checkout and its
-real saves. See `README.md` for setup and Alwaysdata deployment.
+- Preserve existing data, compatibility, ownership, permissions, and history. Never perform destructive production operations without explicit approval. Keep credentials, databases, backups, uploads, and chat out of Git. Use isolated temporary databases for tests and preserve the original bot checkout and real saves.
+- `rpg/` owns Discord-independent mechanics, generator weights, schemas, routing, catalogs, and translations; `server/` owns website identity, permissions, and persistence. Do not use legacy bot settings for website permissions or implement RPG calculations in the browser.
+- SQLite owns persistent data and transactional history; presence, locks, previews, and campaign chat live in one Node process. Check current server-side authorization for every entity read, mutation, subscription, image request, and live event. Do not expose private names, portraits, or events to unauthorized members except the explicitly limited Playing Character preview. Owners and admins cannot forcibly release locks.
+- Keep both interface languages usable. Saved generated text is not automatically translated. New generated artwork must use suitable `media/references/` files as actual inputs and record prompts, input paths, and hashes in `media/website-artwork.json`.
+- Preserve canonical rulebooks, generated editions, fonts, artwork, reader, and build inputs. Rebuild using `node documentation/rulebook/build.js` only after an explicitly authorized rulebook or reader change; never edit generated HTML by hand.
+- Keep changes focused and simple. Update relevant documentation when behavior, configuration, architecture, or deployment changes. Run appropriate tests, including `npm test` and affected browser flows for UI changes, and report results and limitations.
