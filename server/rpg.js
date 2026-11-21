@@ -13,6 +13,7 @@ const {
 const { dealDamage } = require("../rpg/services/mechanics/damage");
 const {
   restoreHealingResources,
+  healResources,
   resetTurnResources,
 } = require("../rpg/services/mechanics/resources");
 const { rollDiceExpression } = require("../rpg/services/diceRollService");
@@ -127,7 +128,9 @@ function combat(type, data, action, input) {
   let result;
   if (action === "damage")
     result = dealDamage(entity, Number(input.amount), Boolean(input.piercing));
-  else if (action === "heal")
+  else if (action === "heal" && input.amount !== undefined)
+    result = healResources(entity, input.resource, Number(input.amount));
+  else if (action === "restore" || action === "heal")
     result = restoreHealingResources(
       entity,
       input.resource,

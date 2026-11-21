@@ -42,7 +42,8 @@ function validateResourcePair(resource, resourceId, editError) {
 		|| !Number.isFinite(resource.max)
 		|| resource.current < 0
 		|| resource.max < 0
-		|| resource.current > resource.max
+		|| (resourceId === 'encumbrance' && resource.current > resource.max)
+		|| resource.current > Number.MAX_SAFE_INTEGER
 		|| resource.max > maxAllowed
 		|| (
 			resourceId === 'ap'

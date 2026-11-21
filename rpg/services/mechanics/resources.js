@@ -71,8 +71,21 @@ function restoreHealingResources(character, resourceName, percentage) {
 	});
 }
 
+function healResources(character, resourceName, amount) {
+	const resourceKeys = { hp: ['hp'], armor: ['ar'], both: ['hp', 'ar'] }[resourceName];
+	if (!resourceKeys) throw combatantEditError(character, 'errors.healResourceInvalid');
+	if (!Number.isSafeInteger(amount) || amount <= 0)
+		throw combatantEditError(character, 'errors.healAmountInvalid');
+	return resourceKeys.map(resource => {
+		const target = character.resources[resource];
+		const previous = target.current;
+		target.current = Math.max(target.current, Math.min(target.max, target.current + amount));
+		return { resource, previous, current: target.current, max: target.max };
+	});
+}
+
 function resetTurnResources(character) {
-	character.resources.ap.current = character.resources.ap.max;
+	character.resources.ap.current = character.resources.ap.max + Math.floor(character.resources.ap.current / 2);
 	character.resources.md.current = character.resources.md.max;
 }
 
@@ -102,6 +115,7 @@ module.exports = {
 	calculateRestoredResourceValue,
 	clampActionPoints,
 	createGeneratedResources,
+	healResources,
 	resetTurnResources,
 	restoreHealingResources,
 	restoreResource,

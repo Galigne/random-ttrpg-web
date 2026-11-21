@@ -6,7 +6,8 @@ const generatorPreviews = require("./generator-previews");
 const { readImage, sendImage } = require("./images");
 const { createHash } = require("node:crypto");
 
-module.exports = ({ db, live, route, fail }) => {
+module.exports = (ctx) => {
+  const { db, live, route, fail } = ctx;
   const generated = new Map();
   const previews = new Map();
   live.onLockEnd((entityId, lock) =>
@@ -130,6 +131,7 @@ module.exports = ({ db, live, route, fail }) => {
     live.entityChanged(row.id);
     if (playingChanged) live.playingChanged(row.id);
   }
+  ctx.publishEntity = publish;
   function sheet(row, user, data = JSON.parse(row.data)) {
     const entity = rpg.hydrate(row.type, data);
     const held = live.getLock(row.id);
@@ -162,18 +164,11 @@ module.exports = ({ db, live, route, fail }) => {
   }
   function logAction(campaignId, row, user, details) {
     if (!campaignId) return;
-    const pc = db
-      .prepare(
-        "SELECT e.type,e.data FROM playing_characters p JOIN entities e ON e.id=p.entity_id WHERE p.campaign_id=? AND p.user_id=?",
-      )
-      .get(campaignId, user.id);
     live.append(campaignId, {
       type: "combat",
       identity: {
         username: user.username,
-        characterName: pc
-          ? rpg.displayName(pc.type, JSON.parse(pc.data), user.language)
-          : null,
+        characterName: null,
       },
       entityIds: [row.id],
       entityName: rpg.displayName(
@@ -580,20 +575,6 @@ module.exports = ({ db, live, route, fail }) => {
         sendImage(res, image.image, image.mime);
         return;
       }
-      const campaignId = url.searchParams.get("previewCampaign");
-      if (
-        !allowed &&
-        row &&
-        campaignId &&
-        access.membership(db, campaignId, user.id)
-      )
-        allowed = Boolean(
-          db
-            .prepare(
-              "SELECT 1 FROM playing_characters WHERE campaign_id=? AND entity_id=?",
-            )
-            .get(campaignId, row.id),
-        );
       if (!allowed || !row?.portrait) fail(404, "NOT_FOUND");
       sendImage(res, row.portrait, row.portrait_type);
     },

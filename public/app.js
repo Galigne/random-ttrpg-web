@@ -117,10 +117,12 @@ const copy = {
     cancelReversal: "Cancel preview",
     previewing: "Undo preview · changes are not saved",
     damage: "Damage",
+    battle: "Battle", battleStarted: "Battle started", battleEnded: "Battle ended", startBattle: "Start battle", endBattle: "End battle", round: "Round", unknownCombatant: "Unknown combatant", activeTurn: "Active", finishedTurn: "Finished", delayTurn: "Delay", advanceTurn: "Advance", correctTurn: "Set active", moveUp: "Move earlier", moveDown: "Move later", addCombatant: "Add combatant", playersSide: "Players and allies", enemiesSide: "Enemies", restore: "Restore", selectTarget: "Select a target", noTargets: "No manageable combatants.", resourceControls: "Resources", ENTITY_LOCKED: "This sheet is being edited. Finish editing before changing its resources here.",
     piercing: "Piercing",
     heal: "Heal",
     healResource: "Heal resource",
     percentage: "Restore to % of maximum",
+    maximum: "Maximum", adjust: "Adjust", setResource: "Set resource",
     endTurn: "End turn",
     amount: "Amount",
     portrait: "Portrait",
@@ -362,10 +364,12 @@ const copy = {
     previewing:
       "Aperçu de la révision · les changements ne sont pas enregistrés",
     damage: "Dégâts",
+    battle: "Combat", battleStarted: "Combat commencé", battleEnded: "Combat terminé", startBattle: "Commencer le combat", endBattle: "Terminer le combat", round: "Manche", unknownCombatant: "Combattant inconnu", activeTurn: "Actif", finishedTurn: "Terminé", delayTurn: "Retarder", advanceTurn: "Avancer", correctTurn: "Activer", moveUp: "Avancer dans l’ordre", moveDown: "Reculer dans l’ordre", addCombatant: "Ajouter un combattant", playersSide: "Joueurs et alliés", enemiesSide: "Ennemis", restore: "Restaurer", selectTarget: "Choisir une cible", noTargets: "Aucun combattant à gérer.", resourceControls: "Ressources", ENTITY_LOCKED: "Cette fiche est en cours de modification. Terminez sa modification avant de changer ses ressources ici.",
     piercing: "Perforant",
     heal: "Soigner",
     healResource: "Ressource à soigner",
     percentage: "Restaurer à % du maximum",
+    maximum: "Maximum", adjust: "Ajuster", setResource: "Définir la ressource",
     endTurn: "Fin du tour",
     amount: "Quantité",
     portrait: "Portrait",
@@ -705,7 +709,7 @@ function chatMessage(item) {
       ? `<p>${esc(item.text)}</p>`
       : item.type === "roll"
         ? `${item.privateRoll ? tag(t("private")) : ""}${diceDisplay(item.result, item.id || "")}`
-        : `<p><strong>${esc(item.entityName)}</strong> · ${esc(t(item.action === "end-turn" ? "endTurn" : item.action === "resource" ? "status" : item.action))}</p>${item.resources ? resourcePills(item.resources) : ""}`;
+        : `<p>${item.entityName ? `<strong>${esc(item.entityName)}</strong> · ` : ""}${esc(t(item.action === "end-turn" ? "endTurn" : item.action === "resource" || item.action === "set" ? "status" : item.action))}</p>${item.resources ? resourcePills(item.resources) : ""}`;
   return `<div class="chat-message" data-chat-id="${attr(item.id || "")}"><strong>${esc(who)}</strong> <small>${esc(new Date(item.time).toLocaleTimeString(state.language, { hour: "2-digit", minute: "2-digit" }))}</small>${content}</div>`;
 }
 function mountChatRolls(container, items) {
@@ -755,6 +759,50 @@ function campaignTabs(id, selected) {
   const tabs = ["overview", "members", "characters", "creatures", "settings"];
   return `<nav class="tabs">${tabs.map((x) => `<a ${x === selected ? 'class="active" aria-current="page"' : ""} href="#/campaign/${attr(id)}/${x}">${esc(t(x))}</a>`).join("")}</nav>`;
 }
+let selectedBattleTarget = "";
+let selectedBattleToken = "";
+let currentBattleSession = null;
+let resourceMode = "damage";
+let resourceKey = "hp";
+function battlePanel(data, session) {
+  currentBattleSession = session;
+  const { battle, targets } = session;
+  if (!targets.some(target => target.id === selectedBattleTarget)) selectedBattleTarget = "";
+  if (!selectedBattleTarget && targets.length === 1) selectedBattleTarget = targets[0].id;
+  const selected = targets.find(target => target.id === selectedBattleTarget);
+  const options = targets.map(target => `<option value="${attr(target.id)}">${esc(target.name)}</option>`).join("");
+  const shortResource = key => fieldLabel(`character.resources.${key}.abbreviation`);
+  const slider = (label, name, value, maximum, step = "1", cap = false) => `<div class="resource-adjust" data-resource-adjust><label>${esc(label)}<input type="number" name="${attr(name)}" value="${attr(value)}" min="${name === "amount" ? 1 : 0}" step="${attr(step)}" ${cap ? `max="${attr(maximum)}"` : ""} data-adjust-number required></label><input type="range" aria-label="${attr(`${t("adjust")} ${label}`)}" min="${name === "amount" ? 1 : 0}" max="${attr(Math.max(1, maximum, value))}" step="${attr(step)}" value="${attr(value)}" data-base-max="${attr(maximum)}" data-adjust-slider></div>`;
+  const amountMax = Math.max(1, selected ? selected.resources.hp.current + selected.resources.ar.current : 1, selected?.resources.hp.max || 0, selected?.resources.ar.max || 0);
+  const modes = ["damage", "heal", "restore", "set"];
+  const keys = ["hp", "ar", "ap", "md"];
+  const modeLabel = mode => t(mode === "set" ? "setResource" : mode);
+  function operationForm(mode) {
+    const choice = ["heal", "restore"].includes(mode) ? `<div class="resource-choices">${["hp", "armor", "both"].map((value, i) =>
+      `<label><input type="radio" name="resource" value="${value}" ${i === 0 ? "checked" : ""}><span>${esc(value === "both" ? shortResource("hp") + " + " + shortResource("ar") : shortResource(i ? "ar" : "hp"))}</span></label>`).join("")}</div>` : "";
+    const adjust = mode === "restore" ? slider(t("percentage"), "percentage", 100, 100, "any", true)
+      : slider(t("amount"), "amount", 1, amountMax);
+    return `<form class="campaign-resource" data-operation="${mode}" ${mode !== resourceMode ? "hidden" : ""}>
+      ${choice}${adjust}${mode === "damage" ? `<label><input type="checkbox" name="piercing"> ${esc(t("piercing"))}</label>` : ""}
+      <button>${esc(modeLabel(mode))}</button></form>`;
+  }
+  const controls = selected ? `<div class="battle-target resource-console"><h3>${esc(selected.name)}</h3>
+    <div class="resource-meters">${keys.map(key => {
+      const r = selected.resources[key];
+      return `<button type="button" data-edit-pool="${key}" aria-label="${attr(t("adjust") + " " + shortResource(key))}"><strong>${esc(shortResource(key))}</strong> <span>${esc(r.current)} / ${esc(r.max)}</span><progress max="${Math.max(r.max, 1)}" value="${r.current}"></progress></button>`;
+    }).join("")}</div>
+    <div class="resource-modes">${modes.map(mode => `<button type="button" data-resource-mode="${mode}" aria-pressed="${mode === resourceMode}">${esc(modeLabel(mode))}</button>`).join("")}</div>
+    ${modes.slice(0, 3).map(operationForm).join("")}
+    ${keys.map(key => {
+      const r = selected.resources[key];
+      return `<form class="campaign-resource" data-operation="set" data-pool="${key}" ${resourceMode !== "set" || resourceKey !== key ? "hidden" : ""}>
+        <label>${esc(t("resourceControls"))}<select name="resourceKey">${keys.map(k => `<option value="${k}" ${key === k ? "selected" : ""}>${esc(shortResource(k))}</option>`).join("")}</select></label>
+        ${slider(shortResource(key) + " · " + t("maximum") + " " + r.max, "value", r.current, r.max, key === "ap" ? "1" : "any")}
+        <button>${esc(t("save"))}</button></form>`;
+    }).join("")}</div>` : "";
+  const tracker = battle ? `<div class="battle-heading"><h3>${esc(t("round"))} ${esc(battle.round)}</h3>${data.gm ? action(t("advanceTurn"), "battle-action", "advance") + action(t("endBattle"), "battle-action", "end") : ""}</div><div class="initiative">${battle.groups.map(group => `<div class="initiative-group${group.active ? " is-active" : ""}">${group.entries.map(entry => `<div class="initiative-entry"><span>${entry.control ? action(entry.name || t("unknownCombatant"), "select-combatant", entry.token) : esc(entry.name || t("unknownCombatant"))} ${group.active ? tag(t("activeTurn")) : ""} ${entry.finished ? tag(t("finishedTurn")) : ""}</span>${selectedBattleToken === entry.token ? `<div class="actions">${entry.control && group.active && !entry.finished ? action(t("endTurn"), "battle-action", `finish|${entry.token}`) + action(t("delayTurn"), "battle-action", `delay|${entry.token}`) : ""}${data.gm ? action(t("moveUp"), "battle-action", `up|${entry.token}`) + action(t("moveDown"), "battle-action", `down|${entry.token}`) + action(t("correctTurn"), "battle-action", `correct|${entry.token}`) + action(t("remove"), "battle-action", `remove|${entry.token}`) : ""}</div>` : ""}</div>`).join("")}</div>`).join("")}</div>${data.gm && targets.length ? `<form id="battle-add" class="row"><label>${esc(t("addCombatant"))}<select name="entityId">${options}</select></label><button>${esc(t("addCombatant"))}</button></form>` : ""}` : data.gm ? action(t("startBattle"), "battle-action", "start", "") : "";
+  return `<section class="paper battle-panel"><h2>${esc(t("battle"))}</h2>${tracker}<h3>${esc(t("resourceControls"))}</h3>${targets.length ? `<label>${esc(t("selectTarget"))}<select id="battle-target"><option value="">${esc(t("selectTarget"))}</option>${targets.map(target => `<option value="${attr(target.id)}" ${selectedBattleTarget === target.id ? "selected" : ""}>${esc(target.name)}</option>`).join("")}</select></label>` : `<p class="muted">${esc(t("noTargets"))}</p>`}${controls}</section>`;
+}
 async function campaignScreen(campaignId, tabName) {
   const requestStarted = performance.now();
   const data = await api(`/api/campaigns/${encodeURIComponent(campaignId)}`);
@@ -780,9 +828,10 @@ async function campaignScreen(campaignId, tabName) {
     tabs = campaignTabs(c.id, tabName);
   const top = `${header(c.name, c.description)}${tabs}`;
   if (tabName === "overview") {
+    const session = data.membership || state.user.role === "admin" ? await api(`/api/campaigns/${encodeURIComponent(campaignId)}/battle`) : null;
     app.innerHTML =
       top +
-      `<div class="split"><section class="panel"><h2>${esc(t("chat"))}</h2><div class="chat" id="chat">${data.chat.map(chatMessage).join("")}</div><form id="chat-form" class="row"><label>${esc(t("message"))}<input name="text" maxlength="2000" required autocomplete="off"></label><button class="fit">${esc(t("send"))}</button></form><div class="divider">✦</div><h3>${esc(t("dice"))}</h3><form id="dice-form" class="row"><label>${esc(t("expression"))}<input name="expression" value="1d20" required></label><label class="fit"><input type="checkbox" name="private"> ${esc(t("privateRoll"))}</label><button class="fit">${esc(t("roll"))}</button></form></section><aside class="stack"><section class="panel"><h2>${esc(t("members"))}</h2>${memberList(data)}</section><section class="panel"><h2>${esc(t("characters"))} &amp; ${esc(t("creatures"))}</h2>${data.entities.length ? data.entities.map((e) => `<p><a href="#/sheet/${attr(e.id)}?campaign=${attr(c.id)}">${esc(e.name)}</a></p>`).join("") : `<p class="muted">${esc(t("noEntities"))}</p>`}</section></aside></div>`;
+      `${session ? battlePanel(data, session) : ""}<div class="split"><section class="panel"><h2>${esc(t("chat"))}</h2><div class="chat" id="chat">${data.chat.map(chatMessage).join("")}</div><form id="chat-form" class="row"><label>${esc(t("message"))}<input name="text" maxlength="2000" required autocomplete="off"></label><button class="fit">${esc(t("send"))}</button></form><div class="divider">✦</div><h3>${esc(t("dice"))}</h3><form id="dice-form" class="row"><label>${esc(t("expression"))}<input name="expression" value="1d20" required></label><label class="fit"><input type="checkbox" name="private"> ${esc(t("privateRoll"))}</label><button class="fit">${esc(t("roll"))}</button></form></section><aside class="stack"><section class="panel"><h2>${esc(t("members"))}</h2>${memberList(data)}</section><section class="panel"><h2>${esc(t("characters"))} &amp; ${esc(t("creatures"))}</h2>${data.entities.length ? data.entities.map((e) => `<p><a href="#/sheet/${attr(e.id)}?campaign=${attr(c.id)}">${esc(e.name)}</a></p>`).join("") : `<p class="muted">${esc(t("noEntities"))}</p>`}</section></aside></div>`;
     const chat = document.querySelector("#chat");
     if (!data.membership && state.user.role !== "admin") {
       document.querySelector("#chat-form").remove();
@@ -907,17 +956,6 @@ function sheetIdentity(entity) {
     ${archetype ? `<span><span class="sr-only">${esc(fieldLabel("character.fields.backgroundArchetype"))}: </span>${esc(archetype)}</span>` : ""}
     <span>${esc(t("owner"))} · ${esc(entity.owner)}</span></div>`;
 }
-function combatMenus() {
-  const resource = (key) => esc(fieldLabel(`character.resources.${key}.abbreviation`));
-  return `<details class="action-menu"><summary>${esc(t("damage"))}</summary>
-    <form id="damage-form">${input(t("amount"), "amount", "1", 'type="number" min="1" step="1" required')}
-      <label><input type="checkbox" name="piercing"> ${esc(t("piercing"))}</label><button>${esc(t("damage"))}</button></form></details>
-    <details class="action-menu"><summary>${esc(t("heal"))}</summary><form id="heal-form">
-      <label>${esc(t("healResource"))}<select name="resource"><option value="hp">${resource("hp")}</option>
-      <option value="armor">${resource("ar")}</option><option value="both">${resource("hp")} + ${resource("ar")}</option></select></label>
-      ${input(t("percentage"), "percentage", "100", 'type="number" min="0" max="100" required')}
-      <button>${esc(t("heal"))}</button></form></details>${action(t("endTurn"), "combat", "end-turn")}`;
-}
 function renderSheet() {
   const e = state.sheet,
     edit = state.editing,
@@ -940,7 +978,7 @@ function renderSheet() {
       <img class="sheet-portrait" src="${attr(imageFor(e.type, e.id, e.portrait))}" alt="">
     </header>
     <div class="sheet-bar">${resourcePills(e.data.resources)}
-      ${controls || lockText ? `<div class="actions">${controls}${lockText}${editable ? combatMenus() : ""}</div>` : ""}</div>
+      ${controls || lockText ? `<div class="actions">${controls}${lockText}</div>` : ""}</div>
     ${preview ? `<p class="warning">${esc(t("previewing"))}</p>` : ""}
     <div id="lock-warning" class="warning" hidden></div>
     ${editable ? `<div class="edit-intro"><p>${esc(t("editHint"))}</p>
@@ -1422,7 +1460,13 @@ document.addEventListener("submit", async (event) => {
   event.preventDefault();
   const data = Object.fromEntries(new FormData(form));
   try {
-    if (form.id === "auth-form") {
+    if (form.classList.contains("campaign-resource")) {
+      await api(`/api/campaigns/${state.campaign.campaign.id}/resources`, "POST", { ...data, entityId: selectedBattleTarget, action: form.dataset.operation, piercing: Boolean(form.elements.piercing?.checked) });
+      await campaignScreen(state.campaign.campaign.id, "overview");
+    } else if (form.id === "battle-add") {
+      await api(`/api/campaigns/${state.campaign.campaign.id}/battle`, "POST", { ...data, action: "add" });
+      await campaignScreen(state.campaign.campaign.id, "overview");
+    } else if (form.id === "auth-form") {
       const mode = form.dataset.mode,
         params = new URLSearchParams(location.search);
       if (mode === "login") {
@@ -1527,23 +1571,6 @@ document.addEventListener("submit", async (event) => {
         personalRolls.sort((a, b) => a.request - b.request);
         renderPersonalRolls();
       }
-    } else if (form.id === "damage-form" || form.id === "heal-form") {
-      await flushSheet();
-      const actionName = form.id === "damage-form" ? "damage" : "heal";
-      const result = await api(
-        `/api/entities/${state.sheet.id}/combat`,
-        "POST",
-        {
-          ...data,
-          tab: state.tab,
-          version: state.sheet.version,
-          campaignId: state.sheetCampaign || null,
-          action: actionName,
-          piercing: Boolean(form.elements.piercing?.checked),
-        },
-      );
-      mergeSheet(result.entity);
-      renderSheet();
     } else if (form.id === "permission-form") {
       if (state.editing) await flushSheet();
       await api(`/api/entities/${state.sheet.id}/permissions`, "POST", data);
@@ -1605,7 +1632,17 @@ document.addEventListener("click", async (event) => {
   const what = button.dataset.action,
     value = button.dataset.value || "";
   try {
-    if (what === "auth-mode") authScreen(value);
+    if (what === "select-combatant") {
+      selectedBattleToken = value;
+      selectedBattleTarget = currentBattleSession?.battle?.groups.flatMap(group => group.entries).find(entry => entry.token === value)?.entityId || "";
+      await campaignScreen(state.campaign.campaign.id, "overview");
+    } else if (what === "battle-action") {
+      let [actionName, token] = value.split("|");
+      const direction = actionName === "up" ? -1 : actionName === "down" ? 1 : undefined;
+      if (direction) actionName = "move";
+      await api(`/api/campaigns/${state.campaign.campaign.id}/battle`, "POST", { action: actionName, token, direction });
+      await campaignScreen(state.campaign.campaign.id, "overview");
+    } else if (what === "auth-mode") authScreen(value);
     else if (what === "logout") {
       await api("/api/logout", "POST");
       state.stream?.close();
@@ -1681,20 +1718,6 @@ document.addEventListener("click", async (event) => {
       mergeSheet(result.entity);
       state.preview = result.preview;
       renderSheet();
-    } else if (what === "combat") {
-      await flushSheet();
-      const result = await api(
-        `/api/entities/${state.sheet.id}/combat`,
-        "POST",
-        {
-          action: value,
-          tab: state.tab,
-          version: state.sheet.version,
-          campaignId: state.sheetCampaign || null,
-        },
-      );
-      mergeSheet(result.entity);
-      renderSheet();
     } else if (what === "entity-portrait-remove") {
       await flushSheet();
       const result = await api(
@@ -1751,6 +1774,12 @@ document.addEventListener("click", async (event) => {
   }
 });
 document.addEventListener("change", async (event) => {
+  if (event.target.id === "battle-target") {
+    selectedBattleTarget = event.target.value;
+    selectedBattleToken = currentBattleSession?.battle?.groups.flatMap(group => group.entries).find(entry => entry.entityId === selectedBattleTarget)?.token || "";
+    try { await campaignScreen(state.campaign.campaign.id, "overview"); } catch (error) { notify(errorMessage(error), true); }
+    return;
+  }
   const target = event.target;
   try {
     if (target.form?.id === "dice-appearance") {
@@ -1789,10 +1818,42 @@ document.addEventListener("change", async (event) => {
 });
 document.addEventListener("input", (event) => {
   const target = event.target;
+  const adjust = target.closest("[data-resource-adjust]");
+  if (adjust) {
+    const number = adjust.querySelector("[data-adjust-number]");
+    const range = adjust.querySelector("[data-adjust-slider]");
+    if (target === range) number.value = range.value;
+    else if (target === number && number.value !== "" && Number.isFinite(number.valueAsNumber)) {
+      const limit = number.hasAttribute("max") ? Number(number.max) : Math.max(1, Number(range.dataset.baseMax), number.valueAsNumber);
+      range.max = String(limit);
+      range.value = number.value;
+    }
+  }
   if (target.form?.id === "dice-appearance" && (target.name === "hex" || target.name === "glow"))
     updateGlow(target.form, target, true);
   const section = event.target.closest("[data-section]");
   if (section && state.editing && !state.preview) section.dataset.dirty = "1";
+});
+function selectResourceAction(panel, mode, pool) {
+  resourceMode = mode;
+  resourceKey = pool || resourceKey;
+  for (const button of panel.querySelectorAll("[data-resource-mode]"))
+    button.setAttribute("aria-pressed", String(button.dataset.resourceMode === mode));
+  for (const form of panel.querySelectorAll(".campaign-resource")) {
+    form.hidden = form.dataset.operation !== mode || (mode === "set" && form.dataset.pool !== resourceKey);
+    if (!form.hidden && mode === "set") form.elements.resourceKey.value = resourceKey;
+  }
+}
+document.addEventListener("click", event => {
+  const button = event.target.closest("[data-resource-mode],[data-edit-pool]");
+  if (button) selectResourceAction(button.closest(".resource-console"), button.dataset.resourceMode || "set", button.dataset.editPool);
+});
+document.addEventListener("change", event => {
+  if (event.target.matches(".resource-console select[name=resourceKey]")) {
+    const panel = event.target.closest(".resource-console");
+    selectResourceAction(panel, "set", event.target.value);
+    panel.querySelector("form:not([hidden]) select").focus();
+  }
 });
 document.addEventListener("focusout", (event) => {
   const section = event.target.closest("[data-section]");

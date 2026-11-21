@@ -6,6 +6,7 @@ function createLive(db, { now = () => Date.now(), retention = 300000 } = {}) {
   const locks = new Map();
   const lockEndListeners = new Set();
   const messages = new Map();
+  const battles = new Map();
   const emptySince = new Map();
   const expirationTimers = new Map();
   function currentUser(client) {
@@ -31,6 +32,7 @@ function createLive(db, { now = () => Date.now(), retention = 300000 } = {}) {
     for (const [campaignId, since] of emptySince)
       if (!hasMember(campaignId) && now() - since >= retention) {
         messages.delete(campaignId);
+        battles.delete(campaignId);
         emptySince.delete(campaignId);
         clearTimeout(expirationTimers.get(campaignId));
         expirationTimers.delete(campaignId);
@@ -271,6 +273,7 @@ function createLive(db, { now = () => Date.now(), retention = 300000 } = {}) {
   }
   function discardCampaign(campaignId) {
     messages.delete(campaignId);
+    battles.delete(campaignId);
     emptySince.delete(campaignId);
     clearTimeout(expirationTimers.get(campaignId));
     expirationTimers.delete(campaignId);
@@ -309,6 +312,13 @@ function createLive(db, { now = () => Date.now(), retention = 300000 } = {}) {
     disconnectSession,
     shutdown,
     sweep,
+    getBattle: (campaignId) => { sweep(); return battles.get(campaignId) || null; },
+    setBattle: (campaignId, battle) => {
+      sweep();
+      if (battle) battles.set(campaignId, battle); else battles.delete(campaignId);
+      if (!hasMember(campaignId)) markEmpty(campaignId);
+      campaignChanged(campaignId);
+    },
   };
 }
 module.exports = { createLive };

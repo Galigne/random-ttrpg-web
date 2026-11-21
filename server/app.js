@@ -50,6 +50,7 @@ function createApplication(db, options = {}) {
   require("./auth-routes")(ctx);
   require("./campaign-routes")(ctx);
   require("./entity-routes")(ctx);
+  require("./battle-routes")(ctx);
   function session(req) {
     const raw = parseCookies(req.headers.cookie).random_session;
     if (!raw || !/^[A-Za-z0-9_-]{43}$/.test(raw)) return null;

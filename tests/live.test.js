@@ -110,10 +110,13 @@ test("presence counts tabs, chat expires after the last member leaves, and priva
   assert.equal(live.presence("c").player, "online");
   live.remove(gm);
   live.remove(owner);
+  live.setBattle("c", { round: 1 });
   time += 299999;
   assert.equal(live.history("c", { id: "gm", role: "user" }).length, 2);
+  assert.ok(live.getBattle("c"));
   time += 1;
   assert.equal(live.history("c", { id: "gm", role: "user" }).length, 0);
+  assert.equal(live.getBattle("c"), null);
   live.shutdown();
   db.close();
 });

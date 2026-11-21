@@ -247,7 +247,7 @@ test("private entities, campaign roles, exclusive locks and shared undo are enfo
     200,
   );
   let workspace = await request(bob, `/api/campaigns/${campaign}`);
-  assert.ok(workspace.data.members.find((m) => m.id === alice.id).playing);
+  assert.equal(workspace.data.members.find((m) => m.id === alice.id).playing, null);
   assert.equal(workspace.data.entities.length, 0);
   assert.equal(
     (
@@ -643,7 +643,7 @@ test("portrait changes participate in undo previews and history is private to au
   );
 });
 
-test("playing-character portrait preview is the only private-sheet exception", async (t) => {
+test("private playing-character portraits and details remain private", async (t) => {
   const { request, login, stream, live } = await setup(t);
   const alice = await login("Alice"),
     bob = await login("Bob");
@@ -756,7 +756,7 @@ test("playing-character portrait preview is the only private-sheet exception", a
         `/api/entities/${entity}/portrait?previewCampaign=${campaign}`,
       )
     ).status,
-    200,
+    404,
   );
   assert.equal(
     (await request(bob, `/api/campaigns/${campaign}`)).data.chat.length,
@@ -1229,4 +1229,139 @@ test("mutations require a session, CSRF token, same origin, and authorized subsc
     body,
   });
   assert.equal(response.status, 403);
+});
+
+test("battle groups, privacy, permissions and persistent resources", async (t) => {
+  const { db, request, login, users, stream } = await setup(t);
+  const gm = await login("Alice"), player = await login("Bob");
+  const campaign = (await request(gm, "/api/campaigns", "POST", { name: "Battle", language: "en" })).data.id;
+  await request(gm, `/api/campaigns/${campaign}/invite`, "POST", { username: "Bob" });
+  await request(player, `/api/campaign-invitations/${campaign}`, "POST", { action: "accept" });
+  const rpg = require("../server/rpg");
+  function add(type, owner, name, speed, visibility) {
+    const data = rpg.createEntity(type);
+    if (type === "character") data.name.firstName = name; else data.name = name;
+    data.statistics.speed = speed;
+    db.prepare("INSERT INTO entities(id,type,owner_id,data,version,created_at) VALUES(?,?,?,?,0,?)").run(data.key, type, owner, JSON.stringify(data), Date.now());
+    db.prepare("INSERT INTO entity_history(entity_id,version,data,created_at,actor_id) VALUES(?,0,?,?,?)").run(data.key, JSON.stringify(data), Date.now(), owner);
+    db.prepare("INSERT INTO assignments VALUES(?,?,'approved',?,?)").run(data.key, campaign, visibility, Date.now());
+    return data.key;
+  }
+  const pc = add("character", users.Bob, "Hero", 9, "private");
+  const ally = add("character", users.Alice, "Ally", 9, "private");
+  const enemy = add("creature", users.Alice, "Secret", 9, "private");
+  db.prepare("INSERT INTO playing_characters VALUES(?,?,?)").run(campaign, users.Bob, pc);
+  db.prepare("INSERT INTO playing_characters VALUES(?,?,?)").run(campaign, users.Alice, ally);
+  await stream(gm, campaign);
+  await stream(player, campaign);
+  const battle = `/api/campaigns/${campaign}/battle`;
+  assert.equal((await request(player, battle, "POST", { action: "start" })).status, 403);
+  assert.equal((await request(gm, battle, "POST", { action: "start" })).status, 200);
+  assert.equal((await request(gm, battle, "POST", { action: "add", entityId: enemy })).status, 200);
+  let view = (await request(player, battle)).data;
+  assert.equal(view.battle.groups.length, 2);
+  assert.equal(view.battle.groups[0].active, true);
+  assert.equal(view.battle.groups[0].entries.length, 2);
+  assert.equal(view.battle.groups[1].entries[0].name, null);
+  assert.ok(!JSON.stringify(view).includes("Secret"));
+  assert.ok(!JSON.stringify(view).includes(enemy));
+  const hero = view.battle.groups[0].entries.find(entry => entry.entityId === pc);
+  assert.equal((await request(player, battle, "POST", { action: "finish", token: hero.token })).status, 200);
+  view = (await request(player, battle)).data;
+  assert.equal(view.battle.groups[0].active, true);
+  assert.equal(view.battle.groups[0].entries.find(e => e.entityId === pc).finished, true);
+  assert.equal(view.targets[0].resources.ap.current, 6);
+  const gmView = (await request(gm, battle)).data;
+  const allyEntry = gmView.battle.groups[0].entries.find(e => e.entityId === ally);
+  assert.equal((await request(player, battle, "POST", { action: "finish", token: allyEntry.token })).status, 403);
+  assert.equal((await request(gm, battle, "POST", { action: "finish", token: allyEntry.token })).status, 200);
+  assert.equal((await request(player, battle)).data.battle.groups[1].active, true);
+  assert.equal((await request(gm, battle, "POST", { action: "correct", token: hero.token })).status, 200);
+  assert.equal((await request(player, battle, "POST", { action: "finish", token: hero.token })).status, 200);
+  assert.equal((await request(player, battle)).data.targets[0].resources.ap.current, 6);
+  assert.equal((await request(gm, battle, "POST", { action: "advance" })).status, 200);
+  const resources = `/api/campaigns/${campaign}/resources`;
+  assert.equal((await request(player, resources, "POST", { entityId: enemy, action: "damage", amount: 5, piercing: false })).status, 404);
+  assert.equal((await request(gm, resources, "POST", { entityId: enemy, action: "damage", amount: 5, piercing: false })).status, 200);
+  const publicWorkspace = JSON.stringify((await request(player, `/api/campaigns/${campaign}`)).data);
+  assert.ok(!publicWorkspace.includes("Secret"));
+  assert.ok(!publicWorkspace.includes(enemy));
+  assert.equal((await request(player, resources, "POST", { entityId: pc, action: "damage", amount: 5, piercing: false })).status, 200);
+  assert.equal((await request(player, resources, "POST", { entityId: pc, action: "heal", resource: "hp", amount: 3 })).status, 200);
+  assert.equal(JSON.parse(db.prepare('SELECT data FROM entities WHERE id=?').get(pc).data).resources.hp.current, 98);
+  assert.equal((await request(player, resources, "POST", { entityId: pc, action: "set", hp: "98", ar: "0", ap: "5", md: "2" })).status, 200);
+  assert.equal(JSON.parse(db.prepare('SELECT data FROM entities WHERE id=?').get(pc).data).resources.ap.current, 5);
+  const versions = db.prepare('SELECT count(*) AS n FROM entity_history WHERE entity_id=?').get(pc).n;
+  assert.equal(versions, 5);
+  assert.equal((await request(gm, battle, "POST", { action: "advance" })).status, 200);
+  assert.equal((await request(player, battle, "POST", { action: "delay", token: hero.token })).status, 200);
+  assert.equal((await request(gm, battle, "POST", { action: "finish", token: allyEntry.token })).status, 200);
+  view = (await request(gm, battle)).data;
+  const enemyEntry = view.battle.groups.find(group => group.active).entries[0];
+  assert.equal(enemyEntry.entityId, enemy);
+  assert.equal((await request(gm, battle, "POST", { action: "finish", token: enemyEntry.token })).status, 200);
+  assert.equal((await request(player, battle)).data.battle.groups.find(group => group.active).entries[0].entityId, pc);
+  assert.equal((await request(player, battle, "POST", { action: "finish", token: hero.token })).status, 200);
+  view = (await request(gm, battle)).data;
+  assert.equal(view.battle.round, 3);
+  assert.equal(view.battle.groups[0].entries.length, 2);
+  assert.equal(view.battle.groups[0].active, true);
+  assert.equal((await request(player, resources, "POST", { action: "set", entityId: pc, resourceKey: "hp", value: "190" })).status, 200);
+  const overMax = JSON.parse(db.prepare('SELECT data FROM entities WHERE id=?').get(pc).data).resources;
+  assert.equal(overMax.hp.current, 190);
+  assert.equal(overMax.hp.max, 100);
+  assert.equal(overMax.md.current, 5);
+  assert.equal((await request(player, resources, "POST", { action: "set", entityId: pc, resourceKey: "hp", value: "-1" })).status, 400);
+  assert.equal((await request(gm, battle, "POST", { action: "end" })).status, 200);
+  assert.equal(JSON.parse(db.prepare('SELECT data FROM entities WHERE id=?').get(pc).data).resources.hp.current, 190);
+});
+
+test("starting battle adds only eligible online members' playing characters", async (t) => {
+  const { db, request, login, stream } = await setup(t);
+  const gm = await login("Alice"), bob = await login("Bob"), gwen = await login("Gwen"), other = await login("Other");
+  const campaign = (await request(gm, "/api/campaigns", "POST", { name: "Online table", language: "en" })).data.id;
+  for (const member of [bob, gwen, other]) db.prepare("INSERT INTO members VALUES(?,?,'member')").run(campaign, member.id);
+  const rpg = require("../server/rpg");
+  function selectCharacter(owner, name, speed, assignment = 'approved') {
+    const data = rpg.createEntity('character');
+    data.name.firstName = name;
+    data.statistics.speed = speed;
+    db.prepare("INSERT INTO entities(id,type,owner_id,data,version,created_at) VALUES(?,'character',?,?,0,?)").run(data.key, owner.id, JSON.stringify(data), Date.now());
+    db.prepare("INSERT INTO assignments VALUES(?,?,?,'private',?)").run(data.key, campaign, assignment, Date.now());
+    db.prepare('INSERT INTO playing_characters VALUES(?,?,?)').run(campaign, owner.id, data.key);
+    return data.key;
+  }
+  const alicePc = selectCharacter(gm, 'Alice PC', 5);
+  const bobPc = selectCharacter(bob, 'Bob PC', 9);
+  const offlinePc = selectCharacter(gwen, 'Offline PC', 9);
+  const pendingPc = selectCharacter(other, 'Pending PC', 12, 'pending');
+  await stream(gm, campaign);
+  await stream(bob); // Connected elsewhere in the application still counts as online.
+  await stream(bob); // Multiple tabs must not duplicate a character.
+  await stream(other, campaign);
+  const endpoint = `/api/campaigns/${campaign}/battle`;
+  assert.equal((await request(gm, endpoint, 'POST', { action: 'start' })).status, 200);
+  let battle = (await request(gm, endpoint)).data.battle;
+  assert.deepEqual(battle.groups.map(group => group.entries.map(entry => entry.entityId)), [[bobPc], [alicePc]]);
+  assert.equal(battle.groups[0].active, true);
+  assert.ok(!JSON.stringify(battle).includes(offlinePc));
+  assert.ok(!JSON.stringify(battle).includes(pendingPc));
+  await stream(gwen, campaign);
+  battle = (await request(gm, endpoint)).data.battle;
+  assert.equal(battle.groups.flatMap(group => group.entries).length, 2);
+  assert.equal((await request(gm, endpoint, 'POST', { action: 'add', entityId: offlinePc, side: 'players' })).status, 200);
+  battle = (await request(gm, endpoint)).data.battle;
+  assert.deepEqual(battle.groups.map(group => group.entries.map(entry => entry.entityId)), [[bobPc], [offlinePc], [alicePc]]);
+  function manualCreature(speed) {
+    const data = rpg.createEntity('creature');
+    data.statistics.speed = speed;
+    db.prepare("INSERT INTO entities(id,type,owner_id,data,version,created_at) VALUES(?,'creature',?,?,0,?)").run(data.key, gm.id, JSON.stringify(data), Date.now());
+    db.prepare("INSERT INTO assignments VALUES(?,?,'approved','private',?)").run(data.key, campaign, Date.now());
+    return data.key;
+  }
+  const tied = manualCreature(9), faster = manualCreature(12);
+  assert.equal((await request(gm, endpoint, 'POST', { action: 'add', entityId: tied })).status, 200);
+  assert.equal((await request(gm, endpoint, 'POST', { action: 'add', entityId: faster })).status, 200);
+  battle = (await request(gm, endpoint)).data.battle;
+  assert.deepEqual(battle.groups.map(group => group.entries.map(entry => entry.entityId)), [[faster], [bobPc], [offlinePc, tied], [alicePc]]);
 });

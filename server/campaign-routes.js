@@ -53,20 +53,9 @@ module.exports = ({ db, live, route, fail, diceAppearance }) => {
     return [...affected];
   }
   function identity(campaignId, user) {
-    const selected = db
-      .prepare(
-        "SELECT e.data,e.type FROM playing_characters p JOIN entities e ON e.id=p.entity_id WHERE p.campaign_id=? AND p.user_id=?",
-      )
-      .get(campaignId, user.id);
     return {
       username: user.username,
-      characterName: selected
-        ? rpg.displayName(
-            selected.type,
-            JSON.parse(selected.data),
-            user.language,
-          )
-        : null,
+      characterName: null,
     };
   }
   route("GET", "/api/events", ({ req, res, user, auth, url }) => {
@@ -174,9 +163,7 @@ module.exports = ({ db, live, route, fail, diceAppearance }) => {
             .get(m.entity_id);
           if (
             e &&
-            (campaignMember ||
-              user.role === "admin" ||
-              access.canViewInCampaign(db, user, e, c.id))
+            (m.id === user.id || access.canViewInCampaign(db, user, e, c.id))
           ) {
             const data = JSON.parse(e.data);
             playing = {

@@ -60,9 +60,9 @@ function validateCombatantResource(resource, path, createError, actionPoints = f
 	assertRecord(resource, path, createError);
 	assertExactKeys(resource, path, ['current', 'max'], [], createError);
 	const upperBound = actionPoints ? MAX_AP : Number.MAX_SAFE_INTEGER;
-	assertFiniteInRange(resource.current, `${path}.current`, 0, upperBound, createError);
+	assertFiniteInRange(resource.current, `${path}.current`, 0, Number.MAX_SAFE_INTEGER, createError);
 	assertFiniteInRange(resource.max, `${path}.max`, 0, upperBound, createError);
-	if (resource.current > resource.max) {
+	if (path === 'gear.encumbrance' && resource.current > resource.max) {
 		throw createError(`${path}.current cannot exceed ${path}.max.`);
 	}
 	if (actionPoints && (!Number.isInteger(resource.current) || !Number.isInteger(resource.max))) {
