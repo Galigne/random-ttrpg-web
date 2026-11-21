@@ -12,6 +12,7 @@ jobs:
           node-version: 24
       - run: npm ci
       - run: npm test
+      - run: python3 tests/deploy-remote.test.py
       - run: npm install --no-save --no-package-lock playwright@1.62.1
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser

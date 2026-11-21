@@ -3,7 +3,7 @@
 When possible, create the required accounts on a private local or staging
 instance, import and verify the saves there, then use that verified database for
 the initial deployment. Transfer it as a consistent SQLite backup or copy the
-stopped application's database with its WAL files as described above. If the
+stopped application's database with its WAL files. If the
 accounts are created on Alwaysdata instead, perform the import against that
 database while the site is stopped and restricted. Do not replace a database
 that already contains newer accounts or changes.
@@ -18,7 +18,7 @@ The checkout's required media occupy approximately 97 MB before Git history,
 the database, uploaded images, and backups. Allow sufficient hosting storage, or
 upload the working tree without its `.git` directory to save space.
 
-See Alwaysdata's [Node.js configuration](https://help.alwaysdata.com/fr/docs/hebergement-web/langages/nodejs/configuration/) and [HTTP stack](https://help.alwaysdata.com/en/docs/web-hosting/sites/http-stack/) documentation. A continuously running service behind a reverse proxy may be appropriate if the hosting site's idle shutdown is unsuitable for long sessions; see [Alwaysdata's site guidance](https://help.alwaysdata.com/en/docs/web-hosting/sites/misc/).
+See Alwaysdata's [Node.js configuration](https://help.alwaysdata.com/en/docs/web-hosting/languages/nodejs/configuration/) and [HTTP stack](https://help.alwaysdata.com/en/docs/web-hosting/sites/http-stack/) documentation. A continuously running service behind a reverse proxy may be appropriate if the hosting site's idle shutdown is unsuitable for long sessions; see [Alwaysdata's site guidance](https://help.alwaysdata.com/en/docs/web-hosting/sites/misc/).
 
 ## Current hosting observations
 
@@ -33,17 +33,21 @@ The configured PC uses `%USERPROFILE%\.ssh\random_alwaysdata_deploy` and the Git
 From the repository root in PowerShell:
 
 ```powershell
-npm run deploy:status  # show the configured release and check HTTPS
+npm run deploy:status  # compare the configured and running releases
 npm run deploy:check   # read-only readiness checks
 npm run deploy:backup  # create and verify a private online SQLite backup
 npm run deploy         # validate, back up, stage, activate and verify
 ```
 
-`deploy:check` requires a clean `main` checkout whose HEAD equals the current remote `origin/main`; it checks the API, site configuration, SSH, database readability and HTTPS. `deploy:status` reports the commit encoded in the configured release path; older or manually installed paths may show an unknown or abbreviated commit. `deploy:backup` uses SQLite's online backup API, including committed WAL contents, and checks integrity and foreign keys. It prints the path under `/home/ttrpg-random/random-backups`; copy backups to a separate private location and test recovery. Failed backups must not be used.
+**Readiness and backups.** `deploy:check` requires a clean `main` checkout that matches the current remote `origin/main`. It checks Alwaysdata API access and settings, SSH, server tools, and database access. HTTPS application failures do not block a deployment or a backup. `deploy:backup` checks API access, SSH, and SQLite, then uses SQLite's online backup API to include committed WAL contents. It publishes the snapshot under `/home/ttrpg-random/random-backups` only after checking integrity and foreign keys. Copy verified backups to a separate private location and test recovery.
 
-`deploy` runs the readiness checks and local tests, takes a verified backup, uploads an archive of the exact `main` commit with `core.autocrlf=false` (needed to preserve rulebook fingerprints), verifies all tracked files, and tests migrations on a temporary copy of the backup. It keeps the existing release and live database. The Alwaysdata API then updates the site command and working directory together, which restarts the process. The command checks the resulting configuration, HTTPS, the served `app.js` against the commit, and the new release startup in the process log. Review sign-in, a sheet, its history and a campaign with authorized accounts after deployment; HTTP and asset checks alone do not validate every user workflow.
+**Deployment.** `deploy` runs local tests and transfers an archive of the exact commit with `core.autocrlf=false` to preserve rulebook fingerprints. It verifies the archived files, takes a backup and tests startup migrations on a temporary copy. Alwaysdata updates the command and working directory together and restarts the site. Success requires a healthy HTTPS response from the expected release and a byte-for-byte match of the served `app.js`. Review sign-in, a sheet and its history, and a campaign with authorized accounts after deployment.
 
-A deployment lock prevents overlapping runs. If a process is interrupted, a lock or incomplete release can remain; inspect `/home/ttrpg-random/random-deploy.lock` and the release directory before removing or retrying. If an API request times out after activation, the result is uncertain: run `npm run deploy:status` and inspect logs before retrying. No database backup is restored automatically. The script does not automatically delete releases or backups, so monitor the Alwaysdata account quota and remove obsolete artifacts only after reviewing recovery needs. Alwaysdata may stop applications during maintenance even when idle time is 0.
+**Status.** The configured release comes from Alwaysdata. The running release is reported by the process over HTTPS using the identity it captured at startup. Older releases can answer successfully without identifying themselves. In that case the running release is unknown. A failed probe leaves it unavailable. Status exits with an error when it cannot confirm the configured release is serving traffic or when the two releases differ.
+
+**Interrupted runs.** Each attempt has its own staging and migration paths. An SSH session holds the activation lock and releases it when the session ends, so a retry can proceed after the host detects a lost connection. Incomplete releases and private scratch directories may remain after a hard interruption. They cannot block a new attempt and can be reviewed later to reclaim quota. Keep active and previous releases and verified backups. If an API request times out during activation, run `npm run deploy:status` and inspect the process log before retrying. The tool preserves the live database and leaves any recovery decision to the operator.
+
+Run `node --test tests/deploy.test.js` to exercise the CLI with simulated SSH and HTTPS. Run `python tests/deploy-remote.test.py` to exercise the server helper with temporary files and a SQLite WAL database. Both suites run without production credentials or network access to Alwaysdata.
 
 ## Initial setup and manual fallback
 
