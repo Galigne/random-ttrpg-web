@@ -33,7 +33,7 @@ The data directory and secrets are excluded from Git. Keep it outside any public
 
 ## Documentation
 
-- [Website user guide](documentation/user-guide.md) · [Guide utilisateur en français](documentation/user-guide-fr.md)
+- [Website user guide](documentation/user-guide.md)
 - [Development and architecture](documentation/development.md)
 - [Alwaysdata deployment](documentation/deployment.md)
 - [Importing Discord saves](documentation/legacy-migration.md)
