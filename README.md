@@ -40,4 +40,4 @@ The data directory and secrets are excluded from Git. Keep it outside any public
 - [Agent instructions](AGENTS.md)
 - [Canonical English rules](documentation/TTRPG_RANDOM_RULES_EN.md) · [Règles françaises](documentation/JDR_RANDOM_RULES_FR.md)
 
-Run `npm test` for the automated suite; see the development guide for browser tests and rulebook builds.
+Run `npm test` for the automated suite; see the development guide for browser tests and rulebook builds. For the configured Alwaysdata site, `npm run deploy:check`, `npm run deploy:status`, `npm run deploy:backup` and `npm run deploy` are documented in the deployment guide.

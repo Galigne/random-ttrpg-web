@@ -24,55 +24,30 @@ See Alwaysdata's [Node.js configuration](https://help.alwaysdata.com/fr/docs/heb
 
 The existing site `ttrpg-random.alwaysdata.net` (site 1106281) is configured as Node.js 24, with working directory `/home/ttrpg-random/random-release-6a90b2d8-exact` (commit `6a90b2d8ed8ef9ed7af3d6d222e6f3b42a044c9f`) and `RANDOM_DATA_DIR=/home/ttrpg-random/random-data`. HTTPS is forced, the site cache is disabled, and idle time is 0. Alwaysdata documents that 0 prevents idle shutdown but maintenance can still stop a process; the first request starts it. Check current settings before changing them. The process log is available in the administration panel and under `/home/ttrpg-random/admin/logs/sites`; HTTP logs are under `admin/logs/http`.
 
-**Routine deployment is not yet configured or verified.** Do not treat the initial setup above as a safe update procedure or overwrite the existing database. A restart loses in-memory chat, presence and locks; startup may migrate SQLite. Obtain a consistent backup including committed WAL data before updating, preserve the old application version, and get explicit approval before a production deployment. Never restore an older backup over newer production data automatically. Use the Alwaysdata site restart control or its [site restart API](https://help.alwaysdata.com/en/docs/development/api/) after a safe, verified application update. Recovery requires assessing schema compatibility and preserving the current database before any manual restoration; consult the site logs and test a backup separately. The exact workflow remains to be established after inspecting the deployed files and SSH access.
+## Routine deployment from Windows
 
-On 2026-11-21, the old application directory `/home/ttrpg-random/random-ttrpg-web` was retained, and the WAL-aware pre-switch backup `/home/ttrpg-random/random-backups/pre-switch-20261121T124439Z.sqlite` passed `integrity_check`. The live database migrated from unversioned schema 0 to schema 3. Do not switch back to older code or restore an old database without first assessing schema compatibility and preserving all newer data. A backup is a point-in-time snapshot and does not include later writes.
+The commands require Node 22.13+, Git, OpenSSH, HTTPS access, an authorized SSH key and an Alwaysdata API token. They target the site and paths documented above. They never deploy on Git pushes. A restart interrupts requests and clears in-memory chat, presence and editing locks; coordinate a maintenance window. Database migrations run automatically at startup.
 
-## Manual update until automation is configured
+The configured PC uses `%USERPROFILE%\.ssh\random_alwaysdata_deploy` and the Git-ignored `var/alwaysdata-api-token`. Configure another machine by authenticating SSH with an authorized key, verifying the host fingerprint against the Alwaysdata panel, and storing an API token in a private file outside Git. Set `RANDOM_DEPLOY_SSH_KEY` and `RANDOM_DEPLOY_TOKEN_FILE` to those paths when the defaults do not apply. The API token grants the permissions of the Alwaysdata profile, not just restart access: restrict file permissions, never share or commit it, and revoke it in Alwaysdata if exposed. Two-factor authentication is required by Alwaysdata to create a token.
 
-There are currently no `npm run deploy`, `deploy:check`, `deploy:status`, or `deploy:backup` scripts. Do not assume that pushing to Git deploys the site. Use this procedure explicitly, and announce a maintenance window: a restart clears temporary chat, presence and editing locks, and startup may migrate the database. Stop normal edits before the backup; a backup taken while users continue to write is only a point-in-time snapshot.
+From the repository root in PowerShell:
 
-1. On `main`, inspect the intended commit and local changes, then run `npm test`. Make sure the desired commit is on `origin/main`. In PowerShell, from the repository root, create an archive of that commit (not the working tree):
+```powershell
+npm run deploy:status  # show the configured release and check HTTPS
+npm run deploy:check   # read-only readiness checks
+npm run deploy:backup  # create and verify a private online SQLite backup
+npm run deploy         # validate, back up, stage, activate and verify
+```
 
-   ```powershell
-   git status --short --branch
-   git rev-parse HEAD
-   npm test
-   git -c core.autocrlf=false archive --format=tar.gz --output=var/random-release.tar.gz HEAD
-   ```
+`deploy:check` requires a clean `main` checkout whose HEAD equals the current remote `origin/main`; it checks the API, site configuration, SSH, database readability and HTTPS. `deploy:status` reports the commit encoded in the configured release path; older or manually installed paths may show an unknown or abbreviated commit. `deploy:backup` uses SQLite's online backup API, including committed WAL contents, and checks integrity and foreign keys. It prints the path under `/home/ttrpg-random/random-backups`; copy backups to a separate private location and test recovery. Failed backups must not be used.
 
-   Disabling conversion preserves the canonical rulebooks’ byte fingerprints. The archive contains only committed files. Do not use a local database, `.env`, private key, or backup in a release.
-2. Check SSH host fingerprints against the Alwaysdata administration panel and connect using the existing account and key. Keep host-key verification enabled. Ensure sufficient account quota for the archive, extracted release and backup. An operating-system `df` result alone does not establish account quota.
-3. With normal edits stopped, create a private consistent backup using SQLite’s online backup API; a plain copy of `random.sqlite` alone can omit committed WAL transactions. On the server:
+`deploy` runs the readiness checks and local tests, takes a verified backup, uploads an archive of the exact `main` commit with `core.autocrlf=false` (needed to preserve rulebook fingerprints), verifies all tracked files, and tests migrations on a temporary copy of the backup. It keeps the existing release and live database. The Alwaysdata API then updates the site command and working directory together, which restarts the process. The command checks the resulting configuration, HTTPS and the served `app.js` against the commit. Review sign-in, a sheet, its history and a campaign with authorized accounts after deployment; HTTP and asset checks alone do not validate every user workflow.
 
-   ```sh
-   umask 077
-   mkdir -p "$HOME/random-backups"
-   chmod 700 "$HOME/random-backups"
-   NODEJS_VERSION=24 node <<'NODE'
-   const { DatabaseSync, backup } = require('node:sqlite');
-   const fs = require('node:fs');
-   const path = require('node:path');
-   (async () => {
-     const name = `random-${new Date().toISOString().replace(/[:.]/g, '-')}.sqlite`;
-     const dest = path.join(process.env.HOME, 'random-backups', name);
-     fs.closeSync(fs.openSync(dest, 'wx', 0o600));
-     const src = new DatabaseSync(path.join(process.env.HOME, 'random-data', 'random.sqlite'), { readOnly: true });
-     try { await backup(src, dest); } finally { src.close(); }
-     const db = new DatabaseSync(dest, { readOnly: true });
-     try {
-       const integrity = db.prepare('PRAGMA integrity_check').all();
-       const foreignKeys = db.prepare('PRAGMA foreign_key_check').all();
-       if (integrity.length !== 1 || integrity[0].integrity_check !== 'ok' || foreignKeys.length) throw new Error('Backup verification failed');
-     } finally { db.close(); }
-     console.log(`Verified backup: ${dest}`);
-   })().catch(error => { console.error(error.message); process.exitCode = 1; });
-   NODE
-   ```
+A deployment lock prevents overlapping runs. If a process is interrupted, a lock or incomplete release can remain; inspect `/home/ttrpg-random/random-deploy.lock` and the release directory before removing or retrying. If an API request times out after activation, the result is uncertain: run `npm run deploy:status` and inspect logs before retrying. No database backup is restored automatically. The script does not automatically delete releases or backups, so monitor the Alwaysdata account quota and remove obsolete artifacts only after reviewing recovery needs. Alwaysdata may stop applications during maintenance even when idle time is 0.
 
-   Keep a copy outside the hosting account and test recovery on a separate database. A failed or incomplete backup must not be used.
-4. Upload the archive using your verified SSH connection. Extract into a newly created, private release directory outside `random-data`, never over the active release. Verify the extracted files against the commit and test it. On a memory-constrained host, run Node 24 tests sequentially with `NODE_OPTIONS=--max-old-space-size=128 node --test --test-concurrency=1 tests/*.test.js rpg/scripts/generatorProductionIntegrity.test.js`; investigate failures and resource kills before proceeding. Test startup migrations on a **copy** of the backup.
-5. In Alwaysdata **Web → Sites**, update the command and working directory together to the new release; submitting the change restarts the site. Preserve the environment variables, Node 24, HTTPS, disabled cache and idle time 0. Request the HTTPS site to start it, inspect process logs for the new path and successful startup, and check sign-in, a sheet and history, and a campaign with authorized accounts. A successful HTTP response alone does not verify these workflows.
+## Initial setup and manual fallback
+
+The initial setup above is separate from routine deployment. If automation is unavailable, stop edits, take a consistent SQLite online backup, archive the intended committed `main` version with `git -c core.autocrlf=false archive`, upload it to a new private release directory and verify it. Test migrations against a copy of the backup. In **Web → Sites**, update both the Node.js command and working directory to the new release; submitting the form triggers a restart. Preserve the data path and site settings, then verify HTTPS and application logs. The previous release and backups must be retained for recovery.
 
 ## Recovery and troubleshooting
 
