@@ -9,10 +9,19 @@ function openDatabase(filename) {
       mode: 0o700,
     });
   const db = new DatabaseSync(filename);
-  db.exec(`
-    PRAGMA foreign_keys = ON;
-    PRAGMA journal_mode = WAL;
-    PRAGMA busy_timeout = 5000;
+  try {
+    db.exec("PRAGMA foreign_keys = ON; PRAGMA journal_mode = WAL; PRAGMA busy_timeout = 5000;");
+    migrate(db);
+    return db;
+  } catch (error) {
+    db.close();
+    throw error;
+  }
+}
+
+// Each migration supports both fresh databases and unversioned website databases.
+const migrations = [
+  db => db.exec(`
     CREATE TABLE IF NOT EXISTS users (
       id TEXT PRIMARY KEY, username TEXT NOT NULL COLLATE NOCASE UNIQUE,
       password_hash TEXT NOT NULL, role TEXT NOT NULL CHECK(role IN ('user','admin')),
@@ -85,16 +94,26 @@ function openDatabase(filename) {
     );
     CREATE INDEX IF NOT EXISTS assignment_campaign ON assignments(campaign_id,state);
     CREATE INDEX IF NOT EXISTS session_user ON sessions(user_id);
-  `);
-  if (
-    !db
-      .prepare("PRAGMA table_info(entity_history)")
-      .all()
-      .some((column) => column.name === "portrait_hash")
-  ) {
-    db.exec("ALTER TABLE entity_history ADD COLUMN portrait_hash TEXT");
+  `),
+  db => {
+    if (!db.prepare("PRAGMA table_info(entity_history)").all().some(column => column.name === "portrait_hash"))
+      db.exec("ALTER TABLE entity_history ADD COLUMN portrait_hash TEXT");
+  },
+  db => db.exec(`
+    CREATE INDEX IF NOT EXISTS members_user ON members(user_id,campaign_id);
+    CREATE INDEX IF NOT EXISTS entity_permissions_user ON entity_permissions(user_id,entity_id);
+    CREATE INDEX IF NOT EXISTS entities_type_created ON entities(type,created_at);
+  `),
+];
+function migrate(db) {
+  const version = db.prepare("PRAGMA user_version").get().user_version;
+  if (version > migrations.length) throw new Error("Database schema is newer than this application");
+  for (let index = version; index < migrations.length; index++) {
+    transaction(db, () => {
+      migrations[index](db);
+      db.exec(`PRAGMA user_version = ${index + 1}`);
+    });
   }
-  return db;
 }
 
 function transaction(db, fn) {

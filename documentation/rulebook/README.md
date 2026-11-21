@@ -86,3 +86,14 @@ lists, nested examples, glossary columns, the navigation drawer, search results,
 keyboard navigation, back/forward history, and direct anchor opening. Verify that
 there is no horizontal overflow or concealed content. Keep temporary screenshots
 and reports in ignored `.runtime/rulebook-qa/`.
+
+## Website edition
+
+The server uses `website-rules-en.html` and `website-rules-fr.html`, generated
+from the same sources with `node documentation/rulebook/build.js --web`.
+These editions reference authenticated, lazily loaded artwork in
+`public/rulebook-art/` and shared WOFF2 fonts. The original standalone editions
+continue to embed all assets and work offline. The website images are resized
+and compressed derivatives of the recorded original WebP artwork; no new art
+is generated. `scripts/build-web-assets.py` regenerates these derivatives and
+WOFF2 fonts when needed, using Pillow and `fonttools[woff]`.

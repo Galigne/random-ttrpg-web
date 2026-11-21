@@ -1,4 +1,4 @@
-"use strict";
+export function createGenerators({ state, api, t, esc, attr, sectionMarkup, langSelect, resultMarkup, notify, app }) {
 
 const generatorCopy = {
   en: {
@@ -269,3 +269,6 @@ document.addEventListener("input", event => {
   });
   list.querySelector("[data-no-matches]").hidden = matches !== 0;
 });
+
+return { resetGenerators, activateGenerator, generatorFieldName, generatorScreen, generatorAction };
+}

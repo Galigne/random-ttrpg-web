@@ -40,3 +40,34 @@ test("image validation rejects unsupported formats and oversized dimensions", ()
     readImage("data:image/png;base64," + bytes.toString("base64")),
   );
 });
+
+test("unversioned databases upgrade once without losing history", t => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'random-schema-test-'));
+  t.after(() => {
+    if (!path.resolve(directory).startsWith(path.resolve(os.tmpdir()) + path.sep)) throw new Error('Unsafe cleanup path');
+    fs.rmSync(directory, { recursive: true, force: true });
+  });
+  const filename = path.join(directory, 'old.sqlite');
+  let db = openDatabase(filename);
+  db.exec(`
+    INSERT INTO users VALUES('owner','Owner','hash','user','active','en',1);
+    INSERT INTO entities(id,type,owner_id,data,created_at) VALUES('e','character','owner','{}',1);
+    DROP TABLE entity_history;
+    CREATE TABLE entity_history(entity_id TEXT NOT NULL REFERENCES entities(id) ON DELETE CASCADE,
+      version INTEGER NOT NULL, data TEXT NOT NULL, created_at INTEGER NOT NULL,
+      actor_id TEXT REFERENCES users(id), PRIMARY KEY(entity_id,version));
+    INSERT INTO entity_history VALUES('e',0,'{"old":true}',1,'owner');
+    PRAGMA user_version=0;
+  `);
+  db.close();
+  db = openDatabase(filename);
+  assert.equal(db.prepare('PRAGMA user_version').get().user_version, 3);
+  assert.equal(db.prepare('SELECT data FROM entity_history WHERE entity_id=?').get('e').data, '{"old":true}');
+  assert.ok(db.prepare('PRAGMA table_info(entity_history)').all().some(column => column.name === 'portrait_hash'));
+  db.close();
+  db = openDatabase(filename);
+  assert.equal(db.prepare('SELECT COUNT(*) AS n FROM entity_history').get().n, 1);
+  db.exec('PRAGMA user_version=999');
+  db.close();
+  assert.throws(() => openDatabase(filename), /newer than this application/);
+});

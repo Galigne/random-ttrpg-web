@@ -1,5 +1,5 @@
 function campaign(db, campaignId) {
-  return db.prepare("SELECT * FROM campaigns WHERE id = ?").get(campaignId);
+  return db.prepare("SELECT id,name,description,language,owner_id,(cover IS NOT NULL) AS has_cover,created_at FROM campaigns WHERE id = ?").get(campaignId);
 }
 function membership(db, campaignId, userId) {
   return db
@@ -30,12 +30,26 @@ function managesCampaign(db, user, campaignId) {
   return Boolean(c && (isAdmin(user) || c.owner_id === user.id));
 }
 function entity(db, entityId) {
-  return db.prepare("SELECT * FROM entities WHERE id = ?").get(entityId);
+  return db.prepare("SELECT id,type,owner_id,data,version,(portrait IS NOT NULL) AS has_portrait,portrait_type,created_at FROM entities WHERE id = ?").get(entityId);
 }
 function entityMetadata(db, entityId) {
   return db
     .prepare("SELECT id,type,owner_id FROM entities WHERE id=?")
     .get(entityId);
+}
+// SQL predicates mirror the per-entity checks below. They are used for bulk
+// reads so private rows are filtered before their data reaches application code.
+function sqlCanEdit(alias = "e") {
+  return `(@admin = 1 OR ${alias}.owner_id = @user OR
+    EXISTS (SELECT 1 FROM entity_permissions p WHERE p.entity_id=${alias}.id AND p.user_id=@user AND p.permission='editor') OR
+    EXISTS (SELECT 1 FROM assignments a JOIN members m ON m.campaign_id=a.campaign_id
+      WHERE a.entity_id=${alias}.id AND a.state='approved' AND m.user_id=@user AND m.role='gm'))`;
+}
+function sqlCanView(alias = "e") {
+  return `(${sqlCanEdit(alias)} OR
+    EXISTS (SELECT 1 FROM entity_permissions p WHERE p.entity_id=${alias}.id AND p.user_id=@user) OR
+    EXISTS (SELECT 1 FROM assignments a JOIN members m ON m.campaign_id=a.campaign_id
+      WHERE a.entity_id=${alias}.id AND a.state='approved' AND a.visibility='shared' AND m.user_id=@user))`;
 }
 function canEdit(db, user, row) {
   if (!row) return false;
@@ -129,6 +143,8 @@ function pruneSelections(db, entityId) {
 }
 module.exports = {
   campaign,
+  sqlCanEdit,
+  sqlCanView,
   membership,
   isAdmin,
   canOpenCampaign,

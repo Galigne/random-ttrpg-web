@@ -4,10 +4,10 @@ const access = require("./access");
 const rpg = require("./rpg");
 const generatorPreviews = require("./generator-previews");
 const { readImage, sendImage } = require("./images");
-const { createHash } = require("node:crypto");
 
 module.exports = (ctx) => {
-  const { db, live, route, fail } = ctx;
+  const { db, live, route, fail, entities } = ctx;
+  const { insert, publish } = entities;
   const generated = new Map();
   const previews = new Map();
   live.onLockEnd((entityId, lock) =>
@@ -56,82 +56,6 @@ module.exports = (ctx) => {
       fail(409, "UNDO_PREVIEW_ACTIVE");
     if (state) previews.delete(key);
   }
-  function insert(user, type, data) {
-    const entityId = data.key;
-    rpg.hydrate(type, data);
-    transaction(db, () => {
-      db.prepare(
-        "INSERT INTO entities(id,type,owner_id,data,version,created_at) VALUES(?,?,?,?,0,?)",
-      ).run(entityId, type, user.id, JSON.stringify(data), Date.now());
-      db.prepare(
-        "INSERT INTO entity_history(entity_id,version,data,created_at,actor_id) VALUES(?,0,?,?,?)",
-      ).run(entityId, JSON.stringify(data), Date.now(), user.id);
-    });
-    return entityId;
-  }
-  function publish(
-    row,
-    data,
-    user,
-    expectedVersion,
-    image = { bytes: row.portrait, mime: row.portrait_type },
-  ) {
-    rpg.hydrate(row.type, data);
-    const previous = JSON.parse(row.data);
-    const summary = (value) =>
-      JSON.stringify({
-        name: value.name,
-        level: value.level,
-        description: value.background?.physicalDescription,
-        resources: value.resources,
-      });
-    const oldImage = row.portrait ? Buffer.from(row.portrait) : null;
-    const newImage = image?.bytes ? Buffer.from(image.bytes) : null;
-    const portraitChanged =
-      Boolean(oldImage) !== Boolean(newImage) ||
-      Boolean(oldImage && newImage && !oldImage.equals(newImage)) ||
-      row.portrait_type !== (image?.mime || null);
-    const playingChanged =
-      row.type === "character" &&
-      (summary(previous) !== summary(data) || portraitChanged);
-    transaction(db, () => {
-      const result = db
-        .prepare(
-          "UPDATE entities SET data=?,portrait=?,portrait_type=?,version=version+1 WHERE id=? AND version=?",
-        )
-        .run(
-          JSON.stringify(data),
-          image?.bytes || null,
-          image?.mime || null,
-          row.id,
-          expectedVersion,
-        );
-      if (!result.changes) fail(409, "VERSION_CONFLICT");
-      let imageHash = null;
-      if (image?.bytes) {
-        imageHash = createHash("sha256")
-          .update(image.mime)
-          .update(image.bytes)
-          .digest("hex");
-        db.prepare(
-          "INSERT OR IGNORE INTO entity_images(entity_id,hash,image,mime) VALUES(?,?,?,?)",
-        ).run(row.id, imageHash, image.bytes, image.mime);
-      }
-      db.prepare(
-        "INSERT INTO entity_history(entity_id,version,data,created_at,actor_id,portrait_hash) VALUES(?,?,?,?,?,?)",
-      ).run(
-        row.id,
-        expectedVersion + 1,
-        JSON.stringify(data),
-        Date.now(),
-        user.id,
-        imageHash,
-      );
-    });
-    live.entityChanged(row.id);
-    if (playingChanged) live.playingChanged(row.id);
-  }
-  ctx.publishEntity = publish;
   function sheet(row, user, data = JSON.parse(row.data)) {
     const entity = rpg.hydrate(row.type, data);
     const held = live.getLock(row.id);
@@ -146,7 +70,7 @@ module.exports = (ctx) => {
       version: row.version,
       data,
       sections: rpg.sections(row.type, entity),
-      portrait: Boolean(row.portrait),
+      portrait: Boolean(row.has_portrait),
       previewPortrait: false,
       canEdit: access.canEdit(db, user, row),
       isOwner: access.ownsEntity(user, row),
@@ -254,19 +178,17 @@ module.exports = (ctx) => {
   });
   route("GET", "/api/entities", ({ user, url }) => {
     const type = url.searchParams.get("type");
-    const entities = db
-      .prepare(
-        "SELECT id,type,owner_id,data,(portrait IS NOT NULL) AS has_portrait FROM entities ORDER BY created_at DESC",
-      )
-      .all()
-      .filter((e) => (!type || e.type === type) && access.canView(db, user, e))
+    const entities = db.prepare(`
+      SELECT e.id,e.type,e.owner_id,e.data,(e.portrait IS NOT NULL) AS has_portrait,
+        ${access.sqlCanEdit()} AS can_edit
+      FROM entities e
+      WHERE (@type IS NULL OR e.type=@type) AND ${access.sqlCanView()}
+      ORDER BY e.created_at DESC
+    `).all({ type: type || null, user: user.id, admin: Number(access.isAdmin(user)) })
       .map((e) => ({
-        id: e.id,
-        type: e.type,
+        id: e.id, type: e.type,
         name: rpg.displayName(e.type, JSON.parse(e.data), user.language),
-        portrait: Boolean(e.has_portrait),
-        ownerId: e.owner_id,
-        canEdit: access.canEdit(db, user, e),
+        portrait: Boolean(e.has_portrait), ownerId: e.owner_id, canEdit: Boolean(e.can_edit),
       }));
     return { entities };
   });
@@ -434,7 +356,7 @@ module.exports = (ctx) => {
     return {
       entity: {
         ...sheet(
-          { ...row, portrait: previous.image, portrait_type: previous.mime },
+          { ...row, has_portrait: Boolean(previous.image), portrait_type: previous.mime },
           user,
           JSON.parse(previous.data),
         ),
@@ -577,8 +499,9 @@ module.exports = (ctx) => {
         sendImage(res, image.image, image.mime);
         return;
       }
-      if (!allowed || !row?.portrait) fail(404, "NOT_FOUND");
-      sendImage(res, row.portrait, row.portrait_type);
+      if (!allowed || !row?.has_portrait) fail(404, "NOT_FOUND");
+      const image = db.prepare("SELECT portrait,portrait_type FROM entities WHERE id=?").get(row.id);
+      sendImage(res, image.portrait, image.portrait_type);
     },
   );
   route(

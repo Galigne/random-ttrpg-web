@@ -94,10 +94,10 @@ function createLive(db, { now = () => Date.now(), retention = 300000 } = {}) {
     messages.set(campaignId, list);
     if (!hasMember(campaignId)) markEmpty(campaignId);
     for (const client of clients) {
+      if (client.campaignId !== campaignId) continue;
       const user = currentUser(client);
       if (
         user &&
-        client.campaignId === campaignId &&
         (access.isAdmin(user) || access.membership(db, campaignId, user.id)) &&
         authorized(user, item)
       )
@@ -110,39 +110,25 @@ function createLive(db, { now = () => Date.now(), retention = 300000 } = {}) {
       authorized(user, item),
     );
   }
-  function presence(campaignId) {
-    const members = db
-      .prepare("SELECT user_id FROM members WHERE campaign_id=?")
-      .all(campaignId);
-    return Object.fromEntries(
-      members.map(({ user_id: userId }) => [
-        userId,
-        [...clients].some(
-          (c) =>
-            c.user.id === userId &&
-            c.campaignId === campaignId &&
-            currentUser(c),
-        )
-          ? "here"
-          : [...clients].some((c) => c.user.id === userId && currentUser(c))
-            ? "online"
-            : "offline",
-      ]),
-    );
+  // Revalidate each connected session once per presence broadcast, rather than
+  // once for every member/client pair. Never retain authorization across events.
+  function authenticatedClients() {
+    return [...clients].map(client => ({ client, user: currentUser(client) })).filter(item => item.user);
+  }
+  function presence(campaignId, connected = authenticatedClients()) {
+    const members = db.prepare("SELECT user_id FROM members WHERE campaign_id=?").all(campaignId);
+    const online = new Set(connected.map(({ user }) => user.id));
+    const here = new Set(connected.filter(({ client }) => client.campaignId === campaignId).map(({ user }) => user.id));
+    return Object.fromEntries(members.map(({ user_id: userId }) => [userId,
+      here.has(userId) ? "here" : online.has(userId) ? "online" : "offline"]));
   }
   function presenceChanged() {
-    const campaignIds = new Set(
-      [...clients].map((c) => c.campaignId).filter(Boolean),
-    );
+    const connected = authenticatedClients();
+    const campaignIds = new Set(connected.map(({ client }) => client.campaignId).filter(Boolean));
     for (const campaignId of campaignIds) {
-      const state = presence(campaignId);
-      for (const client of clients) {
-        const user = currentUser(client);
-        if (
-          user &&
-          client.campaignId === campaignId &&
-          access.canOpenCampaign(db, user, campaignId)
-        )
+      const state = presence(campaignId, connected);
+      for (const { client, user } of connected) {
+        if (client.campaignId === campaignId && access.canOpenCampaign(db, user, campaignId))
           send(client, "presence", state);
       }
     }
@@ -228,15 +214,15 @@ function createLive(db, { now = () => Date.now(), retention = 300000 } = {}) {
         send(client, "entity", { id: entityId });
     }
   }
-  function campaignChanged(campaignId) {
+  function campaignChanged(campaignId, eventType = "campaign") {
     for (const client of clients) {
+      if (client.campaignId !== campaignId) continue;
       const user = currentUser(client);
       if (
         user &&
-        client.campaignId === campaignId &&
         access.canOpenCampaign(db, user, campaignId)
       )
-        send(client, "campaign", {});
+        send(client, eventType, {});
     }
   }
   function playingChanged(entityId) {
@@ -317,7 +303,7 @@ function createLive(db, { now = () => Date.now(), retention = 300000 } = {}) {
       sweep();
       if (battle) battles.set(campaignId, battle); else battles.delete(campaignId);
       if (!hasMember(campaignId)) markEmpty(campaignId);
-      campaignChanged(campaignId);
+      campaignChanged(campaignId, "battle");
     },
   };
 }

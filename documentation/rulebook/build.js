@@ -43,13 +43,14 @@ async function createRenderer() {
 	return { markdown, headings };
 }
 
-async function imageElement(art) {
+async function imageElement(art, web = false) {
 	const classes = { cover: 'cover-art', opening: 'chapter-art', margin: 'spot-art', tail: 'spot-art tail-art' };
-	const bytes = await fs.readFile(path.join(artworkDirectory, art.web.path));
-	return `<figure class="illustration ${classes[art.placement.kind]}" aria-hidden="true"><img src="data:image/webp;base64,${bytes.toString('base64')}" alt="" width="${art.width}" height="${art.height}" ${art.placement.kind === 'cover' ? 'fetchpriority="high"' : 'loading="eager"'} decoding="async" data-artwork="${art.name}"></figure>`;
+	const bytes = web ? null : await fs.readFile(path.join(artworkDirectory, art.web.path));
+	const src = web ? `/rulebook/assets/${path.basename(art.web.path)}` : `data:image/webp;base64,${bytes.toString('base64')}`;
+	return `<figure class="illustration ${classes[art.placement.kind]}" aria-hidden="true"><img src="${src}" alt="" width="${art.width}" height="${art.height}" ${art.placement.kind === 'cover' ? 'fetchpriority="high"' : web ? 'loading="lazy"' : 'loading="eager"'} decoding="async" data-artwork="${art.name}"></figure>`;
 }
 
-async function renderTopics(tokens, markdown, chapterId, glossaryId, placements) {
+async function renderTopics(tokens, markdown, chapterId, glossaryId, placements, web) {
 	const groups = [];
 	let current = { id: `${chapterId}-introduction`, tokens: [] };
 	for (const token of tokens) {
@@ -72,7 +73,7 @@ async function renderTopics(tokens, markdown, chapterId, glossaryId, placements)
 		const [heading, ...body] = group.tokens;
 		const title = markdown.parser([heading]);
 		const content = markdown.parser(body);
-		const figure = await imageElement(art);
+		const figure = await imageElement(art, web);
 		const illustrated = art.placement.kind === 'tail' ? content + figure : figure + content;
 		rendered.push(`<div class="topic illustrated-topic" data-topic="${group.id}">${title}${illustrated}</div>`);
 	}
@@ -91,7 +92,7 @@ function navigation(headings, localId) {
 	}).join('\n');
 }
 
-async function renderBook(source, { illustrations = true, language = 'en' } = {}) {
+async function renderBook(source, { illustrations = true, language = 'en', web = false } = {}) {
 	const edition = editions[language];
 	const localId = id => edition.ids[id] || id;
 	const placements = new Map(illustrations ? artworks.map(art => [localId(art.placement.section), art]) : []);
@@ -107,7 +108,7 @@ async function renderBook(source, { illustrations = true, language = 'en' } = {}
 <div class="front-meta">${markdown.parser(front.slice(0, firstRule))}</div>
 <div class="cover-top-rule">${markdown.parser(front.slice(firstRule, firstRule + 1))}</div>
 <div class="cover-title">${markdown.parser(front.slice(firstRule + 1, lastRule))}</div>
-${coverArt ? await imageElement(coverArt) : ''}
+${coverArt ? await imageElement(coverArt, web) : ''}
 <div class="cover-bottom-rule">${markdown.parser(front.slice(lastRule))}</div>
 </header>`;
 	const chapters = [];
@@ -119,22 +120,23 @@ ${coverArt ? await imageElement(coverArt) : ''}
 	for (const [index, chapter] of chapters.entries()) {
 		const id = slugify(chapter.title.text);
 		const title = markdown.parser([chapter.title]);
-		let body = await renderTopics(chapter.tokens, markdown, id, localId('definitions'), placements);
+		let body = await renderTopics(chapter.tokens, markdown, id, localId('definitions'), placements, web);
 		if (language === 'fr' && id === localId('adventure')) body = body.replace('<u>Niveaux de rareté et valeur générale</u>', '<u id="niveaux-de-rareté">Niveaux de rareté et valeur générale</u>');
 		const openingArt = placements.get(id);
-		const art = openingArt ? await imageElement(openingArt) : '';
+		const art = openingArt ? await imageElement(openingArt, web) : '';
 		rendered.push(`<section class="chapter ${id === localId('table-of-contents') ? 'contents' : ''}" data-chapter="${id}" aria-labelledby="${id}"><header class="chapter-heading" ${index ? `data-number="${String(index).padStart(2, '0')}"` : ''}>${title}</header>${art}<div class="chapter-body">${body}</div></section>`);
 	}
 	return { book: `${cover}\n${rendered.join('\n')}`, headings, navigation: navigation(headings, localId), canonical: (await createRenderer()).markdown.parse(source) };
 }
 
-async function build(language = 'en') {
+async function build(language = 'en', { web = false } = {}) {
 	const edition = editions[language];
 	if (!edition) throw new Error(`Unsupported rulebook language: ${language}`);
-	const { sourcePath, outputPath } = edition;
+	const { sourcePath } = edition;
+	const outputPath = web ? path.join(root, `documentation/website-rules-${language}.html`) : edition.outputPath;
 	const bytes = await fs.readFile(sourcePath);
 	const source = bytes.toString('utf8');
-	const { book, navigation: nav } = await renderBook(source, { language });
+	const { book, navigation: nav } = await renderBook(source, { language, web });
 	const [template, styles, reader, fonts] = await Promise.all([
 		fs.readFile(path.join(__dirname, 'template.html'), 'utf8'),
 		fs.readFile(path.join(__dirname, 'rulebook.css'), 'utf8'),
@@ -151,7 +153,8 @@ async function build(language = 'en') {
 	localizedTemplate = localizedTemplate.replace('<html lang="en">', '<html lang="' + language + '">');
 	const readerUi = { ...edition.ui, contentsId: edition.ids['table-of-contents'] || 'table-of-contents' };
 	const localizedReader = reader.replace('const ui = __READER_UI__;', `const ui = ${JSON.stringify(readerUi).replaceAll('<', '\\u003c')};`).replace(', __READER_UI__ */', ' */');
-	for (const [name, base64] of fonts) css = css.replace(`__FONT_${name}__`, `data:font/ttf;base64,${base64}`);
+	for (const [name, base64] of fonts) css = css.replace(`__FONT_${name}__`, web ? `/fonts/${name}.woff2` : `data:font/ttf;base64,${base64}`);
+	if (web) css = css.replaceAll('format("truetype")', 'format("woff2")');
 	const hash = createHash('sha256').update(bytes).digest('hex');
 	const licenses = (await Promise.all(['EBGaramond-OFL.txt', 'Cinzel-OFL.txt'].map(name => fs.readFile(path.join(__dirname, `fonts/${name}`), 'utf8')))).join('\n\n');
 	const html = localizedTemplate.replace('__SOURCE_SHA256__', hash).replace('__FONT_LICENSES__', licenses.replaceAll('--', '—')).replace('__STYLES__', css).replace('__NAVIGATION__', nav).replace('__BOOK__', `${sourceStart}\n${book}\n${sourceEnd}`).replace('__READER__', localizedReader);
@@ -161,10 +164,12 @@ async function build(language = 'en') {
 }
 
 if (require.main === module) {
-	Promise.all((process.argv[2] ? [process.argv[2]] : Object.keys(editions)).map(language => build(language))).catch(error => {
-		console.error(error);
-		process.exitCode = 1;
-	});
+  const web = process.argv.includes('--web');
+  const language = process.argv.slice(2).find(value => !value.startsWith('--'));
+  Promise.all((language ? [language] : Object.keys(editions)).map(lang => build(lang, { web }))).catch(error => {
+    console.error(error);
+    process.exitCode = 1;
+  });
 }
 
 module.exports = { build, renderBook, createRenderer, sourcePath: editions.en.sourcePath, outputPath: editions.en.outputPath, sourceStart, sourceEnd, plainText, slugify };

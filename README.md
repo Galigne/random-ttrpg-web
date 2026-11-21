@@ -156,7 +156,7 @@ See Alwaysdata's [Node.js configuration](https://help.alwaysdata.com/fr/docs/heb
 
 ## Rulebooks and development
 
-`documentation/TTRPG_RANDOM_RULES_EN.md` and `documentation/JDR_RANDOM_RULES_FR.md` are the canonical sources. Their standalone generated HTML editions, reading tools, bundled fonts, and WebP illustrations are retained in the repository. The website serves the original editions behind authentication. The source renderer is in `documentation/rulebook/`; it reads the Markdown and does not alter it. Do not hand-edit the generated HTML or change rules to fit the website.
+`documentation/TTRPG_RANDOM_RULES_EN.md` and `documentation/JDR_RANDOM_RULES_FR.md` are the canonical sources. Their standalone generated HTML editions, reading tools, bundled fonts, and WebP illustrations are retained in the repository. The website serves compact web editions behind authentication; the original standalone editions remain available as files. The web editions load optimized artwork as needed and use shared WOFF2 fonts. The source renderer is in `documentation/rulebook/`; it reads the Markdown and does not alter it. Do not hand-edit the generated HTML or change rules to fit the website.
 
 The Discord-independent RPG implementation and locale data are under `rpg/`; HTTP routes, permissions, persistence, and live delivery are under `server/`; the browser contains presentation logic only. Uploaded files and the live database never belong in the checkout. The website's entity IDs are stable UUIDs, while display names can repeat and change.
 
@@ -166,4 +166,16 @@ Run validation with:
 npm test
 ```
 
-This runs website authorization, persistence, lock, chat, image, undo, and dice tests as well as the source project's production generator-integrity suite against the copied domain code and catalogs. The artwork provenance for website-created illustrations is recorded in `media/website-artwork.json`.
+This runs website authorization, persistence, migrations, lock, chat, image, undo, delivery, and dice tests as well as the source project's production generator-integrity suite against the copied domain code and catalogs. The artwork provenance for website-created illustrations is recorded in `media/website-artwork.json`.
+
+A real-browser regression suite covers editing, two-tab locks, live battle updates and reconnection, navigation, the generator, both interface languages, and the rulebook. To run it locally, install Playwright for development and its Chromium browser, then run:
+
+```sh
+npm install --no-save --no-package-lock playwright@1.62.1
+npx playwright install chromium
+npm run test:browser
+```
+
+Set `BROWSER_EXECUTABLE` to use an existing Chromium-compatible browser. The browser tests use an in-memory database. CI runs both suites. SQLite schema changes are applied as numbered transactions at startup; back up the database before deploying an upgrade. Older unversioned website databases are upgraded automatically, while a database from a newer schema is rejected.
+
+To rebuild the website-only rulebooks after an authorized reader or rulebook change, run `node documentation/rulebook/build.js --web`. The compact illustrations and fonts are committed; regenerating those derivatives with `python scripts/build-web-assets.py` requires Pillow and `fonttools[woff]`. The command reads the original artwork and fonts and does not change the standalone editions.

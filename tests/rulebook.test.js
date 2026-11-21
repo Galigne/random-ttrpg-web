@@ -25,3 +25,21 @@ for (const [language, basename] of [
     assert.match(html, /id="chapter-navigation"/);
   });
 }
+
+test('website editions use compact external artwork without changing canonical rules', async () => {
+  for (const [language, basename] of [['en', 'TTRPG_RANDOM_RULES_EN'], ['fr', 'JDR_RANDOM_RULES_FR']]) {
+    const root = path.join(__dirname, '..', 'documentation');
+    const source = await fs.readFile(path.join(root, `${basename}.md`), 'utf8');
+    const html = await fs.readFile(path.join(root, `website-rules-${language}.html`), 'utf8');
+    const { book } = await renderBook(source, { language, web: true });
+    assert.ok(html.includes(`${sourceStart}\n${book}\n${sourceEnd}`));
+    assert.ok(Buffer.byteLength(html) < 250000);
+    assert.doesNotMatch(html, /data:image\/webp;base64/);
+    assert.match(html, /\/rulebook\/assets\/cover\.webp/);
+    assert.match(html, /loading="lazy"/);
+    assert.match(html, /\.woff2/);
+    const images = [...html.matchAll(/src="\/rulebook\/assets\/([^"]+)"/g)].map(match => match[1]);
+    assert.equal(images.length, 15);
+    for (const image of images) await fs.access(path.join(root, '..', 'public', 'rulebook-art', image));
+  }
+});

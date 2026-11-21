@@ -81,22 +81,17 @@ module.exports = ({ db, live, route, fail, diceAppearance }) => {
     });
   });
   route("GET", "/api/campaigns", ({ user }) => {
-    const campaigns = db
-      .prepare(
-        "SELECT c.id,c.name,c.description,c.language,c.owner_id,(c.cover IS NOT NULL) AS has_cover,u.username AS owner FROM campaigns c JOIN users u ON u.id=c.owner_id ORDER BY c.created_at DESC",
-      )
-      .all()
-      .filter((c) => access.canOpenCampaign(db, user, c.id))
-      .map((c) => ({
-        id: c.id,
-        name: c.name,
-        description: c.description,
-        language: c.language,
-        owner: c.owner,
-        ownerId: c.owner_id,
-        cover: Boolean(c.has_cover),
-        role: member(c.id, user.id)?.role || null,
-      }));
+    const campaigns = db.prepare(`
+      SELECT c.id,c.name,c.description,c.language,c.owner_id,
+        (c.cover IS NOT NULL) AS has_cover,u.username AS owner,m.role
+      FROM campaigns c JOIN users u ON u.id=c.owner_id
+      LEFT JOIN members m ON m.campaign_id=c.id AND m.user_id=@user
+      WHERE @admin=1 OR c.owner_id=@user OR m.user_id IS NOT NULL
+      ORDER BY c.created_at DESC
+    `).all({ user: user.id, admin: Number(access.isAdmin(user)) })
+      .map(c => ({ id: c.id, name: c.name, description: c.description,
+        language: c.language, owner: c.owner, ownerId: c.owner_id,
+        cover: Boolean(c.has_cover), role: c.role || null }));
     const invitations = db
       .prepare(
         "SELECT c.id,c.name,u.username AS invitedBy FROM campaign_invitations i JOIN campaigns c ON c.id=i.campaign_id JOIN users u ON u.id=i.created_by WHERE i.user_id=? ORDER BY i.created_at DESC",
@@ -178,20 +173,19 @@ module.exports = ({ db, live, route, fail, diceAppearance }) => {
         }
         return { id: m.id, username: m.username, role: m.role, playing };
       });
-    const entities = db
-      .prepare(
-        "SELECT e.id,e.type,e.owner_id,e.data,(e.portrait IS NOT NULL) AS has_portrait,a.visibility FROM assignments a JOIN entities e ON e.id=a.entity_id WHERE a.campaign_id=? AND a.state='approved' ORDER BY e.created_at DESC",
-      )
-      .all(c.id)
-      .filter((e) => access.canViewInCampaign(db, user, e, c.id))
-      .map((e) => ({
-        id: e.id,
-        type: e.type,
+    const entities = db.prepare(`
+      SELECT e.id,e.type,e.owner_id,e.data,(e.portrait IS NOT NULL) AS has_portrait,a.visibility,
+        ${access.sqlCanEdit()} AS can_edit
+      FROM assignments a JOIN entities e ON e.id=a.entity_id
+      WHERE a.campaign_id=@campaign AND a.state='approved' AND
+        (@admin=1 OR e.owner_id=@user OR @gm=1 OR (@member=1 AND a.visibility='shared') OR
+          EXISTS (SELECT 1 FROM entity_permissions p WHERE p.entity_id=e.id AND p.user_id=@user))
+      ORDER BY e.created_at DESC
+    `).all({ campaign: c.id, user: user.id, admin: Number(access.isAdmin(user)),
+      gm: Number(gm), member: Number(campaignMember) })
+      .map(e => ({ id: e.id, type: e.type,
         name: rpg.displayName(e.type, JSON.parse(e.data), user.language),
-        visibility: e.visibility,
-        portrait: Boolean(e.has_portrait),
-        canEdit: access.canEdit(db, user, e),
-      }));
+        visibility: e.visibility, portrait: Boolean(e.has_portrait), canEdit: Boolean(e.can_edit) }));
     const pending = gm
       ? db
           .prepare(
@@ -213,7 +207,7 @@ module.exports = ({ db, live, route, fail, diceAppearance }) => {
         description: c.description,
         language: c.language,
         ownerId: c.owner_id,
-        cover: Boolean(c.cover),
+        cover: Boolean(c.has_cover),
       },
       members,
       entities,
@@ -406,8 +400,9 @@ module.exports = ({ db, live, route, fail, diceAppearance }) => {
   });
   route("GET", "/api/campaigns/:id/cover", ({ user, params, res }) => {
     const c = getCampaign(user, params.id);
-    if (!c.cover) fail(404, "NOT_FOUND");
-    sendImage(res, c.cover, c.cover_type);
+    if (!c.has_cover) fail(404, "NOT_FOUND");
+    const cover = db.prepare("SELECT cover,cover_type FROM campaigns WHERE id=?").get(c.id);
+    sendImage(res, cover.cover, cover.cover_type);
   });
   route("POST", "/api/campaigns/:id/cover", ({ user, params, body }) => {
     const c = getCampaign(user, params.id);

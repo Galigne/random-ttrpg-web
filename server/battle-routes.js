@@ -4,7 +4,7 @@ const { randomUUID } = require('node:crypto');
 
 module.exports = (ctx) => {
   const { db, live, route, fail } = ctx;
-  const assigned = (campaignId, entityId) => db.prepare("SELECT e.* FROM assignments a JOIN entities e ON e.id=a.entity_id WHERE a.campaign_id=? AND a.entity_id=? AND a.state='approved'").get(campaignId, entityId);
+  const assigned = (campaignId, entityId) => db.prepare("SELECT e.id,e.type,e.owner_id,e.data,e.version,(e.portrait IS NOT NULL) AS has_portrait,e.portrait_type FROM assignments a JOIN entities e ON e.id=a.entity_id WHERE a.campaign_id=? AND a.entity_id=? AND a.state='approved'").get(campaignId, entityId);
   const own = (campaignId, userId, entityId) => Boolean(db.prepare('SELECT 1 FROM playing_characters WHERE campaign_id=? AND user_id=? AND entity_id=?').get(campaignId, userId, entityId));
   function campaign(user, campaignId) {
     if (!access.canOpenCampaign(db, user, campaignId)) fail(404, 'CAMPAIGN_NOT_FOUND');
@@ -13,36 +13,46 @@ module.exports = (ctx) => {
   function permitted(user, campaignId, entityId) {
     return access.isGm(db, user, campaignId) || (own(campaignId, user.id, entityId) && access.canEdit(db, user, access.entityMetadata(db, entityId)));
   }
-  function entries(campaignId, user) {
-    return db.prepare("SELECT e.* FROM assignments a JOIN entities e ON e.id=a.entity_id WHERE a.campaign_id=? AND a.state='approved' ORDER BY e.created_at DESC").all(campaignId)
-      .filter(e => permitted(user, campaignId, e.id))
-      .map(e => ({ id: e.id, name: rpg.displayName(e.type, JSON.parse(e.data), user.language), resources: JSON.parse(e.data).resources }));
-  }
-  function clean(campaignId, battle) {
+  function clean(campaignId, battle, assignedIds) {
     if (!battle) return;
-    for (const group of battle.groups) group.entries = group.entries.filter(e => assigned(campaignId, e.entityId));
+    const ids = assignedIds || new Set(db.prepare("SELECT entity_id FROM assignments WHERE campaign_id=? AND state='approved'").all(campaignId).map(row => row.entity_id));
+    for (const group of battle.groups) group.entries = group.entries.filter(e => ids.has(e.entityId));
     battle.groups = battle.groups.filter(g => g.entries.length);
     battle.baseOrder = battle.baseOrder.filter(id => battle.groups.some(group => group.id === id));
     if (battle.index >= battle.groups.length) battle.index = 0;
   }
   function snapshot(campaignId, user) {
+    const member = access.membership(db, campaignId, user.id);
+    const gm = access.isAdmin(user) || member?.role === 'gm';
+    const rows = db.prepare(`SELECT e.id,e.type,e.owner_id,e.data,a.visibility,
+      ${access.sqlCanEdit()} AS can_edit,
+      EXISTS(SELECT 1 FROM entity_permissions p WHERE p.entity_id=e.id AND p.user_id=@user) AS direct_access,
+      EXISTS(SELECT 1 FROM playing_characters p WHERE p.campaign_id=@campaign AND p.user_id=@user AND p.entity_id=e.id) AS playing
+      FROM assignments a JOIN entities e ON e.id=a.entity_id
+      WHERE a.campaign_id=@campaign AND a.state='approved' ORDER BY e.created_at DESC`)
+      .all({ campaign: campaignId, user: user.id, admin: Number(access.isAdmin(user)) });
+    const indexed = new Map(rows.map(row => [row.id, row]));
+    const control = row => Boolean(gm || (row.playing && row.can_edit));
+    const visible = row => Boolean(control(row) || access.isAdmin(user) || row.owner_id === user.id || row.direct_access ||
+      (member && (member.role === 'gm' || row.visibility === 'shared')));
     const battle = live.getBattle(campaignId);
-    clean(campaignId, battle);
+    clean(campaignId, battle, new Set(indexed.keys()));
     return {
-      targets: entries(campaignId, user),
+      targets: rows.filter(control).map(row => {
+        const data = JSON.parse(row.data);
+        return { id: row.id, name: rpg.displayName(row.type, data, user.language), resources: data.resources };
+      }),
       battle: battle && { round: battle.round, groups: battle.groups.map((group, index) => ({
         active: index === battle.index,
         entries: group.entries.map(entry => {
-          const row = assigned(campaignId, entry.entityId);
-          const control = row && permitted(user, campaignId, row.id);
-          const visible = row && (control || access.canViewInCampaign(db, user, row, campaignId));
-          return { token: entry.token, name: visible ? rpg.displayName(row.type, JSON.parse(row.data), user.language) : null,
-            finished: entry.finished, control, ...(control ? { entityId: row.id } : {}) };
+          const row = indexed.get(entry.entityId);
+          const canControl = control(row);
+          return { token: entry.token, name: visible(row) ? rpg.displayName(row.type, JSON.parse(row.data), user.language) : null,
+            finished: entry.finished, control: canControl, ...(canControl ? { entityId: row.id } : {}) };
         })
       })) }
     };
   }
-  ctx.battleSnapshot = snapshot;
   function changed(campaignId, battle) { live.setBattle(campaignId, battle); }
   function event(campaignId, user, action, row) {
     live.append(campaignId, { type: 'combat', identity: { username: user.username }, action,
@@ -51,7 +61,7 @@ module.exports = (ctx) => {
   function recover(row, user) {
     if (live.getLock(row.id)) fail(409, 'ENTITY_LOCKED');
     const result = rpg.combat(row.type, JSON.parse(row.data), 'end-turn', {});
-    ctx.publishEntity(row, result.data, user, row.version);
+    ctx.entities.publish(row, result.data, user, row.version);
   }
   function addCombatant(battle, row, side) {
     const speed = JSON.parse(row.data).statistics.speed;
@@ -94,7 +104,7 @@ module.exports = (ctx) => {
       if (battle) fail(409, 'INVALID_ACTION');
       battle = { round: 1, index: 0, groups: [], baseOrder: [], begun: false };
       const presence = live.presence(campaignId);
-      const selections = db.prepare(`SELECT p.user_id, e.*, u.role FROM playing_characters p
+      const selections = db.prepare(`SELECT p.user_id, e.id,e.type,e.owner_id,e.data,e.version,(e.portrait IS NOT NULL) AS has_portrait,e.portrait_type, u.role FROM playing_characters p
         JOIN users u ON u.id=p.user_id AND u.status='active'
         JOIN entities e ON e.id=p.entity_id AND e.type='character'
         JOIN assignments a ON a.entity_id=e.id AND a.campaign_id=p.campaign_id AND a.state='approved'
@@ -190,7 +200,7 @@ module.exports = (ctx) => {
       }
       updated = rpg.edit(row.type, data, 'resources', fields);
     } else updated = rpg.combat(row.type, data, body.action, body).data;
-    ctx.publishEntity(row, updated, user, row.version);
+    ctx.entities.publish(row, updated, user, row.version);
     event(params.id, user, body.action, row);
     live.campaignChanged(params.id);
     return { ok: true };

@@ -1,565 +1,15 @@
 /* RANDOM's browser is a presentation client; game rules and authorization live on the server. */
-"use strict";
-const copy = {
-  en: {
-    tagline: "Tabletop roleplaying",
-    navigation: "Main navigation",
-    characterSheet: "Character sheet",
-    creatureSheet: "Creature sheet",
-    noValue: "Not specified",
-    sheetSettings: "Sheet settings",
-    current: "Current",
-    addEntry: "Add entry",
-    entry: "Entry",
-    increase: "Increase",
-    decrease: "Decrease",
-    unsaved: "Unsaved changes",
-    checkFields: "Check the highlighted fields before saving.",
-    overCapacity: "Current encumbrance must be within its maximum.",
-    home: "Home",
-    campaigns: "Campaigns",
-    characters: "Characters",
-    creatures: "Creatures",
-    generators: "Generators",
-    dice: "Dice",
-    rulebook: "Rulebook",
-    admin: "Administration",
-    signOut: "Sign out",
-    welcome: "Your next story begins here",
-    welcomeText:
-      "Gather your companions, bring your characters to life, and explore the worlds of RANDOM.",
-    enter: "Enter RANDOM",
-    signIn: "Sign in",
-    register: "Request an account",
-    inviteRegister: "Create your account",
-    username: "Username",
-    password: "Password",
-    language: "Language",
-    accountPending:
-      "Your request has been sent. An administrator must approve it before you can sign in.",
-    accountActive: "Your account is ready. You can sign in now.",
-    passwordHint: "At least 12 characters",
-    usernameHint: "3–32 letters, numbers, dots, underscores or hyphens",
-    resetPassword: "Set a new password",
-    resetDone: "Your password has been changed. Sign in to continue.",
-    adventure: "An adventure of your own",
-    homeIntro:
-      "A place for your adventures, your companions and the stories you make together.",
-    openCampaigns: "Open your campaigns",
-    begin: "Begin exploring",
-    campaignIntro: "Gather around the table and keep your adventures together.",
-    newCampaign: "Create campaign",
-    name: "Name",
-    description: "Description",
-    create: "Create",
-    cancel: "Cancel",
-    save: "Save",
-    close: "Close",
-    settings: "Settings",
-    noCampaigns:
-      "No campaigns yet. Create one, or accept an invitation to join your companions.",
-    invitations: "Invitations",
-    invitedBy: "Invited by",
-    accept: "Accept",
-    reject: "Reject",
-    overview: "Overview",
-    members: "Members",
-    owner: "Owner",
-    gm: "GM",
-    member: "Member",
-    here: "In campaign",
-    online: "Online elsewhere",
-    offline: "Offline",
-    playing: "Playing character",
-    playingChoiceHint:
-      "Choose a character you can control that is assigned to this campaign.",
-    noCharacter: "No character selected",
-    inviteMember: "Invite a member by username",
-    invite: "Invite",
-    promote: "Make GM",
-    demote: "Remove GM role",
-    remove: "Remove",
-    leave: "Leave campaign",
-    pendingAssignments: "Assignment requests",
-    approve: "Approve",
-    private: "Private",
-    shared: "Campaign-shared",
-    chat: "Session chat",
-    membersOnly: "Join the campaign to use its session chat and dice.",
-    message: "Write a message",
-    send: "Send",
-    privateRoll: "Private roll · visible to GMs",
-    roll: "Roll",
-    total: "Total",
-    modifier: "Modifier",
-    campaignSettings: "Campaign settings",
-    transferOwnership: "Transfer ownership",
-    transfer: "Transfer",
-    cover: "Campaign cover",
-    upload: "Upload",
-    removeImage: "Remove image",
-    deleteCampaign: "Delete campaign",
-    confirmCampaign: "Type the campaign name to confirm permanent deletion.",
-    yourLibrary: "Your library",
-    entityIntro:
-      "Keep your sheets close at hand, wherever your adventures take you.",
-    newBlank: "New blank sheet",
-    generateCharacter: "Generate character",
-    generateCreature: "Generate creature",
-    noEntities: "There are no sheets here yet.",
-    viewSheet: "Open sheet",
-    editing: "Editing",
-    startEditing: "Start editing",
-    finishEditing: "Finish editing",
-    lockedBy: "Currently edited by",
-    lockLost: "Your editing session ended. Unsaved text has not been saved.",
-    editHint:
-      "Changes save when you leave a section or choose Save.",
-    undo: "Undo",
-    redo: "Redo",
-    saveReversal: "Save reversal",
-    cancelReversal: "Cancel preview",
-    previewing: "Undo preview · changes are not saved",
-    damage: "Damage",
-    battle: "Battle", battleStarted: "Battle started", battleEnded: "Battle ended", startBattle: "Start battle", endBattle: "End battle", round: "Round", unknownCombatant: "Unknown combatant", activeTurn: "Active", finishedTurn: "Finished", delayTurn: "Delay", advanceTurn: "Advance", correctTurn: "Set active", moveUp: "Move earlier", moveDown: "Move later", addCombatant: "Add combatant", playersSide: "Players and allies", enemiesSide: "Enemies", restore: "Restore", selectTarget: "Select a target", noTargets: "No manageable combatants.", resourceControls: "Resources", ENTITY_LOCKED: "This sheet is being edited. Finish editing before changing its resources here.",
-    piercing: "Piercing",
-    heal: "Heal",
-    healResource: "Heal resource",
-    percentage: "Restore to % of maximum",
-    maximum: "Maximum", adjust: "Adjust", setResource: "Set resource",
-    endTurn: "End turn",
-    amount: "Amount",
-    portrait: "Portrait",
-    permissions: "Individual permissions",
-    viewer: "Viewer",
-    editor: "Editor",
-    grant: "Grant access",
-    revoke: "Revoke",
-    assignments: "Campaign assignments",
-    requestAssignment: "Request assignment",
-    campaignReference: "Campaign ID or link, if not listed",
-    request: "Request",
-    withdraw: "Withdraw / remove",
-    changeVisibility: "Change visibility",
-    deleteEntity: "Permanently delete",
-    confirmEntity: "Type the sheet name to confirm permanent deletion.",
-    entityDeleted: "Sheet deleted.",
-    saved: "Saved",
-    invalid: "Please check the value and try again.",
-    generationIntro:
-      "Follow a path through the RANDOM tables, or let chance choose for you.",
-    chooseCategory: "Choose a category",
-    randomChoice: "Random selection",
-    entries: "Choose a specific entry",
-    fields: "Choose a field",
-    generate: "Generate",
-    regenerate: "Regenerate",
-    generationLanguage: "Generation language",
-    level: "Level",
-    random: "Random",
-    generationPath: "Background / type",
-    generatedPreview: "Generated preview",
-    saveToLibrary: "Save to library",
-    noPreview: "Generate a result to preview it here.",
-    modifiers: "Modifiers",
-    result: "Result",
-    diceIntro:
-      "The dice are rolled on the server. Personal rolls stay with you.",
-    expression: "Dice expression",
-    diceExample: "For example: 1d20, 2d6+3, 4d8-2",
-    diceRolling: "Rolling…",
-    tens: "Tens", units: "Units",
-    personalRoll: "Personal roll",
-    appearance: "Dice appearance",
-    texture: "Texture",
-    glow: "Glow color",
-    matchTexture: "Match the texture",
-    customGlow: "Custom color",
-    hexColor: "Hex color",
-    criticalPreview: "Critical preview",
-    replay: "Replay both",
-    criticalSuccess: "Critical success",
-    criticalFailure: "Critical failure",
-    INVALID_DICE_APPEARANCE: "Choose a dice texture and a valid glow color.",
-    rulebookIntro:
-      "Read the original illustrated rules, complete with their search and navigation tools.",
-    edition: "Edition",
-    openEdition: "Open edition in a new window",
-    administration: "Website administration",
-    accounts: "Accounts",
-    accountRequests: "Account requests",
-    active: "Active",
-    pending: "Pending",
-    rejected: "Rejected",
-    disabled: "Disabled",
-    user: "User",
-    makeAdmin: "Make admin",
-    makeUser: "Make user",
-    disable: "Disable",
-    enable: "Enable",
-    inviteLinks: "Invitation links",
-    createInvite: "Create single-use link",
-    resetLink: "Create password-reset link",
-    createdLink: "Copy this link",
-    expires: "Expires",
-    noInvitations: "No active invitations.",
-    imageHint: "PNG, JPEG or WebP, up to 4 MB.",
-    uploadError: "The image must be a PNG, JPEG or WebP under 4 MB.",
-    confirm: "Confirm",
-    onlineStatus: "Presence",
-    status: "Status",
-    requestSent: "Request sent.",
-    next: "Continue",
-    noResults: "No options at this level.",
-    unnamed: "Untitled",
-    waiting: "Please wait…",
-    selected: "Selected",
-    choose: "Choose",
-    noHistory: "There are no more saved changes to undo.",
-    UNDO_PREVIEW_ACTIVE: "Save or cancel the undo preview first.",
-    LOGIN_FAILED:
-      "Incorrect username or password, or the account is not active.",
-    LOGIN_REQUIRED: "Please sign in again.",
-    USERNAME_REQUIREMENTS: "Please check the username requirements.",
-    PASSWORD_REQUIREMENTS: "Passwords must contain at least 12 characters.",
-    USERNAME_TAKEN: "That username is already in use.",
-    INVITATION_INVALID: "This invitation is invalid or has already been used.",
-    RESET_INVALID: "This reset link is invalid or expired.",
-    TOO_MANY_ATTEMPTS: "Too many attempts. Please try again later.",
-    FORBIDDEN: "You do not have permission to do that.",
-    LOCKED: "This sheet is currently being edited by someone else.",
-    LOCK_REQUIRED: "Your editing session has ended.",
-    VERSION_CONFLICT: "The sheet changed. Reload it before trying again.",
-    CHARACTER_INELIGIBLE:
-      "The character must be assigned to this campaign and controllable by that member.",
-    CHARACTER_ALREADY_PLAYING:
-      "Another member has already selected that character.",
-    ALREADY_ASSIGNED: "An assignment or request already exists.",
-    INVALID_IMAGE: "Please choose a valid PNG, JPEG or WebP under 4 MB.",
-    NO_MORE_UNDO: "There are no more changes to undo.",
-    NO_MORE_REDO: "There are no more changes to redo.",
-    USER_NOT_FOUND: "That active user could not be found.",
-    CAMPAIGN_NOT_FOUND: "That campaign could not be found.",
-    LAST_ADMIN: "At least one active administrator must remain.",
-    CONFIRMATION_REQUIRED: "The confirmation does not match the name.",
-    INTERNAL_ERROR: "Something went wrong. Please try again.",
-  },
-  fr: {
-    tagline: "Jeu de rôle sur table",
-    navigation: "Navigation principale",
-    characterSheet: "Fiche de personnage",
-    creatureSheet: "Fiche de créature",
-    noValue: "Non renseigné",
-    sheetSettings: "Gestion de la fiche",
-    current: "Actuel",
-    addEntry: "Ajouter une entrée",
-    entry: "Entrée",
-    increase: "Augmenter",
-    decrease: "Diminuer",
-    unsaved: "Modifications en attente",
-    checkFields: "Vérifiez les champs signalés avant d’enregistrer.",
-    overCapacity: "L’encombrement actuel dépasse le maximum.",
-    home: "Accueil",
-    campaigns: "Campagnes",
-    characters: "Personnages",
-    creatures: "Créatures",
-    generators: "Générateurs",
-    dice: "Dés",
-    rulebook: "Livre de règles",
-    admin: "Administration",
-    signOut: "Déconnexion",
-    welcome: "Votre prochaine histoire commence ici",
-    welcomeText:
-      "Rassemblez vos compagnons, donnez vie à vos personnages et explorez les mondes de RANDOM.",
-    enter: "Entrer dans RANDOM",
-    signIn: "Se connecter",
-    register: "Demander un compte",
-    inviteRegister: "Créer votre compte",
-    username: "Nom d’utilisateur",
-    password: "Mot de passe",
-    language: "Langue",
-    accountPending:
-      "Votre demande a été envoyée. Un administrateur doit l’approuver avant votre connexion.",
-    accountActive:
-      "Votre compte est prêt. Vous pouvez maintenant vous connecter.",
-    passwordHint: "Au moins 12 caractères",
-    usernameHint:
-      "3 à 32 lettres, chiffres, points, tirets ou traits de soulignement",
-    resetPassword: "Choisir un nouveau mot de passe",
-    resetDone:
-      "Votre mot de passe a été modifié. Connectez-vous pour continuer.",
-    adventure: "Une aventure à votre image",
-    homeIntro:
-      "Un lieu pour vos aventures, vos compagnons et les histoires que vous créez ensemble.",
-    openCampaigns: "Ouvrir vos campagnes",
-    begin: "Commencer à explorer",
-    campaignIntro:
-      "Retrouvez-vous autour de la table et rassemblez vos aventures.",
-    newCampaign: "Créer une campagne",
-    name: "Nom",
-    description: "Description",
-    create: "Créer",
-    cancel: "Annuler",
-    save: "Enregistrer",
-    close: "Fermer",
-    settings: "Paramètres",
-    noCampaigns:
-      "Aucune campagne pour le moment. Créez-en une ou acceptez une invitation.",
-    invitations: "Invitations",
-    invitedBy: "Invitation de",
-    accept: "Accepter",
-    reject: "Refuser",
-    overview: "Vue d’ensemble",
-    members: "Membres",
-    owner: "Propriétaire",
-    gm: "MJ",
-    member: "Membre",
-    here: "Dans la campagne",
-    online: "En ligne ailleurs",
-    offline: "Hors ligne",
-    playing: "Personnage joué",
-    playingChoiceHint:
-      "Choisissez un personnage que vous pouvez contrôler et qui est affecté à cette campagne.",
-    noCharacter: "Aucun personnage sélectionné",
-    inviteMember: "Inviter un membre par son nom d’utilisateur",
-    invite: "Inviter",
-    promote: "Nommer MJ",
-    demote: "Retirer le rôle de MJ",
-    remove: "Retirer",
-    leave: "Quitter la campagne",
-    pendingAssignments: "Demandes d’affectation",
-    approve: "Approuver",
-    private: "Privé",
-    shared: "Partagé dans la campagne",
-    chat: "Discussion de séance",
-    membersOnly:
-      "Rejoignez la campagne pour utiliser la discussion et les dés de séance.",
-    message: "Écrire un message",
-    send: "Envoyer",
-    privateRoll: "Jet privé · visible par les MJ",
-    roll: "Lancer",
-    total: "Total",
-    modifier: "Modificateur",
-    campaignSettings: "Paramètres de la campagne",
-    transferOwnership: "Transférer la propriété",
-    transfer: "Transférer",
-    cover: "Couverture de la campagne",
-    upload: "Importer",
-    removeImage: "Retirer l’image",
-    deleteCampaign: "Supprimer la campagne",
-    confirmCampaign:
-      "Saisissez le nom de la campagne pour confirmer sa suppression définitive.",
-    yourLibrary: "Votre bibliothèque",
-    entityIntro:
-      "Gardez vos fiches à portée de main, où que vous mène l’aventure.",
-    newBlank: "Nouvelle fiche vierge",
-    generateCharacter: "Générer un personnage",
-    generateCreature: "Générer une créature",
-    noEntities: "Il n’y a pas encore de fiche ici.",
-    viewSheet: "Ouvrir la fiche",
-    editing: "Modification",
-    startEditing: "Modifier",
-    finishEditing: "Terminer les modifications",
-    lockedBy: "En cours de modification par",
-    lockLost:
-      "Votre session de modification est terminée. Le texte non enregistré n’a pas été sauvegardé.",
-    editHint:
-      "Les modifications sont enregistrées lorsque vous quittez une section ou choisissez Enregistrer.",
-    undo: "Annuler",
-    redo: "Rétablir",
-    saveReversal: "Enregistrer la révision",
-    cancelReversal: "Annuler l’aperçu",
-    previewing:
-      "Aperçu de la révision · les changements ne sont pas enregistrés",
-    damage: "Dégâts",
-    battle: "Combat", battleStarted: "Combat commencé", battleEnded: "Combat terminé", startBattle: "Commencer le combat", endBattle: "Terminer le combat", round: "Manche", unknownCombatant: "Combattant inconnu", activeTurn: "Actif", finishedTurn: "Terminé", delayTurn: "Retarder", advanceTurn: "Avancer", correctTurn: "Activer", moveUp: "Avancer dans l’ordre", moveDown: "Reculer dans l’ordre", addCombatant: "Ajouter un combattant", playersSide: "Joueurs et alliés", enemiesSide: "Ennemis", restore: "Restaurer", selectTarget: "Choisir une cible", noTargets: "Aucun combattant à gérer.", resourceControls: "Ressources", ENTITY_LOCKED: "Cette fiche est en cours de modification. Terminez sa modification avant de changer ses ressources ici.",
-    piercing: "Perforant",
-    heal: "Soigner",
-    healResource: "Ressource à soigner",
-    percentage: "Restaurer à % du maximum",
-    maximum: "Maximum", adjust: "Ajuster", setResource: "Définir la ressource",
-    endTurn: "Fin du tour",
-    amount: "Quantité",
-    portrait: "Portrait",
-    permissions: "Autorisations individuelles",
-    viewer: "Lecteur",
-    editor: "Éditeur",
-    grant: "Autoriser",
-    revoke: "Révoquer",
-    assignments: "Affectations aux campagnes",
-    requestAssignment: "Demander une affectation",
-    campaignReference: "Identifiant ou lien de campagne si elle n’apparaît pas",
-    request: "Demander",
-    withdraw: "Retirer",
-    changeVisibility: "Changer la visibilité",
-    deleteEntity: "Supprimer définitivement",
-    confirmEntity:
-      "Saisissez le nom de la fiche pour confirmer sa suppression définitive.",
-    entityDeleted: "Fiche supprimée.",
-    saved: "Enregistré",
-    invalid: "Vérifiez la valeur et réessayez.",
-    generationIntro:
-      "Parcourez les tables RANDOM ou laissez le hasard choisir pour vous.",
-    chooseCategory: "Choisir une catégorie",
-    randomChoice: "Sélection aléatoire",
-    entries: "Choisir une entrée précise",
-    fields: "Choisir un champ",
-    generate: "Générer",
-    regenerate: "Régénérer",
-    generationLanguage: "Langue de génération",
-    level: "Niveau",
-    random: "Aléatoire",
-    generationPath: "Historique / type",
-    generatedPreview: "Aperçu généré",
-    saveToLibrary: "Enregistrer dans la bibliothèque",
-    noPreview: "Générez un résultat pour le consulter ici.",
-    modifiers: "Modificateurs",
-    result: "Résultat",
-    diceIntro:
-      "Les dés sont lancés par le serveur. Les jets personnels restent privés.",
-    expression: "Expression de dé",
-    diceExample: "Par exemple : 1d20, 2d6+3, 4d8-2",
-    diceRolling: "Les dés roulent…",
-    tens: "Dizaines", units: "Unités",
-    personalRoll: "Jet personnel",
-    appearance: "Apparence des dés",
-    texture: "Texture",
-    glow: "Couleur de la lueur",
-    matchTexture: "Assortir à la texture",
-    customGlow: "Couleur libre",
-    hexColor: "Couleur hexadécimale",
-    criticalPreview: "Aperçu des critiques",
-    replay: "Rejouer les deux",
-    criticalSuccess: "Réussite critique",
-    criticalFailure: "Échec critique",
-    INVALID_DICE_APPEARANCE: "Choisissez une texture de dé et une couleur de lueur valide.",
-    rulebookIntro:
-      "Lisez le livre de règles illustré d’origine, avec sa recherche et sa navigation.",
-    edition: "Édition",
-    openEdition: "Ouvrir dans une nouvelle fenêtre",
-    administration: "Administration du site",
-    accounts: "Comptes",
-    accountRequests: "Demandes de compte",
-    active: "Actif",
-    pending: "En attente",
-    rejected: "Refusé",
-    disabled: "Désactivé",
-    user: "Utilisateur",
-    makeAdmin: "Nommer administrateur",
-    makeUser: "Retirer le rôle administrateur",
-    disable: "Désactiver",
-    enable: "Activer",
-    inviteLinks: "Liens d’invitation",
-    createInvite: "Créer un lien à usage unique",
-    resetLink: "Créer un lien de réinitialisation",
-    createdLink: "Copiez ce lien",
-    expires: "Expire",
-    noInvitations: "Aucune invitation active.",
-    imageHint: "PNG, JPEG ou WebP, 4 Mo maximum.",
-    uploadError: "L’image doit être un PNG, JPEG ou WebP de moins de 4 Mo.",
-    confirm: "Confirmer",
-    onlineStatus: "Présence",
-    status: "Statut",
-    requestSent: "Demande envoyée.",
-    next: "Continuer",
-    noResults: "Aucune option à ce niveau.",
-    unnamed: "Sans nom",
-    waiting: "Veuillez patienter…",
-    selected: "Sélectionné",
-    choose: "Choisir",
-    noHistory: "Il n’y a plus de modification à annuler.",
-    UNDO_PREVIEW_ACTIVE: "Enregistrez ou annulez d’abord l’aperçu de révision.",
-    LOGIN_FAILED:
-      "Nom d’utilisateur ou mot de passe incorrect, ou compte inactif.",
-    LOGIN_REQUIRED: "Veuillez vous reconnecter.",
-    USERNAME_REQUIREMENTS: "Vérifiez les conditions du nom d’utilisateur.",
-    PASSWORD_REQUIREMENTS:
-      "Le mot de passe doit comporter au moins 12 caractères.",
-    USERNAME_TAKEN: "Ce nom d’utilisateur est déjà utilisé.",
-    INVITATION_INVALID: "Cette invitation est invalide ou déjà utilisée.",
-    RESET_INVALID: "Ce lien est invalide ou expiré.",
-    TOO_MANY_ATTEMPTS: "Trop de tentatives. Réessayez plus tard.",
-    FORBIDDEN: "Vous n’avez pas l’autorisation nécessaire.",
-    LOCKED: "Cette fiche est déjà en cours de modification.",
-    LOCK_REQUIRED: "Votre session de modification est terminée.",
-    VERSION_CONFLICT: "La fiche a changé. Rechargez-la avant de réessayer.",
-    CHARACTER_INELIGIBLE:
-      "Le personnage doit être affecté à cette campagne et contrôlable par ce membre.",
-    CHARACTER_ALREADY_PLAYING:
-      "Un autre membre a déjà sélectionné ce personnage.",
-    ALREADY_ASSIGNED: "Une affectation ou une demande existe déjà.",
-    INVALID_IMAGE: "Choisissez un PNG, JPEG ou WebP valide de moins de 4 Mo.",
-    NO_MORE_UNDO: "Il n’y a plus de modification à annuler.",
-    NO_MORE_REDO: "Il n’y a plus de modification à rétablir.",
-    USER_NOT_FOUND: "Utilisateur actif introuvable.",
-    CAMPAIGN_NOT_FOUND: "Campagne introuvable.",
-    LAST_ADMIN: "Il doit rester au moins un administrateur actif.",
-    CONFIRMATION_REQUIRED: "La confirmation ne correspond pas au nom.",
-    INTERNAL_ERROR: "Une erreur s’est produite. Réessayez.",
-  },
-};
-const state = {
-  user: null,
-  csrf: null,
-  locale: {},
-  language: localStorage.getItem("random-language") === "fr" ? "fr" : "en",
-  tab: crypto.randomUUID(),
-  stream: null,
-  streamCampaign: undefined,
-  screen: "",
-  campaign: null,
-  sheet: null,
-  editing: false,
-  preview: false,
-  saveQueue: Promise.resolve(),
-  generation: { kind: "general" },
-};
+import { state, t, esc, attr, fieldLabel, notify, errorMessage, api } from "./core.js";
+import { createGenerators } from "./generators.js";
+import { createSheetEditor } from "./sheet-editor.js";
+import { createNavigation } from "./navigation.js";
+import { createCampaignScreen } from "./campaign-screen.js";
+
 const app = document.querySelector("#app");
 const masthead = document.querySelector("#masthead");
-const t = (key) => copy[state.language][key] || key;
-const esc = (value) =>
-  String(value ?? "").replace(
-    /[&<>"']/g,
-    (c) =>
-      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[
-        c
-      ],
-  );
-const attr = esc;
-const fieldLabel = (key) =>
-  key.split(".").reduce((node, part) => node && node[part], state.locale) ||
-  key.split(".").at(-1).replace(/_/g, " ");
-function notify(message, error = false) {
-  const box = document.querySelector("#notice");
-  box.textContent = message;
-  box.className = `show${error ? " error" : ""}`;
-  clearTimeout(box.timer);
-  box.timer = setTimeout(() => {
-    box.className = "";
-  }, 5000);
-}
-function errorMessage(error) {
-  const key = error.message || "INTERNAL_ERROR";
-  return t(key) === key
-    ? fieldLabel(key) === key
-      ? t("invalid")
-      : fieldLabel(key)
-    : t(key);
-}
-async function api(path, method = "GET", data) {
-  const options = { method, credentials: "same-origin", headers: {} };
-  if (method !== "GET") {
-    options.headers["Content-Type"] = "application/json";
-    if (state.csrf) options.headers["X-CSRF-Token"] = state.csrf;
-    options.body = JSON.stringify(data || {});
-  }
-  const response = await fetch(path, options);
-  const payload = await response
-    .json()
-    .catch(() => ({ error: "INTERNAL_ERROR" }));
-  if (!response.ok) throw new Error(payload.error || "INTERNAL_ERROR");
-  return payload;
-}
+const sheetEditor = createSheetEditor({ esc, attr, t });
+const { resetGenerators, activateGenerator, generatorFieldName, generatorScreen, generatorAction } =
+  createGenerators({ state, api, t, esc, attr, sectionMarkup, langSelect, resultMarkup, notify, app });
 function tag(label, cls = "") {
   return `<span class="pill ${cls}">${esc(label)}</span>`;
 }
@@ -651,7 +101,9 @@ function entityCard(e, campaign = "") {
     </a></article>`;
 }
 async function campaignList() {
+  const current = captureRoute();
   const data = await api("/api/campaigns");
+  if (!current()) return;
   app.innerHTML = `${header(t("campaigns"), t("campaignIntro"), action(t("newCampaign"), "show-new-campaign", "", ""))}<section id="new-campaign" class="paper" hidden><h2>${esc(t("newCampaign"))}</h2><form id="create-campaign">${input(t("name"), "name", "", 'required maxlength="120"')}<label>${esc(t("description"))}<textarea name="description" maxlength="4000"></textarea></label><label>${esc(t("language"))}${langSelect()}</label><p><button>${esc(t("create"))}</button></p></form></section>${data.invitations.length ? `<section class="paper"><h2>${esc(t("invitations"))}</h2><div class="list">${data.invitations.map((i) => `<div class="list-row"><div class="grow"><strong>${esc(i.name)}</strong><p class="muted">${esc(t("invitedBy"))} ${esc(i.invitedBy)}</p></div>${action(t("accept"), "campaign-invite", `${i.id}|accept`)}${action(t("reject"), "campaign-invite", `${i.id}|reject`)}</div>`).join("")}</div></section><div class="divider">✦</div>` : ""}${data.campaigns.length ? `<div class="grid">${data.campaigns.map((c) => `<article class="card campaign-card"><img class="cover" src="${c.cover ? `/api/campaigns/${attr(c.id)}/cover` : "/media/journey-1000.webp"}" alt=""><div class="card-body"><h3><a class="campaign-card-link" href="#/campaign/${attr(c.id)}/overview">${esc(c.name)}</a></h3><p>${esc(c.description)}</p><p>${tag(c.role === "gm" ? t("gm") : c.role ? t("member") : t("owner"))}</p></div></article>`).join("")}</div>` : `<div class="empty">${esc(t("noCampaigns"))}</div>`}`;
 }
 function resourcePills(resources) {
@@ -665,6 +117,19 @@ function resourcePills(resources) {
 const campaignRolls = new Map();
 const recentChat = new Map();
 const personalRolls = [];
+const battleUI = { selectedBattleTarget: "", selectedBattleToken: "", currentBattleSession: null,
+  resourceMode: "damage", resourceKey: "hp" };
+const { campaignScreen, refreshBattle } = createCampaignScreen({ state, app, api, t, esc, attr,
+  fieldLabel, action, header, input, langSelect, tag, resourcePills, imageFor, entityCard,
+  chatMessage, mountChatRolls, animatedDice, campaignRolls, recentChat, battleUI,
+  captureRoute: () => captureRoute(), parseRoute: () => parseRoute() });
+const { parseRoute, renderRoute, refreshSoon, captureRoute } = createNavigation({
+  state, app, api, mast, authScreen, flushSheet, homeScreen, campaignList,
+  campaignScreen, libraryScreen, renderSheet, entityScreen, activateGenerator,
+  generatorScreen, diceScreen, rulebookScreen, adminScreen, notify, errorMessage,
+  clearPersonalRolls, campaignRolls, recentChat, animatedDice, chatMessage,
+  mountChatRolls, loseLock, refreshBattle, t,
+});
 let personalRequest = 0;
 let personalSession = 0;
 
@@ -734,142 +199,10 @@ function mountChatRolls(container, items) {
     mountDice(record, element);
   });
 }
-function memberList(data, interactive = false) {
-  const c = data.campaign;
-  const chars = data.gm
-    ? data.entities.filter((e) => e.type === "character")
-    : data.controlledCharacters || [];
-  return `<div class="list">${data.members
-    .map((m) => {
-      const p = m.playing;
-      const name = p ? `${p.name} (${m.username})` : m.username;
-      const status = data.presence[m.id] || "offline";
-      const select =
-        data.gm || m.id === state.user.id
-          ? `<label>${esc(t("playing"))}<select data-playing="${attr(m.id)}"><option value="">${esc(t("noCharacter"))}</option>${chars
-              .filter((e) => data.gm || e.canEdit)
-              .map(
-                (e) =>
-                  `<option value="${attr(e.id)}" ${p?.id === e.id ? "selected" : ""}>${esc(e.name)}</option>`,
-              )
-              .join(
-                "",
-              )}</select>${data.gm ? "" : `<small>${esc(t("playingChoiceHint"))}</small>`}</label>`
-          : "";
-      const roleButtons = interactive
-        ? `${data.manage ? action(m.role === "gm" ? t("demote") : t("promote"), "member-role", `${m.id}|${m.role === "gm" ? "demote" : "promote"}`) : ""}${data.manage || (data.gm && m.role !== "gm") || m.id === state.user.id ? action(m.id === state.user.id ? t("leave") : t("remove"), "member-role", `${m.id}|remove`) : ""}`
-        : "";
-      return `<div class="list-row"><span class="presence ${attr(status)}" title="${attr(t(status))}"></span><div class="grow"><details class="member-preview"><summary><strong>${esc(name)}</strong> ${tag(m.role === "gm" ? t("gm") : t("member"))} ${c.ownerId === m.id ? tag(t("owner")) : ""}</summary>${p ? `<div class="row" style="align-items:start;margin-top:.7rem"><img class="portrait fit" src="${attr(imageFor("character", p.id, p.portrait, `?previewCampaign=${encodeURIComponent(c.id)}`))}" alt=""><div><p><strong>${esc(p.name)}</strong> (${esc(m.username)}) · ${esc(t("level"))} ${esc(p.level)}</p>${resourcePills(p.resources)}</div></div>` : `<p class="muted">${esc(t("noCharacter"))}</p>`}</details>${interactive ? select : ""}</div>${roleButtons ? `<div class="actions">${roleButtons}</div>` : ""}</div>`;
-    })
-    .join("")}</div>`;
-}
-function campaignTabs(id, selected) {
-  const tabs = ["overview", "members", "characters", "creatures", "settings"];
-  return `<nav class="tabs">${tabs.map((x) => `<a ${x === selected ? 'class="active" aria-current="page"' : ""} href="#/campaign/${attr(id)}/${x}">${esc(t(x))}</a>`).join("")}</nav>`;
-}
-let selectedBattleTarget = "";
-let selectedBattleToken = "";
-let currentBattleSession = null;
-let resourceMode = "damage";
-let resourceKey = "hp";
-function battlePanel(data, session) {
-  currentBattleSession = session;
-  const { battle, targets } = session;
-  if (!targets.some(target => target.id === selectedBattleTarget)) selectedBattleTarget = "";
-  if (!selectedBattleTarget && targets.length === 1) selectedBattleTarget = targets[0].id;
-  const selected = targets.find(target => target.id === selectedBattleTarget);
-  const options = targets.map(target => `<option value="${attr(target.id)}">${esc(target.name)}</option>`).join("");
-  const shortResource = key => fieldLabel(`character.resources.${key}.abbreviation`);
-  const slider = (label, name, value, maximum, step = "1", cap = false) => `<div class="resource-adjust" data-resource-adjust><label>${esc(label)}<input type="number" name="${attr(name)}" value="${attr(value)}" min="${name === "amount" ? 1 : 0}" step="${attr(step)}" ${cap ? `max="${attr(maximum)}"` : ""} data-adjust-number required></label><input type="range" aria-label="${attr(`${t("adjust")} ${label}`)}" min="${name === "amount" ? 1 : 0}" max="${attr(Math.max(1, maximum, value))}" step="${attr(step)}" value="${attr(value)}" data-base-max="${attr(maximum)}" data-adjust-slider></div>`;
-  const amountMax = Math.max(1, selected ? selected.resources.hp.current + selected.resources.ar.current : 1, selected?.resources.hp.max || 0, selected?.resources.ar.max || 0);
-  const modes = ["damage", "heal", "restore", "set"];
-  const keys = ["hp", "ar", "ap", "md"];
-  const modeLabel = mode => t(mode === "set" ? "setResource" : mode);
-  function operationForm(mode) {
-    const choice = ["heal", "restore"].includes(mode) ? `<div class="resource-choices">${["hp", "armor", "both"].map((value, i) =>
-      `<label><input type="radio" name="resource" value="${value}" ${i === 0 ? "checked" : ""}><span>${esc(value === "both" ? shortResource("hp") + " + " + shortResource("ar") : shortResource(i ? "ar" : "hp"))}</span></label>`).join("")}</div>` : "";
-    const adjust = mode === "restore" ? slider(t("percentage"), "percentage", 100, 100, "any", true)
-      : slider(t("amount"), "amount", 1, amountMax);
-    return `<form class="campaign-resource" data-operation="${mode}" ${mode !== resourceMode ? "hidden" : ""}>
-      ${choice}${adjust}${mode === "damage" ? `<label><input type="checkbox" name="piercing"> ${esc(t("piercing"))}</label>` : ""}
-      <button>${esc(modeLabel(mode))}</button></form>`;
-  }
-  const controls = selected ? `<div class="battle-target resource-console"><h3>${esc(selected.name)}</h3>
-    <div class="resource-meters">${keys.map(key => {
-      const r = selected.resources[key];
-      return `<button type="button" data-edit-pool="${key}" aria-label="${attr(t("adjust") + " " + shortResource(key))}"><strong>${esc(shortResource(key))}</strong> <span>${esc(r.current)} / ${esc(r.max)}</span><progress max="${Math.max(r.max, 1)}" value="${r.current}"></progress></button>`;
-    }).join("")}</div>
-    <div class="resource-modes">${modes.map(mode => `<button type="button" data-resource-mode="${mode}" aria-pressed="${mode === resourceMode}">${esc(modeLabel(mode))}</button>`).join("")}</div>
-    ${modes.slice(0, 3).map(operationForm).join("")}
-    ${keys.map(key => {
-      const r = selected.resources[key];
-      return `<form class="campaign-resource" data-operation="set" data-pool="${key}" ${resourceMode !== "set" || resourceKey !== key ? "hidden" : ""}>
-        <label>${esc(t("resourceControls"))}<select name="resourceKey">${keys.map(k => `<option value="${k}" ${key === k ? "selected" : ""}>${esc(shortResource(k))}</option>`).join("")}</select></label>
-        ${slider(shortResource(key) + " · " + t("maximum") + " " + r.max, "value", r.current, r.max, key === "ap" ? "1" : "any")}
-        <button>${esc(t("save"))}</button></form>`;
-    }).join("")}</div>` : "";
-  const tracker = battle ? `<div class="battle-heading"><h3>${esc(t("round"))} ${esc(battle.round)}</h3>${data.gm ? action(t("advanceTurn"), "battle-action", "advance") + action(t("endBattle"), "battle-action", "end") : ""}</div><div class="initiative">${battle.groups.map(group => `<div class="initiative-group${group.active ? " is-active" : ""}">${group.entries.map(entry => `<div class="initiative-entry"><span>${entry.control ? action(entry.name || t("unknownCombatant"), "select-combatant", entry.token) : esc(entry.name || t("unknownCombatant"))} ${group.active ? tag(t("activeTurn")) : ""} ${entry.finished ? tag(t("finishedTurn")) : ""}</span>${selectedBattleToken === entry.token ? `<div class="actions">${entry.control && group.active && !entry.finished ? action(t("endTurn"), "battle-action", `finish|${entry.token}`) + action(t("delayTurn"), "battle-action", `delay|${entry.token}`) : ""}${data.gm ? action(t("moveUp"), "battle-action", `up|${entry.token}`) + action(t("moveDown"), "battle-action", `down|${entry.token}`) + action(t("correctTurn"), "battle-action", `correct|${entry.token}`) + action(t("remove"), "battle-action", `remove|${entry.token}`) : ""}</div>` : ""}</div>`).join("")}</div>`).join("")}</div>${data.gm && targets.length ? `<form id="battle-add" class="row"><label>${esc(t("addCombatant"))}<select name="entityId">${options}</select></label><button>${esc(t("addCombatant"))}</button></form>` : ""}` : data.gm ? action(t("startBattle"), "battle-action", "start", "") : "";
-  return `<section class="paper battle-panel"><h2>${esc(t("battle"))}</h2>${tracker}<h3>${esc(t("resourceControls"))}</h3>${targets.length ? `<label>${esc(t("selectTarget"))}<select id="battle-target"><option value="">${esc(t("selectTarget"))}</option>${targets.map(target => `<option value="${attr(target.id)}" ${selectedBattleTarget === target.id ? "selected" : ""}>${esc(target.name)}</option>`).join("")}</select></label>` : `<p class="muted">${esc(t("noTargets"))}</p>`}${controls}</section>`;
-}
-async function campaignScreen(campaignId, tabName) {
-  const requestStarted = performance.now();
-  const data = await api(`/api/campaigns/${encodeURIComponent(campaignId)}`);
-  const earliestNewMessage = data.chatSnapshotTime - (performance.now() - requestStarted);
-  const known = new Set(data.chat.map(item => item.id));
-  for (const { item, received } of recentChat.values()) {
-    if (item.campaignId === campaignId && received >= requestStarted && !known.has(item.id) &&
-        (item.type === "text" || item.type === "roll") &&
-        (!item.privateRoll || item.rollerId === state.user.id || data.gm))
-      data.chat.push(item);
-  }
-  for (const item of data.chat) {
-    if (item.id && item.type === "roll" && animatedDice(item.result) &&
-        item.time >= earliestNewMessage && !campaignRolls.has(item.id))
-      campaignRolls.set(item.id, window.RandomDicePlayback.create(item.result, true));
-  }
-  if (tabName === "members" && data.membership && !data.gm)
-    data.controlledCharacters = (
-      await api("/api/entities?type=character")
-    ).entities.filter((entity) => entity.canEdit);
-  state.campaign = data;
-  const c = data.campaign,
-    tabs = campaignTabs(c.id, tabName);
-  const top = `${header(c.name, c.description)}${tabs}`;
-  if (tabName === "overview") {
-    const session = data.membership || state.user.role === "admin" ? await api(`/api/campaigns/${encodeURIComponent(campaignId)}/battle`) : null;
-    app.innerHTML =
-      top +
-      `${session ? battlePanel(data, session) : ""}<div class="split"><section class="panel"><h2>${esc(t("chat"))}</h2><div class="chat" id="chat">${data.chat.map(chatMessage).join("")}</div><form id="chat-form" class="row"><label>${esc(t("message"))}<input name="text" maxlength="2000" required autocomplete="off"></label><button class="fit">${esc(t("send"))}</button></form><div class="divider">✦</div><h3>${esc(t("dice"))}</h3><form id="dice-form" class="row"><label>${esc(t("expression"))}<input name="expression" value="1d20" required></label><label class="fit"><input type="checkbox" name="private"> ${esc(t("privateRoll"))}</label><button class="fit">${esc(t("roll"))}</button></form></section><aside class="stack"><section class="panel"><h2>${esc(t("members"))}</h2>${memberList(data)}</section><section class="panel"><h2>${esc(t("characters"))} &amp; ${esc(t("creatures"))}</h2>${data.entities.length ? data.entities.map((e) => `<p><a href="#/sheet/${attr(e.id)}?campaign=${attr(c.id)}">${esc(e.name)}</a></p>`).join("") : `<p class="muted">${esc(t("noEntities"))}</p>`}</section></aside></div>`;
-    const chat = document.querySelector("#chat");
-    if (!data.membership && state.user.role !== "admin") {
-      document.querySelector("#chat-form").remove();
-      document.querySelector("#dice-form").remove();
-      const message = document.createElement("p");
-      message.className = "muted";
-      message.textContent = t("membersOnly");
-      chat.replaceChildren(message);
-    } else mountChatRolls(chat, data.chat);
-    chat.scrollTop = chat.scrollHeight;
-  } else if (tabName === "members") {
-    app.innerHTML =
-      top +
-      `<section class="paper"><h2>${esc(t("members"))}</h2>${memberList(data, true)}${data.gm || data.manage ? `<div class="divider">✦</div><form id="campaign-invite-form" class="row"><label>${esc(t("inviteMember"))}<input name="username" required></label><button class="fit">${esc(t("invite"))}</button></form>` : ""}</section>`;
-  } else if (tabName === "characters" || tabName === "creatures") {
-    const type = tabName === "characters" ? "character" : "creature";
-    const entities = data.entities.filter((e) => e.type === type);
-    const pending = data.pending.filter((e) => e.type === type);
-    app.innerHTML =
-      top +
-      `${pending.length ? `<section class="paper"><h2>${esc(t("pendingAssignments"))}</h2>${pending.map((e) => `<div class="list-row"><div class="grow"><strong>${esc(e.name)}</strong> · ${esc(e.owner)} ${tag(t(e.visibility))}</div>${action(t("approve"), "assignment-action", `${e.id}|approve`)}${action(t("reject"), "assignment-action", `${e.id}|remove`)}</div>`).join("")}</section><div class="divider">✦</div>` : ""}${entities.length ? `<div class="grid">${entities.map((e) => `<div>${entityCard(e, c.id)}${data.gm ? action(t("remove"), "assignment-action", `${e.id}|remove`) : ""}</div>`).join("")}</div>` : `<div class="empty">${esc(t("noEntities"))}</div>`}`;
-  } else {
-    const mayEdit = data.gm || data.manage;
-    app.innerHTML =
-      top +
-      `<div class="grid two">${mayEdit ? `<section class="paper"><h2>${esc(t("campaignSettings"))}</h2><form id="campaign-settings">${input(t("name"), "name", c.name, 'required maxlength="120"')}<label>${esc(t("description"))}<textarea name="description" maxlength="4000">${esc(c.description)}</textarea></label><label>${esc(t("language"))}${langSelect("language", c.language)}</label><p><button>${esc(t("save"))}</button></p></form><div class="divider">✦</div><h3>${esc(t("cover"))}</h3><p class="muted">${esc(t("imageHint"))}</p><form id="campaign-cover-form"><input type="file" name="image" accept="image/png,image/jpeg,image/webp" required><p><button>${esc(t("upload"))}</button> ${action(t("removeImage"), "campaign-cover-remove")}</p></form></section>` : ""}${data.manage ? `<section class="paper"><h2>${esc(t("transferOwnership"))}</h2><form id="campaign-transfer">${input(t("username"), "username", "", "required")}<p><button>${esc(t("transfer"))}</button></p></form><div class="divider">✦</div><h3 class="danger">${esc(t("deleteCampaign"))}</h3><p>${esc(t("confirmCampaign"))}</p><form id="campaign-delete">${input(t("name"), "confirm", "", "required")}<p><button>${esc(t("deleteCampaign"))}</button></p></form></section>` : ""}</div>`;
-  }
-}
 async function libraryScreen(type) {
+  const current = captureRoute();
   const data = await api(`/api/entities?type=${type}`);
+  if (!current()) return;
   const title = t(type === "character" ? "characters" : "creatures");
   app.innerHTML = `${header(title, t("entityIntro"), `${action(t("newBlank"), "new-entity", type, "")} <a class="button secondary" href="#/generators?kind=${type}">${esc(t(type === "character" ? "generateCharacter" : "generateCreature"))}</a>`)}${data.entities.length ? `<div class="grid">${data.entities.map((e) => entityCard(e)).join("")}</div>` : `<div class="empty">${esc(t("noEntities"))}</div>`}`;
 }
@@ -941,17 +274,20 @@ function sheetContents(entity, enabled = false) {
   return `<div class="sheet-sections">${sections.map((section) => sectionMarkup(section, entity.data, enabled)).join("")}</div>`;
 }
 async function entityScreen(entityId, campaignId = "") {
+  const current = captureRoute();
   const entity = await api(
     `/api/entities/${encodeURIComponent(entityId)}${campaignId ? `?campaign=${encodeURIComponent(campaignId)}` : ""}`,
   );
+  if (!current()) return;
+  let campaigns = [];
+  if (entity.isOwner) campaigns = (await api("/api/campaigns")).campaigns;
+  if (!current()) return;
   state.sheet = entity;
   state.screen = entity.type === "creature" ? "creatures" : "characters";
   mast();
   state.sheetCampaign = campaignId;
   state.editing = false;
   state.preview = false;
-  let campaigns = [];
-  if (entity.isOwner) campaigns = (await api("/api/campaigns")).campaigns;
   state.availableCampaigns = campaigns;
   renderSheet();
 }
@@ -1235,214 +571,13 @@ function rulebookScreen() {
   app.innerHTML = `${header(t("rulebook"), t("rulebookIntro"), `<a class="button secondary" href="/rulebook/${language}" target="_blank" rel="noopener">${esc(t("openEdition"))}</a>`)}<div class="tabs">${["en", "fr"].map((x) => `<button type="button" aria-pressed="${x === language}" class="${x === language ? "active" : ""}" data-action="rulebook-language" data-value="${x}">${x === "fr" ? "Français" : "English"}</button>`).join("")}</div><iframe class="rulebook-frame" title="${attr(t("rulebook"))}" src="/rulebook/${language}"></iframe>`;
 }
 async function adminScreen() {
+  const current = captureRoute();
   const [{ users }, { invitations }] = await Promise.all([
     api("/api/admin/users"),
     api("/api/admin/invitations"),
   ]);
+  if (!current()) return;
   app.innerHTML = `${header(t("administration"))}<div class="split"><section class="paper"><h2>${esc(t("accounts"))}</h2><div class="list">${users.map((u) => `<div class="list-row"><div class="grow"><strong>${esc(u.username)}</strong><p>${tag(t(u.status))} ${tag(t(u.role))}</p></div><div class="actions">${u.status === "pending" ? action(t("approve"), "admin-user", `${u.id}|status|active`) + action(t("reject"), "admin-user", `${u.id}|status|rejected`) : action(t(u.status === "active" ? "disable" : "enable"), "admin-user", `${u.id}|status|${u.status === "active" ? "disabled" : "active"}`)}${u.status === "active" ? action(t(u.role === "admin" ? "makeUser" : "makeAdmin"), "admin-user", `${u.id}|role|${u.role === "admin" ? "user" : "admin"}`) + action(t("resetLink"), "admin-reset", u.username) : ""}</div></div>`).join("")}</div></section><aside class="paper"><h2>${esc(t("inviteLinks"))}</h2>${action(t("createInvite"), "admin-invite", "", "")}<div id="created-link"></div><div class="divider">✦</div>${invitations.length ? invitations.map((i) => `<div class="list-row"><span class="grow">${esc(t("expires"))}: ${esc(new Date(i.expires_at).toLocaleDateString(state.language))}</span>${action(t("revoke"), "admin-invite-remove", i.token_hash)}</div>`).join("") : `<p class="muted">${esc(t("noInvitations"))}</p>`}</aside></div>`;
-}
-function parseRoute() {
-  const [path, query = ""] = (
-    location.hash.replace(/^#\/?/, "") || "home"
-  ).split("?");
-  return {
-    parts: path.split("/").filter(Boolean),
-    query: new URLSearchParams(query),
-  };
-}
-let renderSequence = 0;
-async function renderRoute() {
-  const sequence = ++renderSequence;
-  const { parts, query } = parseRoute();
-  if (!state.user) {
-    authScreen();
-    return;
-  }
-  const page = parts[0] || "home",
-    newSheet = page === "sheet" ? parts[1] : null;
-  const campaignId =
-    page === "campaign"
-      ? parts[1]
-      : page === "sheet"
-        ? query.get("campaign")
-        : null;
-  if (
-    state.sheet &&
-    state.editing &&
-    (newSheet !== state.sheet.id || (campaignId || "") !== state.sheetCampaign)
-  ) {
-    const previous = state.sheet.id;
-    try {
-      await flushSheet();
-    } catch {
-      const context = state.sheetCampaign ? `?campaign=${encodeURIComponent(state.sheetCampaign)}` : "";
-      history.replaceState(null, "", `#/sheet/${previous}${context}`);
-      return;
-    }
-    await api(`/api/entities/${previous}/lock`, "POST", {
-      action: "finish",
-      tab: state.tab,
-    }).catch(() => {});
-    state.editing = false;
-    state.preview = false;
-    state.sheet = null;
-  }
-  if (sequence !== renderSequence) return;
-  state.screen =
-    page === "campaign"
-      ? "campaigns"
-      : page === "sheet"
-        ? state.sheet?.type === "creature"
-          ? "creatures"
-          : "characters"
-        : page;
-  mast();
-  connect(campaignId || null);
-  try {
-    if (page === "home") homeScreen();
-    else if (page === "campaigns") await campaignList();
-    else if (page === "campaign" && parts[1])
-      await campaignScreen(
-        parts[1],
-        ["overview", "members", "characters", "creatures", "settings"].includes(
-          parts[2],
-        )
-          ? parts[2]
-          : "overview",
-      );
-    else if (page === "characters" || page === "creatures")
-      await libraryScreen(page === "characters" ? "character" : "creature");
-    else if (page === "sheet" && parts[1]) {
-      if (newSheet === state.sheet?.id && state.editing) renderSheet();
-      else await entityScreen(parts[1], campaignId || "");
-    } else if (page === "generators") {
-      const campaign = query.get("campaign") || "";
-      const kind = query.get("kind") || state.generation.kind;
-      let language = state.language;
-      if (campaign && state.generation.campaign !== campaign) {
-        language = (await api(`/api/campaigns/${encodeURIComponent(campaign)}`)).campaign.language;
-        if (sequence !== renderSequence) return;
-      }
-      activateGenerator(kind, campaign, language);
-      await generatorScreen();
-    } else if (page === "dice") diceScreen();
-    else if (page === "rulebook") rulebookScreen();
-    else if (page === "admin" && state.user.role === "admin")
-      await adminScreen();
-    else {
-      location.hash = "#/home";
-      return;
-    }
-    if (sequence === renderSequence) app.focus({ preventScroll: true });
-  } catch (error) {
-    notify(errorMessage(error), true);
-    if (error.message === "LOGIN_REQUIRED") {
-      clearPersonalRolls();
-      state.user = null;
-      authScreen();
-    } else if (page === "sheet" || page === "campaign") {
-      location.hash = "#/home";
-    }
-  }
-}
-let refreshTimer;
-function refreshSoon() {
-  clearTimeout(refreshTimer);
-  refreshTimer = setTimeout(() => {
-    if (
-      document.activeElement?.matches("input,textarea,select") ||
-      state.editing
-    ) {
-      refreshSoon();
-      return;
-    }
-    renderRoute();
-  }, 500);
-}
-function connect(campaignId) {
-  if (state.stream && state.streamCampaign === campaignId) return;
-  if (state.stream) {
-    state.stream.close();
-    state.stream = null;
-  }
-  campaignRolls.clear();
-  recentChat.clear();
-  state.streamCampaign = campaignId;
-  const query = new URLSearchParams({ tab: state.tab });
-  if (campaignId) query.set("campaign", campaignId);
-  const stream = new EventSource(`/api/events?${query}`);
-  state.stream = stream;
-  stream.addEventListener("chat", (event) => {
-    if (state.stream !== stream) return;
-    const item = JSON.parse(event.data);
-    if (item.id && recentChat.has(item.id)) return;
-    if (item.id) {
-      recentChat.set(item.id, { item, received: performance.now() });
-      if (recentChat.size > 500) recentChat.delete(recentChat.keys().next().value);
-    }
-    if (item.id && item.type === "roll" && animatedDice(item.result) && !campaignRolls.has(item.id)) {
-      campaignRolls.set(item.id, window.RandomDicePlayback.create(item.result, true));
-      if (campaignRolls.size > 500) campaignRolls.delete(campaignRolls.keys().next().value);
-    }
-    const box = document.querySelector("#chat");
-    if (box && parseRoute().parts[1] === campaignId) {
-      if (item.id && [...box.children].some(node => node.dataset.chatId === item.id)) return;
-      box.insertAdjacentHTML("beforeend", chatMessage(item));
-      mountChatRolls(box.lastElementChild, [item]);
-      box.scrollTop = box.scrollHeight;
-    }
-  });
-  stream.addEventListener("presence", (event) => {
-    if (state.campaign) {
-      state.campaign.presence = JSON.parse(event.data);
-      if (
-        state.screen === "campaigns" &&
-        !document.activeElement?.matches("input,textarea,select")
-      )
-        refreshSoon();
-    }
-  });
-  stream.addEventListener("campaign", async () => {
-    if (
-      state.sheet &&
-      state.sheetCampaign === campaignId &&
-      parseRoute().parts[0] === "sheet"
-    ) {
-      if (state.editing) {
-        try {
-          await api(
-            `/api/entities/${encodeURIComponent(state.sheet.id)}?campaign=${encodeURIComponent(campaignId)}`,
-          );
-        } catch {
-          loseLock();
-        }
-      } else refreshSoon();
-    } else if (state.screen === "campaigns") refreshSoon();
-  });
-  stream.addEventListener("refresh", () => refreshSoon());
-  stream.addEventListener("entity", async (event) => {
-    const item = JSON.parse(event.data);
-    if (state.sheet?.id === item.id && parseRoute().parts[0] === "sheet") {
-      if (state.editing) {
-        try {
-          const sheet = await api(
-            `/api/entities/${encodeURIComponent(item.id)}`,
-          );
-          if (!sheet.lock || sheet.lock.userId !== state.user.id) loseLock();
-        } catch {
-          loseLock();
-        }
-      } else refreshSoon();
-    } else if (
-      state.screen === "campaigns" ||
-      state.screen === "characters" ||
-      state.screen === "creatures"
-    )
-      refreshSoon();
-  });
-  stream.onerror = () => {
-    if (state.stream === stream && state.editing) loseLock();
-  };
 }
 async function readImage(file) {
   if (
@@ -1488,11 +623,11 @@ document.addEventListener("submit", async (event) => {
   const data = Object.fromEntries(new FormData(form));
   try {
     if (form.classList.contains("campaign-resource")) {
-      await api(`/api/campaigns/${state.campaign.campaign.id}/resources`, "POST", { ...data, entityId: selectedBattleTarget, action: form.dataset.operation, piercing: Boolean(form.elements.piercing?.checked) });
-      await campaignScreen(state.campaign.campaign.id, "overview");
+      await api(`/api/campaigns/${state.campaign.campaign.id}/resources`, "POST", { ...data, entityId: battleUI.selectedBattleTarget, action: form.dataset.operation, piercing: Boolean(form.elements.piercing?.checked) });
+      await refreshBattle();
     } else if (form.id === "battle-add") {
       await api(`/api/campaigns/${state.campaign.campaign.id}/battle`, "POST", { ...data, action: "add" });
-      await campaignScreen(state.campaign.campaign.id, "overview");
+      await refreshBattle();
     } else if (form.id === "auth-form") {
       const mode = form.dataset.mode,
         params = new URLSearchParams(location.search);
@@ -1660,15 +795,15 @@ document.addEventListener("click", async (event) => {
     value = button.dataset.value || "";
   try {
     if (what === "select-combatant") {
-      selectedBattleToken = value;
-      selectedBattleTarget = currentBattleSession?.battle?.groups.flatMap(group => group.entries).find(entry => entry.token === value)?.entityId || "";
-      await campaignScreen(state.campaign.campaign.id, "overview");
+      battleUI.selectedBattleToken = value;
+      battleUI.selectedBattleTarget = battleUI.currentBattleSession?.battle?.groups.flatMap(group => group.entries).find(entry => entry.token === value)?.entityId || "";
+      await refreshBattle();
     } else if (what === "battle-action") {
       let [actionName, token] = value.split("|");
       const direction = actionName === "up" ? -1 : actionName === "down" ? 1 : undefined;
       if (direction) actionName = "move";
       await api(`/api/campaigns/${state.campaign.campaign.id}/battle`, "POST", { action: actionName, token, direction });
-      await campaignScreen(state.campaign.campaign.id, "overview");
+      await refreshBattle();
     } else if (what === "auth-mode") authScreen(value);
     else if (what === "logout") {
       if (state.editing && !state.preview) await flushSheet();
@@ -1803,9 +938,9 @@ document.addEventListener("click", async (event) => {
 });
 document.addEventListener("change", async (event) => {
   if (event.target.id === "battle-target") {
-    selectedBattleTarget = event.target.value;
-    selectedBattleToken = currentBattleSession?.battle?.groups.flatMap(group => group.entries).find(entry => entry.entityId === selectedBattleTarget)?.token || "";
-    try { await campaignScreen(state.campaign.campaign.id, "overview"); } catch (error) { notify(errorMessage(error), true); }
+    battleUI.selectedBattleTarget = event.target.value;
+    battleUI.selectedBattleToken = battleUI.currentBattleSession?.battle?.groups.flatMap(group => group.entries).find(entry => entry.entityId === battleUI.selectedBattleTarget)?.token || "";
+    try { await refreshBattle(); } catch (error) { notify(errorMessage(error), true); }
     return;
   }
   const target = event.target;
@@ -1865,13 +1000,13 @@ document.addEventListener("input", (event) => {
   if (section && state.editing && !state.preview) markSectionDirty(section);
 });
 function selectResourceAction(panel, mode, pool) {
-  resourceMode = mode;
-  resourceKey = pool || resourceKey;
+  battleUI.resourceMode = mode;
+  battleUI.resourceKey = pool || battleUI.resourceKey;
   for (const button of panel.querySelectorAll("[data-resource-mode]"))
     button.setAttribute("aria-pressed", String(button.dataset.resourceMode === mode));
   for (const form of panel.querySelectorAll(".campaign-resource")) {
-    form.hidden = form.dataset.operation !== mode || (mode === "set" && form.dataset.pool !== resourceKey);
-    if (!form.hidden && mode === "set") form.elements.resourceKey.value = resourceKey;
+    form.hidden = form.dataset.operation !== mode || (mode === "set" && form.dataset.pool !== battleUI.resourceKey);
+    if (!form.hidden && mode === "set") form.elements.resourceKey.value = battleUI.resourceKey;
   }
 }
 document.addEventListener("click", event => {

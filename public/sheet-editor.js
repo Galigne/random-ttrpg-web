@@ -1,6 +1,4 @@
-"use strict";
-
-const sheetEditor = (() => {
+export function createSheetEditor({ esc, attr, t }) {
   // Keep CRLF in defaultValue even though HTML input controls normalize it.
   const storedText = value => esc(value).replace(/\r/g, "&#13;");
 
@@ -164,4 +162,4 @@ ${storedText(entry)}</textarea>`}
   }
 
   return { renderField, refreshEntries, changeEntries, adjust, snapshot, check };
-})();
+}
