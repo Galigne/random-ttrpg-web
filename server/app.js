@@ -106,7 +106,7 @@ function createApplication(db, options = {}) {
   function staticFile(req, res, url, auth) {
     let filename;
     if (url.pathname === "/") filename = "public/index.html";
-    else if (url.pathname === "/app.js" || url.pathname === "/generators.js") filename = `public${url.pathname}`;
+    else if (["/app.js", "/generators.js", "/sheet-editor.js"].includes(url.pathname)) filename = `public${url.pathname}`;
     else if (url.pathname === "/style.css") filename = "public/style.css";
     else if (/^\/dice\/(?:(?:coin|d20|classic|skins|playback)\.js|art\/[a-z0-9-]+\.webp)$/.test(url.pathname))
       filename = `public${url.pathname}`;

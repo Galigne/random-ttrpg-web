@@ -44,6 +44,45 @@ test("turn recovery carries half of unused AP and permits editing creature resou
   assert.equal(edited.resources.ap.current, 5);
   assert.equal(edited.resources.md.current, 2);
 });
+test("structured sheet edits preserve entry identity, punctuation and multiline text", () => {
+  for (const type of ["character", "creature"]) {
+    const sheet = rpg.createEntity(type);
+    const first = { name: "Oath: ash", level: 11, description: "Line one\nLine two", entryId: "ash" };
+    const second = { ...first, entryId: "ember" };
+    sheet.rules = [first, second];
+    const updated = rpg.edit(type, sheet, "rules", {
+      "rules.value": [
+        { sourceIndex: 1, name: second.name, level: 13, description: second.description },
+        { name: "Clear", level: 1, description: "Once: per turn" },
+        { sourceIndex: 0, name: first.name, level: first.level, description: first.description },
+      ],
+    }, true);
+    assert.deepEqual(updated.rules, [
+      { ...second, level: 13 }, { name: "Clear", level: 1, description: "Once: per turn" }, first,
+    ]);
+    assert.deepEqual(sheet.rules, [first, second]);
+    sheet.status.effects = [{
+      name: "Marked", description: "Original", generatorId: "status_effect", entryId: "marked",
+      provenance: [{ type: "entry", selection: "random", generatorId: "status_effect", path: "marked" }],
+    }];
+    const status = rpg.edit(type, sheet, "status", {
+      "status.effects": [{ sourceIndex: 0, name: "Marked: twice", description: "New\ntext" }],
+      "status.modifiers": [],
+    }, true);
+    assert.deepEqual(status.status.effects[0], { ...sheet.status.effects[0], name: "Marked: twice", description: "New\ntext" });
+    const gear = rpg.edit(type, sheet, "gear", {
+      "gear.equipment": ["Map\nannotated", "clear"], "gear.inventory": [],
+      "gear.encumbrance": { current: 1.5, max: 4 },
+    }, true);
+    assert.deepEqual(gear.gear.equipment, ["Map\nannotated", "clear"]);
+    assert.deepEqual(rpg.edit(type, updated, "rules", { "rules.value": [] }, true).rules, []);
+    assert.throws(() => rpg.edit(type, sheet, "level", { "level.value": 11 }, true));
+    assert.throws(() => rpg.edit(type, sheet, "rules", { "rules.value": [{ ...first, sourceIndex: 3 }] }, true));
+    assert.throws(() => rpg.edit(type, sheet, "rules", { "rules.value": [{ ...first, level: 0 }] }, true));
+    assert.throws(() => rpg.edit(type, sheet, "level", { settings: {} }, true));
+  }
+});
+
 test("dice preserve the source parser limits and animations include modifiers", () => {
   assert.throws(() => rollDiceExpression("1d20+1d6"), {
     code: "INVALID_FORMAT",

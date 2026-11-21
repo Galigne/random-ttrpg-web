@@ -28,16 +28,66 @@ function createFieldEditor({
 		const field = requireEditableField(fieldName);
 		const inputs = getEditInputs(field);
 		const updates = parseSubmittedValue(field, inputs, submittedValue);
-		validateUpdates(entity, updates, editError);
-		for (const update of updates) {
-			setAtPath(entity, update.target.path, update.value);
-		}
+		applyUpdates(entity, updates);
 		return {
 			translationKey: field.editKind === 'multiline'
 				? 'editorResults.collectionUpdated'
 				: 'editorResults.updated',
 			translationVariables: { fieldId: field.id },
 		};
+	}
+
+	function applyUpdates(entity, updates) {
+		validateUpdates(entity, updates, editError);
+		for (const update of updates) {
+			setAtPath(entity, update.target.path, update.value);
+		}
+	}
+
+	// The website supplies typed controls. Only catalogued inputs can become updates.
+	function setStructuredFieldValue(entity, fieldName, values) {
+		const field = requireEditableField(fieldName);
+		const inputs = getEditInputs(field);
+		if (!values || typeof values !== 'object' || Array.isArray(values)
+			|| Object.keys(values).length !== inputs.length) {
+			throw editError('errors.groupInputMissing', { fieldId: field.id });
+		}
+		const updates = inputs.flatMap(input => {
+			if (!Object.hasOwn(values, input.id)) {
+				throw editError('errors.groupInputMissing', { fieldId: field.id });
+			}
+			const value = values[input.id];
+			if (input.inputKind === 'pair') {
+				return getPairTargets(input).map(target => ({
+					target, value: value?.[target.path.at(-1)],
+				}));
+			}
+			if (!input.multiline) return [{ target: input, value }];
+			if (!Array.isArray(value)) throw editError('errors.valueRequired', { fieldId: input.id });
+			if (!input.rules && !input.described) return [{ target: input, value }];
+
+			// Keep generator IDs and provenance attached to their original record
+			// across edits and reordering. New records have no generator metadata.
+			const previous = getAtPath(entity, input.path);
+			const used = new Set();
+			const entries = value.map(entry => {
+				const index = entry?.sourceIndex;
+				if (!entry || typeof entry !== 'object' || Array.isArray(entry)
+					|| (index !== undefined && (!Number.isInteger(index)
+						|| index < 0 || index >= previous.length || used.has(index)))) {
+					throw editError('errors.valueRequired', { fieldId: input.id });
+				}
+				used.add(index);
+				return {
+					...previous[index],
+					name: entry.name,
+					description: entry.description,
+					...(input.rules ? { level: entry.level } : {}),
+				};
+			});
+			return [{ target: input, value: entries }];
+		});
+		applyUpdates(entity, updates);
 	}
 
 	function parseSubmittedValue(field, inputs, submittedValue) {
@@ -273,6 +323,7 @@ function createFieldEditor({
 		getEditableFieldValue,
 		normalizeFieldName,
 		setEditableFieldValue,
+		setStructuredFieldValue,
 	};
 }
 

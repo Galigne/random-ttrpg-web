@@ -8,7 +8,14 @@ const copy = {
     creatureSheet: "Creature sheet",
     noValue: "Not specified",
     sheetSettings: "Sheet settings",
-    currentMax: "current:maximum",
+    current: "Current",
+    addEntry: "Add entry",
+    entry: "Entry",
+    increase: "Increase",
+    decrease: "Decrease",
+    unsaved: "Unsaved changes",
+    checkFields: "Check the highlighted fields before saving.",
+    overCapacity: "Current encumbrance must be within its maximum.",
     home: "Home",
     campaigns: "Campaigns",
     characters: "Characters",
@@ -67,9 +74,6 @@ const copy = {
     playingChoiceHint:
       "Choose a character you can control that is assigned to this campaign.",
     noCharacter: "No character selected",
-    formatRules: "One per line: name:level:description",
-    formatDescribed: "One per line: name:description",
-    formatLines: "One entry per line",
     inviteMember: "Invite a member by username",
     invite: "Invite",
     promote: "Make GM",
@@ -110,7 +114,7 @@ const copy = {
     lockedBy: "Currently edited by",
     lockLost: "Your editing session ended. Unsaved text has not been saved.",
     editHint:
-      "Changes save when you leave a field. Use current:maximum for paired values.",
+      "Changes save when you leave a section or choose Save.",
     undo: "Undo",
     redo: "Redo",
     saveReversal: "Save reversal",
@@ -247,7 +251,14 @@ const copy = {
     creatureSheet: "Fiche de créature",
     noValue: "Non renseigné",
     sheetSettings: "Gestion de la fiche",
-    currentMax: "actuel:maximum",
+    current: "Actuel",
+    addEntry: "Ajouter une entrée",
+    entry: "Entrée",
+    increase: "Augmenter",
+    decrease: "Diminuer",
+    unsaved: "Modifications en attente",
+    checkFields: "Vérifiez les champs signalés avant d’enregistrer.",
+    overCapacity: "L’encombrement actuel dépasse le maximum.",
     home: "Accueil",
     campaigns: "Campagnes",
     characters: "Personnages",
@@ -310,9 +321,6 @@ const copy = {
     playingChoiceHint:
       "Choisissez un personnage que vous pouvez contrôler et qui est affecté à cette campagne.",
     noCharacter: "Aucun personnage sélectionné",
-    formatRules: "Une par ligne : nom:niveau:description",
-    formatDescribed: "Un par ligne : nom:description",
-    formatLines: "Une entrée par ligne",
     inviteMember: "Inviter un membre par son nom d’utilisateur",
     invite: "Inviter",
     promote: "Nommer MJ",
@@ -356,7 +364,7 @@ const copy = {
     lockLost:
       "Votre session de modification est terminée. Le texte non enregistré n’a pas été sauvegardé.",
     editHint:
-      "Les changements sont enregistrés lorsque vous quittez un champ. Pour les valeurs associées : actuel:maximum.",
+      "Les modifications sont enregistrées lorsque vous quittez une section ou choisissez Enregistrer.",
     undo: "Annuler",
     redo: "Rétablir",
     saveReversal: "Enregistrer la révision",
@@ -917,14 +925,13 @@ function sectionMarkup(section, data, enabled, controls) {
         const hideLabel = fields.length === 1 && label === title;
         return `<div class="sheet-field${paragraph ? " wide" : ""}"><dt${hideLabel ? ' class="sr-only"' : ""}>${esc(label)}</dt><dd>${sheetValue(field, section, data, value, controls)}${controls?.(field.id) || ""}</dd></div>`;
       }
-      const hint = field.pair ? t("currentMax") : field.format ? t(field.format) : "";
-      return `<label class="sheet-field${paragraph ? " wide" : ""}">${esc(label)}${hint ? ` <small>(${esc(hint)})</small>` : ""}${paragraph ? `<textarea data-field="${attr(field.id)}">${esc(value)}</textarea>` : `<input data-field="${attr(field.id)}" value="${attr(value)}" ${field.numeric ? 'inputmode="decimal"' : ""}>`}</label>`;
+      return sheetEditor.renderField(field, section, data, value, label);
     })
     .join("");
   const wrapper = enabled ? "div" : "dl";
   return `<details class="sheet-section section-${attr(section.id)}" open>
     <summary>${esc(title)}</summary>
-    <${wrapper} class="section-body" data-section="${attr(section.id)}" data-kind="${attr(section.kind)}">${body}</${wrapper}>${controls?.(section.id) || ""}</details>`;
+    <${wrapper} class="section-body" data-section="${attr(section.id)}">${body}${enabled ? `<div class="section-save"><small role="status">${esc(t("unsaved"))}</small><button type="button" class="secondary" data-sheet-save>${esc(t("save"))}</button></div>` : ""}</${wrapper}>${controls?.(section.id) || ""}</details>`;
 }
 function sheetContents(entity, enabled = false) {
   const sections = [
@@ -995,6 +1002,7 @@ function renderSheet() {
           )}</select></label><label>${esc(t("status"))}<select name="visibility"><option value="private">${esc(t("private"))}</option><option value="shared">${esc(t("shared"))}</option></select></label><p><button>${esc(t("request"))}</button></p></form></section><section class="panel"><h3>${esc(t("transferOwnership"))}</h3><form id="entity-transfer">${input(t("username"), "username", "", "required")}<p><button>${esc(t("transfer"))}</button></p></form><div class="divider">✦</div><h3 class="danger">${esc(t("deleteEntity"))}</h3><p>${esc(t("confirmEntity"))}</p><form id="entity-delete">${input(t("name"), "confirm", "", "required")}<p><button>${esc(t("deleteEntity"))}</button></p></form></section></div></section>`
       : ""
   }`;
+  if (editable) app.querySelectorAll(".entry-list").forEach(sheetEditor.refreshEntries);
   const assignmentForm = document.querySelector("#assignment-form");
   if (assignmentForm) {
     assignmentForm.elements.campaignId.required = false;
@@ -1012,7 +1020,7 @@ function loseLock() {
   state.preview = false;
   document
     .querySelectorAll(
-      "[data-section] input,[data-section] textarea,#entity-portrait-form input",
+      "[data-section] :is(input,textarea,select,button),#entity-portrait-form input",
     )
     .forEach((el) => {
       el.disabled = true;
@@ -1024,16 +1032,6 @@ function loseLock() {
   }
   notify(t("lockLost"), true);
 }
-function sectionValue(container) {
-  const fields = [...container.querySelectorAll("[data-field]")];
-  if (container.dataset.kind === "multi")
-    return Object.fromEntries(fields.map((el) => [el.dataset.field, el.value]));
-  if (container.dataset.kind === "named-lines")
-    return fields
-      .map((el) => `${el.dataset.field.split(".").at(-1)}: ${el.value}`)
-      .join("\n");
-  return fields[0]?.value || "";
-}
 function mergeSheet(next) {
   state.sheet = {
     ...state.sheet,
@@ -1042,29 +1040,42 @@ function mergeSheet(next) {
     assignments: next.assignments || state.sheet?.assignments,
   };
 }
+function markSectionDirty(container) {
+  container.dataset.dirty = String((Number(container.dataset.dirty) || 0) + 1);
+  container.querySelector(".section-save small").textContent = t("unsaved");
+  if (container.hasAttribute("data-checked")) sheetEditor.check(container);
+}
 function saveSection(container) {
   if (!state.editing || state.preview || !container.dataset.dirty)
     return Promise.resolve();
-  const entityId = state.sheet.id,
-    value = sectionValue(container),
-    captured = JSON.stringify(value);
-  if (container.pendingSave?.captured === captured)
+  const entityId = state.sheet.id;
+  const revision = container.dataset.dirty;
+  if (container.pendingSave?.revision === revision)
     return container.pendingSave.promise;
   state.saveQueue = state.saveQueue
     .catch(() => {})
     .then(async () => {
       if (!state.editing || state.preview || state.sheet?.id !== entityId)
         throw new Error("LOCK_REQUIRED");
+      if (!container.dataset.dirty) return;
+      container.dataset.checked = "";
+      if (sheetEditor.check(container)) throw new Error("checkFields");
+      const captured = container.dataset.dirty;
+      const { fields, recordRows } = sheetEditor.snapshot(container);
       const result = await api(`/api/entities/${entityId}/edit`, "POST", {
         tab: state.tab,
         field: container.dataset.section,
-        value,
+        fields,
         version: state.sheet.version,
         campaignId: state.sheetCampaign || null,
       });
       mergeSheet(result.entity);
-      if (JSON.stringify(sectionValue(container)) === captured)
+      for (const rows of recordRows)
+        rows.forEach((row, index) => { row.dataset.sourceIndex = String(index); });
+      if (container.dataset.dirty === captured) {
         delete container.dataset.dirty;
+        delete container.dataset.checked;
+      }
       document
         .querySelector(".sheet-bar .resources")
         ?.replaceWith(
@@ -1080,10 +1091,11 @@ function saveSection(container) {
     });
   const pending = state.saveQueue.catch((error) => {
     if (error.message === "LOCK_REQUIRED") loseLock();
+    container.querySelector(".section-save small").textContent = errorMessage(error);
     notify(errorMessage(error), true);
     throw error;
   });
-  container.pendingSave = { captured, promise: pending };
+  container.pendingSave = { revision, promise: pending };
   pending
     .finally(() => {
       if (container.pendingSave?.promise === pending)
@@ -1093,9 +1105,18 @@ function saveSection(container) {
   return pending;
 }
 async function flushSheet() {
-  for (const section of document.querySelectorAll("[data-section][data-dirty]"))
-    await saveSection(section);
-  await state.saveQueue;
+  let section;
+  while (state.editing && !state.preview && (section = app.querySelector("[data-section][data-dirty]"))) {
+    try {
+      await saveSection(section);
+    } catch (error) {
+      section.closest("details").open = true;
+      const invalid = sheetEditor.check(section);
+      invalid?.focus();
+      invalid?.reportValidity();
+      throw error;
+    }
+  }
 }
 function resultMarkup(result) {
   if (!result) return `<div class="empty">${esc(t("noPreview"))}</div>`;
@@ -1248,10 +1269,16 @@ async function renderRoute() {
   if (
     state.sheet &&
     state.editing &&
-    (newSheet !== state.sheet.id || campaignId !== state.sheetCampaign)
+    (newSheet !== state.sheet.id || (campaignId || "") !== state.sheetCampaign)
   ) {
     const previous = state.sheet.id;
-    await state.saveQueue.catch(() => {});
+    try {
+      await flushSheet();
+    } catch {
+      const context = state.sheetCampaign ? `?campaign=${encodeURIComponent(state.sheetCampaign)}` : "";
+      history.replaceState(null, "", `#/sheet/${previous}${context}`);
+      return;
+    }
     await api(`/api/entities/${previous}/lock`, "POST", {
       action: "finish",
       tab: state.tab,
@@ -1644,6 +1671,7 @@ document.addEventListener("click", async (event) => {
       await campaignScreen(state.campaign.campaign.id, "overview");
     } else if (what === "auth-mode") authScreen(value);
     else if (what === "logout") {
+      if (state.editing && !state.preview) await flushSheet();
       await api("/api/logout", "POST");
       state.stream?.close();
       state.stream = null;
@@ -1782,7 +1810,9 @@ document.addEventListener("change", async (event) => {
   }
   const target = event.target;
   try {
-    if (target.form?.id === "dice-appearance") {
+    if (target.matches("select[data-field]") && state.editing && !state.preview) {
+      await saveSection(target.closest("[data-section]"));
+    } else if (target.form?.id === "dice-appearance") {
       updateGlow(target.form, target);
     } else if (target.name === "siteLanguage") {
       if (state.editing && !state.preview) await flushSheet();
@@ -1832,7 +1862,7 @@ document.addEventListener("input", (event) => {
   if (target.form?.id === "dice-appearance" && (target.name === "hex" || target.name === "glow"))
     updateGlow(target.form, target, true);
   const section = event.target.closest("[data-section]");
-  if (section && state.editing && !state.preview) section.dataset.dirty = "1";
+  if (section && state.editing && !state.preview) markSectionDirty(section);
 });
 function selectResourceAction(panel, mode, pool) {
   resourceMode = mode;
@@ -1857,8 +1887,26 @@ document.addEventListener("change", event => {
 });
 document.addEventListener("focusout", (event) => {
   const section = event.target.closest("[data-section]");
-  if (section && state.editing && !state.preview)
-    saveSection(section).catch(() => {});
+  if (section && state.editing && !state.preview && !section.contains(event.relatedTarget))
+    queueMicrotask(() => {
+      if (!section.contains(document.activeElement)) saveSection(section).catch(() => {});
+    });
+});
+document.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-step],[data-entry-action],[data-sheet-save]");
+  if (!button || !state.editing || state.preview) return;
+  const section = button.closest("[data-section]");
+  if (button.hasAttribute("data-sheet-save")) {
+    saveSection(section).catch(() => {
+      const invalid = sheetEditor.check(section);
+      invalid?.focus();
+      invalid?.reportValidity();
+    });
+    return;
+  }
+  if (button.hasAttribute("data-entry-action")) sheetEditor.changeEntries(button);
+  else if (!sheetEditor.adjust(button)) return;
+  markSectionDirty(section);
 });
 let lastActivity = 0;
 function editingActivity() {

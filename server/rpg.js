@@ -4,6 +4,7 @@ const characterEditor = require("../rpg/services/characterEditor");
 const creatureEditor = require("../rpg/services/creatureEditor");
 const characterCatalog = require("../rpg/services/characterFieldCatalog");
 const creatureCatalog = require("../rpg/services/creatureFieldCatalog");
+const { MAX_AP } = require("../rpg/services/mechanics/constants");
 const {
   populateRandomCharacter,
 } = require("../rpg/services/randomCharacterGenerator");
@@ -103,6 +104,7 @@ function sections(type, entity) {
         labelKey: def?.labelKey || fieldId,
         paragraph: Boolean(def?.paragraph || def?.multiline),
         pair: def?.inputKind === "pair",
+        ...(def?.resourceId === "ap" && def.inputKind === "pair" ? { maximum: MAX_AP } : {}),
         numeric: def?.type === "number",
         format: def?.rules
           ? "formatRules"
@@ -116,9 +118,10 @@ function sections(type, entity) {
     value: editor(type).getEditableFieldValue(entity, section.id),
   }));
 }
-function edit(type, data, field, value) {
+function edit(type, data, field, value, structured = false) {
   const entity = hydrate(type, data);
-  editor(type).setEditableFieldValue(entity, field, value);
+  if (structured) editor(type).setStructuredFieldValue(entity, field, value);
+  else editor(type).setEditableFieldValue(entity, field, value);
   const updated = JSON.parse(JSON.stringify(entity));
   hydrate(type, updated); // Validate the complete resulting save before publication.
   return updated;

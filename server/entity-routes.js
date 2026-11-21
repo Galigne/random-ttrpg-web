@@ -338,11 +338,13 @@ module.exports = (ctx) => {
     if (!Number.isSafeInteger(body.version) || body.version !== row.version)
       fail(409, "VERSION_CONFLICT");
     const campaignId = campaignContext(user, row, body.campaignId);
+    const structured = Object.hasOwn(body, "fields");
     const data = rpg.edit(
       row.type,
       JSON.parse(row.data),
       body.field,
-      body.value,
+      structured ? body.fields : body.value,
+      structured,
     );
     publish(row, data, user, row.version);
     if (
