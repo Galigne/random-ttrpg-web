@@ -54,7 +54,7 @@ async function health() {
 async function status() {
   const site = await api(); validateSite(site);
   const name = site.working_directory;
-  const match = name.match(/^random-release-([a-f0-9]{8,40})(?:-exact)?$/);
+  const match = name.match(/^random-release-([a-f0-9]{8,40})(?:-exact|-[0-9]+)?$/);
   let commit = match ? match[1] : 'unknown';
   if (match && commit.length < 40) { try { commit = run('git', ['rev-parse', '--verify', `${commit}^{commit}`]).trim(); } catch {} }
   console.log('Site:', url, '\nRelease directory:', name, '\nCommit from directory:', commit);
@@ -93,7 +93,7 @@ async function deploy() {
     const current = await api(); validateSite(current);
     if (current.command !== site.command || current.working_directory !== site.working_directory) throw new Error('Site configuration changed during preparation');
     const saved = backup();
-    const release = `random-release-${head}`;
+    const release = `random-release-${head}-${Date.now()}`;
     const remoteDir = `${home}/${release}`;
     archive = path.join(os.tmpdir(), `random-release-${crypto.randomUUID()}.tar`);
     run('git', ['-c', 'core.autocrlf=false', 'archive', '--format=tar', `--output=${archive}`, head]);
@@ -101,8 +101,8 @@ async function deploy() {
     ssh(`umask 077; mkdir '${remoteDir}' && tar -xf - -C '${remoteDir}'`, { input: bytes, encoding: null });
     const tree = run('git', ['ls-tree', '-r', head]);
     const files = tree.split('\n').filter(Boolean).map(line => { const [meta, file] = line.split('\t'); return [file, meta.split(' ')[2]]; });
-    const verify = `import hashlib,os,json\nroot=${JSON.stringify(remoteDir)}\nexpected=json.loads(${JSON.stringify(JSON.stringify(files))})\nfor name,want in expected:\n p=os.path.join(root,name)\n with open(p,'rb') as f: data=f.read()\n got=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\\0'+data).hexdigest()\n if got!=want: raise Exception('Mismatch: '+name)\nprint('Verified',len(expected),'release files')`;
-    console.log(python(verify).trim());
+    const verify = `import hashlib,os,json,sys\nroot=${JSON.stringify(remoteDir)}\nexpected=json.load(sys.stdin)\nfor name,want in expected:\n p=os.path.join(root,name)\n with open(p,'rb') as f: data=f.read()\n got=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\\0'+data).hexdigest()\n if got!=want: raise Exception('Mismatch: '+name)\nprint('Verified',len(expected),'release files')`;
+    console.log(python(verify, { input: JSON.stringify(files) }).trim());
     const testCopy = `${home}/random-backups/migration-test-${head}.sqlite`;
     const migration = `import os,shutil,subprocess\nsrc=${JSON.stringify(saved)}\ndst=${JSON.stringify(testCopy)}\nif os.path.exists(dst): raise Exception('Migration test copy already exists')\nshutil.copyfile(src,dst)\ntry:\n env=dict(os.environ,NODEJS_VERSION='24')\n js=\"const d=require('./server/db').openDatabase(process.argv[1]); if(d.prepare('PRAGMA integrity_check').get().integrity_check!=='ok')process.exit(1); d.close()\"\n subprocess.run(['node','-e',js,dst],cwd=${JSON.stringify(remoteDir)},env=env,check=True)\n print('Migration verified on backup copy')\nfinally:\n for suffix in ('','-wal','-shm'):\n  if os.path.exists(dst+suffix): os.remove(dst+suffix)`;
     console.log(python(migration).trim());
