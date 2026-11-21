@@ -8,21 +8,29 @@ In **Characters** or **Creatures**, create a blank sheet or review a generated p
 
 In **Members**, select an eligible assigned character as your **Playing Character**. Campaign members can see its limited preview even when the full sheet is private. The full sheet and its activity follow the applicable sheet and campaign permissions.
 
+## Editing character and creature sheets
+
+Open a sheet and choose **Start editing** if you have edit access. This starts an exclusive editing session. Use it to update sheet fields such as statistics, equipment, and current and maximum resource values. The level selector saves immediately. Other field edits save when you leave the section or choose **Save**.
+
+Use **Undo** and **Redo** to preview saved versions of the sheet. Choose **Save reversal** to apply the preview or **Cancel preview** to discard it. Choose **Finish editing** to save pending field edits and release the lock. A disconnected or inactive editor can lose the lock and any unsaved draft.
+
 ## Running a battle
 
 Open your campaign's **Overview** and find **Battle**. A GM or site administrator can choose **Start battle**. This adds the eligible Playing Characters of members currently present in the workspace who can edit those sheets. Use **Add combatant** to add other approved campaign characters or creatures. Manually added combatants enter the enemy side of the tracker.
 
 The tracker groups combatants by Speed and side. Higher Speed goes first, with the player side ahead on ties. Combatants in the active group can act in any order. Select a combatant to see the controls you can use.
 
-- **End turn** marks that combatant finished, refills Movement Distance (MD), and sets current Action Points (AP) to the maximum plus half the remaining AP, rounded down. When everyone in the active group finishes, the tracker advances automatically.
+- **End turn** marks that combatant finished. On their first finish each round, the game refills their Movement Distance (MD) and sets their current Action Points (AP) to the maximum plus half the remaining AP, rounded down. When everyone in the active group finishes, the tracker advances automatically.
 - **Delay** moves an unfinished combatant past the next group in the current round. It is unavailable for the last group. At the next round, delayed combatants return to their normal groups and finished markers reset.
 - A GM or site administrator can **Advance** to the next group without applying end-turn recovery, **Move earlier** or **Move later** to reorder groups, or **Set active** to correct which group is acting. Setting a group active clears its finished markers while preserving whether combatants have already recovered resources this round. GMs and site administrators can also remove combatants and choose **End battle**.
 
 Players can finish or delay the turn of their own Playing Character when they have edit access to that sheet and it is their character's turn. GMs and site administrators can control any approved campaign combatant. If a member cannot see a combatant's identity, the tracker displays **Unknown combatant**.
 
-## Damage, healing, and resources
+Battle order and chat disappear on server restart or five minutes after the last member leaves the workspace. Saved resource changes and sheet history persist.
 
-In **Battle → Resources**, use **Select a target** or click a controllable combatant. You can use this panel before starting a battle. GMs and site administrators can target any approved campaign character or creature. Other members can target their own Playing Character when they have edit access.
+## Damage, healing, and resources in a campaign
+
+Use **Battle → Resources** in the campaign **Overview** to apply damage, healing, restoration, or a change to current resources during play. Choose **Select a target** or click a controllable combatant in the tracker. The target selector is available before a battle starts. GMs and site administrators can target any approved campaign character or creature. Other members can target their own Playing Character when they have edit access.
 
 | Action | Effect |
 | --- | --- |
@@ -31,11 +39,7 @@ In **Battle → Resources**, use **Select a target** or click a controllable com
 | **Restore** | Set HP, AR, or both to a percentage of each maximum. This sets a value and can lower the current amount. |
 | **Set resource** | Choose a current HP, AR, AP, or MD value. Click a resource meter to select it directly. Maximums are edited on the full sheet. |
 
-Resource actions save to the sheet and its history immediately. Finish any active sheet edit before changing resources or ending that combatant's turn through the battle panel. The panel respects exclusive editing locks, including for GMs.
-
-Open the full sheet to edit its fields or use its own combat controls. Start an exclusive edit first. Opening a sheet from a campaign lets eligible combat events appear there. Opening it from the library keeps combat events personal. Choosing a level saves immediately. Other edits save when you leave the section or choose **Save**. **Undo** and **Redo** show a preview until you save it. A disconnected or inactive editor can lose the lock and any unsaved draft.
-
-Battle order and chat live in the workspace. They disappear on server restart or five minutes after the last member leaves. Saved resource changes and sheet history persist.
+Resource actions save to the target's sheet and history immediately. If someone is editing the target's sheet, they must finish editing before anyone can change its resources or apply end-of-turn recovery through the campaign's **Battle** panel. The lock also applies to GMs.
 
 ## Dice, images, and languages
 
